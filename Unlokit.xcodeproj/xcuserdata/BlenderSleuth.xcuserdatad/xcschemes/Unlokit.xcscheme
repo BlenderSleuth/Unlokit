@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "383CA98D1E1DD7AF00F8B998"
+               BlueprintIdentifier = "383CA95F1E1DD4F500F8B998"
                BuildableName = "Unlokit.app"
                BlueprintName = "Unlokit"
                ReferencedContainer = "container:Unlokit.xcodeproj">
@@ -32,7 +32,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "383CA98D1E1DD7AF00F8B998"
+            BlueprintIdentifier = "383CA95F1E1DD4F500F8B998"
             BuildableName = "Unlokit.app"
             BlueprintName = "Unlokit"
             ReferencedContainer = "container:Unlokit.xcodeproj">
@@ -55,7 +55,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "383CA98D1E1DD7AF00F8B998"
+            BlueprintIdentifier = "383CA95F1E1DD4F500F8B998"
             BuildableName = "Unlokit.app"
             BlueprintName = "Unlokit"
             ReferencedContainer = "container:Unlokit.xcodeproj">
@@ -74,7 +74,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "383CA98D1E1DD7AF00F8B998"
+            BlueprintIdentifier = "383CA95F1E1DD4F500F8B998"
             BuildableName = "Unlokit.app"
             BlueprintName = "Unlokit"
             ReferencedContainer = "container:Unlokit.xcodeproj">
