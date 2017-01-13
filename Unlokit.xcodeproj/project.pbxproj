@@ -26,8 +26,8 @@
 		383CA9631E1DD4F500F8B998 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		383CA96A1E1DD4F500F8B998 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		383CA96F1E1DD4F500F8B998 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		383CA9751E1DD5E600F8B998 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = GameScene.sks; path = ../GameScene.sks; sourceTree = "<group>"; };
-		383CA9761E1DD5E600F8B998 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameScene.swift; path = ../GameScene.swift; sourceTree = "<group>"; };
+		383CA9751E1DD5E600F8B998 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		383CA9761E1DD5E600F8B998 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		383CA9771E1DD5E600F8B998 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		383CA9781E1DD5E600F8B998 /* Gun.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Gun.sks; sourceTree = "<group>"; };
 		383CA97D1E1DD5F100F8B998 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -74,8 +74,6 @@
 				383CA97F1E1DD61100F8B998 /* LaunchScreen.storyboard */,
 				383CA9811E1DD61100F8B998 /* Main.storyboard */,
 				38929DA81E28503300C12C4C /* Nodes */,
-				383CA9781E1DD5E600F8B998 /* Gun.sks */,
-				38650F531E25F6A500401ABD /* FireButtonNode.swift */,
 				383CA9771E1DD5E600F8B998 /* GameViewController.swift */,
 				383CA97D1E1DD5F100F8B998 /* Utils.swift */,
 				383CA96F1E1DD4F500F8B998 /* Info.plist */,
@@ -88,6 +86,7 @@
 			children = (
 				383CA9751E1DD5E600F8B998 /* GameScene.sks */,
 				383CA9761E1DD5E600F8B998 /* GameScene.swift */,
+				383CA9781E1DD5E600F8B998 /* Gun.sks */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -96,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				38929DA91E28508F00C12C4C /* ComponentNode.swift */,
+				38650F531E25F6A500401ABD /* FireButtonNode.swift */,
 				38929DAB1E2850B900C12C4C /* TimeComponentNode.swift */,
 			);
 			path = Nodes;
