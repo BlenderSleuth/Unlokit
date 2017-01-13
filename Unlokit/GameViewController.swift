@@ -30,8 +30,12 @@ class GameViewController: UIViewController {
             skView.showsNodeCount = true
             
             // Causes memory leak...
-            //skView.showsPhysics = true
+            skView.showsPhysics = true
         }
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
 }
 
