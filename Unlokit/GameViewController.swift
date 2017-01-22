@@ -11,13 +11,13 @@ import SpriteKit
 
 class GameViewController: UIViewController {
 
-    var scene: GameScene!
+    var scene: SKScene!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Check for skView,             load scene from file
-        if let skView = view as? SKView, let scene = SKScene(fileNamed: "GameScene") as? GameScene {
+        if let skView = view as? SKView, let scene = SKScene(fileNamed: "Level1") as? Level1 {
             self.scene = scene
             // Scale scene to fill
             scene.scaleMode = .aspectFill

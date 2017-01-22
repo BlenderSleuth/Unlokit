@@ -19,11 +19,6 @@ enum Category: UInt32 {
     case blockFlammable = 0b100000
 }
 
-enum NodeType {
-    case Controller
-    case Camera
-}
-
 class GameScene: SKScene {
     
     //MARK: Variables
@@ -35,6 +30,11 @@ class GameScene: SKScene {
     var gun: SKNode!
     var cameraNode: SKCameraNode!
     var bounds: SKSpriteNode!
+    
+    var canvasBounds: CGRect!
+    
+    // Components for key
+    var components = [ComponentType : ComponentNode]()
     
     // Touch points in different coordinate systems
     var lastTouchPoint = CGPoint.zero
@@ -61,12 +61,10 @@ class GameScene: SKScene {
         debugPath.lineWidth = 5
         addChild(debugPath)
         
+        canvasBounds = childNode(withName: "canvas")?.frame
+        
         // Bind gun to local variable
         gun = controller.childNode(withName: "gun")!.children.first
-        
-        fireNode = FireButtonNode(size: controller.size / 3, position: controller.position)
-        fireNode.zPosition = 10
-        addChild(fireNode)
         
         //Bind the camera to local variable
         if let cam = camera {
@@ -127,6 +125,21 @@ class GameScene: SKScene {
         // Create cgrect with modified origin
         let rect = CGRect(origin: CGPoint(x: -bounds.frame.size.width / 2, y: -bounds.frame.size.height / 2), size: bounds.frame.size)
         bounds.physicsBody = SKPhysicsBody(edgeLoopFrom: rect)
+        
+        // Create dictionary of components to use later
+        for child in children {
+            if let component = child as? ComponentNode {
+                components[component.type] = component
+            }
+        }
+        
+        let rangeX1 = SKRange(lowerLimit: 0, upperLimit: canvasBounds.width)
+        let rangeY1 = SKRange(lowerLimit: 0, upperLimit: canvasBounds.height)
+        let canvasConstraint = SKConstraint.positionX(rangeX1, y: rangeY1)
+        
+        for (_, component) in components {
+            component.constraints = [canvasConstraint]
+        }
     }  
     
     func handleTouchController(_ location: CGPoint) {
@@ -155,21 +168,29 @@ class GameScene: SKScene {
         cameraNode.position += vector
     }
     
-    func nodeTypeAt(_ location: CGPoint) -> NodeType {
-        let type: NodeType
+    func nodeAt(_ location: CGPoint) -> SKNode {
+        let node: SKNode
         
         // Check if controller region contains touch location
         if controllerRegion.contains(location) {
-            type = .Controller
+            node = controller
         } else {
             // Switch for other types of nodes
             switch atPoint(location) {
+            case components[.Time]!:
+                node = components[.Time]!
+            case components[.Light]!:
+                node = components[.Light]!
+            case components[.Wave]!:
+                node = components[.Wave]!
+            case components[.Sticky]!:
+                node = components[.Sticky]!
             default:
-                type = .Camera
+                node = cameraNode
             }
         }
         
-        return type
+        return node
     }
     
     //MARK: Touch Events
@@ -184,12 +205,7 @@ class GameScene: SKScene {
             lastTouchPoint = location
             lastTouchCam = locationCam
             
-            switch nodeTypeAt(lastTouchPoint) {
-            case .Controller:
-                currentNode = controller
-            case .Camera:
-                currentNode = cameraNode
-            }
+            currentNode = nodeAt(lastTouchPoint)
         }
     }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -205,7 +221,14 @@ class GameScene: SKScene {
                 handleTouchController(location)
             case cameraNode:
                 moveCamera(locationCam)
-                
+            case components[.Time]!:
+                components[.Time]!.position = location
+            case components[.Light]!:
+                components[.Light]!.position = location
+            case components[.Wave]!:
+                components[.Wave]!.position = location
+            case components[.Sticky]!:
+                components[.Sticky]!.position = location
             default:
                 break
             }

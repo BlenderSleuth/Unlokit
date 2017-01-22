@@ -8,11 +8,11 @@
 
 import SpriteKit
 
-class TimeComponentNode: ComponentNode {
+class LightComponentNode: ComponentNode {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        type = .Time
+        type = .Light
     }
 }

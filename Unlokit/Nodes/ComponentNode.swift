@@ -8,7 +8,22 @@
 
 import SpriteKit
 
-class ComponentNode: SKSpriteNode {
+enum ComponentType {
+    case Time
+    case Wave
+    case Light
+    case Sticky
+}
 
+// Only use this for subclassing...
+class ComponentNode: SKSpriteNode {
+    
+    var type: ComponentType!
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        //self.physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
+        //physicsBody?.isDynamic = false
+    }
     
 }
