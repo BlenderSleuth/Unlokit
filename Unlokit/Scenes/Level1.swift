@@ -27,12 +27,7 @@ class Level1: SKScene {
     var components = [ComponentNode]()
     
     // Touch points in different coordinate systems
-	var lastTouchPoint = CGPoint.zero {
-		didSet {
-			// Set last touch cam whenever lastTouchPoint is set
-			lastTouchCam = cameraNode.convert(lastTouchPoint, from: self)
-		}
-	}
+	var lastTouchPoint = CGPoint.zero
     var lastTouchCam = CGPoint.zero
     
     var currentNode: SKNode!
@@ -207,11 +202,13 @@ class Level1: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             
-            // Get location of touch
+            // Get location of touch in different coordinate systems
             let location = touch.location(in: self)
+			let locationCam = touch.location(in: cameraNode)
             
-            // Set local variable
+            // Set local variables
             lastTouchPoint = location
+			lastTouchCam = locationCam
             
 			currentNode = node(at: lastTouchPoint)
         }
@@ -219,19 +216,21 @@ class Level1: SKScene {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             
-            // Get location of touch
+            // Get location of touch in different coordinate systems
             let location = touch.location(in: self)
+			let locationCam = touch.location(in: cameraNode)
 			
 			if currentNode == controller && isInCanvas(location: location) {
 				handleTouchController(location)
 			} else if let component = currentNode as? ComponentNode {
 				createComponent(type: component.type)
-			} else {
-				moveCamera(lastTouchCam)
+			} else if currentNode == cameraNode{
+				moveCamera(locationCam)
 			}
             
             // Set local variables
             lastTouchPoint = location
+			lastTouchCam = locationCam
         }
     }
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {

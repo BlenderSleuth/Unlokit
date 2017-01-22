@@ -16,6 +16,7 @@
 		383CA97E1E1DD5F100F8B998 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383CA97D1E1DD5F100F8B998 /* Utils.swift */; };
 		383CA9831E1DD61100F8B998 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 383CA97F1E1DD61100F8B998 /* LaunchScreen.storyboard */; };
 		383CA9841E1DD61100F8B998 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 383CA9811E1DD61100F8B998 /* Main.storyboard */; };
+		384ACEF31E347FE2004C3E93 /* KeyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384ACEF21E347FE2004C3E93 /* KeyNode.swift */; };
 		38650F541E25F6A500401ABD /* FireButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38650F531E25F6A500401ABD /* FireButtonNode.swift */; };
 		38801AFE1E2DD18400598982 /* Level1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38801AFC1E2DD18400598982 /* Level1.sks */; };
 		38801AFF1E2DD18400598982 /* Level1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38801AFD1E2DD18400598982 /* Level1.swift */; };
@@ -38,6 +39,7 @@
 		383CA97D1E1DD5F100F8B998 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		383CA9801E1DD61100F8B998 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		383CA9821E1DD61100F8B998 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		384ACEF21E347FE2004C3E93 /* KeyNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyNode.swift; sourceTree = "<group>"; };
 		38650F531E25F6A500401ABD /* FireButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireButtonNode.swift; sourceTree = "<group>"; };
 		38801AFC1E2DD18400598982 /* Level1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1.sks; sourceTree = "<group>"; };
 		38801AFD1E2DD18400598982 /* Level1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level1.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 		38929DA81E28503300C12C4C /* Nodes */ = {
 			isa = PBXGroup;
 			children = (
+				384ACEF21E347FE2004C3E93 /* KeyNode.swift */,
 				38650F531E25F6A500401ABD /* FireButtonNode.swift */,
 				38929DA91E28508F00C12C4C /* ComponentNode.swift */,
 				38929DAB1E2850B900C12C4C /* TimeComponentNode.swift */,
@@ -199,6 +202,7 @@
 				38DD15371E28A02C0064FD73 /* LightComponentNode.swift in Sources */,
 				383CA9641E1DD4F500F8B998 /* AppDelegate.swift in Sources */,
 				38801AFF1E2DD18400598982 /* Level1.swift in Sources */,
+				384ACEF31E347FE2004C3E93 /* KeyNode.swift in Sources */,
 				38DD15391E28A02C0064FD73 /* WaveComponentNode.swift in Sources */,
 				38DD15381E28A02C0064FD73 /* StickyComponentNode.swift in Sources */,
 				383CA97E1E1DD5F100F8B998 /* Utils.swift in Sources */,
