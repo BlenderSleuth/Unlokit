@@ -9,11 +9,26 @@
 import SpriteKit
 import UIKit
 
+struct Category {
+	static let key1: UInt32			= 0b1
+	static let key2: UInt32			= 0b10
+	static let key3: UInt32			= 0b100
+	static let lock1: UInt32		= 0b1000
+	static let lock2: UInt32		= 0b10000
+	static let lock3: UInt32		= 0b100000
+	static let controller: UInt32	= 0b1000000
+	
+	//static let blockStd: UInt32       = 0b10
+	//static let blockBreakable: UInt32 = 0b100
+	//static let blockNonStick: UInt32  = 0b1000
+	//static let blockStick: UInt32     = 0b10000
+	//static let blockFlammable: UInt32 = 0b100000
+}
+
 class Level1: SKScene {
     
     //MARK: Variables
-    var controller: SKSpriteNode!
-    var controllerRegion: SKRegion!
+    var controller: ControllerNode!
     
     var fireNode: FireButtonNode!
     
@@ -25,6 +40,9 @@ class Level1: SKScene {
     
     // Components for key
     var components = [ComponentNode]()
+	
+	// Key
+	var key: KeyNode!
     
     // Touch points in different coordinate systems
 	var lastTouchPoint = CGPoint.zero
@@ -44,17 +62,8 @@ class Level1: SKScene {
     }
 	func setupNodes() {
 		// Bind controller to local variable
-		controller = childNode(withName: "controller") as! SKSpriteNode
-		
-		// Create patch for an SKRegion to detect touches in circle, rather than square
-		let regionRect = CGRect(origin: controller.frame.origin - 50, size: controller.frame.size + 100)
-		let path = CGPath(ellipseIn: regionRect, transform: nil)
-		controllerRegion = SKRegion(path: path)
-		
-		let debugPath = SKShapeNode(path: path)
-		debugPath.strokeColor = .blue
-		debugPath.lineWidth = 5
-		addChild(debugPath)
+		controller = childNode(withName: "controller") as! ControllerNode
+		controller.physics()
 		
 		canvasBounds = childNode(withName: "canvas")?.frame
 		
@@ -69,8 +78,14 @@ class Level1: SKScene {
 		// Bind boundary box to local variable
 		bounds = childNode(withName: "bounds") as! SKSpriteNode
 		
-		fireNode = childNode(withName: "fireButton") as? FireButtonNode
+		// Bind fire node to local variable
+		fireNode = childNode(withName: "fireButton") as! FireButtonNode
+		
+		// Bind key to local variable
+		key = childNode(withName: "key") as! KeyNode
+		key.scn = self
 	}
+	
 	func setupCamera() {
 		
 		//Get correct aspect ratio for device
@@ -104,8 +119,10 @@ class Level1: SKScene {
 			camera?.position = CGPoint(x: self.size.width / 2, y: bounds.frame.minY + height / 2 - overlapAmount() / 2)
 			
 			// Create range of points in which the camera can go, based on the bounds and size of the screen
-			rangeX = SKRange(lowerLimit: bounds.frame.minX + size.width / 2, upperLimit: bounds.frame.maxX - size.width / 2)
-			rangeY = SKRange(lowerLimit: bounds.frame.minY + height / 2 - overlapAmount() / 2, upperLimit: bounds.frame.maxY - height / 2 - overlapAmount() / 2)
+			rangeX = SKRange(lowerLimit: bounds.frame.minX + size.width / 2,
+			                 upperLimit: bounds.frame.maxX - size.width / 2)
+			rangeY = SKRange(lowerLimit: bounds.frame.minY + height / 2 - overlapAmount() / 2,
+			                 upperLimit: bounds.frame.maxY - height / 2 - overlapAmount() / 2)
 		} else {
 			// Set position of camera
 			camera?.position = CGPoint(x: self.size.width / 2, y:  height / 2)
@@ -171,7 +188,7 @@ class Level1: SKScene {
     
     func node(at point: CGPoint) -> SKNode {
         // Check if controller region contains touch location
-        if controllerRegion.contains(point) {
+        if controller.region.contains(point) {
             return controller
         } else {
             // Check components

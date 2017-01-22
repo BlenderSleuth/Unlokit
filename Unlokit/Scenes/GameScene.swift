@@ -9,16 +9,6 @@
 import SpriteKit
 import UIKit
 
-enum Category: UInt32 {
-    case key1 = 0b1
-    
-    case blockStd       = 0b10
-    case blockBreakable = 0b100
-    case blockNonStick  = 0b1000
-    case blockStick     = 0b10000
-    case blockFlammable = 0b100000
-}
-
 class GameScene: SKScene {
     
     //MARK: Variables

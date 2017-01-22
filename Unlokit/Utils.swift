@@ -169,6 +169,13 @@ prefix func -(right: CGSize) -> CGSize {
 	return CGSize(width: -right.width, height: -right.height)
 }
 
+//********* CGRect Functions ***************************
+extension CGRect {
+	func originToZero() -> CGRect{
+		return CGRect(origin: CGPoint.zero, size: size)
+	}
+}
+
 //********* Other Global stuff ***************************
 private let version = UIDevice.current.systemVersion
 let ios9 = version == "9.3.3" ? true : false
