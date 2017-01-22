@@ -176,11 +176,35 @@ extension CGRect {
 	}
 }
 
+func / (left: CGRect, right: CGFloat) -> CGRect {
+	return CGRect(origin: left.origin / right, size: left.size / right)
+}
+
 //********* Other Global stuff ***************************
 private let version = UIDevice.current.systemVersion
 let ios9 = version == "9.3.3" ? true : false
 
+//********* SKNode extension *****************************
 
+extension SKNode
+{
+	/** 
+	Adds an action to the list of actions executed by the node.
+	- parameters:
+		- action : The action to perform.
+		- withKey: A unique key used to identify the action.
+		- block : A completion block called when the action completes.
+	*/
+	func run(_ action: SKAction, withKey: String, completion block:@escaping ((Void) -> Void)) {
+			let completionAction = SKAction.run(block)
+			let compositeAction = SKAction.sequence([action, completionAction])
+			run(compositeAction, withKey: withKey)
+	}
+	
+	func actionForKeyIsRunning(key: String) -> Bool {
+		return self.action(forKey: key) != nil ? true : false
+	}
+}
 
 
 

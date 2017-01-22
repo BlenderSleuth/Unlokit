@@ -10,18 +10,24 @@ import SpriteKit
 
 class ControllerNode: SKSpriteNode {
 	var region: SKRegion!
+	var middleRegion: SKRegion!
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
+		// Small region in centre of controller for detecting touch
+		let middleRect = CGRect(origin: frame.origin + 300, size: frame.size - 600)
+		let middlePath = CGPath(ellipseIn: middleRect, transform: nil)
+		middleRegion = SKRegion(path: middlePath)
 		
 		// Create path for an SKRegion to detect touches in circle, rather than square
-
 		let regionRect = CGRect(origin: frame.origin - 50, size: frame.size + 100)
 		
 		let path = CGPath(ellipseIn: regionRect, transform: nil)
-		region = SKRegion(path: path)
+		let bigRegion = SKRegion(path: path)
+		// Small area in centre for detecting other touches
+		region = bigRegion.byDifference(from: middleRegion)
 		
-		//Show region with SKShapenode
+		// Show region with SKShapenode
 		let regionRectDebug = CGRect(origin: CGPoint(x: -frame.width / 2 - 50, y: -frame.height / 2 - 50),
 		                             size: frame.size + 100)
 		let debugPath = CGPath(ellipseIn: regionRectDebug, transform: nil)
@@ -32,11 +38,11 @@ class ControllerNode: SKSpriteNode {
 		
 		// Physicsbody
 		// TO DO: Make this work internally...
-		//physics()
+		//setupPhysics()
 
 	}
 	
-	func physics() {
+	func setupPhysics() {
 		let physicsRect = CGRect(origin: CGPoint(x: -frame.width/2, y: -frame.height/2), size: frame.size)
 		let physicsPath = CGPath(ellipseIn: physicsRect, transform: nil)
 		

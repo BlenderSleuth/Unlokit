@@ -63,7 +63,7 @@ class Level1: SKScene {
 	func setupNodes() {
 		// Bind controller to local variable
 		controller = childNode(withName: "controller") as! ControllerNode
-		controller.physics()
+		controller.setupPhysics()
 		
 		canvasBounds = childNode(withName: "canvas")?.frame
 		
@@ -83,11 +83,22 @@ class Level1: SKScene {
 		
 		// Bind key to local variable
 		key = childNode(withName: "key") as! KeyNode
-		key.scn = self
+		key.setupPhysics()
+		
+		// Keep key in canvas
+		let canvasX = SKRange(lowerLimit: 0, upperLimit: canvasBounds.width)
+		let canvasY = SKRange(lowerLimit: 0, upperLimit: canvasBounds.height)
+		let canvasConstraint = SKConstraint.positionX(canvasX, y: canvasY)
+		
+		// Stop key from entering controller (yet...)
+		let outsideController = SKRange(lowerLimit: controller.size.width / 2) // Outside radius of controller
+		let controllerConstraint = SKConstraint.distance(outsideController, to: controller)
+			
+		key.constraints = [canvasConstraint, controllerConstraint]
+		key.saveContraints()
 	}
 	
 	func setupCamera() {
-		
 		//Get correct aspect ratio for device
 		let aspectRatio: CGFloat
 		if UIDevice.current.model == "iPhone" {
@@ -185,19 +196,51 @@ class Level1: SKScene {
         // Add to camera node position
         cameraNode.position += vector
     }
-    
+	
+	func moveKey(_ key: KeyNode, location: CGPoint) {
+		//make sure key isn't animating position
+		guard !key.isEngaging else {
+			return
+		}
+		
+		if !key.isEngaged {
+			key.position = location
+			
+			// Check if user touched centre of controller
+			if controller.middleRegion.contains(location) {
+				// Animate to centre
+				key.isEngaged = true
+				key.run(SKAction.move(to: controller.position, duration: 1), withKey: "engaging")
+			}
+		} else {
+			// Check if user touched outside of controller
+			if !controller.region.contains(location) {
+				// Animate outside
+				key.run(SKAction.move(to: location, duration: 1), withKey: "disengaging") {
+					key.isEngaged = false
+				}
+			}
+		}
+
+	}
+	
+	// Function to return correct node, different methods of sorting
     func node(at point: CGPoint) -> SKNode {
         // Check if controller region contains touch location
+		let node = atPoint(point)
+		
         if controller.region.contains(point) {
             return controller
-        } else {
+        } else if node is ComponentNode {
             // Check components
 			for component in components {
 				if component.position == point {
 					return component
 				}
 			}
-        }
+		} else if node is KeyNode {
+			return key
+		}
 		// Return camera as default
 		return cameraNode
     }
@@ -243,6 +286,8 @@ class Level1: SKScene {
 				createComponent(type: component.type)
 			} else if currentNode == cameraNode{
 				moveCamera(locationCam)
+			} else if currentNode == key {
+				moveKey(key, location: location)
 			}
             
             // Set local variables
