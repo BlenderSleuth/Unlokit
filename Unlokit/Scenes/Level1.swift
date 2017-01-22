@@ -199,25 +199,35 @@ class Level1: SKScene {
 	
 	func moveKey(_ key: KeyNode, location: CGPoint) {
 		//make sure key isn't animating position
-		guard !key.isEngaging else {
+		guard !key.isEngaging || !key.isDisengaging else {
+			if key.isDisengaging {
+				//key.run(SKAction.move(to: location, duration: 0.2), withKey: "disengaging") {
+				//	key.isEngaged = false
+				//}
+			}
+			
 			return
 		}
 		
 		if !key.isEngaged {
-			key.position = location
-			
 			// Check if user touched centre of controller
 			if controller.middleRegion.contains(location) {
 				// Animate to centre
 				key.isEngaged = true
-				key.run(SKAction.move(to: controller.position, duration: 1), withKey: "engaging")
+				key.inside = true
+				key.run(SKAction.move(to: controller.position, duration: 0.2), withKey: "engaging")
+			} else {
+				key.position = location
 			}
+			
 		} else {
 			// Check if user touched outside of controller
-			if !controller.region.contains(location) {
+			if !controller.combinedRegion.contains(location) && key.inside {
 				// Animate outside
-				key.run(SKAction.move(to: location, duration: 1), withKey: "disengaging") {
+				key.inside = false
+				key.run(SKAction.move(to: location, duration: 0.2), withKey: "disengaging") {
 					key.isEngaged = false
+					key.position = location
 				}
 			}
 		}

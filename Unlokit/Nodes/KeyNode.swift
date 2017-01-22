@@ -21,13 +21,22 @@ class KeyNode: SKSpriteNode {
 		}
 	}
 	
+	// Check if key is animating
 	var isEngaging: Bool {
-		if (self.action(forKey: "engaging") != nil) || (self.action(forKey: "disengaging") != nil) {
-			print("engaging")
+		if self.action(forKey: "engaging") != nil {
 			return true
 		}
 		return false
 	}
+	
+	var isDisengaging: Bool {
+		if self.action(forKey: "disengaging") != nil {
+			return true
+		}
+		return false
+	}
+	
+	var inside = false
 	
 	// To save constraints when not using them
 	var saveContraint = [SKConstraint]()

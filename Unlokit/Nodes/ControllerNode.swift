@@ -11,6 +11,7 @@ import SpriteKit
 class ControllerNode: SKSpriteNode {
 	var region: SKRegion!
 	var middleRegion: SKRegion!
+	var combinedRegion: SKRegion!
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
@@ -23,9 +24,9 @@ class ControllerNode: SKSpriteNode {
 		let regionRect = CGRect(origin: frame.origin - 50, size: frame.size + 100)
 		
 		let path = CGPath(ellipseIn: regionRect, transform: nil)
-		let bigRegion = SKRegion(path: path)
-		// Small area in centre for detecting other touches
-		region = bigRegion.byDifference(from: middleRegion)
+		combinedRegion = SKRegion(path: path)
+		
+		region = combinedRegion.byDifference(from: middleRegion)
 		
 		// Show region with SKShapenode
 		let regionRectDebug = CGRect(origin: CGPoint(x: -frame.width / 2 - 50, y: -frame.height / 2 - 50),
