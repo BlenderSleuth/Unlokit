@@ -8,5 +8,5 @@
 
 import SpriteKit
 
-class Level1: Level {
+class Level2: Level {
 }

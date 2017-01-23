@@ -9,7 +9,7 @@
 import SpriteKit
 
 //Separate file for physics contact, its gonna get heavy...
-extension Level1: SKPhysicsContactDelegate {
+extension Level: SKPhysicsContactDelegate {
 	func didBegin(_ contact: SKPhysicsContact) {
 		let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
 		
