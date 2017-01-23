@@ -9,31 +9,39 @@
 import UIKit
 import SpriteKit
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, start {
 
     var scene: SKScene!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Check for skView,             load scene from file
-        if let skView = view as? SKView, let scene = SKScene(fileNamed: "Level1") as? Level1 {
-            self.scene = scene
-            // Scale scene to fill
-            scene.scaleMode = .aspectFill
-            
-            // Present Scene
-            skView.presentScene(scene)
-            
-            // Set options
-            skView.showsFPS = true
-            skView.showsNodeCount = true
-            
-            // Causes memory leak...
-            //skView.showsPhysics = true
-        }
+        startNewGame()
     }
-    
+	
+	func startNewGame() {
+		// Check for skView,             load scene from file
+		if let skView = view as? SKView, let scene = SKScene(fileNamed: "Level1") as? Level1 {
+			self.scene = scene
+			scene.start = self
+			
+			// Scale scene to fill
+			scene.scaleMode = .aspectFill
+			
+			// Transistion
+			let transition = SKTransition.crossFade(withDuration: 0.5)
+			
+			// Present Scene
+			skView.presentScene(scene, transition: transition)
+			
+			// Set options
+			skView.showsFPS = true
+			skView.showsNodeCount = true
+			
+			// Causes memory leak...
+			//skView.showsPhysics = true
+		}
+	}
+	
     override var prefersStatusBarHidden: Bool {
         return true
     }

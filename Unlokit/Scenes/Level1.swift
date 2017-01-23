@@ -28,12 +28,17 @@ struct Category {
 	//static let blockFlammable: UInt32 = 0b100000
 }
 
-class Level1: SKScene {
+protocol start {
+	func startNewGame()
+}
+
+class Level1: SKScene, Reload {
     
     //MARK: Variables
     var controller: ControllerNode!
     
     var fireNode: FireButtonNode!
+	var replayNode: ReplayButtonNode!
     
     var gun: SKNode!
     var cameraNode: SKCameraNode!
@@ -46,7 +51,6 @@ class Level1: SKScene {
 	
 	// Key
 	var key: KeyNode!
-	
 	var lock: LockNode!
     
     // Touch points in different coordinate systems
@@ -58,6 +62,8 @@ class Level1: SKScene {
     // Time intervals
     var lastUpdateTime: TimeInterval = 0
     var dt: TimeInterval = 0
+	
+	var start: start!
 	
 	//MARK: Setup
     override func didMove(to view: SKView) {
@@ -86,6 +92,8 @@ class Level1: SKScene {
 		
 		// Bind fire node to local variable
 		fireNode = cameraNode.childNode(withName: "fireButton") as! FireButtonNode
+		replayNode = cameraNode.childNode(withName: "replayButton") as! ReplayButtonNode
+		replayNode.reloadable = self
 		
 		// Bind key to local variable
 		key = childNode(withName: "key") as! KeyNode
@@ -155,9 +163,10 @@ class Level1: SKScene {
 			                 upperLimit: bounds.frame.maxY - height / 2)
 		}
 		
-		// Set fireNode incase of iphone
+		// Set interface nodes incase of iphone
 		if iPhone {
-			fireNode.position.y  += 200
+			fireNode.position.y  += 250
+			replayNode.position.y -= 250
 		}
 		
 		// Set camera constraints
@@ -291,6 +300,12 @@ class Level1: SKScene {
 	
 	func createComponent(type: ComponentType) {
 		
+	}
+	
+	func reload() {
+		if start != nil {
+			start.startNewGame()
+		}
 	}
     
     //MARK: Touch Events
