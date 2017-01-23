@@ -97,6 +97,67 @@ prefix func -(right: CGPoint) -> CGPoint {
 	return CGPoint(x: -right.x, y: -right.y)
 }
 
+//********* CGVector Functions ***************************
+func + (left: CGVector, right: CGVector) -> CGVector {
+	return CGVector(dx: left.dx + right.dx, dy: left.dy + right.dy)
+}
+func - (left: CGVector, right: CGVector) -> CGVector {
+	return CGVector(dx: left.dx - right.dx, dy: left.dy - right.dy)
+}
+func * (left: CGVector, right: CGVector) -> CGVector {
+	return CGVector(dx: left.dx * right.dx, dy: left.dy * right.dy)
+}
+func / (left: CGVector, right: CGVector) -> CGVector {
+	return CGVector(dx: left.dx / right.dx, dy: left.dy / right.dy)
+}
+
+func += (left: inout CGVector, right: CGVector) {
+	left.dx += right.dx
+	left.dy += right.dy
+}
+func -= (left: inout CGVector, right: CGVector) {
+	left.dx -= right.dx
+	left.dy -= right.dy
+}
+func *= (left: inout CGVector, right: CGVector) {
+	left.dx *= right.dx
+	left.dy *= right.dy
+}
+func /= (left: inout CGVector, right: CGVector) {
+	left.dx /= right.dx
+	left.dy /= right.dy
+}
+
+func + (left: CGVector, right: CGFloat) -> CGVector {
+	return CGVector(dx: left.dx + right, dy: left.dy + right)
+}
+func - (left: CGVector, right: CGFloat) -> CGVector {
+	return CGVector(dx: left.dx - right, dy: left.dy - right)
+}
+func * (left: CGVector, right: CGFloat) -> CGVector {
+	return CGVector(dx: left.dx * right, dy: left.dy * right)
+}
+func / (left: CGVector, right: CGFloat) -> CGVector {
+	return CGVector(dx: left.dx / right, dy: left.dy / right)
+}
+
+func += (left: inout CGVector, right: CGFloat) {
+	left.dx += right
+	left.dy += right
+}
+func -= (left: inout CGVector, right: CGFloat) {
+	left.dx -= right
+	left.dy -= right
+}
+func *= (left: inout CGVector, right: CGFloat) {
+	left.dx *= right
+	left.dy *= right
+}
+func /= (left: inout CGVector, right: CGFloat) {
+	left.dx /= right
+	left.dy /= right
+}
+
 //Convert CGPoint to CGVector with type casting syntax
 extension CGVector {
 	init(_ point: CGPoint) {
@@ -169,24 +230,12 @@ prefix func -(right: CGSize) -> CGSize {
 	return CGSize(width: -right.width, height: -right.height)
 }
 
-//********* CGRect Functions ***************************
-extension CGRect {
-	func originToZero() -> CGRect{
-		return CGRect(origin: CGPoint.zero, size: size)
-	}
-}
-
-func / (left: CGRect, right: CGFloat) -> CGRect {
-	return CGRect(origin: left.origin / right, size: left.size / right)
-}
-
 //********* Other Global stuff ***************************
 private let version = UIDevice.current.systemVersion
 let ios9 = version[version.startIndex] == "9" ? true : false
 let iPhone = UIDevice.current.model == "iPhone"
 
 //********* SKNode extension *****************************
-
 extension SKNode
 {
 	/** 

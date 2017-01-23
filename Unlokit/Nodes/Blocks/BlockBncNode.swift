@@ -1,5 +1,5 @@
 //
-//  BlockMtlNode.swift
+//  BlockBncNode.swift
 //  Unlokit
 //
 //  Created by Ben Sutherland on 23/1/17.
@@ -9,6 +9,7 @@
 import SpriteKit
 
 class BlockBncNode: SKSpriteNode {
+	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		

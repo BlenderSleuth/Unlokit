@@ -25,6 +25,11 @@ extension Level: SKPhysicsContactDelegate {
 			let key = (contact.bodyA.categoryBitMask == Category.key
 				? contact.bodyA.node : contact.bodyB.node) as! KeyNode
 			key.smash()
+		case Category.blockBnc | Category.key:
+			let key = (contact.bodyA.categoryBitMask == Category.key
+				? contact.bodyA.node : contact.bodyB.node) as! KeyNode
+			
+			key.physicsBody?.velocity *= 1.5
 		default:
 			break
 		}
