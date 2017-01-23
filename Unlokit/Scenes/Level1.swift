@@ -10,6 +10,7 @@ import SpriteKit
 import UIKit
 
 struct Category {
+	static let zero: UInt32			= 0b0
 	static let key1: UInt32			= 0b1
 	static let key2: UInt32			= 0b10
 	static let key3: UInt32			= 0b100
@@ -17,6 +18,8 @@ struct Category {
 	static let lock2: UInt32		= 0b10000
 	static let lock3: UInt32		= 0b100000
 	static let controller: UInt32	= 0b1000000
+	
+	static let all: UInt32 = UInt32.max
 	
 	//static let blockStd: UInt32       = 0b10
 	//static let blockBreakable: UInt32 = 0b100
@@ -198,6 +201,11 @@ class Level1: SKScene {
     }
 	
 	func moveKey(_ key: KeyNode, location: CGPoint) {
+		// If key is fired, don't do anything
+		guard !key.isFired else {
+			return
+		}
+		
 		//make sure key isn't animating position
 		guard !key.isEngaging || !key.isDisengaging else {
 			if key.isDisengaging {
@@ -215,7 +223,9 @@ class Level1: SKScene {
 				// Animate to centre
 				key.isEngaged = true
 				key.inside = true
-				key.run(SKAction.move(to: controller.position, duration: 0.2), withKey: "engaging")
+				key.run(SKAction.move(to: controller.position, duration: 0.2), withKey: "engaging") {
+					self.fireNode.objectToFire = key
+				}
 			} else {
 				key.position = location
 			}
@@ -224,6 +234,7 @@ class Level1: SKScene {
 			// Check if user touched outside of controller
 			if !controller.combinedRegion.contains(location) && key.inside {
 				// Animate outside
+				fireNode.objectToFire = nil
 				key.inside = false
 				key.run(SKAction.move(to: location, duration: 0.2), withKey: "disengaging") {
 					key.isEngaged = false

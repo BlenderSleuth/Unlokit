@@ -8,8 +8,8 @@
 
 import SpriteKit
 
-protocol ButtonDelegate {
-    func pressed()
+protocol CanBeFired {
+	func prepareForFiring()
 }
 
 class FireButtonNode: SKSpriteNode {
@@ -21,6 +21,7 @@ class FireButtonNode: SKSpriteNode {
     var blueCircle: SKShapeNode!
     
     var pressed = false
+	var objectToFire: CanBeFired?
 	
     var angle: Float = Float(π/2)
     
@@ -58,7 +59,16 @@ class FireButtonNode: SKSpriteNode {
         blueCircle.isHidden = !pressed
     }
     
-	private func fire(radians angle: Float, object: SKSpriteNode) {
+	private func fire(radians angle: Float, object o: CanBeFired?) {
+		// Make sure object is not nil and is SKSpriteNode
+		guard let object = o as? SKSpriteNode else {
+			return
+		}
+		
+		// Shenanigans for using both protocol and type properties
+		// Prepare for firing
+		o?.prepareForFiring() //o is of type 'CanBeFired', object is SKSpriteNode, both reference same object
+		
         // Speed of firing
         let speed: CGFloat = 750
 		
@@ -67,8 +77,6 @@ class FireButtonNode: SKSpriteNode {
 		// Get vector to fire to
         let dx = CGFloat(cosf(angle)) * speed
         let dy = CGFloat(sinf(angle)) * speed
-        
-        scene?.addChild(object)
 		
 		// Apply impulse based on angle
         object.physicsBody?.applyImpulse(CGVector(dx: dx, dy: dy))
@@ -77,7 +85,7 @@ class FireButtonNode: SKSpriteNode {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         press()
-        //fire(radians: angle)
+        fire(radians: angle, object: objectToFire)
     }
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         press()

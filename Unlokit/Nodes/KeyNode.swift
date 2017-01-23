@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class KeyNode: SKSpriteNode {
+class KeyNode: SKSpriteNode, CanBeFired {
 	
 	var isEngaged: Bool = false {
 		didSet {
@@ -37,6 +37,8 @@ class KeyNode: SKSpriteNode {
 	}
 	
 	var inside = false
+	
+	var isFired = false
 	
 	// To save constraints when not using them
 	var saveContraint = [SKConstraint]()
@@ -86,9 +88,19 @@ class KeyNode: SKSpriteNode {
 	func setupPhysics() {
 		// Physicsbody
 		physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
+		physicsBody?.allowsRotation = false
 		physicsBody?.isDynamic = false
+		physicsBody?.density = 0.5
 		physicsBody?.categoryBitMask = Category.key1
 		physicsBody?.contactTestBitMask = Category.controller
-		physicsBody?.collisionBitMask = Category.controller
+		physicsBody?.collisionBitMask = Category.all ^ Category.controller //All except controller
+	}
+	
+	func prepareForFiring() {
+		// Cleans up before firing
+		physicsBody?.isDynamic = true
+		isEngaged = false
+		constraints = nil
+		isFired = true
 	}
 }
