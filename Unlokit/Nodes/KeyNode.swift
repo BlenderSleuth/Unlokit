@@ -10,6 +10,8 @@ import SpriteKit
 
 class KeyNode: SKSpriteNode, CanBeFired {
 	
+	var reloadable: Reload!
+	
 	var isEngaged: Bool = false {
 		didSet {
 			if isEngaged {
@@ -92,8 +94,8 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		physicsBody?.isDynamic = false
 		physicsBody?.density = 0.3
 		physicsBody?.categoryBitMask = Category.key
-		physicsBody?.contactTestBitMask = Category.lock | Category.blocks
-		physicsBody?.collisionBitMask = Category.all ^ Category.controller //All except controller
+		physicsBody?.contactTestBitMask = Category.lock | Category.blocks | Category.bounds
+		physicsBody?.collisionBitMask = Category.all ^ (Category.controller | Category.lock) //All except controller and lock
 	}
 	
 	func prepareForFiring() {
@@ -109,6 +111,12 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		
 		// TO DO: make sound effect and smash key
 		SKTAudio.sharedInstance().playSoundEffect(filename: "Smash.caf")
+		
+		// Reload scene
+		if reloadable != nil {
+			reloadable.reload()
+		}
+		
 	}
 	
 	func lock(_ lock: LockNode) {
@@ -118,7 +126,7 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		run(move) {
 			self.removeAllActions()
 			lock.removeFromParent()
-			SKTAudio.sharedInstance().playSoundEffect(filename: "Lock.wav")
+			SKTAudio.sharedInstance().playSoundEffect(filename: "Lock.caf")
 			
 		}
 	}

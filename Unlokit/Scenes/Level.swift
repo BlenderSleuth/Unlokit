@@ -18,6 +18,8 @@ struct Category {
 	
 	static let blocks: UInt32		= 0b11000
 	
+	static let bounds: UInt32		= 0b100000
+	
 	static let all: UInt32 = UInt32.max
 }
 
@@ -82,6 +84,11 @@ class Level: SKScene, Reload {
 		
 		// Bind boundary box to local variable
 		bounds = childNode(withName: "bounds") as! SKSpriteNode
+		// Create physicsworld boundaries
+		// Create cgrect with modified origin
+		let rect = CGRect(origin: CGPoint(x: -bounds.frame.size.width / 2, y: -bounds.frame.size.height / 2), size: bounds.frame.size)
+		bounds.physicsBody = SKPhysicsBody(edgeLoopFrom: rect)
+		bounds.physicsBody?.categoryBitMask = Category.bounds
 		
 		// Bind fire node to local variable
 		fireNode = cameraNode.childNode(withName: "fireButton") as! FireButtonNode
@@ -91,6 +98,7 @@ class Level: SKScene, Reload {
 		// Bind key to local variable
 		key = childNode(withName: "key") as! KeyNode
 		key.setupPhysics()
+		key.reloadable = self
 		
 		// Keep key in canvas
 		let canvasX = SKRange(lowerLimit: 0, upperLimit: canvasBounds.width)
@@ -108,7 +116,6 @@ class Level: SKScene, Reload {
 		lock = childNode(withName: "lock") as! LockNode
 		lock.setupPhysics()
 	}
-	
 	func setupCamera() {
 		//Get correct aspect ratio for device
 		let aspectRatio: CGFloat
@@ -165,11 +172,6 @@ class Level: SKScene, Reload {
 		// Set camera constraints
 		let cameraConstraint = SKConstraint.positionX(rangeX, y: rangeY)
 		cameraNode.constraints = [cameraConstraint]
-		
-		// Create physicsworld boundaries
-		// Create cgrect with modified origin
-		let rect = CGRect(origin: CGPoint(x: -bounds.frame.size.width / 2, y: -bounds.frame.size.height / 2), size: bounds.frame.size)
-		bounds.physicsBody = SKPhysicsBody(edgeLoopFrom: rect)
 	}
 	func setupComponents() {
 		// Create array of components to use later

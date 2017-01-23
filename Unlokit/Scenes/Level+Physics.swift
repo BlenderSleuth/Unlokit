@@ -11,6 +11,7 @@ import SpriteKit
 //Separate file for physics contact, its gonna get heavy...
 extension Level: SKPhysicsContactDelegate {
 	func didBegin(_ contact: SKPhysicsContact) {
+		// Find collision
 		let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
 		
 		switch collision {
@@ -28,8 +29,13 @@ extension Level: SKPhysicsContactDelegate {
 		case Category.blockBnc | Category.key:
 			let key = (contact.bodyA.categoryBitMask == Category.key
 				? contact.bodyA.node : contact.bodyB.node) as! KeyNode
-			
+			//Increase key velocity
 			key.physicsBody?.velocity *= 1.5
+		case Category.bounds | Category.key:
+			let key = (contact.bodyA.categoryBitMask == Category.key
+				? contact.bodyA.node : contact.bodyB.node) as! KeyNode
+			
+			key.smash()
 		default:
 			break
 		}

@@ -30,18 +30,13 @@ class ReplayButtonNode: SKSpriteNode {
 		if pressed {
 			removeAllActions()
 			let color = SKAction.colorize(with: .red, colorBlendFactor: 1, duration: 0.2)
-			let wiggle = SKAction.repeatForever(SKAction.sequence([
-					SKAction.rotate(byAngle: CGFloat(-10).degreesToRadians(), duration: 0.1),
-					SKAction.rotate(byAngle: CGFloat(10).degreesToRadians(), duration: 0.1)
-				]))
-			let scale = SKAction.scale(by: 1.5, duration: 0.3)
+			let wiggle = SKAction(named: "Wiggle")!
 			
-			let action = SKAction.sequence([color, SKAction.group([wiggle, scale])])
+			let action = SKAction.sequence([color, wiggle])
 			run(action)
 		} else {
 			removeAllActions()
-			let action = SKAction.group([SKAction.rotate(toAngle: 0, duration: 0.1),
-			                             SKAction.scale(to: 1, duration: 0.1),
+			let action = SKAction.group([SKAction(named: "StopWiggle")!,
 			                             SKAction.colorize(with: .red, colorBlendFactor: 0, duration: 0.2)])
 			run(action)
 		}
