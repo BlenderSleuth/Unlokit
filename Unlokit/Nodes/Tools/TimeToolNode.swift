@@ -1,5 +1,5 @@
 //
-//  TimeComponentNode.swift
+//  TimeToolNode.swift
 //  Unlokit
 //
 //  Created by Ben Sutherland on 13/01/2017.
@@ -8,11 +8,11 @@
 
 import SpriteKit
 
-class StickyComponentNode: ComponentNode {
+class TimeToolNode: ToolNode {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        type = .Sticky
+        type = .Time
     }
 }

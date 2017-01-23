@@ -1,5 +1,5 @@
 //
-//  TimeComponentNode.swift
+//  LightToolNode.swift
 //  Unlokit
 //
 //  Created by Ben Sutherland on 13/01/2017.
@@ -8,11 +8,11 @@
 
 import SpriteKit
 
-class WaveComponentNode: ComponentNode {
+class LightToolNode: ToolNode {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        type = .Wave
+        type = .Light
     }
 }

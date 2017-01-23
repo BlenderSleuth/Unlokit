@@ -40,14 +40,13 @@
 		387105EC1E35844E002D010A /* LockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387105EB1E35844E002D010A /* LockNode.swift */; };
 		387105F31E359640002D010A /* AudioUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387105F21E359640002D010A /* AudioUtils.swift */; };
 		387105F51E359CA4002D010A /* ReplayButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387105F41E359CA4002D010A /* ReplayButtonNode.swift */; };
-		38929DAA1E28508F00C12C4C /* ComponentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38929DA91E28508F00C12C4C /* ComponentNode.swift */; };
-		38929DAC1E2850B900C12C4C /* TimeComponentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38929DAB1E2850B900C12C4C /* TimeComponentNode.swift */; };
 		38AE075A1E36221400D127D2 /* Lock.caf in Resources */ = {isa = PBXBuildFile; fileRef = 38AE07591E361DDC00D127D2 /* Lock.caf */; };
 		38B1F33D1E35D5E200C89260 /* BlockMtl.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38B1F33C1E35D5E200C89260 /* BlockMtl.sks */; };
+		38C50AF31E36A83600B4EE2A /* LightToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AEE1E36A83600B4EE2A /* LightToolNode.swift */; };
+		38C50AF41E36A83600B4EE2A /* GlueToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AEF1E36A83600B4EE2A /* GlueToolNode.swift */; };
+		38C50AF51E36A83600B4EE2A /* TimeToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AF01E36A83600B4EE2A /* TimeToolNode.swift */; };
+		38C50AF61E36A83600B4EE2A /* ToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AF11E36A83600B4EE2A /* ToolNode.swift */; };
 		38C73B231E35B92F00B3AC6A /* ReloadButtonActions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38C73B221E35B92F00B3AC6A /* ReloadButtonActions.sks */; };
-		38DD15371E28A02C0064FD73 /* LightComponentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DD15341E28A02C0064FD73 /* LightComponentNode.swift */; };
-		38DD15381E28A02C0064FD73 /* StickyComponentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DD15351E28A02C0064FD73 /* StickyComponentNode.swift */; };
-		38DD15391E28A02C0064FD73 /* WaveComponentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DD15361E28A02C0064FD73 /* WaveComponentNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,18 +85,17 @@
 		387105EB1E35844E002D010A /* LockNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LockNode.swift; sourceTree = "<group>"; };
 		387105F21E359640002D010A /* AudioUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioUtils.swift; path = Unlokit/AudioUtils.swift; sourceTree = "<group>"; };
 		387105F41E359CA4002D010A /* ReplayButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplayButtonNode.swift; sourceTree = "<group>"; };
-		38929DA91E28508F00C12C4C /* ComponentNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentNode.swift; sourceTree = "<group>"; };
-		38929DAB1E2850B900C12C4C /* TimeComponentNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeComponentNode.swift; sourceTree = "<group>"; };
 		38AE07551E36199500D127D2 /* Bounce1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bounce1.caf; sourceTree = "<group>"; };
 		38AE07561E36199500D127D2 /* Bounce2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bounce2.caf; sourceTree = "<group>"; };
 		38AE07571E36199500D127D2 /* Bounce3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bounce3.caf; sourceTree = "<group>"; };
 		38AE07581E36199500D127D2 /* Bounce4.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bounce4.caf; sourceTree = "<group>"; };
 		38AE07591E361DDC00D127D2 /* Lock.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lock.caf; sourceTree = "<group>"; };
 		38B1F33C1E35D5E200C89260 /* BlockMtl.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockMtl.sks; sourceTree = "<group>"; };
+		38C50AEE1E36A83600B4EE2A /* LightToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightToolNode.swift; sourceTree = "<group>"; };
+		38C50AEF1E36A83600B4EE2A /* GlueToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlueToolNode.swift; sourceTree = "<group>"; };
+		38C50AF01E36A83600B4EE2A /* TimeToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeToolNode.swift; sourceTree = "<group>"; };
+		38C50AF11E36A83600B4EE2A /* ToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolNode.swift; sourceTree = "<group>"; };
 		38C73B221E35B92F00B3AC6A /* ReloadButtonActions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ReloadButtonActions.sks; sourceTree = "<group>"; };
-		38DD15341E28A02C0064FD73 /* LightComponentNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightComponentNode.swift; sourceTree = "<group>"; };
-		38DD15351E28A02C0064FD73 /* StickyComponentNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickyComponentNode.swift; sourceTree = "<group>"; };
-		38DD15361E28A02C0064FD73 /* WaveComponentNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveComponentNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,17 +269,24 @@
 			children = (
 				384ACEF21E347FE2004C3E93 /* KeyNode.swift */,
 				385161351E348E6C0041995A /* ControllerNode.swift */,
-				38929DA91E28508F00C12C4C /* ComponentNode.swift */,
-				38929DAB1E2850B900C12C4C /* TimeComponentNode.swift */,
-				38DD15341E28A02C0064FD73 /* LightComponentNode.swift */,
-				38DD15351E28A02C0064FD73 /* StickyComponentNode.swift */,
-				38DD15361E28A02C0064FD73 /* WaveComponentNode.swift */,
 				387105EB1E35844E002D010A /* LockNode.swift */,
 				38650F531E25F6A500401ABD /* FireButtonNode.swift */,
 				387105F41E359CA4002D010A /* ReplayButtonNode.swift */,
+				38C50AED1E36A83600B4EE2A /* Tools */,
 				38488EF61E35E4D900BCCFD6 /* Blocks */,
 			);
 			path = Nodes;
+			sourceTree = "<group>";
+		};
+		38C50AED1E36A83600B4EE2A /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				38C50AF11E36A83600B4EE2A /* ToolNode.swift */,
+				38C50AEE1E36A83600B4EE2A /* LightToolNode.swift */,
+				38C50AEF1E36A83600B4EE2A /* GlueToolNode.swift */,
+				38C50AF01E36A83600B4EE2A /* TimeToolNode.swift */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		38C73B211E35B31B00B3AC6A /* Actions */ = {
@@ -381,13 +386,14 @@
 			files = (
 				38650F541E25F6A500401ABD /* FireButtonNode.swift in Sources */,
 				383CA97B1E1DD5E600F8B998 /* GameViewController.swift in Sources */,
-				38929DAA1E28508F00C12C4C /* ComponentNode.swift in Sources */,
-				38DD15371E28A02C0064FD73 /* LightComponentNode.swift in Sources */,
 				38017A311E35DEE20051EEE0 /* BlockMtlNode.swift in Sources */,
 				387105EC1E35844E002D010A /* LockNode.swift in Sources */,
 				38488F181E3603E600BCCFD6 /* Level5.swift in Sources */,
 				383CA9641E1DD4F500F8B998 /* AppDelegate.swift in Sources */,
+				38C50AF61E36A83600B4EE2A /* ToolNode.swift in Sources */,
+				38C50AF31E36A83600B4EE2A /* LightToolNode.swift in Sources */,
 				38488F1D1E3603F100BCCFD6 /* Level.swift in Sources */,
+				38C50AF51E36A83600B4EE2A /* TimeToolNode.swift in Sources */,
 				387105F51E359CA4002D010A /* ReplayButtonNode.swift in Sources */,
 				38488F1A1E3603E600BCCFD6 /* Level6.swift in Sources */,
 				385161361E348E6C0041995A /* ControllerNode.swift in Sources */,
@@ -396,12 +402,10 @@
 				38488EF81E35E4F000BCCFD6 /* BlockBncNode.swift in Sources */,
 				384ACEF31E347FE2004C3E93 /* KeyNode.swift in Sources */,
 				387105F31E359640002D010A /* AudioUtils.swift in Sources */,
-				38DD15391E28A02C0064FD73 /* WaveComponentNode.swift in Sources */,
 				38488F101E3603E600BCCFD6 /* Level1.swift in Sources */,
+				38C50AF41E36A83600B4EE2A /* GlueToolNode.swift in Sources */,
 				38488F161E3603E600BCCFD6 /* Level4.swift in Sources */,
-				38DD15381E28A02C0064FD73 /* StickyComponentNode.swift in Sources */,
 				383CA97E1E1DD5F100F8B998 /* Utils.swift in Sources */,
-				38929DAC1E2850B900C12C4C /* TimeComponentNode.swift in Sources */,
 				38488F141E3603E600BCCFD6 /* Level3.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

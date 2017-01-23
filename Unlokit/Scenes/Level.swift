@@ -41,8 +41,8 @@ class Level: SKScene, Reload {
     
     var canvasBounds: CGRect!
     
-    // Components for key
-    var components = [ComponentNode]()
+    // Array of tools
+    var tools = [ToolNode]()
 	
 	// Key
 	var key: KeyNode!
@@ -64,7 +64,7 @@ class Level: SKScene, Reload {
     override func didMove(to view: SKView) {
 		setupNodes()
 		setupCamera()
-        setupComponents()
+        setupTools()
 		physicsWorld.contactDelegate = self
     }
 	func setupNodes() {
@@ -173,11 +173,11 @@ class Level: SKScene, Reload {
 		let cameraConstraint = SKConstraint.positionX(rangeX, y: rangeY)
 		cameraNode.constraints = [cameraConstraint]
 	}
-	func setupComponents() {
-		// Create array of components to use later
+	func setupTools() {
+		// Create array of Tools to use later
 		for child in children {
-			if let component = child as? ComponentNode {
-				components.append(component)
+			if let tool = child as? ToolNode {
+				tools.append(tool)
 			}
 		}
 		
@@ -186,9 +186,9 @@ class Level: SKScene, Reload {
 		let rangeY = SKRange(lowerLimit: 0, upperLimit: canvasBounds.height)
 		let canvasConstraint = SKConstraint.positionX(rangeX, y: rangeY)
 		
-		// Apply constraint to all components
-		for component in components {
-			component.constraints = [canvasConstraint]
+		// Apply constraint to all tools
+		for tool in tools {
+			tool.constraints = [canvasConstraint]
 		}
 	}
 	
@@ -270,11 +270,11 @@ class Level: SKScene, Reload {
 		
         if controller.region.contains(point) {
             return controller
-        } else if node is ComponentNode {
-            // Check components
-			for component in components {
-				if component.position == point {
-					return component
+        } else if node is ToolNode {
+            // Check Tools
+			for Tool in tools {
+				if Tool.position == point {
+					return Tool
 				}
 			}
 		} else if node is KeyNode {
@@ -293,7 +293,7 @@ class Level: SKScene, Reload {
 		return false
 	}
 	
-	func createComponent(type: ComponentType) {
+	func createTool(type: ToolType) {
 		
 	}
 	
@@ -330,8 +330,8 @@ class Level: SKScene, Reload {
 			
 			if currentNode == controller && isInCanvas(location: location) {
 				handleTouchController(location)
-			} else if let component = currentNode as? ComponentNode {
-				createComponent(type: component.type)
+			} else if let tool = currentNode as? ToolNode {
+				createTool(type: tool.type)
 			} else if currentNode == cameraNode{
 				moveCamera(locationCam)
 			} else if currentNode == key {

@@ -1,5 +1,5 @@
 //
-//  ComponentNode.swift
+//  ToolNode.swift
 //  Unlokit
 //
 //  Created by Ben Sutherland on 13/01/2017.
@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-enum ComponentType {
+enum ToolType {
     case Time
     case Wave
     case Light
@@ -16,9 +16,9 @@ enum ComponentType {
 }
 
 // Only use this for subclassing...
-class ComponentNode: SKSpriteNode {
+class ToolNode: SKSpriteNode {
     
-    var type: ComponentType!
+    var type: ToolType!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
