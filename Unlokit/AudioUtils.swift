@@ -7,6 +7,7 @@
 //
 
 import AVFoundation
+import SpriteKit
 
 /**
 * Audio player that uses AVFoundation to play looping background music and
@@ -84,3 +85,19 @@ public class SKTAudio {
 }
 
 private let SKTAudioInstance = SKTAudio()
+
+// TO DO: Preload sounds
+
+class AudioContainer {
+	static let sharedInstance = AudioContainer()
+	
+	let soundActions: [String : SKAction]
+	
+	init() {
+		let lock = SKAction.playSoundFileNamed("Lock.wav", waitForCompletion: true)
+		let smash = SKAction.playSoundFileNamed("Smash.caf", waitForCompletion: true)
+	
+		// Dictionary for sounds to be preloaded
+		soundActions = ["lock":lock, "smash":smash]
+	}
+}

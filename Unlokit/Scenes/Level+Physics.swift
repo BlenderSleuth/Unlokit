@@ -14,14 +14,17 @@ extension Level: SKPhysicsContactDelegate {
 		let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
 		
 		switch collision {
-		case Category.key1 | Category.lock1:
-			let key = (contact.bodyA.categoryBitMask == Category.key1
+		case Category.key | Category.lock:
+			let key = (contact.bodyA.categoryBitMask == Category.key
 				? contact.bodyA.node : contact.bodyB.node) as! KeyNode
-			let lock = (contact.bodyA.categoryBitMask == Category.lock1
+			let lock = (contact.bodyA.categoryBitMask == Category.lock
 				? contact.bodyA.node : contact.bodyB.node) as! LockNode
 			
 				key.lock(lock)
-	
+		case Category.blockMtl | Category.key:
+			let key = (contact.bodyA.categoryBitMask == Category.key
+				? contact.bodyA.node : contact.bodyB.node) as! KeyNode
+			key.smash()
 		default:
 			break
 		}

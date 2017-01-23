@@ -9,21 +9,16 @@
 import SpriteKit
 struct Category {
 	static let zero: UInt32			= 0b0
-	static let key1: UInt32			= 0b1
-	static let key2: UInt32			= 0b10
-	static let key3: UInt32			= 0b100
-	static let lock1: UInt32		= 0b1000
-	static let lock2: UInt32		= 0b10000
-	static let lock3: UInt32		= 0b100000
-	static let controller: UInt32	= 0b1000000
+	
+	static let key: UInt32			= 0b1
+	static let lock: UInt32			= 0b10
+	static let controller: UInt32	= 0b100
+	static let blockMtl: UInt32     = 0b1000
+	static let blockBnc: UInt32     = 0b10000
+	
+	static let blocks: UInt32		= 0b11000
 	
 	static let all: UInt32 = UInt32.max
-	
-	//static let blockStd: UInt32       = 0b10
-	//static let blockBreakable: UInt32 = 0b100
-	//static let blockNonStick: UInt32  = 0b1000
-	//static let blockStick: UInt32     = 0b10000
-	//static let blockFlammable: UInt32 = 0b100000
 }
 
 protocol start {

@@ -16,8 +16,8 @@ class LockNode: SKSpriteNode {
 	func setupPhysics() {
 		physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
 		physicsBody?.isDynamic = false
-		physicsBody?.categoryBitMask = Category.lock1
+		physicsBody?.categoryBitMask = Category.lock
 		physicsBody?.contactTestBitMask = Category.zero
-		physicsBody?.collisionBitMask = Category.key1
+		physicsBody?.collisionBitMask = Category.key
 	}
 }

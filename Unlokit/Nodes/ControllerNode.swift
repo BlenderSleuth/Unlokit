@@ -50,7 +50,7 @@ class ControllerNode: SKSpriteNode {
 		physicsBody = SKPhysicsBody(edgeLoopFrom: physicsPath)
 		physicsBody?.isDynamic = false
 		physicsBody?.categoryBitMask = Category.controller
-		physicsBody?.contactTestBitMask = Category.key1 | Category.key2 | Category.key3
+		physicsBody?.contactTestBitMask = Category.key
 		physicsBody?.collisionBitMask = Category.zero
 	}
 }

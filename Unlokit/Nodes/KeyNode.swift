@@ -90,9 +90,9 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
 		physicsBody?.allowsRotation = false
 		physicsBody?.isDynamic = false
-		physicsBody?.density = 0.1
-		physicsBody?.categoryBitMask = Category.key1
-		physicsBody?.contactTestBitMask = Category.lock1
+		physicsBody?.density = 0.3
+		physicsBody?.categoryBitMask = Category.key
+		physicsBody?.contactTestBitMask = Category.lock | Category.blocks
 		physicsBody?.collisionBitMask = Category.all ^ Category.controller //All except controller
 	}
 	
@@ -102,6 +102,13 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		isEngaged = false
 		constraints = nil
 		isFired = true
+	}
+	
+	func smash() {
+		removeFromParent()
+		
+		// TO DO: make sound effect and smash key
+		SKTAudio.sharedInstance().playSoundEffect(filename: "Smash.caf")
 	}
 	
 	func lock(_ lock: LockNode) {
