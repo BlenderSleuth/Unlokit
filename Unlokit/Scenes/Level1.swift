@@ -46,6 +46,8 @@ class Level1: SKScene {
 	
 	// Key
 	var key: KeyNode!
+	
+	var lock: LockNode!
     
     // Touch points in different coordinate systems
 	var lastTouchPoint = CGPoint.zero
@@ -62,6 +64,7 @@ class Level1: SKScene {
 		setupNodes()
 		setupCamera()
         setupComponents()
+		physicsWorld.contactDelegate = self
     }
 	func setupNodes() {
 		// Bind controller to local variable
@@ -82,7 +85,7 @@ class Level1: SKScene {
 		bounds = childNode(withName: "bounds") as! SKSpriteNode
 		
 		// Bind fire node to local variable
-		fireNode = childNode(withName: "fireButton") as! FireButtonNode
+		fireNode = cameraNode.childNode(withName: "fireButton") as! FireButtonNode
 		
 		// Bind key to local variable
 		key = childNode(withName: "key") as! KeyNode
@@ -99,12 +102,16 @@ class Level1: SKScene {
 			
 		key.constraints = [canvasConstraint, controllerConstraint]
 		key.saveContraints()
+		
+		// Bind lock to local variable
+		lock = childNode(withName: "lock") as! LockNode
+		lock.setupPhysics()
 	}
 	
 	func setupCamera() {
 		//Get correct aspect ratio for device
 		let aspectRatio: CGFloat
-		if UIDevice.current.model == "iPhone" {
+		if iPhone {
 			aspectRatio = 16.0 / 9.0
 		} else {
 			aspectRatio = 4.0 / 3.0
@@ -142,8 +149,15 @@ class Level1: SKScene {
 			camera?.position = CGPoint(x: self.size.width / 2, y:  height / 2)
 			
 			// Create range of points in which the camera can go, based on the bounds and size of the screen
-			rangeX = SKRange(lowerLimit: bounds.frame.minX + size.width / 2, upperLimit: bounds.frame.maxX - size.width / 2)
-			rangeY = SKRange(lowerLimit: bounds.frame.minY + height / 2, upperLimit: bounds.frame.maxY - height / 2)
+			rangeX = SKRange(lowerLimit: bounds.frame.minX + size.width / 2,
+			                 upperLimit: bounds.frame.maxX - size.width / 2)
+			rangeY = SKRange(lowerLimit: bounds.frame.minY + height / 2,
+			                 upperLimit: bounds.frame.maxY - height / 2)
+		}
+		
+		// Set fireNode incase of iphone
+		if iPhone {
+			fireNode.position.y  += 200
 		}
 		
 		// Set camera constraints
@@ -168,7 +182,7 @@ class Level1: SKScene {
 		let rangeY = SKRange(lowerLimit: 0, upperLimit: canvasBounds.height)
 		let canvasConstraint = SKConstraint.positionX(rangeX, y: rangeY)
 		
-		// Apple constraint to all components
+		// Apply constraint to all components
 		for component in components {
 			component.constraints = [canvasConstraint]
 		}

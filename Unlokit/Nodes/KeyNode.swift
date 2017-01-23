@@ -90,9 +90,9 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
 		physicsBody?.allowsRotation = false
 		physicsBody?.isDynamic = false
-		physicsBody?.density = 0.5
+		physicsBody?.density = 0.1
 		physicsBody?.categoryBitMask = Category.key1
-		physicsBody?.contactTestBitMask = Category.controller
+		physicsBody?.contactTestBitMask = Category.lock1
 		physicsBody?.collisionBitMask = Category.all ^ Category.controller //All except controller
 	}
 	
@@ -102,5 +102,15 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		isEngaged = false
 		constraints = nil
 		isFired = true
+	}
+	
+	func lock(_ lock: LockNode) {
+		physicsBody = nil
+		
+		let move = SKAction.move(to: lock.position, duration: 0.2)
+		let action = SKAction.sequence([move,SKAction.customAction(withDuration: 0, actionBlock: {_,_ in self.removeAllActions()})])
+		run(action) {
+			lock.removeFromParent()
+		}
 	}
 }

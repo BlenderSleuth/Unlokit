@@ -17,6 +17,8 @@
 		384ACEF31E347FE2004C3E93 /* KeyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384ACEF21E347FE2004C3E93 /* KeyNode.swift */; };
 		385161361E348E6C0041995A /* ControllerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385161351E348E6C0041995A /* ControllerNode.swift */; };
 		38650F541E25F6A500401ABD /* FireButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38650F531E25F6A500401ABD /* FireButtonNode.swift */; };
+		387105EA1E35835C002D010A /* Level1+Physics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387105E91E35835C002D010A /* Level1+Physics.swift */; };
+		387105EC1E35844E002D010A /* LockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387105EB1E35844E002D010A /* LockNode.swift */; };
 		38801AFE1E2DD18400598982 /* Level1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38801AFC1E2DD18400598982 /* Level1.sks */; };
 		38801AFF1E2DD18400598982 /* Level1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38801AFD1E2DD18400598982 /* Level1.swift */; };
 		38929DAA1E28508F00C12C4C /* ComponentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38929DA91E28508F00C12C4C /* ComponentNode.swift */; };
@@ -39,6 +41,8 @@
 		384ACEF21E347FE2004C3E93 /* KeyNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyNode.swift; sourceTree = "<group>"; };
 		385161351E348E6C0041995A /* ControllerNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerNode.swift; sourceTree = "<group>"; };
 		38650F531E25F6A500401ABD /* FireButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireButtonNode.swift; sourceTree = "<group>"; };
+		387105E91E35835C002D010A /* Level1+Physics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Level1+Physics.swift"; sourceTree = "<group>"; };
+		387105EB1E35844E002D010A /* LockNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LockNode.swift; sourceTree = "<group>"; };
 		38801AFC1E2DD18400598982 /* Level1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1.sks; sourceTree = "<group>"; };
 		38801AFD1E2DD18400598982 /* Level1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level1.swift; sourceTree = "<group>"; };
 		38929DA91E28508F00C12C4C /* ComponentNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentNode.swift; sourceTree = "<group>"; };
@@ -94,8 +98,9 @@
 		38929DA31E28443A00C12C4C /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				38801AFC1E2DD18400598982 /* Level1.sks */,
+				387105E91E35835C002D010A /* Level1+Physics.swift */,
 				38801AFD1E2DD18400598982 /* Level1.swift */,
+				38801AFC1E2DD18400598982 /* Level1.sks */,
 				383CA9781E1DD5E600F8B998 /* Gun.sks */,
 			);
 			path = Scenes;
@@ -112,6 +117,7 @@
 				38DD15341E28A02C0064FD73 /* LightComponentNode.swift */,
 				38DD15351E28A02C0064FD73 /* StickyComponentNode.swift */,
 				38DD15361E28A02C0064FD73 /* WaveComponentNode.swift */,
+				387105EB1E35844E002D010A /* LockNode.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -195,10 +201,12 @@
 				383CA97B1E1DD5E600F8B998 /* GameViewController.swift in Sources */,
 				38929DAA1E28508F00C12C4C /* ComponentNode.swift in Sources */,
 				38DD15371E28A02C0064FD73 /* LightComponentNode.swift in Sources */,
+				387105EC1E35844E002D010A /* LockNode.swift in Sources */,
 				383CA9641E1DD4F500F8B998 /* AppDelegate.swift in Sources */,
 				385161361E348E6C0041995A /* ControllerNode.swift in Sources */,
 				38801AFF1E2DD18400598982 /* Level1.swift in Sources */,
 				384ACEF31E347FE2004C3E93 /* KeyNode.swift in Sources */,
+				387105EA1E35835C002D010A /* Level1+Physics.swift in Sources */,
 				38DD15391E28A02C0064FD73 /* WaveComponentNode.swift in Sources */,
 				38DD15381E28A02C0064FD73 /* StickyComponentNode.swift in Sources */,
 				383CA97E1E1DD5F100F8B998 /* Utils.swift in Sources */,

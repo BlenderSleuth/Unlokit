@@ -10,6 +10,7 @@ import SpriteKit
 
 protocol CanBeFired {
 	func prepareForFiring()
+	var isFired: Bool { get }
 }
 
 class FireButtonNode: SKSpriteNode {
@@ -62,6 +63,11 @@ class FireButtonNode: SKSpriteNode {
 	private func fire(radians angle: Float, object o: CanBeFired?) {
 		// Make sure object is not nil and is SKSpriteNode
 		guard let object = o as? SKSpriteNode else {
+			return
+		}
+		
+		// Check if the object has been fired or not
+		guard !o!.isFired else {
 			return
 		}
 		

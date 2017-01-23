@@ -182,7 +182,8 @@ func / (left: CGRect, right: CGFloat) -> CGRect {
 
 //********* Other Global stuff ***************************
 private let version = UIDevice.current.systemVersion
-let ios9 = version == "9.3.3" ? true : false
+let ios9 = version[version.startIndex] == "9" ? true : false
+let iPhone = UIDevice.current.model == "iPhone"
 
 //********* SKNode extension *****************************
 
