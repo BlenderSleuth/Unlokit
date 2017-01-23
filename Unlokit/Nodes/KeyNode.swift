@@ -108,9 +108,11 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		physicsBody = nil
 		
 		let move = SKAction.move(to: lock.position, duration: 0.2)
-		let action = SKAction.sequence([move,SKAction.customAction(withDuration: 0, actionBlock: {_,_ in self.removeAllActions()})])
-		run(action) {
+		run(move) {
+			self.removeAllActions()
 			lock.removeFromParent()
+			SKTAudio.sharedInstance().playSoundEffect(filename: "Lock.wav")
+			
 		}
 	}
 }

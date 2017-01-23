@@ -30,7 +30,7 @@ class GameViewController: UIViewController {
             skView.showsNodeCount = true
             
             // Causes memory leak...
-            skView.showsPhysics = true
+            //skView.showsPhysics = true
         }
     }
     
