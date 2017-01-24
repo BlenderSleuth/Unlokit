@@ -9,4 +9,21 @@
 import SpriteKit
 
 class Level5: Level {
+	// Set number of tools for level
+	override func setupToolsForLevel() {
+		for tool in tools {
+			switch tool.type! {
+			case .spring:
+				tool.number = 0
+			case .glue:
+				tool.number = 0
+			case .fan:
+				tool.number = 0
+			case .gravity:
+				tool.number = 0
+			case .time:
+				tool.number = 0
+			}
+		}
+	}
 }

@@ -20,7 +20,7 @@ class GameViewController: UIViewController, start {
 	
 	func startNewGame() {
 		// Check for skView,             load scene from file
-		if let skView = view as? SKView, let scene = Level2(fileNamed: "Level2") {
+		if let skView = view as? SKView, let scene = Level3(fileNamed: "Level3") {
 			self.scene = scene
 			scene.start = self
 			

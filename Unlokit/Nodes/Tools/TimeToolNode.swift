@@ -13,6 +13,6 @@ class TimeToolNode: ToolNode {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        type = .Time
+        type = .time
     }
 }

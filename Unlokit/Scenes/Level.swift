@@ -20,6 +20,9 @@ struct Category {
 	
 	static let bounds: UInt32		= 0b100000
 	
+	static let glueTool: UInt32     = 0b1000000
+	static let springTool: UInt32   = 0b10000000
+	
 	static let all: UInt32 = UInt32.max
 }
 
@@ -42,6 +45,7 @@ class Level: SKScene, Reload {
     var canvasBounds: CGRect!
     
     // Array of tools
+	var toolsReference: SKReferenceNode!
     var tools = [ToolNode]()
 	
 	// Key
@@ -77,6 +81,8 @@ class Level: SKScene, Reload {
 		// Bind gun to local variable
 		gun = controller.childNode(withName: "gun")!.children.first
 		
+		toolsReference = childNode(withName: "tools") as! SKReferenceNode
+		
 		//Bind the camera to local variable
 		if let cam = camera {
 			cameraNode = cam
@@ -98,6 +104,7 @@ class Level: SKScene, Reload {
 		// Bind key to local variable
 		key = childNode(withName: "key") as! KeyNode
 		key.setupPhysics()
+		// Allow key to call for reload
 		key.reloadable = self
 		
 		// Keep key in canvas
@@ -108,7 +115,8 @@ class Level: SKScene, Reload {
 		// Stop key from entering controller (yet...)
 		let outsideController = SKRange(lowerLimit: controller.size.width / 2) // Outside radius of controller
 		let controllerConstraint = SKConstraint.distance(outsideController, to: controller)
-			
+		
+		// Apply constraints to key, save for later
 		key.constraints = [canvasConstraint, controllerConstraint]
 		key.saveContraints()
 		
@@ -174,22 +182,25 @@ class Level: SKScene, Reload {
 		cameraNode.constraints = [cameraConstraint]
 	}
 	func setupTools() {
-		// Create array of Tools to use later
-		for child in children {
-			if let tool = child as? ToolNode {
-				tools.append(tool)
-			}
-		}
-		
-		// Constraint so that componets never move outside of canvas
+		// Constraint so that tools never move outside of canvas
 		let rangeX = SKRange(lowerLimit: 0, upperLimit: canvasBounds.width)
 		let rangeY = SKRange(lowerLimit: 0, upperLimit: canvasBounds.height)
 		let canvasConstraint = SKConstraint.positionX(rangeX, y: rangeY)
 		
-		// Apply constraint to all tools
-		for tool in tools {
-			tool.constraints = [canvasConstraint]
+		// Create array of tools to use later
+		enumerateChildNodes(withName: "tools//*[Tool]") {node, _ in
+			if let tool = node as? ToolNode {
+				self.tools.append(tool)
+				// Save constraint to all tools
+				tool.savedConstraints = [canvasConstraint]
+			}
 		}
+		
+		setupToolsForLevel()
+	}
+	
+	// To be overridden
+	func setupToolsForLevel() {
 	}
 	
     func handleTouchController(_ location: CGPoint) {
@@ -272,9 +283,9 @@ class Level: SKScene, Reload {
             return controller
         } else if node is ToolNode {
             // Check Tools
-			for Tool in tools {
-				if Tool.position == point {
-					return Tool
+			for tool in tools {
+				if tool.frame.contains(point) {
+					return tool
 				}
 			}
 		} else if node is KeyNode {
@@ -293,7 +304,19 @@ class Level: SKScene, Reload {
 		return false
 	}
 	
-	func createTool(type: ToolType) {
+	func createTool(_ tool: ToolNode) {
+		// Make sure there is a tool to create
+		guard tool.number > 0 else {
+			return
+		}
+		
+		let newTool = tool.copy() as! ToolNode
+		//newTool.movable = true // Make sure it's movable
+		addChild(newTool)
+		
+	}
+	
+	func moveTool(_ tool: ToolNode) {
 		
 	}
 	
@@ -331,7 +354,13 @@ class Level: SKScene, Reload {
 			if currentNode == controller && isInCanvas(location: location) {
 				handleTouchController(location)
 			} else if let tool = currentNode as? ToolNode {
-				createTool(type: tool.type)
+				// Check if tool is icon or movable
+				if tool.movable {
+					moveTool(tool)
+				} else {
+					createTool(tool)
+				}
+				
 			} else if currentNode == cameraNode{
 				moveCamera(locationCam)
 			} else if currentNode == key {

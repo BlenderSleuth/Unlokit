@@ -9,4 +9,15 @@
 import SpriteKit
 
 class Level3: Level {
+	// Set number of tools for level
+	override func setupToolsForLevel() {
+		for tool in tools {
+			switch tool.type! {
+			case .spring:
+				tool.number = 2
+			default:
+				break
+			}
+		}
+	}
 }

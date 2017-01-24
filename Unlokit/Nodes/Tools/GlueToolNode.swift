@@ -13,6 +13,12 @@ class GlueToolNode: ToolNode {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        type = .Sticky
+        type = .glue
     }
+	
+	override func setupPhysics() {
+		super.setupPhysics()
+		
+		physicsBody?.categoryBitMask = Category.glueTool
+	}
 }

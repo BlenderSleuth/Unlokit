@@ -40,12 +40,14 @@
 		387105EC1E35844E002D010A /* LockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387105EB1E35844E002D010A /* LockNode.swift */; };
 		387105F31E359640002D010A /* AudioUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387105F21E359640002D010A /* AudioUtils.swift */; };
 		387105F51E359CA4002D010A /* ReplayButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387105F41E359CA4002D010A /* ReplayButtonNode.swift */; };
+		388514001E36EF440092F058 /* SpringTool.sks in Resources */ = {isa = PBXBuildFile; fileRef = 388513FF1E36EF440092F058 /* SpringTool.sks */; };
+		388514021E36EFA20092F058 /* Tools.sks in Resources */ = {isa = PBXBuildFile; fileRef = 388514011E36EFA20092F058 /* Tools.sks */; };
 		38AE075A1E36221400D127D2 /* Lock.caf in Resources */ = {isa = PBXBuildFile; fileRef = 38AE07591E361DDC00D127D2 /* Lock.caf */; };
 		38B1F33D1E35D5E200C89260 /* BlockMtl.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38B1F33C1E35D5E200C89260 /* BlockMtl.sks */; };
-		38C50AF31E36A83600B4EE2A /* LightToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AEE1E36A83600B4EE2A /* LightToolNode.swift */; };
 		38C50AF41E36A83600B4EE2A /* GlueToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AEF1E36A83600B4EE2A /* GlueToolNode.swift */; };
 		38C50AF51E36A83600B4EE2A /* TimeToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AF01E36A83600B4EE2A /* TimeToolNode.swift */; };
 		38C50AF61E36A83600B4EE2A /* ToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AF11E36A83600B4EE2A /* ToolNode.swift */; };
+		38C50AF91E36AA0B00B4EE2A /* SpringToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AF81E36AA0B00B4EE2A /* SpringToolNode.swift */; };
 		38C73B231E35B92F00B3AC6A /* ReloadButtonActions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38C73B221E35B92F00B3AC6A /* ReloadButtonActions.sks */; };
 /* End PBXBuildFile section */
 
@@ -85,16 +87,18 @@
 		387105EB1E35844E002D010A /* LockNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LockNode.swift; sourceTree = "<group>"; };
 		387105F21E359640002D010A /* AudioUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioUtils.swift; path = Unlokit/AudioUtils.swift; sourceTree = "<group>"; };
 		387105F41E359CA4002D010A /* ReplayButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplayButtonNode.swift; sourceTree = "<group>"; };
+		388513FF1E36EF440092F058 /* SpringTool.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SpringTool.sks; sourceTree = "<group>"; };
+		388514011E36EFA20092F058 /* Tools.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Tools.sks; sourceTree = "<group>"; };
 		38AE07551E36199500D127D2 /* Bounce1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bounce1.caf; sourceTree = "<group>"; };
 		38AE07561E36199500D127D2 /* Bounce2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bounce2.caf; sourceTree = "<group>"; };
 		38AE07571E36199500D127D2 /* Bounce3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bounce3.caf; sourceTree = "<group>"; };
 		38AE07581E36199500D127D2 /* Bounce4.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bounce4.caf; sourceTree = "<group>"; };
 		38AE07591E361DDC00D127D2 /* Lock.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lock.caf; sourceTree = "<group>"; };
 		38B1F33C1E35D5E200C89260 /* BlockMtl.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockMtl.sks; sourceTree = "<group>"; };
-		38C50AEE1E36A83600B4EE2A /* LightToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightToolNode.swift; sourceTree = "<group>"; };
 		38C50AEF1E36A83600B4EE2A /* GlueToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlueToolNode.swift; sourceTree = "<group>"; };
 		38C50AF01E36A83600B4EE2A /* TimeToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeToolNode.swift; sourceTree = "<group>"; };
 		38C50AF11E36A83600B4EE2A /* ToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolNode.swift; sourceTree = "<group>"; };
+		38C50AF81E36AA0B00B4EE2A /* SpringToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringToolNode.swift; sourceTree = "<group>"; };
 		38C73B221E35B92F00B3AC6A /* ReloadButtonActions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ReloadButtonActions.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -169,6 +173,7 @@
 				383CA9781E1DD5E600F8B998 /* Gun.sks */,
 				38B1F33C1E35D5E200C89260 /* BlockMtl.sks */,
 				38488EF41E35E48800BCCFD6 /* BlockBnc.sks */,
+				388513FE1E36EF2C0092F058 /* ToolNodes */,
 			);
 			path = References;
 			sourceTree = "<group>";
@@ -253,6 +258,15 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
+		388513FE1E36EF2C0092F058 /* ToolNodes */ = {
+			isa = PBXGroup;
+			children = (
+				388513FF1E36EF440092F058 /* SpringTool.sks */,
+				388514011E36EFA20092F058 /* Tools.sks */,
+			);
+			path = ToolNodes;
+			sourceTree = "<group>";
+		};
 		38929DA31E28443A00C12C4C /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,7 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				38C50AF11E36A83600B4EE2A /* ToolNode.swift */,
-				38C50AEE1E36A83600B4EE2A /* LightToolNode.swift */,
+				38C50AF81E36AA0B00B4EE2A /* SpringToolNode.swift */,
 				38C50AEF1E36A83600B4EE2A /* GlueToolNode.swift */,
 				38C50AF01E36A83600B4EE2A /* TimeToolNode.swift */,
 			);
@@ -368,9 +382,11 @@
 				38488F171E3603E600BCCFD6 /* Level5.sks in Resources */,
 				38017A2F1E35DC160051EEE0 /* Assets.xcassets in Resources */,
 				38017A2E1E35DC160051EEE0 /* Smash.sks in Resources */,
+				388514021E36EFA20092F058 /* Tools.sks in Resources */,
 				38C73B231E35B92F00B3AC6A /* ReloadButtonActions.sks in Resources */,
 				38017A331E35E01B0051EEE0 /* Smash.caf in Resources */,
 				383CA9831E1DD61100F8B998 /* LaunchScreen.storyboard in Resources */,
+				388514001E36EF440092F058 /* SpringTool.sks in Resources */,
 				38B1F33D1E35D5E200C89260 /* BlockMtl.sks in Resources */,
 				383CA96B1E1DD4F500F8B998 /* Assets.xcassets in Resources */,
 				38488F151E3603E600BCCFD6 /* Level4.sks in Resources */,
@@ -391,13 +407,13 @@
 				38488F181E3603E600BCCFD6 /* Level5.swift in Sources */,
 				383CA9641E1DD4F500F8B998 /* AppDelegate.swift in Sources */,
 				38C50AF61E36A83600B4EE2A /* ToolNode.swift in Sources */,
-				38C50AF31E36A83600B4EE2A /* LightToolNode.swift in Sources */,
 				38488F1D1E3603F100BCCFD6 /* Level.swift in Sources */,
 				38C50AF51E36A83600B4EE2A /* TimeToolNode.swift in Sources */,
 				387105F51E359CA4002D010A /* ReplayButtonNode.swift in Sources */,
 				38488F1A1E3603E600BCCFD6 /* Level6.swift in Sources */,
 				385161361E348E6C0041995A /* ControllerNode.swift in Sources */,
 				38488F1E1E3603F100BCCFD6 /* Level+Physics.swift in Sources */,
+				38C50AF91E36AA0B00B4EE2A /* SpringToolNode.swift in Sources */,
 				38488F121E3603E600BCCFD6 /* Level2.swift in Sources */,
 				38488EF81E35E4F000BCCFD6 /* BlockBncNode.swift in Sources */,
 				384ACEF31E347FE2004C3E93 /* KeyNode.swift in Sources */,
