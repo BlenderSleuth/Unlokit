@@ -70,10 +70,6 @@ class Level: SKScene, Reload {
     var lastTouchCam = CGPoint.zero
 
 	var currentNode: SKNode?
-		
-    // Time intervals
-    var lastUpdateTime: TimeInterval = 0
-    var dt: TimeInterval = 0
 	
 	var start: start!
 	
@@ -112,12 +108,12 @@ class Level: SKScene, Reload {
 		
 		// Bind fire node to local variable
 		fireNode = cameraNode.childNode(withName: "fireButton") as! FireButtonNode
+		fireNode.controller = controller
 		replayNode = cameraNode.childNode(withName: "replayButton") as! ReplayButtonNode
 		replayNode.reloadable = self
 		
 		// Bind key to local variable
 		key = childNode(withName: "key") as! KeyNode
-		key.setupPhysics()
 		// Allow key to call for reload
 		key.reloadable = self
 		
@@ -212,7 +208,7 @@ class Level: SKScene, Reload {
         }
         
         // Give fireNode the angle for the bullets
-        fireNode.angle = Float(newRot) + Float(90).degreesToRadians()
+        //fireNode.angle = Float(newRot) + Float(90).degreesToRadians()
     }
     
     func moveCamera(to location: CGPoint) {
@@ -232,11 +228,13 @@ class Level: SKScene, Reload {
 			return
 		}
 		
-		// If it is enaged and not animating
+		// If it is engaged
 		if key.isEngaged {
 			key.disengage(controller)
+			fireNode.objectToFire = nil
 		} else {
 			key.engage(controller)
+			fireNode.objectToFire = key
 		}
 	}
 	
@@ -289,6 +287,9 @@ class Level: SKScene, Reload {
 		addChild(newTool)
 		newTool.engage(controller, icon: tool)
 		
+		// Set object to fire to newTool
+		fireNode.objectToFire = newTool
+		
 	}
 	func unLoad(tool: ToolNode, to icon: ToolIcon) {
 		guard !tool.isFired else {
@@ -301,7 +302,6 @@ class Level: SKScene, Reload {
 		// If it is enaged and not animating
 		if tool.isEngaged {
 			tool.disengage(to: icon, controller: controller)
-			print("hi")
 		}
 	}
 	
@@ -326,6 +326,8 @@ class Level: SKScene, Reload {
 			
 			if let toolIcon = currentNode as? ToolIcon {
 				toolIcon.greyOut()
+			} else if currentNode == key {
+				key.greyOut()
 			}
 			
 			// Set local variables
@@ -360,29 +362,26 @@ class Level: SKScene, Reload {
 				unLoad(tool: toolNode, to: toolIcons[toolNode.type]!)
 			} else if currentNode == key {
 				load(key: key, to: controller)
+				key.greyOut()
 			}
 			
             currentNode = nil
         }
     }
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for _ in touches {
-            
+		for _ in touches {
+			
 			if let toolIcon = currentNode as? ToolIcon {
 				load(icon: toolIcon)
 				toolIcon.greyOut()
+			} else if let toolNode = currentNode as? ToolNode {
+				unLoad(tool: toolNode, to: toolIcons[toolNode.type]!)
+			} else if currentNode == key {
+				load(key: key, to: controller)
+				key.greyOut()
 			}
 			
 			currentNode = nil
-        }
-    }
-    
-    override func update(_ currentTime: TimeInterval) {
-        if lastUpdateTime == 0 {
-            lastUpdateTime = currentTime
-        } else {
-            dt = currentTime - lastUpdateTime
-            lastUpdateTime = currentTime
-        }
+		}
     }
 }

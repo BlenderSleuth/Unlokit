@@ -21,8 +21,12 @@ class ToolIcon: SKSpriteNode {
 			if enabled {
 				colorBlendFactor = 0.0
 			} else {
+				
 				color = .darkGray
-				colorBlendFactor = 1
+				run(SKAction.colorize(with: .darkGray, colorBlendFactor: 0.9, duration: 0.7)) {
+					print("0")
+				}
+				//colorBlendFactor = 0.9
 			}
 		}
 	}
@@ -47,10 +51,13 @@ class ToolIcon: SKSpriteNode {
     }
 	
 	func greyOut() {
+		guard enabled == true else {
+			return
+		}
 		if isGreyed {
-			run(SKAction.colorize(withColorBlendFactor: 0, duration: 0.2))
+			run(SKAction.colorize(with: .red, colorBlendFactor: 0, duration: 0.2), withKey: "colorise")
 		} else {
-			run(SKAction.colorize(withColorBlendFactor: 0.4, duration: 0.2))
+			run(SKAction.colorize(with: .red, colorBlendFactor: 0.6, duration: 0.2), withKey: "colorise")
 		}
 		isGreyed = !isGreyed
 	}

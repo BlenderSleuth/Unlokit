@@ -15,4 +15,9 @@ class TimeToolNode: ToolNode {
         
         type = .time
     }
+	override func setupPhysics() {
+		super.setupPhysics()
+		
+		physicsBody?.categoryBitMask = Category.springTool
+	}
 }

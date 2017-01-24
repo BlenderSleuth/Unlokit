@@ -16,14 +16,8 @@ enum ToolType: String {
     case time		= "TimeTool"
 }
 
-protocol Engageable {
-	var isEngaged: Bool { get }
-	func engage(_ controller: ControllerNode)
-	func disengage()
-}
-
 // Only use this for subclassing...
-class ToolNode: SKSpriteNode {
+class ToolNode: SKSpriteNode, CanBeFired {
     
     var type: ToolType!
 	
@@ -35,15 +29,6 @@ class ToolNode: SKSpriteNode {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-	
-	func setupPhysics() {
-		physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
-		physicsBody?.isDynamic = false
-		// Override in subclasses
-		physicsBody?.categoryBitMask = Category.zero
-		physicsBody?.contactTestBitMask = Category.zero
-		physicsBody?.collisionBitMask = Category.zero
-	}
 	
 	func engage(_ controller: ControllerNode, icon: ToolIcon) {
 		// Make sure controller isn't occupied
@@ -70,5 +55,19 @@ class ToolNode: SKSpriteNode {
 		controller.occupied = false
 	}
 	
+	func prepareForFiring(_ controller: ControllerNode) {
+		setupPhysics()
+		isEngaged = false
+		isFired = true
+		controller.occupied = false
+	}
+	func setupPhysics() {
+		physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
+		physicsBody?.isDynamic = true
+		// Override in subclasses
+		physicsBody?.categoryBitMask = Category.zero
+		physicsBody?.contactTestBitMask = Category.zero
+		physicsBody?.collisionBitMask = Category.all
+	}
 
 }

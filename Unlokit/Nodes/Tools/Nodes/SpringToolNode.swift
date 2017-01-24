@@ -20,6 +20,7 @@ class SpringToolNode: ToolNode {
 		super.setupPhysics()
 		
 		physicsBody?.categoryBitMask = Category.springTool
-		physicsBody?.contactTestBitMask = Category.controller
+		physicsBody?.collisionBitMask = Category.all
+		physicsBody?.contactTestBitMask = Category.blockMtl
 	}
 }

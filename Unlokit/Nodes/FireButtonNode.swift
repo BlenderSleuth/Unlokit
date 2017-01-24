@@ -9,8 +9,7 @@
 import SpriteKit
 
 protocol CanBeFired {
-	func prepareForFiring()
-	var isFired: Bool { get }
+	func prepareForFiring(_ controller: ControllerNode)
 }
 
 class FireButtonNode: SKSpriteNode {
@@ -24,8 +23,8 @@ class FireButtonNode: SKSpriteNode {
     var pressed = false
 	var objectToFire: CanBeFired?
 	
-    var angle: Float = Float(π/2)
-    
+	var controller: ControllerNode!
+	
     //used for initialising from file
     required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
@@ -60,43 +59,40 @@ class FireButtonNode: SKSpriteNode {
         blueCircle.isHidden = !pressed
     }
     
-	private func fire(radians angle: Float, object o: CanBeFired?) {
+	private func fire() {
 		// Make sure object is not nil and is SKSpriteNode
-		guard let object = o as? SKSpriteNode else {
-			return
-		}
-		
-		// Check if the object has been fired or not
-		guard !o!.isFired else {
+		guard let sprite = objectToFire as? SKSpriteNode else {
 			return
 		}
 		
 		// Shenanigans for using both protocol and type properties
 		// Prepare for firing
-		o?.prepareForFiring() //o is of type 'CanBeFired', object is SKSpriteNode, both reference same object
+		objectToFire?.prepareForFiring(controller) //objectToFire is of type 'CanBeFired', object is SKSpriteNode, both reference same object
 		
         // Speed of firing
-        let speed: CGFloat = 750
+        let speed: CGFloat = 2000
 		
-        object.zRotation = CGFloat(angle)
+		let angle = Float(controller.zRotation + CGFloat(90).degreesToRadians())
+		
+        sprite.zRotation = CGFloat(angle)
 		
 		// Get vector to fire to
         let dx = CGFloat(cosf(angle)) * speed
         let dy = CGFloat(sinf(angle)) * speed
 		
 		// Apply impulse based on angle
-        object.physicsBody?.applyImpulse(CGVector(dx: dx, dy: dy))
+        sprite.physicsBody?.applyImpulse(CGVector(dx: dx, dy: dy))
     }
 
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         press()
-        fire(radians: angle, object: objectToFire)
     }
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         press()
+		fire()
     }
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         press()
+		fire()
     }
 }
