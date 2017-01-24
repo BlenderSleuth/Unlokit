@@ -72,6 +72,7 @@ class FireButtonNode: SKSpriteNode {
         // Speed of firing
         let speed: CGFloat = 2000
 		
+		// Compensation
 		let angle = Float(controller.zRotation + CGFloat(90).degreesToRadians())
 		
         sprite.zRotation = CGFloat(angle)
@@ -82,6 +83,7 @@ class FireButtonNode: SKSpriteNode {
 		
 		// Apply impulse based on angle
         sprite.physicsBody?.applyImpulse(CGVector(dx: dx, dy: dy))
+		sprite.physicsBody?.applyAngularImpulse(0.5) // Spin sprite as it fires
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

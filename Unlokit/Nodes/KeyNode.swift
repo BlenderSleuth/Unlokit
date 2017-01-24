@@ -35,7 +35,7 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		run(SKAction.move(to: controller.position, duration: 0.2)) {
 			self.animating = false
 		}
-		
+		run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(360).degreesToRadians(), duration: 3)), withKey: "rotate")
 	}
 	func disengage(_ controller: ControllerNode) {
 		animating = true
@@ -52,6 +52,7 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		isEngaged = false
 		isFired = true
 		controller.occupied = false
+		removeAction(forKey: "rotate")
 	}
 	private func setupPhysics() {
 		// Physicsbody

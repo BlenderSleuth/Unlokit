@@ -31,20 +31,19 @@ class ToolNode: SKSpriteNode, CanBeFired {
     }
 	
 	func engage(_ controller: ControllerNode, icon: ToolIcon) {
-		// Make sure controller isn't occupied
-		if controller.occupied == false {
-			isEngaged = true
-			animating = true
-			controller.occupied = true
-			run(SKAction.move(to: controller.position, duration: 0.2)) {
-				self.animating = false
-			}
-			icon.number -= 1
+		isEngaged = true
+		animating = true
+		controller.occupied = true
+		run(SKAction.move(to: controller.position, duration: 0.2)) {
+			self.animating = false
 		}
+		icon.number -= 1
+		
+		run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(360).degreesToRadians(), duration: 3)), withKey: "rotate")
 	}
 	func disengage(to icon: ToolIcon, controller: ControllerNode) {
 		animating = true
-		// Convert icon positino to scene coordinates
+		// Convert icon position to scene coordinates
 		let position = scene!.convert(icon.position, from: icon.parent!)
 		run(SKAction.move(to: position, duration: 0.2)) {
 			self.animating = false
@@ -60,6 +59,7 @@ class ToolNode: SKSpriteNode, CanBeFired {
 		isEngaged = false
 		isFired = true
 		controller.occupied = false
+		removeAction(forKey: "rotate")
 	}
 	func setupPhysics() {
 		physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
