@@ -13,10 +13,27 @@ class ToolIcon: SKSpriteNode {
     
     var type: ToolType!
 	
+	// Grey out icon if number is 0
+	var enabled: Bool = false {
+		didSet {
+			if enabled {
+				colorBlendFactor = 0.0
+			} else {
+				color = .darkGray
+				colorBlendFactor = 1
+			}
+		}
+	}
+	
 	private var label: SKLabelNode!
 	var number = 0 {
 		didSet{
 			label?.text = "\(number)"
+			if number > 0 {
+				enabled = true
+			} else {
+				enabled = false
+			}
 		}
 	}
     

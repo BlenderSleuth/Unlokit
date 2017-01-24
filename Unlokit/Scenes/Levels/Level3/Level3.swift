@@ -14,9 +14,15 @@ class Level3: Level {
 		for tool in toolIcons {
 			switch tool.type! {
 			case .spring:
-				tool.number = 2
-			default:
-				break
+				tool.number = 5
+			case .glue:
+				tool.number = 5
+			case .fan:
+				tool.number = 5
+			case .gravity:
+				tool.number = 5
+			case .time:
+				tool.number = 0
 			}
 		}
 	}

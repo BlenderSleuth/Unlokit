@@ -26,6 +26,16 @@ struct Category {
 	static let all: UInt32 = UInt32.max
 }
 
+struct ZPosition {
+	static let background: CGFloat	= 0
+	static let levelNodes: CGFloat	= 20
+	static let tools: CGFloat		= 40
+	static let key: CGFloat			= 50
+	static let controller			= 60
+	static let activeItem: CGFloat	= 80
+	static let interface: CGFloat	= 100
+}
+
 protocol start {
 	func startNewGame()
 }
@@ -48,7 +58,7 @@ class Level: SKScene, Reload {
     var canvasBounds: CGRect!
     
     // Array of tools
-	var toolRoot: SKNode!
+	var toolBox: SKNode!
     var toolIcons = [ToolIcon]()
 	var toolNodes = [ToolNode]()
 	
@@ -59,9 +69,25 @@ class Level: SKScene, Reload {
     // Touch points in different coordinate systems
 	var lastTouchPoint = CGPoint.zero
     var lastTouchCam = CGPoint.zero
-    
-    var currentNode: SKNode!
-    
+	
+	// zPosition management
+	var currentNode: SKNode? {
+		didSet {
+			guard !(currentNode is ToolIcon) else {
+				return
+			}
+			currentNode?.zPosition = ZPosition.activeItem
+		}
+		willSet {
+			switch currentNode {
+			case is KeyNode:
+				currentNode?.zPosition = ZPosition.key
+			default:
+				currentNode?.zPosition = ZPosition.tools
+			}
+		}
+	}
+		
     // Time intervals
     var lastUpdateTime: TimeInterval = 0
     var dt: TimeInterval = 0
@@ -86,7 +112,7 @@ class Level: SKScene, Reload {
 		gun = controller.childNode(withName: "gun")!.children.first
 		
 		// parent of all tools
-		toolRoot = (childNode(withName: "toolBox") as! SKReferenceNode).children.first!
+		toolBox = childNode(withName: "toolBox")?.children.first! // Root node of SKReferenceNode
 		
 		//Bind the camera to local variable
 		if let cam = camera {
@@ -189,8 +215,8 @@ class Level: SKScene, Reload {
 	}
 	func setupTools() {
 		// Create array of tool icons to use later
-		enumerateChildNodes(withName: "tools//*[Tool]") {node, _ in
-			print("node")
+		enumerateChildNodes(withName: "toolBox//*[Tool]") {node, _ in
+			
 			if let tool = node as? ToolIcon {
 				self.toolIcons.append(tool)
 			}
@@ -220,7 +246,7 @@ class Level: SKScene, Reload {
         fireNode.angle = Float(newRot) + Float(90).degreesToRadians()
     }
     
-    func moveCamera(_ location: CGPoint) {
+    func moveCamera(to location: CGPoint) {
         // Get the delta vector
         let vector = lastTouchCam - location
         
@@ -228,7 +254,7 @@ class Level: SKScene, Reload {
         cameraNode.position += vector
     }
 	
-	func moveKey(_ key: KeyNode, location: CGPoint) {
+	func move(key: KeyNode, to location: CGPoint) {
 		// If key is fired, don't do anything
 		guard !key.isFired else {
 			return
@@ -282,13 +308,7 @@ class Level: SKScene, Reload {
             return controller
         } else if node is ToolIcon {
 			// Point to check for tools
-			let toolPoint = convert(point, to: toolRoot)
-            // Check Tools
-			for tool in toolIcons {
-				if tool.frame.contains(toolPoint) {
-					return tool
-				}
-			}
+			return node
 		} else if node is ToolNode {
 			return node
 		} else if node is KeyNode {
@@ -307,7 +327,7 @@ class Level: SKScene, Reload {
 		return false
 	}
 	
-	func createTool(_ tool: ToolIcon) {
+	func createToolWith(icon tool: ToolIcon) {
 		// Make sure there is a tool to create
 		guard tool.number > 0 else {
 			return
@@ -316,12 +336,17 @@ class Level: SKScene, Reload {
 		tool.number -= 1
 		
 		// Unarchive a tool from file
-		let newTool = SKNode(fileNamed: tool.type.rawValue) as! ToolNode
-		newTool.position = convert(tool.position, from: toolRoot)
-		newTool.zPosition = 20
+		let newTool = SKNode(fileNamed: tool.type.rawValue)?.children.first as! ToolNode
+
+		// Remove tool from unarchived scene, add it to this one
+		newTool.removeFromParent()
+		newTool.position = toolBox.convert(tool.position, to: self)
+		
+		newTool.constraints = [canvasConstraint]
 		addChild(newTool)
+		newTool.zPosition = ZPosition.tools
 	}
-	func moveTool(_ tool: ToolNode, to position: CGPoint) {
+	func move(tool: ToolNode, to position: CGPoint) {
 		tool.position = position
 	}
 	
@@ -341,31 +366,39 @@ class Level: SKScene, Reload {
             // Get location of touch in different coordinate systems
             let location = touch.location(in: self)
 			let locationCam = touch.location(in: cameraNode)
-            
-            // Set local variables
-            lastTouchPoint = location
+
+			currentNode = node(at: location)
+			if let toolIcon = currentNode as? ToolIcon {
+				createToolWith(icon: toolIcon)
+			} else if let toolNode = currentNode as? ToolNode {
+				move(tool: toolNode, to: location)
+			} else if currentNode == key {
+				move(key: key, to: location)
+			}
+			
+			// Set local variables
+			lastTouchPoint = location
 			lastTouchCam = locationCam
-            
-			currentNode = node(at: lastTouchPoint)
         }
     }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
-            
             // Get location of touch in different coordinate systems
             let location = touch.location(in: self)
 			let locationCam = touch.location(in: cameraNode)
 			
+			currentNode = node(at: location)
+			
 			if currentNode == controller && isInCanvas(location: location) {
 				handleTouchController(location)
-			} else if let tool = currentNode as? ToolIcon {
-				createTool(tool)
+			} else if let toolIcon = currentNode as? ToolIcon {
+				createToolWith(icon: toolIcon)
 			} else if let toolNode = currentNode as? ToolNode {
-				moveTool(toolNode, to: location)
+				move(tool: toolNode, to: location)
 			} else if currentNode == cameraNode{
-				moveCamera(locationCam)
+				moveCamera(to: locationCam)
 			} else if currentNode == key {
-				moveKey(key, location: location)
+				move(key: key, to: location)
 			}
             
             // Set local variables

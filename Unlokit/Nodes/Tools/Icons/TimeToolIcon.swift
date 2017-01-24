@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class TimeToolIcon: ToolNode {
+class TimeToolIcon: ToolIcon {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

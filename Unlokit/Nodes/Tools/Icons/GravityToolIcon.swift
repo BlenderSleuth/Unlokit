@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class GravityToolIcon: ToolNode {
+class GravityToolIcon: ToolIcon {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

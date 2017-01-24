@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class GlueToolIcon: ToolNode {
+class GlueToolIcon: ToolIcon {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

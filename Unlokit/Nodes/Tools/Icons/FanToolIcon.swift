@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class FanToolIcon: ToolNode {
+class FanToolIcon: ToolIcon {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

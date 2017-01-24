@@ -20,8 +20,6 @@ enum ToolType: String {
 class ToolNode: SKSpriteNode {
     
     var type: ToolType!
-	
-	var savedConstraints: [SKConstraint]!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -29,7 +27,7 @@ class ToolNode: SKSpriteNode {
 	
 	func setupPhysics() {
 		physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
-		physicsBody?.isDynamic = false
+		physicsBody?.isDynamic = true
 		// Override in subclasses
 		physicsBody?.categoryBitMask = Category.zero
 		physicsBody?.contactTestBitMask = Category.zero

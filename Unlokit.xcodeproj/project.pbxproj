@@ -59,6 +59,8 @@
 		38E4B5C01E37106700C798C0 /* GlueTool.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38E4B5BC1E37106700C798C0 /* GlueTool.sks */; };
 		38E4B5C11E37106700C798C0 /* GravityTool.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38E4B5BD1E37106700C798C0 /* GravityTool.sks */; };
 		38E4B5C21E37106700C798C0 /* TimeTool.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38E4B5BE1E37106700C798C0 /* TimeTool.sks */; };
+		38E4B5C51E37137C00C798C0 /* FanToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4B5C31E37137C00C798C0 /* FanToolNode.swift */; };
+		38E4B5C61E37137C00C798C0 /* GravityToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4B5C41E37137C00C798C0 /* GravityToolNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,6 +122,8 @@
 		38E4B5BC1E37106700C798C0 /* GlueTool.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GlueTool.sks; sourceTree = "<group>"; };
 		38E4B5BD1E37106700C798C0 /* GravityTool.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GravityTool.sks; sourceTree = "<group>"; };
 		38E4B5BE1E37106700C798C0 /* TimeTool.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TimeTool.sks; sourceTree = "<group>"; };
+		38E4B5C31E37137C00C798C0 /* FanToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FanToolNode.swift; sourceTree = "<group>"; };
+		38E4B5C41E37137C00C798C0 /* GravityToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GravityToolNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -352,6 +356,8 @@
 				38C50AF11E36A83600B4EE2A /* ToolNode.swift */,
 				38C50AF81E36AA0B00B4EE2A /* SpringToolNode.swift */,
 				38C50AEF1E36A83600B4EE2A /* GlueToolNode.swift */,
+				38E4B5C31E37137C00C798C0 /* FanToolNode.swift */,
+				38E4B5C41E37137C00C798C0 /* GravityToolNode.swift */,
 				38C50AF01E36A83600B4EE2A /* TimeToolNode.swift */,
 			);
 			path = Nodes;
@@ -452,6 +458,7 @@
 			files = (
 				38E4B5B91E370AF500C798C0 /* FanToolIcon.swift in Sources */,
 				38E4B5B51E370A0A00C798C0 /* TimeToolIcon.swift in Sources */,
+				38E4B5C61E37137C00C798C0 /* GravityToolNode.swift in Sources */,
 				38650F541E25F6A500401ABD /* FireButtonNode.swift in Sources */,
 				383CA97B1E1DD5E600F8B998 /* GameViewController.swift in Sources */,
 				38017A311E35DEE20051EEE0 /* BlockMtlNode.swift in Sources */,
@@ -477,6 +484,7 @@
 				38C50AF41E36A83600B4EE2A /* GlueToolNode.swift in Sources */,
 				38488F161E3603E600BCCFD6 /* Level4.swift in Sources */,
 				38E4B5B41E370A0A00C798C0 /* SpringToolIcon.swift in Sources */,
+				38E4B5C51E37137C00C798C0 /* FanToolNode.swift in Sources */,
 				383CA97E1E1DD5F100F8B998 /* Utils.swift in Sources */,
 				38488F141E3603E600BCCFD6 /* Level3.swift in Sources */,
 			);
