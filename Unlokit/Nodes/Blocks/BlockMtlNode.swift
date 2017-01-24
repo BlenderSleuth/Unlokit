@@ -16,4 +16,14 @@ class BlockMtlNode: SKSpriteNode {
 			block.physicsBody?.categoryBitMask = Category.blockMtl
 		}
 	}
+	
+	// Create version of self that has kind of bncNode
+	func bncVersion() -> BlockBncNode {
+		let blockBnc = SKNode(fileNamed: "BlockBnc")?.children.first as! BlockBncNode
+		blockBnc.position = position
+		blockBnc.zPosition = zPosition
+		return blockBnc
+	}
 }
+
+

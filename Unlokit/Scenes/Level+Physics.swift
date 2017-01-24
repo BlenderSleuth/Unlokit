@@ -36,6 +36,17 @@ extension Level: SKPhysicsContactDelegate {
 				? contact.bodyA.node : contact.bodyB.node) as! KeyNode
 			
 			key.smash()
+		case Category.springTool | Category.blockMtl:
+			let spring = (contact.bodyA.categoryBitMask == Category.springTool
+				? contact.bodyA.node : contact.bodyB.node) as! SpringToolNode
+			let block = (contact.bodyA.categoryBitMask == Category.blockMtl
+				? contact.bodyA.node : contact.bodyB.node) as! BlockMtlNode
+			
+			let blockBnc = block.bncVersion()
+			block.parent?.addChild(blockBnc)
+			block.removeFromParent()
+			
+			spring.removeFromParent()
 		default:
 			break
 		}

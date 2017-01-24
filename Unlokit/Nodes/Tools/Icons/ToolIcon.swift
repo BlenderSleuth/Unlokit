@@ -23,10 +23,7 @@ class ToolIcon: SKSpriteNode {
 			} else {
 				
 				color = .darkGray
-				run(SKAction.colorize(with: .darkGray, colorBlendFactor: 0.9, duration: 0.7)) {
-					print("0")
-				}
-				//colorBlendFactor = 0.9
+				run(SKAction.colorize(with: .darkGray, colorBlendFactor: 0.9, duration: 0.5))
 			}
 		}
 	}
