@@ -13,7 +13,7 @@ class GravityToolNode: ToolNode {
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		
-		type = .spring
+		type = .gravity
 	}
 	
 	override func setupPhysics() {

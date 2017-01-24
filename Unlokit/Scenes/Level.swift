@@ -20,18 +20,20 @@ struct Category {
 	
 	static let bounds: UInt32		= 0b100000
 	
-	static let glueTool: UInt32     = 0b1000000
-	static let springTool: UInt32   = 0b10000000
+	static let springTool: UInt32   = 0b1000000
+	static let glueTool: UInt32     = 0b10000000
+	
 	
 	static let all: UInt32 = UInt32.max
 }
 
 struct ZPosition {
-	static let background: CGFloat	= 0
+	static let background: CGFloat	= 10
 	static let levelNodes: CGFloat	= 20
 	static let tools: CGFloat		= 40
-	static let key: CGFloat			= 50
-	static let controller			= 60
+	static let toolIcons: CGFloat	= 50
+	static let key: CGFloat			= 60
+	static let controller			= 70
 	static let activeItem: CGFloat	= 80
 	static let interface: CGFloat	= 100
 }
@@ -59,7 +61,7 @@ class Level: SKScene, Reload {
     
     // Array of tools
 	var toolBox: SKNode!
-    var toolIcons = [ToolIcon]()
+	var toolIcons = [ToolType: ToolIcon]()
 	var toolNodes = [ToolNode]()
 	
 	// Key
@@ -76,6 +78,10 @@ class Level: SKScene, Reload {
 			guard !(currentNode is ToolIcon) else {
 				return
 			}
+			guard !(currentNode is ControllerNode) else {
+				return
+			}
+			
 			currentNode?.zPosition = ZPosition.activeItem
 		}
 		willSet {
@@ -104,7 +110,6 @@ class Level: SKScene, Reload {
 	func setupNodes() {
 		// Bind controller to local variable
 		controller = childNode(withName: "controller") as! ControllerNode
-		controller.setupPhysics()
 		
 		canvasBounds = childNode(withName: "canvas")?.frame
 		
@@ -133,23 +138,18 @@ class Level: SKScene, Reload {
 		replayNode = cameraNode.childNode(withName: "replayButton") as! ReplayButtonNode
 		replayNode.reloadable = self
 		
-		// Bind key to local variable
-		key = childNode(withName: "key") as! KeyNode
-		key.setupPhysics()
-		// Allow key to call for reload
-		key.reloadable = self
-		
 		// Create constraint to keep in canvas
 		let canvasX = SKRange(lowerLimit: 0, upperLimit: canvasBounds.width)
 		let canvasY = SKRange(lowerLimit: 0, upperLimit: canvasBounds.height)
 		canvasConstraint = SKConstraint.positionX(canvasX, y: canvasY)
 		
-		// Stop key from entering controller (yet...)
-		let outsideController = SKRange(lowerLimit: controller.size.width / 2) // Outside radius of controller
-		let controllerConstraint = SKConstraint.distance(outsideController, to: controller)
-		
+		// Bind key to local variable
+		key = childNode(withName: "key") as! KeyNode
+		key.setupPhysics()
+		// Allow key to call for reload
+		key.reloadable = self
 		// Apply constraints to key, save for later
-		key.constraints = [canvasConstraint, controllerConstraint]
+		key.constraints = [canvasConstraint]
 		key.saveContraints()
 		
 		// Bind lock to local variable
@@ -203,7 +203,7 @@ class Level: SKScene, Reload {
 			                 upperLimit: bounds.frame.maxY - height / 2)
 		}
 		
-		// Set interface nodes incase of iphone
+		// Set interface nodes in case of iphone
 		if iPhone {
 			fireNode.position.y  += 250
 			replayNode.position.y -= 250
@@ -218,7 +218,7 @@ class Level: SKScene, Reload {
 		enumerateChildNodes(withName: "toolBox//*[Tool]") {node, _ in
 			
 			if let tool = node as? ToolIcon {
-				self.toolIcons.append(tool)
+				self.toolIcons[tool.type] = tool
 			}
 		}
 		
@@ -254,49 +254,21 @@ class Level: SKScene, Reload {
         cameraNode.position += vector
     }
 	
-	func move(key: KeyNode, to location: CGPoint) {
+	func load(key: KeyNode, to controller: ControllerNode) {
 		// If key is fired, don't do anything
 		guard !key.isFired else {
 			return
 		}
-		
-		//make sure key isn't animating position
-		guard !key.isEngaging || !key.isDisengaging else {
-			if key.isDisengaging {
-				//key.run(SKAction.move(to: location, duration: 0.2), withKey: "disengaging") {
-				//	key.isEngaged = false
-				//}
-			}
-			
+		guard !key.animating else {
 			return
 		}
 		
-		if !key.isEngaged {
-			// Check if user touched centre of controller
-			if controller.middleRegion.contains(location) {
-				// Animate to centre
-				key.isEngaged = true
-				key.inside = true
-				key.run(SKAction.move(to: controller.position, duration: 0.2), withKey: "engaging") {
-					self.fireNode.objectToFire = key
-				}
-			} else {
-				key.position = location
-			}
-			
+		// If it is enaged and not animating
+		if key.isEngaged {
+			key.disengage(controller)
 		} else {
-			// Check if user touched outside of controller
-			if !controller.combinedRegion.contains(location) && key.inside {
-				// Animate outside
-				fireNode.objectToFire = nil
-				key.inside = false
-				key.run(SKAction.move(to: location, duration: 0.2), withKey: "disengaging") {
-					key.isEngaged = false
-					key.position = location
-				}
-			}
+			key.engage(controller)
 		}
-
 	}
 	
 	// Function to return correct node, different methods of sorting
@@ -327,27 +299,42 @@ class Level: SKScene, Reload {
 		return false
 	}
 	
-	func createToolWith(icon tool: ToolIcon) {
+	func load(icon tool: ToolIcon) {
 		// Make sure there is a tool to create
 		guard tool.number > 0 else {
 			return
 		}
 		
-		tool.number -= 1
+		// Make sure controller isn't occupied
+		guard controller.occupied == false else {
+			return
+		}
 		
 		// Unarchive a tool from file
 		let newTool = SKNode(fileNamed: tool.type.rawValue)?.children.first as! ToolNode
 
-		// Remove tool from unarchived scene, add it to this one
+		// Remove tool from unarchived scene, add it to this one and engage
 		newTool.removeFromParent()
 		newTool.position = toolBox.convert(tool.position, to: self)
-		
+		newTool.zPosition = ZPosition.tools
 		newTool.constraints = [canvasConstraint]
 		addChild(newTool)
-		newTool.zPosition = ZPosition.tools
+		newTool.engage(controller, icon: tool)
+		
 	}
-	func move(tool: ToolNode, to position: CGPoint) {
-		tool.position = position
+	func unLoad(tool: ToolNode, to icon: ToolIcon) {
+		guard !tool.isFired else {
+			return
+		}
+		guard !tool.animating else {
+			return
+		}
+		
+		// If it is enaged and not animating
+		if tool.isEngaged {
+			tool.disengage(to: icon, controller: controller)
+			print("hi")
+		}
 	}
 	
 	func reload() {
@@ -368,12 +355,13 @@ class Level: SKScene, Reload {
 			let locationCam = touch.location(in: cameraNode)
 
 			currentNode = node(at: location)
+			
 			if let toolIcon = currentNode as? ToolIcon {
-				createToolWith(icon: toolIcon)
+				load(icon: toolIcon)
 			} else if let toolNode = currentNode as? ToolNode {
-				move(tool: toolNode, to: location)
+				unLoad(tool: toolNode, to: toolIcons[toolNode.type]!)
 			} else if currentNode == key {
-				move(key: key, to: location)
+				load(key: key, to: controller)
 			}
 			
 			// Set local variables
@@ -387,18 +375,10 @@ class Level: SKScene, Reload {
             let location = touch.location(in: self)
 			let locationCam = touch.location(in: cameraNode)
 			
-			currentNode = node(at: location)
-			
 			if currentNode == controller && isInCanvas(location: location) {
 				handleTouchController(location)
-			} else if let toolIcon = currentNode as? ToolIcon {
-				createToolWith(icon: toolIcon)
-			} else if let toolNode = currentNode as? ToolNode {
-				move(tool: toolNode, to: location)
 			} else if currentNode == cameraNode{
 				moveCamera(to: locationCam)
-			} else if currentNode == key {
-				move(key: key, to: location)
 			}
             
             // Set local variables

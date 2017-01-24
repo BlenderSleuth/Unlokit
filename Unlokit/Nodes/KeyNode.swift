@@ -22,38 +22,34 @@ class KeyNode: SKSpriteNode, CanBeFired {
 			
 		}
 	}
-	
-	// Check if key is animating
-	var isEngaging: Bool {
-		if self.action(forKey: "engaging") != nil {
-			return true
-		}
-		return false
-	}
-	
-	var isDisengaging: Bool {
-		if self.action(forKey: "disengaging") != nil {
-			return true
-		}
-		return false
-	}
-	
-	var inside = false
-	
+
 	var isFired = false
+	
+	var startPosition: CGPoint! // Initial key position
 	
 	// To save constraints when not using them
 	var saveContraint = [SKConstraint]()
 	
+	var animating = false
+	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-		// Allows for touch events
-		//isUserInteractionEnabled = true
+		
+		// Set position to start
+		startPosition = position
 		
 		// TO DO: Make this work internally...
 		//setupPhysics()
-		
-		
+	}
+	func setupPhysics() {
+		// Physicsbody
+		physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
+		physicsBody?.allowsRotation = false
+		physicsBody?.isDynamic = false
+		physicsBody?.density = 0.3
+		physicsBody?.categoryBitMask = Category.key
+		physicsBody?.contactTestBitMask = Category.lock | Category.blocks | Category.bounds | Category.controller
+		physicsBody?.collisionBitMask = Category.all ^ (Category.controller | Category.lock) //All except controller and lock
 	}
 	
 	func saveContraints() {
@@ -62,42 +58,28 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		}
 	}
 	
-	func engage(location: CGPoint, controller: ControllerNode) {
-		guard !isEngaging else {
-			return
-		}
-		
-		if !isEngaged {
-			position = location
-			
-			// Check if user touched centre of controller
-			if controller.middleRegion.contains(location) {
-				// Animate to centre
-				run(SKAction.move(to: controller.position, duration: 1), withKey: "engaging")
-				isEngaged = true
-			}
-		} else {
-			// Check if user touched outside of controller
-			if !controller.region.contains(location) {
-				// Animate outside
-				run(SKAction.move(to: location, duration: 1), withKey: "disengaging")
-				isEngaged = false
+	func engage(_ controller: ControllerNode) {
+		// Make sure controller isn't occupied
+		if controller.occupied == false {
+			controller.occupied = true
+			isEngaged = true
+			animating = true
+			run(SKAction.move(to: controller.position, duration: 0.2)) {
+				self.animating = false
 			}
 		}
+
 		
 	}
-	
-	func setupPhysics() {
-		// Physicsbody
-		physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
-		physicsBody?.allowsRotation = false
-		physicsBody?.isDynamic = false
-		physicsBody?.density = 0.3
-		physicsBody?.categoryBitMask = Category.key
-		physicsBody?.contactTestBitMask = Category.lock | Category.blocks | Category.bounds
-		physicsBody?.collisionBitMask = Category.all ^ (Category.controller | Category.lock) //All except controller and lock
+	func disengage(_ controller: ControllerNode) {
+		animating = true
+		run(SKAction.move(to: startPosition, duration: 0.2)) {
+			self.animating = false
+		}
+		controller.occupied = false
+		isEngaged = false
 	}
-	
+
 	func prepareForFiring() {
 		// Cleans up before firing
 		physicsBody?.isDynamic = true
@@ -109,7 +91,7 @@ class KeyNode: SKSpriteNode, CanBeFired {
 	func smash() {
 		removeFromParent()
 		
-		// TO DO: make sound effect and smash key
+		// TO DO: smash key
 		SKTAudio.sharedInstance().playSoundEffect(filename: "Smash.caf")
 		
 		// Reload scene

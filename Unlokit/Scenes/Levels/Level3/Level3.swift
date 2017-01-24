@@ -11,8 +11,8 @@ import SpriteKit
 class Level3: Level {
 	// Set number of tools for level
 	override func setupToolsForLevel() {
-		for tool in toolIcons {
-			switch tool.type! {
+		for (type, tool) in toolIcons {
+			switch type {
 			case .spring:
 				tool.number = 5
 			case .glue:
