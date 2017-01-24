@@ -41,12 +41,16 @@ class Level: SKScene, Reload {
     var gun: SKNode!
     var cameraNode: SKCameraNode!
     var bounds: SKSpriteNode!
+	
+	// Universal constraint for tools and key
+	var canvasConstraint: SKConstraint!
     
     var canvasBounds: CGRect!
     
     // Array of tools
-	var toolsReference: SKReferenceNode!
-    var tools = [ToolNode]()
+	var toolRoot: SKNode!
+    var toolIcons = [ToolIcon]()
+	var toolNodes = [ToolNode]()
 	
 	// Key
 	var key: KeyNode!
@@ -81,7 +85,8 @@ class Level: SKScene, Reload {
 		// Bind gun to local variable
 		gun = controller.childNode(withName: "gun")!.children.first
 		
-		toolsReference = childNode(withName: "tools") as! SKReferenceNode
+		// parent of all tools
+		toolRoot = (childNode(withName: "toolBox") as! SKReferenceNode).children.first!
 		
 		//Bind the camera to local variable
 		if let cam = camera {
@@ -90,6 +95,7 @@ class Level: SKScene, Reload {
 		
 		// Bind boundary box to local variable
 		bounds = childNode(withName: "bounds") as! SKSpriteNode
+		
 		// Create physicsworld boundaries
 		// Create cgrect with modified origin
 		let rect = CGRect(origin: CGPoint(x: -bounds.frame.size.width / 2, y: -bounds.frame.size.height / 2), size: bounds.frame.size)
@@ -107,10 +113,10 @@ class Level: SKScene, Reload {
 		// Allow key to call for reload
 		key.reloadable = self
 		
-		// Keep key in canvas
+		// Create constraint to keep in canvas
 		let canvasX = SKRange(lowerLimit: 0, upperLimit: canvasBounds.width)
 		let canvasY = SKRange(lowerLimit: 0, upperLimit: canvasBounds.height)
-		let canvasConstraint = SKConstraint.positionX(canvasX, y: canvasY)
+		canvasConstraint = SKConstraint.positionX(canvasX, y: canvasY)
 		
 		// Stop key from entering controller (yet...)
 		let outsideController = SKRange(lowerLimit: controller.size.width / 2) // Outside radius of controller
@@ -182,25 +188,18 @@ class Level: SKScene, Reload {
 		cameraNode.constraints = [cameraConstraint]
 	}
 	func setupTools() {
-		// Constraint so that tools never move outside of canvas
-		let rangeX = SKRange(lowerLimit: 0, upperLimit: canvasBounds.width)
-		let rangeY = SKRange(lowerLimit: 0, upperLimit: canvasBounds.height)
-		let canvasConstraint = SKConstraint.positionX(rangeX, y: rangeY)
-		
-		// Create array of tools to use later
+		// Create array of tool icons to use later
 		enumerateChildNodes(withName: "tools//*[Tool]") {node, _ in
-			if let tool = node as? ToolNode {
-				self.tools.append(tool)
-				// Save constraint to all tools
-				tool.savedConstraints = [canvasConstraint]
+			print("node")
+			if let tool = node as? ToolIcon {
+				self.toolIcons.append(tool)
 			}
 		}
 		
 		setupToolsForLevel()
 	}
-	
-	// To be overridden
 	func setupToolsForLevel() {
+		// To be overridden
 	}
 	
     func handleTouchController(_ location: CGPoint) {
@@ -281,13 +280,17 @@ class Level: SKScene, Reload {
 		
         if controller.region.contains(point) {
             return controller
-        } else if node is ToolNode {
+        } else if node is ToolIcon {
+			// Point to check for tools
+			let toolPoint = convert(point, to: toolRoot)
             // Check Tools
-			for tool in tools {
-				if tool.frame.contains(point) {
+			for tool in toolIcons {
+				if tool.frame.contains(toolPoint) {
 					return tool
 				}
 			}
+		} else if node is ToolNode {
+			return node
 		} else if node is KeyNode {
 			return key
 		}
@@ -304,20 +307,22 @@ class Level: SKScene, Reload {
 		return false
 	}
 	
-	func createTool(_ tool: ToolNode) {
+	func createTool(_ tool: ToolIcon) {
 		// Make sure there is a tool to create
 		guard tool.number > 0 else {
 			return
 		}
 		
-		let newTool = tool.copy() as! ToolNode
-		//newTool.movable = true // Make sure it's movable
+		tool.number -= 1
+		
+		// Unarchive a tool from file
+		let newTool = SKNode(fileNamed: tool.type.rawValue) as! ToolNode
+		newTool.position = convert(tool.position, from: toolRoot)
+		newTool.zPosition = 20
 		addChild(newTool)
-		
 	}
-	
-	func moveTool(_ tool: ToolNode) {
-		
+	func moveTool(_ tool: ToolNode, to position: CGPoint) {
+		tool.position = position
 	}
 	
 	func reload() {
@@ -353,14 +358,10 @@ class Level: SKScene, Reload {
 			
 			if currentNode == controller && isInCanvas(location: location) {
 				handleTouchController(location)
-			} else if let tool = currentNode as? ToolNode {
-				// Check if tool is icon or movable
-				if tool.movable {
-					moveTool(tool)
-				} else {
-					createTool(tool)
-				}
-				
+			} else if let tool = currentNode as? ToolIcon {
+				createTool(tool)
+			} else if let toolNode = currentNode as? ToolNode {
+				moveTool(toolNode, to: location)
 			} else if currentNode == cameraNode{
 				moveCamera(locationCam)
 			} else if currentNode == key {

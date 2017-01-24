@@ -11,7 +11,7 @@ import SpriteKit
 class Level4: Level {
 	// Set number of tools for level
 	override func setupToolsForLevel() {
-		for tool in tools {
+		for tool in toolIcons {
 			switch tool.type! {
 			case .spring:
 				tool.number = 0
