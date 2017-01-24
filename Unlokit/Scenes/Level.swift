@@ -53,9 +53,6 @@ class Level: SKScene, Reload {
     var gun: SKNode!
     var cameraNode: SKCameraNode!
     var bounds: SKSpriteNode!
-	
-	// Universal constraint for tools and key
-	var canvasConstraint: SKConstraint!
     
     var canvasBounds: CGRect!
     
@@ -71,28 +68,8 @@ class Level: SKScene, Reload {
     // Touch points in different coordinate systems
 	var lastTouchPoint = CGPoint.zero
     var lastTouchCam = CGPoint.zero
-	
-	// zPosition management
-	var currentNode: SKNode? {
-		didSet {
-			guard !(currentNode is ToolIcon) else {
-				return
-			}
-			guard !(currentNode is ControllerNode) else {
-				return
-			}
-			
-			currentNode?.zPosition = ZPosition.activeItem
-		}
-		willSet {
-			switch currentNode {
-			case is KeyNode:
-				currentNode?.zPosition = ZPosition.key
-			default:
-				currentNode?.zPosition = ZPosition.tools
-			}
-		}
-	}
+
+	var currentNode: SKNode?
 		
     // Time intervals
     var lastUpdateTime: TimeInterval = 0
@@ -138,19 +115,11 @@ class Level: SKScene, Reload {
 		replayNode = cameraNode.childNode(withName: "replayButton") as! ReplayButtonNode
 		replayNode.reloadable = self
 		
-		// Create constraint to keep in canvas
-		let canvasX = SKRange(lowerLimit: 0, upperLimit: canvasBounds.width)
-		let canvasY = SKRange(lowerLimit: 0, upperLimit: canvasBounds.height)
-		canvasConstraint = SKConstraint.positionX(canvasX, y: canvasY)
-		
 		// Bind key to local variable
 		key = childNode(withName: "key") as! KeyNode
 		key.setupPhysics()
 		// Allow key to call for reload
 		key.reloadable = self
-		// Apply constraints to key, save for later
-		key.constraints = [canvasConstraint]
-		key.saveContraints()
 		
 		// Bind lock to local variable
 		lock = childNode(withName: "lock") as! LockNode
@@ -317,7 +286,6 @@ class Level: SKScene, Reload {
 		newTool.removeFromParent()
 		newTool.position = toolBox.convert(tool.position, to: self)
 		newTool.zPosition = ZPosition.tools
-		newTool.constraints = [canvasConstraint]
 		addChild(newTool)
 		newTool.engage(controller, icon: tool)
 		
@@ -357,11 +325,7 @@ class Level: SKScene, Reload {
 			currentNode = node(at: location)
 			
 			if let toolIcon = currentNode as? ToolIcon {
-				load(icon: toolIcon)
-			} else if let toolNode = currentNode as? ToolNode {
-				unLoad(tool: toolNode, to: toolIcons[toolNode.type]!)
-			} else if currentNode == key {
-				load(key: key, to: controller)
+				toolIcon.greyOut()
 			}
 			
 			// Set local variables
@@ -388,32 +352,28 @@ class Level: SKScene, Reload {
     }
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         for _ in touches {
-            
-            // Get location in two different coordinate systems
-            //let location = touch.location(in: self)
-            //let locationCam = touch.location(in: cameraNode)
-            
-            //Handle for for different nodes
+			
+			if let toolIcon = currentNode as? ToolIcon {
+				load(icon: toolIcon)
+				toolIcon.greyOut()
+			} else if let toolNode = currentNode as? ToolNode {
+				unLoad(tool: toolNode, to: toolIcons[toolNode.type]!)
+			} else if currentNode == key {
+				load(key: key, to: controller)
+			}
+			
             currentNode = nil
-            
-            // Set local variables
-            //lastTouchPoint = location
-            //lastTouchCam = locationCam
         }
     }
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         for _ in touches {
             
-            // Get location in two different coordinate systems
-            //let location = touch.location(in: self)
-            //let locationCam = touch.location(in: cameraNode)
-            
-            //Handle for for different nodes
-            currentNode = nil
-            
-            // Set local variables
-            //lastTouchPoint = location
-            //lastTouchCam = locationCam
+			if let toolIcon = currentNode as? ToolIcon {
+				load(icon: toolIcon)
+				toolIcon.greyOut()
+			}
+			
+			currentNode = nil
         }
     }
     

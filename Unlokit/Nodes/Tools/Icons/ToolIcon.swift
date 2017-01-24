@@ -13,6 +13,8 @@ class ToolIcon: SKSpriteNode {
     
     var type: ToolType!
 	
+	private var isGreyed = false
+	
 	// Grey out icon if number is 0
 	var enabled: Bool = false {
 		didSet {
@@ -43,4 +45,13 @@ class ToolIcon: SKSpriteNode {
 		// Set label, if there is one
 		label = childNode(withName: "label") as! SKLabelNode
     }
+	
+	func greyOut() {
+		if isGreyed {
+			run(SKAction.colorize(withColorBlendFactor: 0, duration: 0.2))
+		} else {
+			run(SKAction.colorize(withColorBlendFactor: 0.4, duration: 0.2))
+		}
+		isGreyed = !isGreyed
+	}
 }
