@@ -62,6 +62,7 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		// Physicsbody
 		physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
 		physicsBody?.isDynamic = true
+		//physicsBody?.usesPreciseCollisionDetection = true
 		physicsBody?.mass = 0.5
 		physicsBody?.categoryBitMask = Category.key
 		physicsBody?.contactTestBitMask = Category.lock | Category.blocks | Category.bounds | Category.controller

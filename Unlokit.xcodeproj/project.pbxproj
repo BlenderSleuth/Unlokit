@@ -32,6 +32,8 @@
 		38AE075A1E36221400D127D2 /* Lock.caf in Resources */ = {isa = PBXBuildFile; fileRef = 38AE07591E361DDC00D127D2 /* Lock.caf */; };
 		38B649431E3890AF00479469 /* BlockGlueNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B649421E3890AF00479469 /* BlockGlueNode.swift */; };
 		38B649451E3890F800479469 /* BlockGlue.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38B649441E3890F800479469 /* BlockGlue.sks */; };
+		38B649491E38AC3400479469 /* FanNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B649481E38AC3400479469 /* FanNode.swift */; };
+		38B6494B1E38AC9B00479469 /* FanRef.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38B6494A1E38AC9B00479469 /* FanRef.sks */; };
 		38C50AF41E36A83600B4EE2A /* GlueToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AEF1E36A83600B4EE2A /* GlueToolNode.swift */; };
 		38C50AF51E36A83600B4EE2A /* TimeToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AF01E36A83600B4EE2A /* TimeToolNode.swift */; };
 		38C50AF61E36A83600B4EE2A /* ToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AF11E36A83600B4EE2A /* ToolNode.swift */; };
@@ -98,6 +100,8 @@
 		38AE07591E361DDC00D127D2 /* Lock.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lock.caf; sourceTree = "<group>"; };
 		38B649421E3890AF00479469 /* BlockGlueNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockGlueNode.swift; sourceTree = "<group>"; };
 		38B649441E3890F800479469 /* BlockGlue.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockGlue.sks; sourceTree = "<group>"; };
+		38B649481E38AC3400479469 /* FanNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FanNode.swift; sourceTree = "<group>"; };
+		38B6494A1E38AC9B00479469 /* FanRef.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FanRef.sks; sourceTree = "<group>"; };
 		38C50AEF1E36A83600B4EE2A /* GlueToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlueToolNode.swift; sourceTree = "<group>"; };
 		38C50AF01E36A83600B4EE2A /* TimeToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeToolNode.swift; sourceTree = "<group>"; };
 		38C50AF11E36A83600B4EE2A /* ToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolNode.swift; sourceTree = "<group>"; };
@@ -202,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				383CA9781E1DD5E600F8B998 /* GunRef.sks */,
+				38B6494A1E38AC9B00479469 /* FanRef.sks */,
 				38F7B1E81E38243300A62956 /* ControllerRef.sks */,
 				38F7B1EC1E38342400A62956 /* KeyRef.sks */,
 				38F7B1EE1E38348600A62956 /* LockRef.sks */,
@@ -272,6 +277,7 @@
 				387105F41E359CA4002D010A /* ReplayButtonNode.swift */,
 				38C50AED1E36A83600B4EE2A /* Tools */,
 				38488EF61E35E4D900BCCFD6 /* Blocks */,
+				38B649481E38AC3400479469 /* FanNode.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -409,6 +415,7 @@
 				383CA97C1E1DD5E600F8B998 /* GunRef.sks in Resources */,
 				38F7B1F11E3838ED00A62956 /* Inteface.sks in Resources */,
 				38AE075A1E36221400D127D2 /* Lock.caf in Resources */,
+				38B6494B1E38AC9B00479469 /* FanRef.sks in Resources */,
 				383CA9841E1DD61100F8B998 /* Main.storyboard in Resources */,
 				38B649451E3890F800479469 /* BlockGlue.sks in Resources */,
 				38F7B1EF1E38348600A62956 /* LockRef.sks in Resources */,
@@ -443,6 +450,7 @@
 				38CE1C1B1E386B5D00B646DB /* Level3.swift in Sources */,
 				38E4B5B91E370AF500C798C0 /* FanToolIcon.swift in Sources */,
 				38E4B5B51E370A0A00C798C0 /* TimeToolIcon.swift in Sources */,
+				38B649491E38AC3400479469 /* FanNode.swift in Sources */,
 				38E4B5C61E37137C00C798C0 /* GravityToolNode.swift in Sources */,
 				38650F541E25F6A500401ABD /* FireButtonNode.swift in Sources */,
 				383CA97B1E1DD5E600F8B998 /* GameViewController.swift in Sources */,

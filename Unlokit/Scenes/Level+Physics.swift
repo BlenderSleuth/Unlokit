@@ -53,13 +53,22 @@ extension Level: SKPhysicsContactDelegate {
 		case Category.blockGlue | Category.key:
 			let key = getNode(for: Category.key, type: KeyNode.self, contact: contact)
 			let block = getNode(for: Category.blockGlue, type: BlockGlueNode.self, contact: contact)
+			let side = block.getSide(contact: contact)
 			
-			key.physicsBody?.velocity = CGVector.zero
+			block.add(node: key, to: side)
 			
-			let joint = SKPhysicsJointPin.joint(withBodyA: key.physicsBody!, bodyB: block.physicsBody!, anchor: convert(key.position, from: key.parent!))
-			physicsWorld.add(joint)
 		case Category.fanTool | Category.blockGlue:
-			break
+			let fanTool = getNode(for: Category.fanTool, type: FanToolNode.self, contact: contact)
+			let block = getNode(for: Category.blockGlue, type: BlockGlueNode.self, contact: contact)
+			
+			let fanNode = SKNode(fileNamed: "FanRef")?.children.first as! FanNode
+			fanNode.removeFromParent()
+			
+			let side = block.getSide(contact: contact)
+			block.add(node: fanNode, to: side)
+			
+			fanTool.removeFromParent()
+			
 		case Category.springTool | Category.bounds, Category.glueTool | Category.bounds, Category.fanTool | Category.bounds:
 			let bounds = getNode(for: Category.bounds, type: SKSpriteNode.self, contact: contact)
 			let tool = getOtherNode(for: bounds, type: ToolNode.self, contact: contact)

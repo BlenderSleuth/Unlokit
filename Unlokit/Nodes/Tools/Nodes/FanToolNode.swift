@@ -19,6 +19,7 @@ class FanToolNode: ToolNode {
 	override func setupPhysics() {
 		super.setupPhysics()
 		
-		physicsBody?.categoryBitMask = Category.springTool
+		physicsBody?.categoryBitMask = Category.fanTool
+		physicsBody?.contactTestBitMask = Category.bounds | Category.blockGlue
 	}
 }
