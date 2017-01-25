@@ -16,15 +16,11 @@ extension Level: SKPhysicsContactDelegate {
 		
 		switch collision {
 		case Category.key | Category.lock:
-			let key = (contact.bodyA.categoryBitMask == Category.key
-				? contact.bodyA.node : contact.bodyB.node) as! KeyNode
-			let lock = (contact.bodyA.categoryBitMask == Category.lock
-				? contact.bodyA.node : contact.bodyB.node) as! LockNode
-			
+			let key = getNode(for: Category.key, type: KeyNode.self, contact: contact)
+			let lock = getNode(for: Category.lock, type: LockNode.self, contact: contact)
 				key.lock(lock)
-		case Category.blockMtl | Category.key:
-			let key = (contact.bodyA.categoryBitMask == Category.key
-				? contact.bodyA.node : contact.bodyB.node) as! KeyNode
+		case Category.blockMtl | Category.key, Category.bounds | Category.key:
+			let key = getNode(for: Category.key, type: KeyNode.self, contact: contact)
 			key.smash()
 		case Category.blockBnc | Category.all:
 			//let block = (contact.bodyA.categoryBitMask == Category.blockBnc
@@ -34,24 +30,32 @@ extension Level: SKPhysicsContactDelegate {
 			
 			// TO DO: animate block
 			break
-		case Category.bounds | Category.key:
-			let key = (contact.bodyA.categoryBitMask == Category.key
-				? contact.bodyA.node : contact.bodyB.node) as! KeyNode
-			
-			key.smash()
 		case Category.springTool | Category.blockMtl:
-			let spring = (contact.bodyA.categoryBitMask == Category.springTool
-				? contact.bodyA.node : contact.bodyB.node) as! SpringToolNode
-			let block = (contact.bodyA.categoryBitMask == Category.blockMtl
-				? contact.bodyA.node : contact.bodyB.node) as! BlockMtlNode
+			let spring = getNode(for: Category.springTool, type: SpringToolNode.self, contact: contact)
+			let block = getNode(for: Category.blockMtl, type: BlockMtlNode.self, contact: contact)
 			
 			let blockBnc = block.bncVersion()
 			block.parent?.addChild(blockBnc)
 			block.removeFromParent()
 			
 			spring.removeFromParent()
+		case Category.springTool | Category.bounds, Category.glueTool | Category.bounds, Category.fanTool | Category.bounds:
+			let bounds = getNode(for: Category.bounds, type: SKSpriteNode.self, contact: contact)
+			let tool = getOtherNode(for: bounds, type: ToolNode.self, contact: contact)
+			
+			tool.smash()
+			break
 		default:
 			break
 		}
+	}
+	
+	// Return the node from a category and type
+	func getNode<T: SKNode>(for category: UInt32, type: T.Type, contact: SKPhysicsContact) -> T {
+		return (contact.bodyA.categoryBitMask == category ? contact.bodyA.node : contact.bodyB.node) as! T
+	}
+	// Finds other node based on physics contact
+	func getOtherNode<T: SKNode>(for node: SKNode, type: T.Type, contact: SKPhysicsContact) -> T {
+		return (contact.bodyB.node == node ? contact.bodyA.node : contact.bodyB.node) as! T
 	}
 }

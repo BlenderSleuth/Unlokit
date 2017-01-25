@@ -64,8 +64,13 @@ class ToolNode: SKSpriteNode, CanBeFired {
 		physicsBody?.mass = 0.5
 		// Override in subclasses
 		physicsBody?.categoryBitMask = Category.zero
-		physicsBody?.contactTestBitMask = Category.zero
+		physicsBody?.contactTestBitMask = Category.bounds
 		physicsBody?.collisionBitMask = Category.all
 	}
 
+	func smash() {
+		removeFromParent()
+		
+		//TO DO: play sound and particle
+	}
 }
