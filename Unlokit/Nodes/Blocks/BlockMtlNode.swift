@@ -23,6 +23,13 @@ class BlockMtlNode: SKSpriteNode {
 		blockBnc.zPosition = zPosition
 		return blockBnc
 	}
+	func glueVersion() -> BlockGlueNode {
+		let blockGlue = SKNode(fileNamed: "BlockGlue")?.children.first as! BlockGlueNode
+		blockGlue.removeFromParent()
+		blockGlue.position = position
+		blockGlue.zPosition = zPosition
+		return blockGlue
+	}
 }
 
 

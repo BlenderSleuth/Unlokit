@@ -30,6 +30,8 @@
 		388514001E36EF440092F058 /* SpringTool.sks in Resources */ = {isa = PBXBuildFile; fileRef = 388513FF1E36EF440092F058 /* SpringTool.sks */; };
 		388514021E36EFA20092F058 /* ToolBox.sks in Resources */ = {isa = PBXBuildFile; fileRef = 388514011E36EFA20092F058 /* ToolBox.sks */; };
 		38AE075A1E36221400D127D2 /* Lock.caf in Resources */ = {isa = PBXBuildFile; fileRef = 38AE07591E361DDC00D127D2 /* Lock.caf */; };
+		38B649431E3890AF00479469 /* BlockGlueNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B649421E3890AF00479469 /* BlockGlueNode.swift */; };
+		38B649451E3890F800479469 /* BlockGlue.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38B649441E3890F800479469 /* BlockGlue.sks */; };
 		38C50AF41E36A83600B4EE2A /* GlueToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AEF1E36A83600B4EE2A /* GlueToolNode.swift */; };
 		38C50AF51E36A83600B4EE2A /* TimeToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AF01E36A83600B4EE2A /* TimeToolNode.swift */; };
 		38C50AF61E36A83600B4EE2A /* ToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AF11E36A83600B4EE2A /* ToolNode.swift */; };
@@ -94,6 +96,8 @@
 		38AE07571E36199500D127D2 /* Bounce3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bounce3.caf; sourceTree = "<group>"; };
 		38AE07581E36199500D127D2 /* Bounce4.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bounce4.caf; sourceTree = "<group>"; };
 		38AE07591E361DDC00D127D2 /* Lock.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lock.caf; sourceTree = "<group>"; };
+		38B649421E3890AF00479469 /* BlockGlueNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockGlueNode.swift; sourceTree = "<group>"; };
+		38B649441E3890F800479469 /* BlockGlue.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockGlue.sks; sourceTree = "<group>"; };
 		38C50AEF1E36A83600B4EE2A /* GlueToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlueToolNode.swift; sourceTree = "<group>"; };
 		38C50AF01E36A83600B4EE2A /* TimeToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeToolNode.swift; sourceTree = "<group>"; };
 		38C50AF11E36A83600B4EE2A /* ToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolNode.swift; sourceTree = "<group>"; };
@@ -189,6 +193,7 @@
 			children = (
 				38017A301E35DEE20051EEE0 /* BlockMtlNode.swift */,
 				38488EF71E35E4F000BCCFD6 /* BlockBncNode.swift */,
+				38B649421E3890AF00479469 /* BlockGlueNode.swift */,
 			);
 			path = Blocks;
 			sourceTree = "<group>";
@@ -292,6 +297,7 @@
 			isa = PBXGroup;
 			children = (
 				38CE1C061E38597400B646DB /* BlockMtl.sks */,
+				38B649441E3890F800479469 /* BlockGlue.sks */,
 				38CE1C051E38597400B646DB /* BlockBnc.sks */,
 				38CE1C081E38597400B646DB /* Row3BlockMtl.sks */,
 				38CE1C071E38597400B646DB /* Row3BlockBnc.sks */,
@@ -404,6 +410,7 @@
 				38F7B1F11E3838ED00A62956 /* Inteface.sks in Resources */,
 				38AE075A1E36221400D127D2 /* Lock.caf in Resources */,
 				383CA9841E1DD61100F8B998 /* Main.storyboard in Resources */,
+				38B649451E3890F800479469 /* BlockGlue.sks in Resources */,
 				38F7B1EF1E38348600A62956 /* LockRef.sks in Resources */,
 				38017A2F1E35DC160051EEE0 /* Assets.xcassets in Resources */,
 				38E4B5C21E37106700C798C0 /* TimeTool.sks in Resources */,
@@ -459,6 +466,7 @@
 				38E4B5B41E370A0A00C798C0 /* SpringToolIcon.swift in Sources */,
 				38E4B5C51E37137C00C798C0 /* FanToolNode.swift in Sources */,
 				383CA97E1E1DD5F100F8B998 /* Utils.swift in Sources */,
+				38B649431E3890AF00479469 /* BlockGlueNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

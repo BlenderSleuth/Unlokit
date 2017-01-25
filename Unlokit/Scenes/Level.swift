@@ -17,11 +17,12 @@ struct Category {
 	
 	static let blockMtl: UInt32     = 0b10000
 	static let blockBnc: UInt32     = 0b100000
-	static let blocks: UInt32		= Category.blockMtl | Category.blockBnc
+	static let blockGlue: UInt32    = 0b1000000
+	static let blocks: UInt32		= Category.blockMtl | Category.blockBnc | Category.blockGlue
 	
-	static let springTool: UInt32   = 0b10000000
-	static let glueTool: UInt32     = 0b100000000
-	static let fanTool: UInt32      = 0b1000000000
+	static let springTool: UInt32   = 0b100000000
+	static let glueTool: UInt32     = 0b1000000000
+	static let fanTool: UInt32      = 0b10000000000
 	static let tools: UInt32		= Category.springTool | Category.glueTool | Category.fanTool
 	
 	static let all: UInt32 = UInt32.max

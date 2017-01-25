@@ -18,9 +18,11 @@ extension Level: SKPhysicsContactDelegate {
 		case Category.key | Category.lock:
 			let key = getNode(for: Category.key, type: KeyNode.self, contact: contact)
 			let lock = getNode(for: Category.lock, type: LockNode.self, contact: contact)
-				key.lock(lock)
+			
+			key.lock(lock)
 		case Category.blockMtl | Category.key, Category.bounds | Category.key:
 			let key = getNode(for: Category.key, type: KeyNode.self, contact: contact)
+			
 			key.smash()
 		case Category.blockBnc | Category.all:
 			//let block = (contact.bodyA.categoryBitMask == Category.blockBnc
@@ -39,12 +41,30 @@ extension Level: SKPhysicsContactDelegate {
 			block.removeFromParent()
 			
 			spring.removeFromParent()
+		case Category.glueTool | Category.blockMtl:
+			let glue = getNode(for: Category.glueTool, type: GlueToolNode.self, contact: contact)
+			let block = getNode(for: Category.blockMtl, type: BlockMtlNode.self, contact: contact)
+			
+			let blockGlue = block.glueVersion()
+			block.parent?.addChild(blockGlue)
+			block.removeFromParent()
+			
+			glue.removeFromParent()
+		case Category.blockGlue | Category.key:
+			let key = getNode(for: Category.key, type: KeyNode.self, contact: contact)
+			let block = getNode(for: Category.blockGlue, type: BlockGlueNode.self, contact: contact)
+			
+			key.physicsBody?.velocity = CGVector.zero
+			
+			let joint = SKPhysicsJointPin.joint(withBodyA: key.physicsBody!, bodyB: block.physicsBody!, anchor: convert(key.position, from: key.parent!))
+			physicsWorld.add(joint)
+		case Category.fanTool | Category.blockGlue:
+			break
 		case Category.springTool | Category.bounds, Category.glueTool | Category.bounds, Category.fanTool | Category.bounds:
 			let bounds = getNode(for: Category.bounds, type: SKSpriteNode.self, contact: contact)
 			let tool = getOtherNode(for: bounds, type: ToolNode.self, contact: contact)
 			
 			tool.smash()
-			break
 		default:
 			break
 		}
