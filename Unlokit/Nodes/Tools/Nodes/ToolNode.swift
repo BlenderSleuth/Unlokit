@@ -61,6 +61,7 @@ class ToolNode: SKSpriteNode, CanBeFired {
 	func setupPhysics() {
 		physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
 		physicsBody?.isDynamic = true
+		physicsBody?.mass = 0.5
 		// Override in subclasses
 		physicsBody?.categoryBitMask = Category.zero
 		physicsBody?.contactTestBitMask = Category.zero

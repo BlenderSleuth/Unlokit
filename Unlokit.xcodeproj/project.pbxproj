@@ -18,20 +18,7 @@
 		383CA97E1E1DD5F100F8B998 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383CA97D1E1DD5F100F8B998 /* Utils.swift */; };
 		383CA9831E1DD61100F8B998 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 383CA97F1E1DD61100F8B998 /* LaunchScreen.storyboard */; };
 		383CA9841E1DD61100F8B998 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 383CA9811E1DD61100F8B998 /* Main.storyboard */; };
-		38488EF51E35E48800BCCFD6 /* BlockBnc.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38488EF41E35E48800BCCFD6 /* BlockBnc.sks */; };
 		38488EF81E35E4F000BCCFD6 /* BlockBncNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38488EF71E35E4F000BCCFD6 /* BlockBncNode.swift */; };
-		38488F0F1E3603E600BCCFD6 /* Level1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38488EFE1E3603E600BCCFD6 /* Level1.sks */; };
-		38488F101E3603E600BCCFD6 /* Level1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38488EFF1E3603E600BCCFD6 /* Level1.swift */; };
-		38488F111E3603E600BCCFD6 /* Level2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38488F011E3603E600BCCFD6 /* Level2.sks */; };
-		38488F121E3603E600BCCFD6 /* Level2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38488F021E3603E600BCCFD6 /* Level2.swift */; };
-		38488F131E3603E600BCCFD6 /* Level3.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38488F041E3603E600BCCFD6 /* Level3.sks */; };
-		38488F141E3603E600BCCFD6 /* Level3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38488F051E3603E600BCCFD6 /* Level3.swift */; };
-		38488F151E3603E600BCCFD6 /* Level4.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38488F071E3603E600BCCFD6 /* Level4.sks */; };
-		38488F161E3603E600BCCFD6 /* Level4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38488F081E3603E600BCCFD6 /* Level4.swift */; };
-		38488F171E3603E600BCCFD6 /* Level5.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38488F0A1E3603E600BCCFD6 /* Level5.sks */; };
-		38488F181E3603E600BCCFD6 /* Level5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38488F0B1E3603E600BCCFD6 /* Level5.swift */; };
-		38488F191E3603E600BCCFD6 /* Level6.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38488F0D1E3603E600BCCFD6 /* Level6.sks */; };
-		38488F1A1E3603E600BCCFD6 /* Level6.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38488F0E1E3603E600BCCFD6 /* Level6.swift */; };
 		38488F1D1E3603F100BCCFD6 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38488F1B1E3603F100BCCFD6 /* Level.swift */; };
 		38488F1E1E3603F100BCCFD6 /* Level+Physics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38488F1C1E3603F100BCCFD6 /* Level+Physics.swift */; };
 		384ACEF31E347FE2004C3E93 /* KeyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384ACEF21E347FE2004C3E93 /* KeyNode.swift */; };
@@ -43,15 +30,22 @@
 		388514001E36EF440092F058 /* SpringTool.sks in Resources */ = {isa = PBXBuildFile; fileRef = 388513FF1E36EF440092F058 /* SpringTool.sks */; };
 		388514021E36EFA20092F058 /* ToolBox.sks in Resources */ = {isa = PBXBuildFile; fileRef = 388514011E36EFA20092F058 /* ToolBox.sks */; };
 		38AE075A1E36221400D127D2 /* Lock.caf in Resources */ = {isa = PBXBuildFile; fileRef = 38AE07591E361DDC00D127D2 /* Lock.caf */; };
-		38B1F33D1E35D5E200C89260 /* BlockMtl.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38B1F33C1E35D5E200C89260 /* BlockMtl.sks */; };
 		38C50AF41E36A83600B4EE2A /* GlueToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AEF1E36A83600B4EE2A /* GlueToolNode.swift */; };
 		38C50AF51E36A83600B4EE2A /* TimeToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AF01E36A83600B4EE2A /* TimeToolNode.swift */; };
 		38C50AF61E36A83600B4EE2A /* ToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AF11E36A83600B4EE2A /* ToolNode.swift */; };
 		38C50AF91E36AA0B00B4EE2A /* SpringToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AF81E36AA0B00B4EE2A /* SpringToolNode.swift */; };
 		38C73B231E35B92F00B3AC6A /* ReloadButtonActions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38C73B221E35B92F00B3AC6A /* ReloadButtonActions.sks */; };
 		38CE1BFB1E3841A200B646DB /* Explosion.caf in Resources */ = {isa = PBXBuildFile; fileRef = 38CE1BFA1E3841A200B646DB /* Explosion.caf */; };
-		38CE1BFD1E38430D00B646DB /* Background-Purple.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38CE1BFC1E38430D00B646DB /* Background-Purple.sks */; };
-		38CE1BFF1E3846CE00B646DB /* Canvas-Purple.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38CE1BFE1E3846CE00B646DB /* Canvas-Purple.sks */; };
+		38CE1C091E38597400B646DB /* BlockBnc.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38CE1C051E38597400B646DB /* BlockBnc.sks */; };
+		38CE1C0A1E38597400B646DB /* BlockMtl.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38CE1C061E38597400B646DB /* BlockMtl.sks */; };
+		38CE1C0B1E38597400B646DB /* Row3BlockBnc.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38CE1C071E38597400B646DB /* Row3BlockBnc.sks */; };
+		38CE1C0C1E38597400B646DB /* Row3BlockMtl.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38CE1C081E38597400B646DB /* Row3BlockMtl.sks */; };
+		38CE1C101E38599B00B646DB /* Background-Purple.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38CE1C0E1E38599B00B646DB /* Background-Purple.sks */; };
+		38CE1C111E38599B00B646DB /* Canvas-Purple.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38CE1C0F1E38599B00B646DB /* Canvas-Purple.sks */; };
+		38CE1C181E386B5D00B646DB /* Level1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38CE1C141E386B5D00B646DB /* Level1.sks */; };
+		38CE1C191E386B5D00B646DB /* Level2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38CE1C151E386B5D00B646DB /* Level2.sks */; };
+		38CE1C1A1E386B5D00B646DB /* Level3.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38CE1C161E386B5D00B646DB /* Level3.sks */; };
+		38CE1C1B1E386B5D00B646DB /* Level3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CE1C171E386B5D00B646DB /* Level3.swift */; };
 		38E4B5B31E370A0A00C798C0 /* GlueToolIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4B5AF1E370A0A00C798C0 /* GlueToolIcon.swift */; };
 		38E4B5B41E370A0A00C798C0 /* SpringToolIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4B5B01E370A0A00C798C0 /* SpringToolIcon.swift */; };
 		38E4B5B51E370A0A00C798C0 /* TimeToolIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4B5B11E370A0A00C798C0 /* TimeToolIcon.swift */; };
@@ -76,35 +70,22 @@
 		38017A301E35DEE20051EEE0 /* BlockMtlNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockMtlNode.swift; sourceTree = "<group>"; };
 		38017A321E35DFD00051EEE0 /* Smash.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Smash.caf; sourceTree = "<group>"; };
 		383CA9601E1DD4F500F8B998 /* Unlokit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unlokit.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		383CA9631E1DD4F500F8B998 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Unlokit/AppDelegate.swift; sourceTree = "<group>"; };
-		383CA96A1E1DD4F500F8B998 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Unlokit/Assets.xcassets; sourceTree = "<group>"; };
-		383CA96F1E1DD4F500F8B998 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Unlokit/Info.plist; sourceTree = "<group>"; };
-		383CA9771E1DD5E600F8B998 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameViewController.swift; path = Unlokit/GameViewController.swift; sourceTree = "<group>"; };
+		383CA9631E1DD4F500F8B998 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		383CA96A1E1DD4F500F8B998 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		383CA96F1E1DD4F500F8B998 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		383CA9771E1DD5E600F8B998 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		383CA9781E1DD5E600F8B998 /* GunRef.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GunRef.sks; sourceTree = "<group>"; };
-		383CA97D1E1DD5F100F8B998 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Unlokit/Utils.swift; sourceTree = "<group>"; };
+		383CA97D1E1DD5F100F8B998 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		383CA9801E1DD61100F8B998 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		383CA9821E1DD61100F8B998 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		38488EF41E35E48800BCCFD6 /* BlockBnc.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockBnc.sks; sourceTree = "<group>"; };
 		38488EF71E35E4F000BCCFD6 /* BlockBncNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockBncNode.swift; sourceTree = "<group>"; };
-		38488EFE1E3603E600BCCFD6 /* Level1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1.sks; sourceTree = "<group>"; };
-		38488EFF1E3603E600BCCFD6 /* Level1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level1.swift; sourceTree = "<group>"; };
-		38488F011E3603E600BCCFD6 /* Level2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2.sks; sourceTree = "<group>"; };
-		38488F021E3603E600BCCFD6 /* Level2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level2.swift; sourceTree = "<group>"; };
-		38488F041E3603E600BCCFD6 /* Level3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level3.sks; sourceTree = "<group>"; };
-		38488F051E3603E600BCCFD6 /* Level3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level3.swift; sourceTree = "<group>"; };
-		38488F071E3603E600BCCFD6 /* Level4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level4.sks; sourceTree = "<group>"; };
-		38488F081E3603E600BCCFD6 /* Level4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level4.swift; sourceTree = "<group>"; };
-		38488F0A1E3603E600BCCFD6 /* Level5.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level5.sks; sourceTree = "<group>"; };
-		38488F0B1E3603E600BCCFD6 /* Level5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level5.swift; sourceTree = "<group>"; };
-		38488F0D1E3603E600BCCFD6 /* Level6.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level6.sks; sourceTree = "<group>"; };
-		38488F0E1E3603E600BCCFD6 /* Level6.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level6.swift; sourceTree = "<group>"; };
 		38488F1B1E3603F100BCCFD6 /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		38488F1C1E3603F100BCCFD6 /* Level+Physics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Level+Physics.swift"; sourceTree = "<group>"; };
 		384ACEF21E347FE2004C3E93 /* KeyNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyNode.swift; sourceTree = "<group>"; };
 		385161351E348E6C0041995A /* ControllerNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerNode.swift; sourceTree = "<group>"; };
 		38650F531E25F6A500401ABD /* FireButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireButtonNode.swift; sourceTree = "<group>"; };
 		387105EB1E35844E002D010A /* LockNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LockNode.swift; sourceTree = "<group>"; };
-		387105F21E359640002D010A /* AudioUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioUtils.swift; path = Unlokit/AudioUtils.swift; sourceTree = "<group>"; };
+		387105F21E359640002D010A /* AudioUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioUtils.swift; sourceTree = "<group>"; };
 		387105F41E359CA4002D010A /* ReplayButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplayButtonNode.swift; sourceTree = "<group>"; };
 		388513FF1E36EF440092F058 /* SpringTool.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SpringTool.sks; sourceTree = "<group>"; };
 		388514011E36EFA20092F058 /* ToolBox.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ToolBox.sks; sourceTree = "<group>"; };
@@ -113,15 +94,22 @@
 		38AE07571E36199500D127D2 /* Bounce3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bounce3.caf; sourceTree = "<group>"; };
 		38AE07581E36199500D127D2 /* Bounce4.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bounce4.caf; sourceTree = "<group>"; };
 		38AE07591E361DDC00D127D2 /* Lock.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lock.caf; sourceTree = "<group>"; };
-		38B1F33C1E35D5E200C89260 /* BlockMtl.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockMtl.sks; sourceTree = "<group>"; };
 		38C50AEF1E36A83600B4EE2A /* GlueToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlueToolNode.swift; sourceTree = "<group>"; };
 		38C50AF01E36A83600B4EE2A /* TimeToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeToolNode.swift; sourceTree = "<group>"; };
 		38C50AF11E36A83600B4EE2A /* ToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolNode.swift; sourceTree = "<group>"; };
 		38C50AF81E36AA0B00B4EE2A /* SpringToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringToolNode.swift; sourceTree = "<group>"; };
 		38C73B221E35B92F00B3AC6A /* ReloadButtonActions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ReloadButtonActions.sks; sourceTree = "<group>"; };
 		38CE1BFA1E3841A200B646DB /* Explosion.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Explosion.caf; sourceTree = "<group>"; };
-		38CE1BFC1E38430D00B646DB /* Background-Purple.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Background-Purple.sks"; sourceTree = "<group>"; };
-		38CE1BFE1E3846CE00B646DB /* Canvas-Purple.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Canvas-Purple.sks"; sourceTree = "<group>"; };
+		38CE1C051E38597400B646DB /* BlockBnc.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockBnc.sks; sourceTree = "<group>"; };
+		38CE1C061E38597400B646DB /* BlockMtl.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockMtl.sks; sourceTree = "<group>"; };
+		38CE1C071E38597400B646DB /* Row3BlockBnc.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row3BlockBnc.sks; sourceTree = "<group>"; };
+		38CE1C081E38597400B646DB /* Row3BlockMtl.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row3BlockMtl.sks; sourceTree = "<group>"; };
+		38CE1C0E1E38599B00B646DB /* Background-Purple.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Background-Purple.sks"; sourceTree = "<group>"; };
+		38CE1C0F1E38599B00B646DB /* Canvas-Purple.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Canvas-Purple.sks"; sourceTree = "<group>"; };
+		38CE1C141E386B5D00B646DB /* Level1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1.sks; sourceTree = "<group>"; };
+		38CE1C151E386B5D00B646DB /* Level2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2.sks; sourceTree = "<group>"; };
+		38CE1C161E386B5D00B646DB /* Level3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level3.sks; sourceTree = "<group>"; };
+		38CE1C171E386B5D00B646DB /* Level3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level3.swift; sourceTree = "<group>"; };
 		38E4B5AF1E370A0A00C798C0 /* GlueToolIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlueToolIcon.swift; sourceTree = "<group>"; };
 		38E4B5B01E370A0A00C798C0 /* SpringToolIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringToolIcon.swift; sourceTree = "<group>"; };
 		38E4B5B11E370A0A00C798C0 /* TimeToolIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeToolIcon.swift; sourceTree = "<group>"; };
@@ -164,14 +152,6 @@
 			isa = PBXGroup;
 			children = (
 				383CA9621E1DD4F500F8B998 /* Unlokit */,
-				383CA9631E1DD4F500F8B998 /* AppDelegate.swift */,
-				383CA96A1E1DD4F500F8B998 /* Assets.xcassets */,
-				383CA97F1E1DD61100F8B998 /* LaunchScreen.storyboard */,
-				383CA9811E1DD61100F8B998 /* Main.storyboard */,
-				383CA9771E1DD5E600F8B998 /* GameViewController.swift */,
-				383CA97D1E1DD5F100F8B998 /* Utils.swift */,
-				387105F21E359640002D010A /* AudioUtils.swift */,
-				383CA96F1E1DD4F500F8B998 /* Info.plist */,
 				383CA9611E1DD4F500F8B998 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -192,6 +172,14 @@
 				38017A2B1E35DBFA0051EEE0 /* Emitters */,
 				38C73B211E35B31B00B3AC6A /* Actions */,
 				387105ED1E358D75002D010A /* Sounds */,
+				383CA9631E1DD4F500F8B998 /* AppDelegate.swift */,
+				383CA96A1E1DD4F500F8B998 /* Assets.xcassets */,
+				383CA97F1E1DD61100F8B998 /* LaunchScreen.storyboard */,
+				383CA9811E1DD61100F8B998 /* Main.storyboard */,
+				383CA9771E1DD5E600F8B998 /* GameViewController.swift */,
+				383CA97D1E1DD5F100F8B998 /* Utils.swift */,
+				387105F21E359640002D010A /* AudioUtils.swift */,
+				383CA96F1E1DD4F500F8B998 /* Info.plist */,
 			);
 			path = Unlokit;
 			sourceTree = "<group>";
@@ -208,16 +196,14 @@
 		38488EFB1E36028400BCCFD6 /* References */ = {
 			isa = PBXGroup;
 			children = (
-				38B1F33C1E35D5E200C89260 /* BlockMtl.sks */,
-				38488EF41E35E48800BCCFD6 /* BlockBnc.sks */,
 				383CA9781E1DD5E600F8B998 /* GunRef.sks */,
 				38F7B1E81E38243300A62956 /* ControllerRef.sks */,
 				38F7B1EC1E38342400A62956 /* KeyRef.sks */,
 				38F7B1EE1E38348600A62956 /* LockRef.sks */,
 				38F7B1F01E3838ED00A62956 /* Inteface.sks */,
+				38CE1C0D1E38598C00B646DB /* Backgrounds */,
+				38CE1C041E38597400B646DB /* Blocks */,
 				388513FE1E36EF2C0092F058 /* ToolNodes */,
-				38CE1BFC1E38430D00B646DB /* Background-Purple.sks */,
-				38CE1BFE1E3846CE00B646DB /* Canvas-Purple.sks */,
 			);
 			path = References;
 			sourceTree = "<group>";
@@ -225,68 +211,12 @@
 		38488EFC1E3603E600BCCFD6 /* Levels */ = {
 			isa = PBXGroup;
 			children = (
-				38488EFD1E3603E600BCCFD6 /* Level1 */,
-				38488F001E3603E600BCCFD6 /* Level2 */,
-				38488F031E3603E600BCCFD6 /* Level3 */,
-				38488F061E3603E600BCCFD6 /* Level4 */,
-				38488F091E3603E600BCCFD6 /* Level5 */,
-				38488F0C1E3603E600BCCFD6 /* Level6 */,
+				38CE1C141E386B5D00B646DB /* Level1.sks */,
+				38CE1C151E386B5D00B646DB /* Level2.sks */,
+				38CE1C161E386B5D00B646DB /* Level3.sks */,
+				38CE1C171E386B5D00B646DB /* Level3.swift */,
 			);
 			path = Levels;
-			sourceTree = "<group>";
-		};
-		38488EFD1E3603E600BCCFD6 /* Level1 */ = {
-			isa = PBXGroup;
-			children = (
-				38488EFE1E3603E600BCCFD6 /* Level1.sks */,
-				38488EFF1E3603E600BCCFD6 /* Level1.swift */,
-			);
-			path = Level1;
-			sourceTree = "<group>";
-		};
-		38488F001E3603E600BCCFD6 /* Level2 */ = {
-			isa = PBXGroup;
-			children = (
-				38488F011E3603E600BCCFD6 /* Level2.sks */,
-				38488F021E3603E600BCCFD6 /* Level2.swift */,
-			);
-			path = Level2;
-			sourceTree = "<group>";
-		};
-		38488F031E3603E600BCCFD6 /* Level3 */ = {
-			isa = PBXGroup;
-			children = (
-				38488F041E3603E600BCCFD6 /* Level3.sks */,
-				38488F051E3603E600BCCFD6 /* Level3.swift */,
-			);
-			path = Level3;
-			sourceTree = "<group>";
-		};
-		38488F061E3603E600BCCFD6 /* Level4 */ = {
-			isa = PBXGroup;
-			children = (
-				38488F071E3603E600BCCFD6 /* Level4.sks */,
-				38488F081E3603E600BCCFD6 /* Level4.swift */,
-			);
-			path = Level4;
-			sourceTree = "<group>";
-		};
-		38488F091E3603E600BCCFD6 /* Level5 */ = {
-			isa = PBXGroup;
-			children = (
-				38488F0A1E3603E600BCCFD6 /* Level5.sks */,
-				38488F0B1E3603E600BCCFD6 /* Level5.swift */,
-			);
-			path = Level5;
-			sourceTree = "<group>";
-		};
-		38488F0C1E3603E600BCCFD6 /* Level6 */ = {
-			isa = PBXGroup;
-			children = (
-				38488F0D1E3603E600BCCFD6 /* Level6.sks */,
-				38488F0E1E3603E600BCCFD6 /* Level6.swift */,
-			);
-			path = Level6;
 			sourceTree = "<group>";
 		};
 		387105ED1E358D75002D010A /* Sounds */ = {
@@ -356,6 +286,26 @@
 				38C73B221E35B92F00B3AC6A /* ReloadButtonActions.sks */,
 			);
 			path = Actions;
+			sourceTree = "<group>";
+		};
+		38CE1C041E38597400B646DB /* Blocks */ = {
+			isa = PBXGroup;
+			children = (
+				38CE1C061E38597400B646DB /* BlockMtl.sks */,
+				38CE1C051E38597400B646DB /* BlockBnc.sks */,
+				38CE1C081E38597400B646DB /* Row3BlockMtl.sks */,
+				38CE1C071E38597400B646DB /* Row3BlockBnc.sks */,
+			);
+			path = Blocks;
+			sourceTree = "<group>";
+		};
+		38CE1C0D1E38598C00B646DB /* Backgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				38CE1C0E1E38599B00B646DB /* Background-Purple.sks */,
+				38CE1C0F1E38599B00B646DB /* Canvas-Purple.sks */,
+			);
+			path = Backgrounds;
 			sourceTree = "<group>";
 		};
 		38E4B5A51E37091400C798C0 /* Icons */ = {
@@ -446,33 +396,32 @@
 			files = (
 				38E4B5C11E37106700C798C0 /* GravityTool.sks in Resources */,
 				38F7B1E91E38243300A62956 /* ControllerRef.sks in Resources */,
+				38CE1C181E386B5D00B646DB /* Level1.sks in Resources */,
 				38CE1BFB1E3841A200B646DB /* Explosion.caf in Resources */,
 				38E4B5C01E37106700C798C0 /* GlueTool.sks in Resources */,
+				38CE1C0B1E38597400B646DB /* Row3BlockBnc.sks in Resources */,
 				383CA97C1E1DD5E600F8B998 /* GunRef.sks in Resources */,
-				38CE1BFD1E38430D00B646DB /* Background-Purple.sks in Resources */,
 				38F7B1F11E3838ED00A62956 /* Inteface.sks in Resources */,
-				38488F191E3603E600BCCFD6 /* Level6.sks in Resources */,
 				38AE075A1E36221400D127D2 /* Lock.caf in Resources */,
 				383CA9841E1DD61100F8B998 /* Main.storyboard in Resources */,
-				38488F0F1E3603E600BCCFD6 /* Level1.sks in Resources */,
-				38CE1BFF1E3846CE00B646DB /* Canvas-Purple.sks in Resources */,
-				38488EF51E35E48800BCCFD6 /* BlockBnc.sks in Resources */,
-				38488F131E3603E600BCCFD6 /* Level3.sks in Resources */,
-				38488F111E3603E600BCCFD6 /* Level2.sks in Resources */,
-				38488F171E3603E600BCCFD6 /* Level5.sks in Resources */,
 				38F7B1EF1E38348600A62956 /* LockRef.sks in Resources */,
 				38017A2F1E35DC160051EEE0 /* Assets.xcassets in Resources */,
 				38E4B5C21E37106700C798C0 /* TimeTool.sks in Resources */,
 				38017A2E1E35DC160051EEE0 /* Smash.sks in Resources */,
 				388514021E36EFA20092F058 /* ToolBox.sks in Resources */,
+				38CE1C111E38599B00B646DB /* Canvas-Purple.sks in Resources */,
 				38C73B231E35B92F00B3AC6A /* ReloadButtonActions.sks in Resources */,
+				38CE1C0A1E38597400B646DB /* BlockMtl.sks in Resources */,
 				38E4B5BF1E37106700C798C0 /* FanTool.sks in Resources */,
+				38CE1C191E386B5D00B646DB /* Level2.sks in Resources */,
 				38017A331E35E01B0051EEE0 /* Smash.caf in Resources */,
+				38CE1C1A1E386B5D00B646DB /* Level3.sks in Resources */,
 				383CA9831E1DD61100F8B998 /* LaunchScreen.storyboard in Resources */,
 				388514001E36EF440092F058 /* SpringTool.sks in Resources */,
-				38B1F33D1E35D5E200C89260 /* BlockMtl.sks in Resources */,
+				38CE1C091E38597400B646DB /* BlockBnc.sks in Resources */,
+				38CE1C101E38599B00B646DB /* Background-Purple.sks in Resources */,
 				383CA96B1E1DD4F500F8B998 /* Assets.xcassets in Resources */,
-				38488F151E3603E600BCCFD6 /* Level4.sks in Resources */,
+				38CE1C0C1E38597400B646DB /* Row3BlockMtl.sks in Resources */,
 				38F7B1ED1E38342400A62956 /* KeyRef.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -484,6 +433,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38CE1C1B1E386B5D00B646DB /* Level3.swift in Sources */,
 				38E4B5B91E370AF500C798C0 /* FanToolIcon.swift in Sources */,
 				38E4B5B51E370A0A00C798C0 /* TimeToolIcon.swift in Sources */,
 				38E4B5C61E37137C00C798C0 /* GravityToolNode.swift in Sources */,
@@ -493,28 +443,22 @@
 				38E4B5B61E370A0A00C798C0 /* ToolIcon.swift in Sources */,
 				387105EC1E35844E002D010A /* LockNode.swift in Sources */,
 				38E4B5BA1E370AF500C798C0 /* GravityToolIcon.swift in Sources */,
-				38488F181E3603E600BCCFD6 /* Level5.swift in Sources */,
 				383CA9641E1DD4F500F8B998 /* AppDelegate.swift in Sources */,
 				38E4B5B31E370A0A00C798C0 /* GlueToolIcon.swift in Sources */,
 				38C50AF61E36A83600B4EE2A /* ToolNode.swift in Sources */,
 				38488F1D1E3603F100BCCFD6 /* Level.swift in Sources */,
 				38C50AF51E36A83600B4EE2A /* TimeToolNode.swift in Sources */,
 				387105F51E359CA4002D010A /* ReplayButtonNode.swift in Sources */,
-				38488F1A1E3603E600BCCFD6 /* Level6.swift in Sources */,
 				385161361E348E6C0041995A /* ControllerNode.swift in Sources */,
 				38488F1E1E3603F100BCCFD6 /* Level+Physics.swift in Sources */,
 				38C50AF91E36AA0B00B4EE2A /* SpringToolNode.swift in Sources */,
-				38488F121E3603E600BCCFD6 /* Level2.swift in Sources */,
 				38488EF81E35E4F000BCCFD6 /* BlockBncNode.swift in Sources */,
 				384ACEF31E347FE2004C3E93 /* KeyNode.swift in Sources */,
 				387105F31E359640002D010A /* AudioUtils.swift in Sources */,
-				38488F101E3603E600BCCFD6 /* Level1.swift in Sources */,
 				38C50AF41E36A83600B4EE2A /* GlueToolNode.swift in Sources */,
-				38488F161E3603E600BCCFD6 /* Level4.swift in Sources */,
 				38E4B5B41E370A0A00C798C0 /* SpringToolIcon.swift in Sources */,
 				38E4B5C51E37137C00C798C0 /* FanToolNode.swift in Sources */,
 				383CA97E1E1DD5F100F8B998 /* Utils.swift in Sources */,
-				38488F141E3603E600BCCFD6 /* Level3.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,7 +471,6 @@
 				383CA9801E1DD61100F8B998 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			path = Unlokit;
 			sourceTree = "<group>";
 		};
 		383CA9811E1DD61100F8B998 /* Main.storyboard */ = {
@@ -536,7 +479,6 @@
 				383CA9821E1DD61100F8B998 /* Base */,
 			);
 			name = Main.storyboard;
-			path = Unlokit;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

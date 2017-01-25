@@ -18,6 +18,6 @@ class LockNode: SKSpriteNode {
 		physicsBody?.isDynamic = false
 		physicsBody?.categoryBitMask = Category.lock
 		physicsBody?.contactTestBitMask = Category.zero
-		physicsBody?.collisionBitMask = Category.key
+		physicsBody?.collisionBitMask = Category.zero
 	}
 }

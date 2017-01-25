@@ -13,8 +13,6 @@ class BlockBncNode: SKSpriteNode {
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		
-		for block in children {
-			block.physicsBody?.categoryBitMask = Category.blockBnc
-		}
+		physicsBody?.categoryBitMask = Category.blockBnc
 	}
 }

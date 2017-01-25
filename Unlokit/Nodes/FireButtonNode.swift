@@ -72,7 +72,7 @@ class FireButtonNode: SKSpriteNode {
 		objectToFire?.prepareForFiring(controller) //objectToFire is of type 'CanBeFired', object is SKSpriteNode, both reference same object
 		
         // Speed of firing
-        let speed: CGFloat = 2000
+        let speed: CGFloat = 2400
 		
 		// Compensation
 		let angle = Float(controller.zRotation + CGFloat(90).degreesToRadians())
@@ -85,7 +85,7 @@ class FireButtonNode: SKSpriteNode {
 		
 		// Apply impulse based on angle
         sprite.physicsBody?.applyImpulse(CGVector(dx: dx, dy: dy))
-		sprite.physicsBody?.applyAngularImpulse(0.5) // Spin sprite as it fires
+		//sprite.physicsBody?.applyAngularImpulse(0.5) // Spin sprite as it fires
 		
 		//SKTAudio.sharedInstance().playSoundEffect(filename: "Explosion.caf")
 		

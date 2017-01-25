@@ -26,11 +26,14 @@ extension Level: SKPhysicsContactDelegate {
 			let key = (contact.bodyA.categoryBitMask == Category.key
 				? contact.bodyA.node : contact.bodyB.node) as! KeyNode
 			key.smash()
-		case Category.blockBnc | Category.key:
-			let key = (contact.bodyA.categoryBitMask == Category.key
-				? contact.bodyA.node : contact.bodyB.node) as! KeyNode
-			//Increase key velocity
-			key.physicsBody?.velocity *= 1.5
+		case Category.blockBnc | Category.all:
+			//let block = (contact.bodyA.categoryBitMask == Category.blockBnc
+			//	? contact.bodyA.node : contact.bodyB.node) as! BlockBncNode
+			//let sprite = (contact.bodyB.node == block
+			//	? contact.bodyA.node : contact.bodyB.node) as! SKSpriteNode
+			
+			// TO DO: animate block
+			break
 		case Category.bounds | Category.key:
 			let key = (contact.bodyA.categoryBitMask == Category.key
 				? contact.bodyA.node : contact.bodyB.node) as! KeyNode

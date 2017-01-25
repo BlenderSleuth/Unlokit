@@ -12,14 +12,13 @@ class BlockMtlNode: SKSpriteNode {
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		
-		for block in children {
-			block.physicsBody?.categoryBitMask = Category.blockMtl
-		}
+		physicsBody?.categoryBitMask = Category.blockMtl
 	}
 	
 	// Create version of self that has kind of bncNode
 	func bncVersion() -> BlockBncNode {
 		let blockBnc = SKNode(fileNamed: "BlockBnc")?.children.first as! BlockBncNode
+		blockBnc.removeFromParent()
 		blockBnc.position = position
 		blockBnc.zPosition = zPosition
 		return blockBnc

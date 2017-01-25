@@ -28,11 +28,10 @@ class KeyNode: SKSpriteNode, CanBeFired {
 	}
 	
 	func engage(_ controller: ControllerNode) {
-		
-		guard let position = getPosition(from: controller.scenePosition) else {
-			
+		guard let position = getPosition(from: controller) else {
 			return
 		}
+		
 		controller.occupied = true
 		isEngaged = true
 		animating = true
@@ -61,19 +60,20 @@ class KeyNode: SKSpriteNode, CanBeFired {
 	private func setupPhysics() {
 		// Physicsbody
 		physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
-		physicsBody?.allowsRotation = false
 		physicsBody?.isDynamic = true
+		physicsBody?.mass = 0.5
 		physicsBody?.categoryBitMask = Category.key
 		physicsBody?.contactTestBitMask = Category.lock | Category.blocks | Category.bounds | Category.controller
-		physicsBody?.collisionBitMask = Category.all ^ (Category.controller | Category.lock) //All except controller and lock
+		physicsBody?.collisionBitMask = Category.all ^ (Category.controller | Category.lock) // All except controller and lock
 	}
 	
-	func getPosition(from position: CGPoint) -> CGPoint? {
+	func getPosition(from node: SKNode) -> CGPoint? {
 		// Make sure keynode had a scene and a parent
-		guard let scn = scene, let prnt = parent else {
+		guard let prnt = node.parent, let selprnt = self.parent else {
 			return nil
 		}
-		return scn.convert(position, to: prnt)
+		
+		return prnt.convert(node.position, to: selprnt)
 	}
 	
 	func smash() {
@@ -90,12 +90,17 @@ class KeyNode: SKSpriteNode, CanBeFired {
 	}
 	
 	func lock(_ lock: LockNode) {
+		guard let position = getPosition(from: lock) else {
+			return
+		}
+		
 		physicsBody = nil
 		
-		let move = SKAction.move(to: lock.position, duration: 0.2)
-		run(move) {
+		let move = SKAction.move(to: position, duration: 0.2)
+		let rotate = SKAction.rotate(toAngle: lock.zPosition, duration: 0.2)
+		let group = SKAction.group([move, rotate])
+		run(group) {
 			self.removeAllActions()
-			//lock.removeFromParent()
 			//SKTAudio.sharedInstance().playSoundEffect(filename: "Lock.caf")
 			
 		}

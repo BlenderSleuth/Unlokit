@@ -14,13 +14,13 @@ class Level3: Level {
 		for (type, tool) in toolIcons {
 			switch type {
 			case .spring:
-				tool.number = 5
+				tool.number = 4
 			case .glue:
-				tool.number = 5
+				tool.number = 0
 			case .fan:
-				tool.number = 5
+				tool.number = 0
 			case .gravity:
-				tool.number = 5
+				tool.number = 0
 			case .time:
 				tool.number = 0
 			}

@@ -192,6 +192,20 @@ class Level: SKScene, Reload {
 	}
 	func setupToolsForLevel() {
 		// To be overridden
+		for (type, tool) in toolIcons {
+			switch type {
+			case .spring:
+				tool.number = 0
+			case .glue:
+				tool.number = 0
+			case .fan:
+				tool.number = 0
+			case .gravity:
+				tool.number = 0
+			case .time:
+				tool.number = 0
+			}
+		}
 	}
 	
     func handleTouchController(_ location: CGPoint) {
