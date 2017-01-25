@@ -25,31 +25,41 @@ extension Level: SKPhysicsContactDelegate {
 			
 			key.smash()
 		case Category.blockBnc | Category.all:
-			//let block = (contact.bodyA.categoryBitMask == Category.blockBnc
-			//	? contact.bodyA.node : contact.bodyB.node) as! BlockBncNode
-			//let sprite = (contact.bodyB.node == block
-			//	? contact.bodyA.node : contact.bodyB.node) as! SKSpriteNode
-			
 			// TO DO: animate block
 			break
 		case Category.springTool | Category.blockMtl:
 			let spring = getNode(for: Category.springTool, type: SpringToolNode.self, contact: contact)
 			let block = getNode(for: Category.blockMtl, type: BlockMtlNode.self, contact: contact)
 			
+			if spring.used {
+				return
+			}
+			spring.used = true
+			
 			let blockBnc = block.bncVersion()
 			block.parent?.addChild(blockBnc)
 			block.removeFromParent()
 			
 			spring.removeFromParent()
+			
+			blockBnc.bounce(side: blockBnc.getSide(contact: contact))
 		case Category.glueTool | Category.blockMtl:
 			let glue = getNode(for: Category.glueTool, type: GlueToolNode.self, contact: contact)
 			let block = getNode(for: Category.blockMtl, type: BlockMtlNode.self, contact: contact)
 			
+			if glue.used {
+				return
+			}
+			glue.used = true
+			
 			let blockGlue = block.glueVersion()
 			block.parent?.addChild(blockGlue)
 			block.removeFromParent()
-			
 			glue.removeFromParent()
+			
+			let side = blockGlue.getSide(contact: contact)
+			blockGlue.bounce(side: side)
+			
 		case Category.blockGlue | Category.key:
 			let key = getNode(for: Category.key, type: KeyNode.self, contact: contact)
 			let block = getNode(for: Category.blockGlue, type: BlockGlueNode.self, contact: contact)
@@ -61,21 +71,43 @@ extension Level: SKPhysicsContactDelegate {
 			let fanTool = getNode(for: Category.fanTool, type: FanToolNode.self, contact: contact)
 			let block = getNode(for: Category.blockGlue, type: BlockGlueNode.self, contact: contact)
 			
+			fanTool.removeFromParent()
+			
+			if fanTool.used {
+				return
+			}
+			fanTool.used = true
+			
 			let fanNode = SKNode(fileNamed: "FanRef")?.children.first as! FanNode
 			fanNode.removeFromParent()
 			
+			fanNode.animate(framesAtlas: fanFrames)
 			let side = block.getSide(contact: contact)
 			block.add(node: fanNode, to: side)
 			
-			fanTool.removeFromParent()
-			
-		case Category.springTool | Category.bounds, Category.glueTool | Category.bounds, Category.fanTool | Category.bounds:
-			let bounds = getNode(for: Category.bounds, type: SKSpriteNode.self, contact: contact)
-			let tool = getOtherNode(for: bounds, type: ToolNode.self, contact: contact)
-			
-			tool.smash()
+		case Category.fanTool | Category.blockMtl:
+			let fanTool = getNode(for: Category.fanTool, type: FanToolNode.self, contact: contact)
+			fanTool.smash()
 		default:
-			break
+			// Custom checks, more efficient
+			if Category.tools & collision != 0 && collision & Category.bounds != 0 {
+				let bounds = getNode(for: Category.bounds, type: SKSpriteNode.self, contact: contact)
+				let tool = getOtherNode(for: bounds, type: ToolNode.self, contact: contact)
+				
+				tool.smash()
+				// Every tool except fan tool								and if it collides with block glue
+			} else if (Category.tools ^ Category.fanTool) & collision != 0 && collision & Category.blockGlue != 0{
+				let block = getNode(for: Category.blockGlue, type: BlockGlueNode.self, contact: contact)
+				let tool = getOtherNode(for:block, type: ToolNode.self, contact: contact)
+				
+				if tool.used {
+					return
+				}
+				tool.used = true
+				
+				let side = block.getSide(contact: contact)
+				block.add(node: tool, to: side)
+			}
 		}
 	}
 	

@@ -20,6 +20,6 @@ class FanToolNode: ToolNode {
 		super.setupPhysics()
 		
 		physicsBody?.categoryBitMask = Category.fanTool
-		physicsBody?.contactTestBitMask = Category.bounds | Category.blockGlue
+		physicsBody?.contactTestBitMask = Category.bounds | Category.blockMtl | Category.blockGlue
 	}
 }

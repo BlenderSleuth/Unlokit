@@ -19,6 +19,7 @@ class GravityToolNode: ToolNode {
 	override func setupPhysics() {
 		super.setupPhysics()
 		
-		physicsBody?.categoryBitMask = Category.springTool
+		physicsBody?.categoryBitMask = Category.gravityTool
+		physicsBody?.contactTestBitMask = Category.bounds | Category.blockMtl | Category.blockGlue
 	}
 }

@@ -18,6 +18,7 @@ class TimeToolNode: ToolNode {
 	override func setupPhysics() {
 		super.setupPhysics()
 		
-		physicsBody?.categoryBitMask = Category.springTool
+		physicsBody?.categoryBitMask = Category.timeTool
+		physicsBody?.contactTestBitMask = Category.bounds | Category.blockMtl | Category.blockGlue
 	}
 }

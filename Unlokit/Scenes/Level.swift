@@ -23,7 +23,11 @@ struct Category {
 	static let springTool: UInt32   = 0b100000000
 	static let glueTool: UInt32     = 0b1000000000
 	static let fanTool: UInt32      = 0b10000000000
-	static let tools: UInt32		= Category.springTool | Category.glueTool | Category.fanTool
+	static let gravityTool: UInt32  = 0b100000000000
+	static let timeTool: UInt32     = 0b1000000000000
+	static let tools: UInt32		= Category.springTool | Category.glueTool | Category.fanTool | Category.gravityTool | Category.timeTool
+	
+	static let fanField: UInt32     = 0b10000000000000
 	
 	static let all: UInt32 = UInt32.max
 }
@@ -73,11 +77,15 @@ class Level: SKScene, Reload {
 	
 	var start: start!
 	
+	// Preloading textures
+	var fanFrames: SKTextureAtlas!
+	
 	//MARK: Setup
     override func didMove(to view: SKView) {
 		setupNodes()
 		setupCamera()
         setupTools()
+		setupTextures()
 		physicsWorld.contactDelegate = self
     }
 	func setupNodes() {
@@ -206,6 +214,12 @@ class Level: SKScene, Reload {
 			case .time:
 				tool.number = 0
 			}
+		}
+	}
+	func setupTextures() {
+		fanFrames = SKTextureAtlas(named: "FanFrames")
+		fanFrames.preload {
+			print("loaded")
 		}
 	}
 	

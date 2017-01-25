@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class BlockMtlNode: SKSpriteNode {
+class BlockMtlNode: BlockNode {
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		

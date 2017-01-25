@@ -11,6 +11,9 @@
 		38017A2F1E35DC160051EEE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38017A2D1E35DC160051EEE0 /* Assets.xcassets */; };
 		38017A311E35DEE20051EEE0 /* BlockMtlNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38017A301E35DEE20051EEE0 /* BlockMtlNode.swift */; };
 		38017A331E35E01B0051EEE0 /* Smash.caf in Resources */ = {isa = PBXBuildFile; fileRef = 38017A321E35DFD00051EEE0 /* Smash.caf */; };
+		381D5C881E394C240084E56E /* Bounce.sks in Resources */ = {isa = PBXBuildFile; fileRef = 381D5C871E394C240084E56E /* Bounce.sks */; };
+		381D5C8A1E394E3C0084E56E /* BlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381D5C891E394E3C0084E56E /* BlockNode.swift */; };
+		381D5C8C1E39513D0084E56E /* FanParticles.sks in Resources */ = {isa = PBXBuildFile; fileRef = 381D5C8B1E39513D0084E56E /* FanParticles.sks */; };
 		383CA9641E1DD4F500F8B998 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383CA9631E1DD4F500F8B998 /* AppDelegate.swift */; };
 		383CA96B1E1DD4F500F8B998 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 383CA96A1E1DD4F500F8B998 /* Assets.xcassets */; };
 		383CA97B1E1DD5E600F8B998 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383CA9771E1DD5E600F8B998 /* GameViewController.swift */; };
@@ -34,6 +37,7 @@
 		38B649451E3890F800479469 /* BlockGlue.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38B649441E3890F800479469 /* BlockGlue.sks */; };
 		38B649491E38AC3400479469 /* FanNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B649481E38AC3400479469 /* FanNode.swift */; };
 		38B6494B1E38AC9B00479469 /* FanRef.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38B6494A1E38AC9B00479469 /* FanRef.sks */; };
+		38B737B41E3959FE004B6B95 /* FanTextures.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38B737B31E3959FE004B6B95 /* FanTextures.sks */; };
 		38C50AF41E36A83600B4EE2A /* GlueToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AEF1E36A83600B4EE2A /* GlueToolNode.swift */; };
 		38C50AF51E36A83600B4EE2A /* TimeToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AF01E36A83600B4EE2A /* TimeToolNode.swift */; };
 		38C50AF61E36A83600B4EE2A /* ToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AF11E36A83600B4EE2A /* ToolNode.swift */; };
@@ -73,6 +77,9 @@
 		38017A2D1E35DC160051EEE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		38017A301E35DEE20051EEE0 /* BlockMtlNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockMtlNode.swift; sourceTree = "<group>"; };
 		38017A321E35DFD00051EEE0 /* Smash.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Smash.caf; sourceTree = "<group>"; };
+		381D5C871E394C240084E56E /* Bounce.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Bounce.sks; sourceTree = "<group>"; };
+		381D5C891E394E3C0084E56E /* BlockNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockNode.swift; sourceTree = "<group>"; };
+		381D5C8B1E39513D0084E56E /* FanParticles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FanParticles.sks; sourceTree = "<group>"; };
 		383CA9601E1DD4F500F8B998 /* Unlokit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unlokit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		383CA9631E1DD4F500F8B998 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		383CA96A1E1DD4F500F8B998 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -102,6 +109,7 @@
 		38B649441E3890F800479469 /* BlockGlue.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockGlue.sks; sourceTree = "<group>"; };
 		38B649481E38AC3400479469 /* FanNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FanNode.swift; sourceTree = "<group>"; };
 		38B6494A1E38AC9B00479469 /* FanRef.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FanRef.sks; sourceTree = "<group>"; };
+		38B737B31E3959FE004B6B95 /* FanTextures.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FanTextures.sks; sourceTree = "<group>"; };
 		38C50AEF1E36A83600B4EE2A /* GlueToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlueToolNode.swift; sourceTree = "<group>"; };
 		38C50AF01E36A83600B4EE2A /* TimeToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeToolNode.swift; sourceTree = "<group>"; };
 		38C50AF11E36A83600B4EE2A /* ToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolNode.swift; sourceTree = "<group>"; };
@@ -152,6 +160,7 @@
 			children = (
 				38017A2C1E35DC160051EEE0 /* Smash.sks */,
 				38017A2D1E35DC160051EEE0 /* Assets.xcassets */,
+				381D5C8B1E39513D0084E56E /* FanParticles.sks */,
 			);
 			path = Emitters;
 			sourceTree = "<group>";
@@ -195,6 +204,7 @@
 		38488EF61E35E4D900BCCFD6 /* Blocks */ = {
 			isa = PBXGroup;
 			children = (
+				381D5C891E394E3C0084E56E /* BlockNode.swift */,
 				38017A301E35DEE20051EEE0 /* BlockMtlNode.swift */,
 				38488EF71E35E4F000BCCFD6 /* BlockBncNode.swift */,
 				38B649421E3890AF00479469 /* BlockGlueNode.swift */,
@@ -273,11 +283,11 @@
 				384ACEF21E347FE2004C3E93 /* KeyNode.swift */,
 				385161351E348E6C0041995A /* ControllerNode.swift */,
 				387105EB1E35844E002D010A /* LockNode.swift */,
+				38B649481E38AC3400479469 /* FanNode.swift */,
 				38650F531E25F6A500401ABD /* FireButtonNode.swift */,
 				387105F41E359CA4002D010A /* ReplayButtonNode.swift */,
 				38C50AED1E36A83600B4EE2A /* Tools */,
 				38488EF61E35E4D900BCCFD6 /* Blocks */,
-				38B649481E38AC3400479469 /* FanNode.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -295,6 +305,8 @@
 			isa = PBXGroup;
 			children = (
 				38C73B221E35B92F00B3AC6A /* ReloadButtonActions.sks */,
+				381D5C871E394C240084E56E /* Bounce.sks */,
+				38B737B31E3959FE004B6B95 /* FanTextures.sks */,
 			);
 			path = Actions;
 			sourceTree = "<group>";
@@ -409,8 +421,11 @@
 				38E4B5C11E37106700C798C0 /* GravityTool.sks in Resources */,
 				38F7B1E91E38243300A62956 /* ControllerRef.sks in Resources */,
 				38CE1C181E386B5D00B646DB /* Level1.sks in Resources */,
+				381D5C8C1E39513D0084E56E /* FanParticles.sks in Resources */,
 				38CE1BFB1E3841A200B646DB /* Explosion.caf in Resources */,
 				38E4B5C01E37106700C798C0 /* GlueTool.sks in Resources */,
+				381D5C881E394C240084E56E /* Bounce.sks in Resources */,
+				38B737B41E3959FE004B6B95 /* FanTextures.sks in Resources */,
 				38CE1C0B1E38597400B646DB /* Row3BlockBnc.sks in Resources */,
 				383CA97C1E1DD5E600F8B998 /* GunRef.sks in Resources */,
 				38F7B1F11E3838ED00A62956 /* Inteface.sks in Resources */,
@@ -470,6 +485,7 @@
 				38488EF81E35E4F000BCCFD6 /* BlockBncNode.swift in Sources */,
 				384ACEF31E347FE2004C3E93 /* KeyNode.swift in Sources */,
 				387105F31E359640002D010A /* AudioUtils.swift in Sources */,
+				381D5C8A1E394E3C0084E56E /* BlockNode.swift in Sources */,
 				38C50AF41E36A83600B4EE2A /* GlueToolNode.swift in Sources */,
 				38E4B5B41E370A0A00C798C0 /* SpringToolIcon.swift in Sources */,
 				38E4B5C51E37137C00C798C0 /* FanToolNode.swift in Sources */,

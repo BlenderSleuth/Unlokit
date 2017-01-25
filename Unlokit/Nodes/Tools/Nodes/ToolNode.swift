@@ -26,6 +26,8 @@ class ToolNode: SKSpriteNode, CanBeFired {
 	
 	var icon: ToolIcon!
 	
+	var used = false
+	
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
