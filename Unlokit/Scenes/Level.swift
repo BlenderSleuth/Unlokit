@@ -49,8 +49,7 @@ class Level: SKScene, Reload {
     
     var fireNode: FireButtonNode!
 	var replayNode: ReplayButtonNode!
-    
-    var gun: SKNode!
+	var canon: SKSpriteNode!
     var cameraNode: SKCameraNode!
     var bounds: SKSpriteNode!
     
@@ -82,12 +81,13 @@ class Level: SKScene, Reload {
     }
 	func setupNodes() {
 		// Bind controller to local variable
-		controller = childNode(withName: "controller") as! ControllerNode
+		controller = childNode(withName: "//controller") as! ControllerNode
+		controller.setupRegion(scene: self) // Pass in scene for controller to use
+		canon = controller.childNode(withName: "//canon") as! SKSpriteNode
 		
-		canvasBounds = childNode(withName: "canvas")?.frame
-		
-		// Bind gun to local variable
-		gun = controller.childNode(withName: "gun")!.children.first
+		// Get canvas bounds in scene coordinates
+		let canvas = childNode(withName: "//canvas")!
+		canvasBounds = CGRect(origin: convert(canvas.frame.origin, from: canvas.parent!), size: canvas.frame.size)
 		
 		// parent of all tools
 		toolBox = childNode(withName: "toolBox")?.children.first! // Root node of SKReferenceNode
@@ -107,18 +107,19 @@ class Level: SKScene, Reload {
 		bounds.physicsBody?.categoryBitMask = Category.bounds
 		
 		// Bind fire node to local variable
-		fireNode = cameraNode.childNode(withName: "fireButton") as! FireButtonNode
+		fireNode = cameraNode.childNode(withName: "//fireButton") as! FireButtonNode
 		fireNode.controller = controller
-		replayNode = cameraNode.childNode(withName: "replayButton") as! ReplayButtonNode
+		fireNode.canon = childNode(withName: "//canon") as! SKSpriteNode
+		replayNode = cameraNode.childNode(withName: "//replayButton") as! ReplayButtonNode
 		replayNode.reloadable = self
 		
 		// Bind key to local variable
-		key = childNode(withName: "key") as! KeyNode
+		key = childNode(withName: "//key") as! KeyNode
 		// Allow key to call for reload
 		key.reloadable = self
 		
 		// Bind lock to local variable
-		lock = childNode(withName: "lock") as! LockNode
+		lock = childNode(withName: "//lock") as! LockNode
 		lock.setupPhysics()
 	}
 	func setupCamera() {
@@ -194,7 +195,7 @@ class Level: SKScene, Reload {
 	}
 	
     func handleTouchController(_ location: CGPoint) {
-        let p1 = controller.position
+        let p1 = controller.scenePosition! // Controller position in scene coordinates
         let p2 = lastTouchPoint
         let p3 = location
 		
@@ -220,10 +221,7 @@ class Level: SKScene, Reload {
     }
 	
 	func load(key: KeyNode, to controller: ControllerNode) {
-		// If key is fired, don't do anything
-		guard !key.isFired else {
-			return
-		}
+		// If key is animating, don't do anything
 		guard !key.animating else {
 			return
 		}
@@ -244,15 +242,18 @@ class Level: SKScene, Reload {
 		let node = atPoint(point)
 		
         if controller.region.contains(point) {
-            return controller
+			return controller
+			
         } else if node is ToolIcon {
-			// Point to check for tools
 			return node
 		} else if node is ToolNode {
 			return node
 		} else if node is KeyNode {
 			return key
+		} else if node == canon {
+			return node
 		}
+		
 		// Return camera as default
 		return cameraNode
     }
@@ -292,9 +293,6 @@ class Level: SKScene, Reload {
 		
 	}
 	func unLoad(tool: ToolNode, to icon: ToolIcon) {
-		guard !tool.isFired else {
-			return
-		}
 		guard !tool.animating else {
 			return
 		}
@@ -358,9 +356,14 @@ class Level: SKScene, Reload {
 			if let toolIcon = currentNode as? ToolIcon {
 				load(icon: toolIcon)
 				toolIcon.greyOut()
-			} else if let toolNode = currentNode as? ToolNode {
-				unLoad(tool: toolNode, to: toolIcons[toolNode.type]!)
-			} else if currentNode == key {
+			} else if canon == currentNode {
+				// Check currently load object, unload
+				if let toolNode = fireNode.objectToFire as? ToolNode {
+					unLoad(tool: toolNode, to: toolIcons[toolNode.type]!)
+				} else if let key = fireNode.objectToFire as? KeyNode {
+					load(key: key, to: controller)
+				}
+			} else if let key = currentNode as? KeyNode{
 				load(key: key, to: controller)
 				key.greyOut()
 			}

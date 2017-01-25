@@ -14,7 +14,6 @@ class KeyNode: SKSpriteNode, CanBeFired {
 	
 	// Status flags
 	var isEngaged = false
-	var isFired = false
 	var animating = false
 	private var isGreyed = false
 	
@@ -29,10 +28,15 @@ class KeyNode: SKSpriteNode, CanBeFired {
 	}
 	
 	func engage(_ controller: ControllerNode) {
+		
+		guard let position = getPosition(from: controller.scenePosition) else {
+			
+			return
+		}
 		controller.occupied = true
 		isEngaged = true
 		animating = true
-		run(SKAction.move(to: controller.position, duration: 0.2)) {
+		run(SKAction.move(to: position, duration: 0.2)) {
 			self.animating = false
 		}
 		run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(360).degreesToRadians(), duration: 3)), withKey: "rotate")
@@ -41,6 +45,7 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		animating = true
 		run(SKAction.move(to: startPosition, duration: 0.2)) {
 			self.animating = false
+			self.removeAllActions()
 		}
 		controller.occupied = false
 		isEngaged = false
@@ -50,7 +55,6 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		// Sets up before firing
 		setupPhysics()
 		isEngaged = false
-		isFired = true
 		controller.occupied = false
 		removeAction(forKey: "rotate")
 	}
@@ -64,11 +68,19 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		physicsBody?.collisionBitMask = Category.all ^ (Category.controller | Category.lock) //All except controller and lock
 	}
 	
+	func getPosition(from position: CGPoint) -> CGPoint? {
+		// Make sure keynode had a scene and a parent
+		guard let scn = scene, let prnt = parent else {
+			return nil
+		}
+		return scn.convert(position, to: prnt)
+	}
+	
 	func smash() {
 		removeFromParent()
 		
 		// TO DO: smash key
-		SKTAudio.sharedInstance().playSoundEffect(filename: "Smash.caf")
+		//SKTAudio.sharedInstance().playSoundEffect(filename: "Smash.caf")
 		
 		// Reload scene
 		if reloadable != nil {
@@ -84,7 +96,7 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		run(move) {
 			self.removeAllActions()
 			//lock.removeFromParent()
-			SKTAudio.sharedInstance().playSoundEffect(filename: "Lock.caf")
+			//SKTAudio.sharedInstance().playSoundEffect(filename: "Lock.caf")
 			
 		}
 	}

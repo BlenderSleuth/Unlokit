@@ -37,7 +37,7 @@ class GameViewController: UIViewController, start {
 			skView.showsFPS = true
 			skView.showsNodeCount = true
 			//TO DO:
-			//skView.ignoresSiblingOrder = true
+			skView.ignoresSiblingOrder = true
 			
 			// Causes memory leak...
 			//skView.showsPhysics = true

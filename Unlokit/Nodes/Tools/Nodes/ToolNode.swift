@@ -21,8 +21,6 @@ class ToolNode: SKSpriteNode, CanBeFired {
     
     var type: ToolType!
 	
-	var isFired = false
-	
 	var isEngaged = false
 	var animating = false
 	
@@ -34,7 +32,7 @@ class ToolNode: SKSpriteNode, CanBeFired {
 		isEngaged = true
 		animating = true
 		controller.occupied = true
-		run(SKAction.move(to: controller.position, duration: 0.2)) {
+		run(SKAction.move(to: controller.scenePosition, duration: 0.2)) {
 			self.animating = false
 		}
 		icon.number -= 1
@@ -57,7 +55,6 @@ class ToolNode: SKSpriteNode, CanBeFired {
 	func prepareForFiring(_ controller: ControllerNode) {
 		setupPhysics()
 		isEngaged = false
-		isFired = true
 		controller.occupied = false
 		removeAction(forKey: "rotate")
 	}

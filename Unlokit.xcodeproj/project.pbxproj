@@ -14,7 +14,7 @@
 		383CA9641E1DD4F500F8B998 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383CA9631E1DD4F500F8B998 /* AppDelegate.swift */; };
 		383CA96B1E1DD4F500F8B998 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 383CA96A1E1DD4F500F8B998 /* Assets.xcassets */; };
 		383CA97B1E1DD5E600F8B998 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383CA9771E1DD5E600F8B998 /* GameViewController.swift */; };
-		383CA97C1E1DD5E600F8B998 /* Gun.sks in Resources */ = {isa = PBXBuildFile; fileRef = 383CA9781E1DD5E600F8B998 /* Gun.sks */; };
+		383CA97C1E1DD5E600F8B998 /* GunRef.sks in Resources */ = {isa = PBXBuildFile; fileRef = 383CA9781E1DD5E600F8B998 /* GunRef.sks */; };
 		383CA97E1E1DD5F100F8B998 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383CA97D1E1DD5F100F8B998 /* Utils.swift */; };
 		383CA9831E1DD61100F8B998 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 383CA97F1E1DD61100F8B998 /* LaunchScreen.storyboard */; };
 		383CA9841E1DD61100F8B998 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 383CA9811E1DD61100F8B998 /* Main.storyboard */; };
@@ -49,6 +49,9 @@
 		38C50AF61E36A83600B4EE2A /* ToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AF11E36A83600B4EE2A /* ToolNode.swift */; };
 		38C50AF91E36AA0B00B4EE2A /* SpringToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AF81E36AA0B00B4EE2A /* SpringToolNode.swift */; };
 		38C73B231E35B92F00B3AC6A /* ReloadButtonActions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38C73B221E35B92F00B3AC6A /* ReloadButtonActions.sks */; };
+		38CE1BFB1E3841A200B646DB /* Explosion.caf in Resources */ = {isa = PBXBuildFile; fileRef = 38CE1BFA1E3841A200B646DB /* Explosion.caf */; };
+		38CE1BFD1E38430D00B646DB /* Background-Purple.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38CE1BFC1E38430D00B646DB /* Background-Purple.sks */; };
+		38CE1BFF1E3846CE00B646DB /* Canvas-Purple.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38CE1BFE1E3846CE00B646DB /* Canvas-Purple.sks */; };
 		38E4B5B31E370A0A00C798C0 /* GlueToolIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4B5AF1E370A0A00C798C0 /* GlueToolIcon.swift */; };
 		38E4B5B41E370A0A00C798C0 /* SpringToolIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4B5B01E370A0A00C798C0 /* SpringToolIcon.swift */; };
 		38E4B5B51E370A0A00C798C0 /* TimeToolIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4B5B11E370A0A00C798C0 /* TimeToolIcon.swift */; };
@@ -61,6 +64,10 @@
 		38E4B5C21E37106700C798C0 /* TimeTool.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38E4B5BE1E37106700C798C0 /* TimeTool.sks */; };
 		38E4B5C51E37137C00C798C0 /* FanToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4B5C31E37137C00C798C0 /* FanToolNode.swift */; };
 		38E4B5C61E37137C00C798C0 /* GravityToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4B5C41E37137C00C798C0 /* GravityToolNode.swift */; };
+		38F7B1E91E38243300A62956 /* ControllerRef.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38F7B1E81E38243300A62956 /* ControllerRef.sks */; };
+		38F7B1ED1E38342400A62956 /* KeyRef.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38F7B1EC1E38342400A62956 /* KeyRef.sks */; };
+		38F7B1EF1E38348600A62956 /* LockRef.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38F7B1EE1E38348600A62956 /* LockRef.sks */; };
+		38F7B1F11E3838ED00A62956 /* Inteface.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38F7B1F01E3838ED00A62956 /* Inteface.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,7 +80,7 @@
 		383CA96A1E1DD4F500F8B998 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Unlokit/Assets.xcassets; sourceTree = "<group>"; };
 		383CA96F1E1DD4F500F8B998 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Unlokit/Info.plist; sourceTree = "<group>"; };
 		383CA9771E1DD5E600F8B998 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameViewController.swift; path = Unlokit/GameViewController.swift; sourceTree = "<group>"; };
-		383CA9781E1DD5E600F8B998 /* Gun.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Gun.sks; sourceTree = "<group>"; };
+		383CA9781E1DD5E600F8B998 /* GunRef.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GunRef.sks; sourceTree = "<group>"; };
 		383CA97D1E1DD5F100F8B998 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Unlokit/Utils.swift; sourceTree = "<group>"; };
 		383CA9801E1DD61100F8B998 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		383CA9821E1DD61100F8B998 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -112,6 +119,9 @@
 		38C50AF11E36A83600B4EE2A /* ToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolNode.swift; sourceTree = "<group>"; };
 		38C50AF81E36AA0B00B4EE2A /* SpringToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringToolNode.swift; sourceTree = "<group>"; };
 		38C73B221E35B92F00B3AC6A /* ReloadButtonActions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ReloadButtonActions.sks; sourceTree = "<group>"; };
+		38CE1BFA1E3841A200B646DB /* Explosion.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Explosion.caf; sourceTree = "<group>"; };
+		38CE1BFC1E38430D00B646DB /* Background-Purple.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Background-Purple.sks"; sourceTree = "<group>"; };
+		38CE1BFE1E3846CE00B646DB /* Canvas-Purple.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Canvas-Purple.sks"; sourceTree = "<group>"; };
 		38E4B5AF1E370A0A00C798C0 /* GlueToolIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlueToolIcon.swift; sourceTree = "<group>"; };
 		38E4B5B01E370A0A00C798C0 /* SpringToolIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringToolIcon.swift; sourceTree = "<group>"; };
 		38E4B5B11E370A0A00C798C0 /* TimeToolIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeToolIcon.swift; sourceTree = "<group>"; };
@@ -124,6 +134,10 @@
 		38E4B5BE1E37106700C798C0 /* TimeTool.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TimeTool.sks; sourceTree = "<group>"; };
 		38E4B5C31E37137C00C798C0 /* FanToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FanToolNode.swift; sourceTree = "<group>"; };
 		38E4B5C41E37137C00C798C0 /* GravityToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GravityToolNode.swift; sourceTree = "<group>"; };
+		38F7B1E81E38243300A62956 /* ControllerRef.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ControllerRef.sks; sourceTree = "<group>"; };
+		38F7B1EC1E38342400A62956 /* KeyRef.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = KeyRef.sks; sourceTree = "<group>"; };
+		38F7B1EE1E38348600A62956 /* LockRef.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LockRef.sks; sourceTree = "<group>"; };
+		38F7B1F01E3838ED00A62956 /* Inteface.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Inteface.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,10 +208,16 @@
 		38488EFB1E36028400BCCFD6 /* References */ = {
 			isa = PBXGroup;
 			children = (
-				383CA9781E1DD5E600F8B998 /* Gun.sks */,
 				38B1F33C1E35D5E200C89260 /* BlockMtl.sks */,
 				38488EF41E35E48800BCCFD6 /* BlockBnc.sks */,
+				383CA9781E1DD5E600F8B998 /* GunRef.sks */,
+				38F7B1E81E38243300A62956 /* ControllerRef.sks */,
+				38F7B1EC1E38342400A62956 /* KeyRef.sks */,
+				38F7B1EE1E38348600A62956 /* LockRef.sks */,
+				38F7B1F01E3838ED00A62956 /* Inteface.sks */,
 				388513FE1E36EF2C0092F058 /* ToolNodes */,
+				38CE1BFC1E38430D00B646DB /* Background-Purple.sks */,
+				38CE1BFE1E3846CE00B646DB /* Canvas-Purple.sks */,
 			);
 			path = References;
 			sourceTree = "<group>";
@@ -272,6 +292,7 @@
 		387105ED1E358D75002D010A /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				38CE1BFA1E3841A200B646DB /* Explosion.caf */,
 				38AE07551E36199500D127D2 /* Bounce1.caf */,
 				38AE07561E36199500D127D2 /* Bounce2.caf */,
 				38AE07571E36199500D127D2 /* Bounce3.caf */,
@@ -424,16 +445,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				38E4B5C11E37106700C798C0 /* GravityTool.sks in Resources */,
+				38F7B1E91E38243300A62956 /* ControllerRef.sks in Resources */,
+				38CE1BFB1E3841A200B646DB /* Explosion.caf in Resources */,
 				38E4B5C01E37106700C798C0 /* GlueTool.sks in Resources */,
-				383CA97C1E1DD5E600F8B998 /* Gun.sks in Resources */,
+				383CA97C1E1DD5E600F8B998 /* GunRef.sks in Resources */,
+				38CE1BFD1E38430D00B646DB /* Background-Purple.sks in Resources */,
+				38F7B1F11E3838ED00A62956 /* Inteface.sks in Resources */,
 				38488F191E3603E600BCCFD6 /* Level6.sks in Resources */,
 				38AE075A1E36221400D127D2 /* Lock.caf in Resources */,
 				383CA9841E1DD61100F8B998 /* Main.storyboard in Resources */,
 				38488F0F1E3603E600BCCFD6 /* Level1.sks in Resources */,
+				38CE1BFF1E3846CE00B646DB /* Canvas-Purple.sks in Resources */,
 				38488EF51E35E48800BCCFD6 /* BlockBnc.sks in Resources */,
 				38488F131E3603E600BCCFD6 /* Level3.sks in Resources */,
 				38488F111E3603E600BCCFD6 /* Level2.sks in Resources */,
 				38488F171E3603E600BCCFD6 /* Level5.sks in Resources */,
+				38F7B1EF1E38348600A62956 /* LockRef.sks in Resources */,
 				38017A2F1E35DC160051EEE0 /* Assets.xcassets in Resources */,
 				38E4B5C21E37106700C798C0 /* TimeTool.sks in Resources */,
 				38017A2E1E35DC160051EEE0 /* Smash.sks in Resources */,
@@ -446,6 +473,7 @@
 				38B1F33D1E35D5E200C89260 /* BlockMtl.sks in Resources */,
 				383CA96B1E1DD4F500F8B998 /* Assets.xcassets in Resources */,
 				38488F151E3603E600BCCFD6 /* Level4.sks in Resources */,
+				38F7B1ED1E38342400A62956 /* KeyRef.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

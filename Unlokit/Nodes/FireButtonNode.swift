@@ -15,7 +15,7 @@ protocol CanBeFired {
 class FireButtonNode: SKSpriteNode {
 	
 	//MARK: Variable
-	// Initialised as implicitly-unwrapped optionals for file compatability
+	// Initialised as implicitly-unwrapped optionals for file archive compatability
     var label: SKLabelNode!
     var redCircle: SKShapeNode!
     var blueCircle: SKShapeNode!
@@ -23,9 +23,11 @@ class FireButtonNode: SKSpriteNode {
     var pressed = false
 	var objectToFire: CanBeFired?
 	
+	// Must be initalised from scene
 	var controller: ControllerNode!
+	var canon: SKSpriteNode!
 	
-    //used for initialising from file
+    // Used for initialising from file
     required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		//
@@ -84,17 +86,24 @@ class FireButtonNode: SKSpriteNode {
 		// Apply impulse based on angle
         sprite.physicsBody?.applyImpulse(CGVector(dx: dx, dy: dy))
 		sprite.physicsBody?.applyAngularImpulse(0.5) // Spin sprite as it fires
+		
+		//SKTAudio.sharedInstance().playSoundEffect(filename: "Explosion.caf")
+		
+		let recoilAction = SKAction.sequence([SKAction.moveBy(x: 0, y: -70, duration: 0.03), SKAction.moveBy(x: 0, y: 70, duration: 0.2)])
+		canon.run(recoilAction)// Make canon recoil
+		objectToFire = nil
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         press()
     }
+	override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+	}
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         press()
 		fire()
     }
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         press()
-		fire()
     }
 }
