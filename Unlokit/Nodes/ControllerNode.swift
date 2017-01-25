@@ -11,7 +11,7 @@ import SpriteKit
 class ControllerNode: SKSpriteNode {
 	var region: SKRegion!
 	
-	var occupied = false
+	var isOccupied = false
 	
 	var scenePosition: CGPoint!
 	

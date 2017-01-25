@@ -208,7 +208,7 @@ class Level: SKScene, Reload {
 		}
 	}
 	
-    func handleTouchController(_ location: CGPoint) {
+    func moveController(_ location: CGPoint) {
         let p1 = controller.scenePosition! // Controller position in scene coordinates
         let p2 = lastTouchPoint
         let p3 = location
@@ -225,7 +225,6 @@ class Level: SKScene, Reload {
         // Give fireNode the angle for the bullets
         //fireNode.angle = Float(newRot) + Float(90).degreesToRadians()
     }
-    
     func moveCamera(to location: CGPoint) {
         // Get the delta vector
         let vector = lastTouchCam - location
@@ -233,22 +232,6 @@ class Level: SKScene, Reload {
         // Add to camera node position
         cameraNode.position += vector
     }
-	
-	func load(key: KeyNode, to controller: ControllerNode) {
-		// If key is animating, don't do anything
-		guard !key.animating else {
-			return
-		}
-		
-		// If it is engaged
-		if key.isEngaged {
-			key.disengage(controller)
-			fireNode.objectToFire = nil
-		} else {
-			key.engage(controller)
-			fireNode.objectToFire = key
-		}
-	}
 	
 	// Function to return correct node, different methods of sorting
     func node(at point: CGPoint) -> SKNode {
@@ -281,15 +264,43 @@ class Level: SKScene, Reload {
 		return false
 	}
 	
+	func load(_ key: KeyNode) {
+		// If key is animating, don't do anything
+		guard !key.animating else {
+			return
+		}
+		if controller.isOccupied {
+			fireNode.objectToFire?.disengage(controller)
+		}
+		
+		key.engage(controller)
+		fireNode.objectToFire = key
+	}
+	func unload(_ key: KeyNode) {
+		// If key is animating, don't do anything
+		guard !key.animating else {
+			return
+		}
+		
+		key.disengage(controller)
+		fireNode.objectToFire = nil
+	}
+	
 	func load(icon tool: ToolIcon) {
 		// Make sure there is a tool to create
 		guard tool.number > 0 else {
 			return
 		}
 		
-		// Make sure controller isn't occupied
-		guard controller.occupied == false else {
-			return
+		// If controller is occupied, disengage
+		if controller.isOccupied {
+			let type = tool.type
+			if let tool = fireNode.objectToFire as? ToolNode {
+				if tool.type == type {
+					return
+				}
+			}
+			fireNode.objectToFire?.disengage(controller)
 		}
 		
 		// Unarchive a tool from file
@@ -299,8 +310,9 @@ class Level: SKScene, Reload {
 		newTool.removeFromParent()
 		newTool.position = toolBox.convert(tool.position, to: self)
 		newTool.zPosition = ZPosition.tools
+		newTool.icon = tool
 		addChild(newTool)
-		newTool.engage(controller, icon: tool)
+		newTool.engage(controller)
 		
 		// Set object to fire to newTool
 		fireNode.objectToFire = newTool
@@ -313,7 +325,7 @@ class Level: SKScene, Reload {
 		
 		// If it is enaged and not animating
 		if tool.isEngaged {
-			tool.disengage(to: icon, controller: controller)
+			tool.disengage(controller)
 		}
 	}
 	
@@ -354,7 +366,7 @@ class Level: SKScene, Reload {
 			let locationCam = touch.location(in: cameraNode)
 			
 			if currentNode == controller && isInCanvas(location: location) {
-				handleTouchController(location)
+				moveController(location)
 			} else if currentNode == cameraNode{
 				moveCamera(to: locationCam)
 			}
@@ -375,30 +387,14 @@ class Level: SKScene, Reload {
 				if let toolNode = fireNode.objectToFire as? ToolNode {
 					unLoad(tool: toolNode, to: toolIcons[toolNode.type]!)
 				} else if let key = fireNode.objectToFire as? KeyNode {
-					load(key: key, to: controller)
+					unload(key)
 				}
 			} else if let key = currentNode as? KeyNode{
-				load(key: key, to: controller)
+				load(key)
 				key.greyOut()
 			}
 			
             currentNode = nil
         }
-    }
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-		for _ in touches {
-			
-			if let toolIcon = currentNode as? ToolIcon {
-				load(icon: toolIcon)
-				toolIcon.greyOut()
-			} else if let toolNode = currentNode as? ToolNode {
-				unLoad(tool: toolNode, to: toolIcons[toolNode.type]!)
-			} else if currentNode == key {
-				load(key: key, to: controller)
-				key.greyOut()
-			}
-			
-			currentNode = nil
-		}
     }
 }

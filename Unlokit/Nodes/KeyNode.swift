@@ -32,7 +32,7 @@ class KeyNode: SKSpriteNode, CanBeFired {
 			return
 		}
 		
-		controller.occupied = true
+		controller.isOccupied = true
 		isEngaged = true
 		animating = true
 		run(SKAction.move(to: position, duration: 0.2)) {
@@ -45,16 +45,17 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		run(SKAction.move(to: startPosition, duration: 0.2)) {
 			self.animating = false
 			self.removeAllActions()
+			
 		}
-		controller.occupied = false
 		isEngaged = false
+		controller.isOccupied = false
 	}
 
 	func prepareForFiring(_ controller: ControllerNode) {
 		// Sets up before firing
 		setupPhysics()
 		isEngaged = false
-		controller.occupied = false
+		controller.isOccupied = false
 		removeAction(forKey: "rotate")
 	}
 	private func setupPhysics() {
