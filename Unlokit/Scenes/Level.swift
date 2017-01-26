@@ -17,17 +17,18 @@ struct Category {
 	static let blockMtl: UInt32     = 0b1000
 	static let blockBnc: UInt32     = 0b10000
 	static let blockGlue: UInt32    = 0b100000
-	static let blocks: UInt32		= Category.blockMtl | Category.blockBnc | Category.blockGlue
+	static let blockBreak: UInt32   = 0b1000000
+	static let blocks: UInt32		= Category.blockMtl | Category.blockBnc | Category.blockGlue | Category.blockBreak
 	
-	static let springTool: UInt32   = 0b10000000
-	static let glueTool: UInt32     = 0b100000000
-	static let fanTool: UInt32      = 0b1000000000
-	static let gravityTool: UInt32  = 0b10000000000
-	static let bombTool: UInt32     = 0b100000000000
+	static let springTool: UInt32   = 0b100000000
+	static let glueTool: UInt32     = 0b1000000000
+	static let fanTool: UInt32      = 0b10000000000
+	static let gravityTool: UInt32  = 0b100000000000
+	static let bombTool: UInt32     = 0b1000000000000
 	static let tools: UInt32		= Category.springTool | Category.glueTool | Category.fanTool | Category.gravityTool | Category.bombTool
 	
-	static let fanField: UInt32     = 0b1000000000000
-	static let gravityField: UInt32 = 0b10000000000000
+	static let fanField: UInt32     = 0b10000000000000
+	static let gravityField: UInt32 = 0b100000000000000
 	static let fields: UInt32		= Category.fanField | Category.gravityField
 	
 	static let all: UInt32 = UInt32.max
@@ -206,13 +207,13 @@ class Level: SKScene, Reload {
 			switch type {
 			case .spring:
 				tool.number = 0
+			case .bomb:
+				tool.number = 0
 			case .glue:
 				tool.number = 0
 			case .fan:
 				tool.number = 0
 			case .gravity:
-				tool.number = 0
-			case .bomb:
 				tool.number = 0
 			}
 		}
@@ -327,6 +328,9 @@ class Level: SKScene, Reload {
 		newTool.position = toolBox.convert(tool.position, to: self)
 		newTool.zPosition = ZPosition.tools
 		newTool.icon = tool
+		if let bomb = newTool as? BombToolNode {
+			bomb.setupFuse(scene: self)
+		}
 		addChild(newTool)
 		newTool.engage(controller)
 		

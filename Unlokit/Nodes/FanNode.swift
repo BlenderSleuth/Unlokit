@@ -12,7 +12,7 @@ class FanNode: SKSpriteNode {
 	
 	private var field: SKFieldNode!
 	
-	var fieldStrength: Float = 50 {
+	var fieldStrength: Float = 500 {
 		didSet {
 			field.strength = fieldStrength
 		}

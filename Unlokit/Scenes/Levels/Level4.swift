@@ -1,5 +1,5 @@
 //
-//  Level3.swift
+//  Level4.swift
 //  Unlokit
 //
 //  Created by Ben Sutherland on 29/12/2016.
@@ -14,14 +14,14 @@ class Level4: Level {
 		for (type, tool) in toolIcons {
 			switch type {
 			case .spring:
-				tool.number = 0
+				tool.number = 2
+			case .bomb:
+				tool.number = 6
 			case .glue:
 				tool.number = 0
 			case .fan:
 				tool.number = 0
 			case .gravity:
-				tool.number = 0
-			case .bomb:
 				tool.number = 0
 			}
 		}

@@ -19,6 +19,19 @@ class BombToolNode: ToolNode {
 		super.setupPhysics()
 		
 		physicsBody?.categoryBitMask = Category.bombTool
-		physicsBody?.contactTestBitMask = Category.bounds | Category.blockMtl | Category.blockGlue
+		physicsBody?.contactTestBitMask = Category.bounds | Category.blockMtl | Category.blockGlue | Category.blockBreak
+	}
+	
+	func setupFuse(scene: SKScene) {
+		(childNode(withName: "fuse")?.children.first as! SKEmitterNode).targetNode = scene
+	}
+	
+	func explode(scene: SKScene) {
+		// TO DO: add sound
+		let emitter = SKEmitterNode(fileNamed: "BombExplode")!
+		emitter.position = scene.convert(position, from: self.parent!)
+		scene.addChild(emitter)
+		
+		removeFromParent()
 	}
 }

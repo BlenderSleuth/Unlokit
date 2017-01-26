@@ -15,21 +15,7 @@ class BlockMtlNode: BlockNode {
 		physicsBody?.categoryBitMask = Category.blockMtl
 	}
 	
-	// Create version of self that has kind of bncNode
-	func bncVersion() -> BlockBncNode {
-		let blockBnc = SKNode(fileNamed: "BlockBnc")?.children.first as! BlockBncNode
-		blockBnc.removeFromParent()
-		blockBnc.position = position
-		blockBnc.zPosition = zPosition
-		return blockBnc
-	}
-	func glueVersion() -> BlockGlueNode {
-		let blockGlue = SKNode(fileNamed: "BlockGlue")?.children.first as! BlockGlueNode
-		blockGlue.removeFromParent()
-		blockGlue.position = position
-		blockGlue.zPosition = zPosition
-		return blockGlue
-	}
+
 }
 
 

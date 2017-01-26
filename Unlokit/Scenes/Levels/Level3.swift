@@ -15,13 +15,13 @@ class Level3: Level {
 			switch type {
 			case .spring:
 				tool.number = 4
+			case .bomb:
+				tool.number = 6
 			case .glue:
 				tool.number = 4
 			case .fan:
 				tool.number = 6
 			case .gravity:
-				tool.number = 6
-			case .bomb:
 				tool.number = 6
 			}
 		}

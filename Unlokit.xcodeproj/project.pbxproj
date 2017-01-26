@@ -11,6 +11,7 @@
 		38017A2F1E35DC160051EEE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38017A2D1E35DC160051EEE0 /* Assets.xcassets */; };
 		38017A311E35DEE20051EEE0 /* BlockMtlNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38017A301E35DEE20051EEE0 /* BlockMtlNode.swift */; };
 		38017A331E35E01B0051EEE0 /* Smash.caf in Resources */ = {isa = PBXBuildFile; fileRef = 38017A321E35DFD00051EEE0 /* Smash.caf */; };
+		3804F12D1E39FAEB007099AD /* BombExplode.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3804F12C1E39FAEB007099AD /* BombExplode.sks */; };
 		381D5C881E394C240084E56E /* Bounce.sks in Resources */ = {isa = PBXBuildFile; fileRef = 381D5C871E394C240084E56E /* Bounce.sks */; };
 		381D5C8A1E394E3C0084E56E /* BlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381D5C891E394E3C0084E56E /* BlockNode.swift */; };
 		381D5C8C1E39513D0084E56E /* FanParticles.sks in Resources */ = {isa = PBXBuildFile; fileRef = 381D5C8B1E39513D0084E56E /* FanParticles.sks */; };
@@ -72,6 +73,9 @@
 		38E4B5C51E37137C00C798C0 /* FanToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4B5C31E37137C00C798C0 /* FanToolNode.swift */; };
 		38E4B5C61E37137C00C798C0 /* GravityToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4B5C41E37137C00C798C0 /* GravityToolNode.swift */; };
 		38E50CEF1E39D926007437E7 /* BombFuse.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38E50CEE1E39D926007437E7 /* BombFuse.sks */; };
+		38E50CF11E39DB2F007437E7 /* BlockBrk.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38E50CF01E39DB2F007437E7 /* BlockBrk.sks */; };
+		38E50CF31E39E1B5007437E7 /* BlockBreakNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E50CF21E39E1B5007437E7 /* BlockBreakNode.swift */; };
+		38E50CF51E39E2AE007437E7 /* Row3BlockBreak.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38E50CF41E39E2AE007437E7 /* Row3BlockBreak.sks */; };
 		38F7B1E91E38243300A62956 /* ControllerRef.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38F7B1E81E38243300A62956 /* ControllerRef.sks */; };
 		38F7B1ED1E38342400A62956 /* KeyRef.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38F7B1EC1E38342400A62956 /* KeyRef.sks */; };
 		38F7B1EF1E38348600A62956 /* LockRef.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38F7B1EE1E38348600A62956 /* LockRef.sks */; };
@@ -83,6 +87,7 @@
 		38017A2D1E35DC160051EEE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		38017A301E35DEE20051EEE0 /* BlockMtlNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockMtlNode.swift; sourceTree = "<group>"; };
 		38017A321E35DFD00051EEE0 /* Smash.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Smash.caf; sourceTree = "<group>"; };
+		3804F12C1E39FAEB007099AD /* BombExplode.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BombExplode.sks; sourceTree = "<group>"; };
 		381D5C871E394C240084E56E /* Bounce.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Bounce.sks; sourceTree = "<group>"; };
 		381D5C891E394E3C0084E56E /* BlockNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockNode.swift; sourceTree = "<group>"; };
 		381D5C8B1E39513D0084E56E /* FanParticles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FanParticles.sks; sourceTree = "<group>"; };
@@ -150,6 +155,9 @@
 		38E4B5C31E37137C00C798C0 /* FanToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FanToolNode.swift; sourceTree = "<group>"; };
 		38E4B5C41E37137C00C798C0 /* GravityToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GravityToolNode.swift; sourceTree = "<group>"; };
 		38E50CEE1E39D926007437E7 /* BombFuse.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BombFuse.sks; sourceTree = "<group>"; };
+		38E50CF01E39DB2F007437E7 /* BlockBrk.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockBrk.sks; sourceTree = "<group>"; };
+		38E50CF21E39E1B5007437E7 /* BlockBreakNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockBreakNode.swift; sourceTree = "<group>"; };
+		38E50CF41E39E2AE007437E7 /* Row3BlockBreak.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row3BlockBreak.sks; sourceTree = "<group>"; };
 		38F7B1E81E38243300A62956 /* ControllerRef.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ControllerRef.sks; sourceTree = "<group>"; };
 		38F7B1EC1E38342400A62956 /* KeyRef.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = KeyRef.sks; sourceTree = "<group>"; };
 		38F7B1EE1E38348600A62956 /* LockRef.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LockRef.sks; sourceTree = "<group>"; };
@@ -170,10 +178,11 @@
 		38017A2B1E35DBFA0051EEE0 /* Emitters */ = {
 			isa = PBXGroup;
 			children = (
-				38017A2C1E35DC160051EEE0 /* Smash.sks */,
 				38017A2D1E35DC160051EEE0 /* Assets.xcassets */,
+				38017A2C1E35DC160051EEE0 /* Smash.sks */,
 				381D5C8B1E39513D0084E56E /* FanParticles.sks */,
 				38E50CEE1E39D926007437E7 /* BombFuse.sks */,
+				3804F12C1E39FAEB007099AD /* BombExplode.sks */,
 			);
 			path = Emitters;
 			sourceTree = "<group>";
@@ -221,6 +230,7 @@
 				38017A301E35DEE20051EEE0 /* BlockMtlNode.swift */,
 				38488EF71E35E4F000BCCFD6 /* BlockBncNode.swift */,
 				38B649421E3890AF00479469 /* BlockGlueNode.swift */,
+				38E50CF21E39E1B5007437E7 /* BlockBreakNode.swift */,
 			);
 			path = Blocks;
 			sourceTree = "<group>";
@@ -334,8 +344,10 @@
 				38CE1C061E38597400B646DB /* BlockMtl.sks */,
 				38B649441E3890F800479469 /* BlockGlue.sks */,
 				38CE1C051E38597400B646DB /* BlockBnc.sks */,
+				38E50CF01E39DB2F007437E7 /* BlockBrk.sks */,
 				38CE1C081E38597400B646DB /* Row3BlockMtl.sks */,
 				38CE1C071E38597400B646DB /* Row3BlockBnc.sks */,
+				38E50CF41E39E2AE007437E7 /* Row3BlockBreak.sks */,
 				38C44B491E39CB9C004B76B6 /* GlueBlockWithGravity.sks */,
 			);
 			path = Blocks;
@@ -465,12 +477,15 @@
 				38E4B5BF1E37106700C798C0 /* FanTool.sks in Resources */,
 				38CE1C191E386B5D00B646DB /* Level2.sks in Resources */,
 				38017A331E35E01B0051EEE0 /* Smash.caf in Resources */,
+				3804F12D1E39FAEB007099AD /* BombExplode.sks in Resources */,
 				38CE1C1A1E386B5D00B646DB /* Level3.sks in Resources */,
 				383CA9831E1DD61100F8B998 /* LaunchScreen.storyboard in Resources */,
+				38E50CF11E39DB2F007437E7 /* BlockBrk.sks in Resources */,
 				38C44B4A1E39CB9C004B76B6 /* GlueBlockWithGravity.sks in Resources */,
 				388514001E36EF440092F058 /* SpringTool.sks in Resources */,
 				38CE1C091E38597400B646DB /* BlockBnc.sks in Resources */,
 				38CE1C101E38599B00B646DB /* Background-Purple.sks in Resources */,
+				38E50CF51E39E2AE007437E7 /* Row3BlockBreak.sks in Resources */,
 				383CA96B1E1DD4F500F8B998 /* Assets.xcassets in Resources */,
 				38CE1C0C1E38597400B646DB /* Row3BlockMtl.sks in Resources */,
 				38F7B1ED1E38342400A62956 /* KeyRef.sks in Resources */,
@@ -489,6 +504,7 @@
 				38E4B5B51E370A0A00C798C0 /* BombToolIcon.swift in Sources */,
 				38B649491E38AC3400479469 /* FanNode.swift in Sources */,
 				38E4B5C61E37137C00C798C0 /* GravityToolNode.swift in Sources */,
+				38E50CF31E39E1B5007437E7 /* BlockBreakNode.swift in Sources */,
 				38650F541E25F6A500401ABD /* FireButtonNode.swift in Sources */,
 				38C44B461E39B193004B76B6 /* GravityNode.swift in Sources */,
 				383CA97B1E1DD5E600F8B998 /* GameViewController.swift in Sources */,

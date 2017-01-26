@@ -40,22 +40,16 @@ extension Level: SKPhysicsContactDelegate {
 			spring.removeFromParent()
 			
 			blockBnc.bounce(side: blockBnc.getSide(contact: contact))
-		case Category.glueTool | Category.blockMtl:
-			let glue = getNode(for: Category.glueTool, type: GlueToolNode.self, contact: contact)
-			let block = getNode(for: Category.blockMtl, type: BlockMtlNode.self, contact: contact)
+		case Category.bombTool | Category.blockBreak:
+			let bomb = getNode(for: Category.bombTool, type: BombToolNode.self, contact: contact)
+			let block = getNode(for: Category.blockBreak, type: BlockBreakNode.self, contact: contact)
 			
-			if glue.used {
+			if bomb.used {
 				return
 			}
-			glue.used = true
-			
-			let blockGlue = block.glueVersion()
-			block.parent?.addChild(blockGlue)
-			block.removeFromParent()
-			glue.removeFromParent()
-			
-			let side = blockGlue.getSide(contact: contact)
-			blockGlue.bounce(side: side)
+			bomb.used = true
+			block.shatter()
+			bomb.explode(scene: self)
 			
 		case Category.blockGlue | Category.key:
 			let key = getNode(for: Category.key, type: KeyNode.self, contact: contact)
@@ -119,6 +113,41 @@ extension Level: SKPhysicsContactDelegate {
 			} else if Category.blockBnc & collision != 0 {
 				let block = getNode(for: Category.blockBnc, type: BlockNode.self, contact: contact)
 				block.bounce(side: block.getSide(contact: contact))
+			//		if
+			} else if collision & Category.blockMtl | Category.blockBreak != 0 && collision & Category.glueTool != 0 {
+				let glue = getNode(for: Category.glueTool, type: GlueToolNode.self, contact: contact)
+				let block = getOtherNode(for: glue, type: BlockNode.self, contact: contact)
+				
+				if glue.used {
+					return
+				}
+				glue.used = true
+				
+				let blockGlue = block.glueVersion()
+				block.parent?.addChild(blockGlue)
+				block.removeFromParent()
+				glue.removeFromParent()
+				
+				let side = blockGlue.getSide(contact: contact)
+				blockGlue.bounce(side: side)
+				
+			} else if collision & Category.blockMtl | Category.blockBreak != 0 && collision & Category.springTool != 0 {
+				let spring = getNode(for: Category.springTool, type: SpringToolNode.self, contact: contact)
+				let block = getOtherNode(for: spring, type: BlockNode.self, contact: contact)
+				
+				if spring.used {
+					return
+				}
+				spring.used = true
+				
+				let blockGlue = block.bncVersion()
+				block.parent?.addChild(blockGlue)
+				block.removeFromParent()
+				spring.removeFromParent()
+				
+				let side = blockGlue.getSide(contact: contact)
+				blockGlue.bounce(side: side)
+				
 			}
 		}
 	}
