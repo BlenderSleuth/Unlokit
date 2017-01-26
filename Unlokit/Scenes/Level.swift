@@ -89,12 +89,36 @@ class Level: SKScene, Reload {
 	
 	//MARK: Setup
     override func didMove(to view: SKView) {
+		setupReferences()
 		setupNodes()
 		setupCamera()
         setupTools()
 		setupTextures()
 		physicsWorld.contactDelegate = self
     }
+	func setupReferences() {
+		for child in children {
+			if let reference = child as? SKReferenceNode {
+				
+				var filename: String?
+				
+				if let row3 = reference.children.first?.children.first?.children.first?.children.first {
+					switch row3 {
+					case is BlockNode:
+						filename = "Row3BlockMtl"
+					default:
+						filename = nil
+					}
+				}
+				
+				if let gkref = GKReferenceNode(with: filename) {
+					reference.removeFromParent()
+					gkref.position = reference.position
+					addChild(gkref.gkScene.rootNode as! SKScene)
+				}
+			}
+		}
+	}
 	func setupNodes() {
 		// Bind controller to local variable
 		controller = childNode(withName: "//controller") as! ControllerNode
@@ -197,7 +221,7 @@ class Level: SKScene, Reload {
 	}
 	func setupTools() {
 		// Create array of tool icons to use later
-		enumerateChildNodes(withName: "toolBox//*[Tool]") {node, _ in
+		enumerateChildNodes(withName: "//*[Tool]") {node, _ in
 			
 			if let tool = node as? ToolIcon {
 				self.toolIcons[tool.type] = tool
@@ -330,7 +354,7 @@ class Level: SKScene, Reload {
 
 		// Remove tool from unarchived scene, add it to this one and engage
 		newTool.removeFromParent()
-		newTool.position = toolBox.convert(tool.position, to: self)
+		//newTool.position = toolBox.convert(tool.position, to: self)
 		newTool.zPosition = ZPosition.tools
 		newTool.icon = tool
 		if let bomb = newTool as? BombToolNode {
