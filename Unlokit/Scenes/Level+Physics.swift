@@ -78,11 +78,14 @@ extension Level: SKPhysicsContactDelegate {
 			}
 			fanTool.used = true
 			
+			// Setup fan node
 			let fanNode = SKNode(fileNamed: "FanRef")?.children.first as! FanNode
 			fanNode.removeFromParent()
-			
 			fanNode.animate(framesAtlas: fanFrames)
+			fanNode.setupParticles(scene: self)
+			
 			let side = block.getSide(contact: contact)
+			fanNode.setupField(side: side)
 			block.add(node: fanNode, to: side)
 			
 		case Category.fanTool | Category.blockMtl:

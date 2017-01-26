@@ -12,22 +12,21 @@ struct Category {
 	
 	static let key: UInt32			= 0b1
 	static let lock: UInt32			= 0b10
-	static let controller: UInt32	= 0b100
-	static let bounds: UInt32		= 0b1000
+	static let bounds: UInt32		= 0b100
 	
-	static let blockMtl: UInt32     = 0b10000
-	static let blockBnc: UInt32     = 0b100000
-	static let blockGlue: UInt32    = 0b1000000
+	static let blockMtl: UInt32     = 0b1000
+	static let blockBnc: UInt32     = 0b10000
+	static let blockGlue: UInt32    = 0b100000
 	static let blocks: UInt32		= Category.blockMtl | Category.blockBnc | Category.blockGlue
 	
-	static let springTool: UInt32   = 0b100000000
-	static let glueTool: UInt32     = 0b1000000000
-	static let fanTool: UInt32      = 0b10000000000
-	static let gravityTool: UInt32  = 0b100000000000
-	static let timeTool: UInt32     = 0b1000000000000
+	static let springTool: UInt32   = 0b10000000
+	static let glueTool: UInt32     = 0b100000000
+	static let fanTool: UInt32      = 0b1000000000
+	static let gravityTool: UInt32  = 0b10000000000
+	static let timeTool: UInt32     = 0b100000000000
 	static let tools: UInt32		= Category.springTool | Category.glueTool | Category.fanTool | Category.gravityTool | Category.timeTool
 	
-	static let fanField: UInt32     = 0b10000000000000
+	static let fanField: UInt32     = 0b1000000000000
 	
 	static let all: UInt32 = UInt32.max
 }
@@ -219,7 +218,7 @@ class Level: SKScene, Reload {
 	func setupTextures() {
 		fanFrames = SKTextureAtlas(named: "FanFrames")
 		fanFrames.preload {
-			print("loaded")
+			print("loaded textures")
 		}
 	}
 	

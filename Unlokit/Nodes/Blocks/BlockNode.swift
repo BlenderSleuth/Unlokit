@@ -75,16 +75,19 @@ class BlockNode: SKSpriteNode {
 		
 		switch side{
 		case .up:
-			bounce = SKAction.group([SKAction.moveBy(x: 0, y: -30, duration: 0.1), SKAction.moveBy(x: 0, y: 30, duration: 0.1)])
+			bounce = SKAction.sequence([SKAction.moveBy(x: 0, y: -30, duration: 0.1), SKAction.moveBy(x: 0, y: 30, duration: 0.1)])
 			bounce.timingMode = .easeInEaseOut
 		case .down:
-			bounce = SKAction(named: "bounceDown")!
+			bounce = SKAction.sequence([SKAction.moveBy(x: 0, y: 30, duration: 0.1), SKAction.moveBy(x: 0, y: -30, duration: 0.1)])
+			bounce.timingMode = .easeInEaseOut
 		case .left:
-			bounce = SKAction(named: "bounceLeft")!
+			bounce = SKAction.sequence([SKAction.moveBy(x: -30, y: 0, duration: 0.1), SKAction.moveBy(x: 30, y: 0, duration: 0.1)])
+			bounce.timingMode = .easeInEaseOut
 		case .right:
-			bounce = SKAction(named: "bounceRight")!
+			bounce = SKAction.sequence([SKAction.moveBy(x: 30, y: 0, duration: 0.1), SKAction.moveBy(x: -30, y: 0, duration: 0.1)])
+			bounce.timingMode = .easeInEaseOut
 		}
-		
+		print("bounce")
 		run(bounce)
 	}
 }

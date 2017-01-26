@@ -65,8 +65,8 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		//physicsBody?.usesPreciseCollisionDetection = true
 		physicsBody?.mass = 0.5
 		physicsBody?.categoryBitMask = Category.key
-		physicsBody?.contactTestBitMask = Category.lock | Category.blocks | Category.bounds | Category.controller
-		physicsBody?.collisionBitMask = Category.all ^ (Category.controller | Category.lock) // All except controller and lock
+		physicsBody?.contactTestBitMask = Category.lock | Category.blocks | Category.bounds
+		physicsBody?.collisionBitMask = Category.all ^ Category.lock // All except lock
 	}
 	
 	func getPosition(from node: SKNode) -> CGPoint? {

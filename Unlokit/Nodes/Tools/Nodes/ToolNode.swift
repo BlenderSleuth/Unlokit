@@ -70,6 +70,7 @@ class ToolNode: SKSpriteNode, CanBeFired {
 		physicsBody?.categoryBitMask = Category.zero
 		physicsBody?.contactTestBitMask = Category.bounds
 		physicsBody?.collisionBitMask = Category.all
+		physicsBody?.fieldBitMask = Category.fanField
 	}
 
 	func smash() {

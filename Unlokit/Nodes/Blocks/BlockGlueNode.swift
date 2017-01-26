@@ -36,10 +36,10 @@ class BlockGlueNode: BlockNode {
 			zRotation = CGFloat(180).degreesToRadians()
 		case .left:
 			position = left
-			zRotation = CGFloat(270).degreesToRadians()
+			zRotation = CGFloat(90).degreesToRadians()
 		case .right:
 			position = right
-			zRotation = CGFloat(90).degreesToRadians()
+			zRotation = CGFloat(270).degreesToRadians()
 		}
 		
 		connected[side] = node
