@@ -38,6 +38,9 @@
 		38B649491E38AC3400479469 /* FanNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B649481E38AC3400479469 /* FanNode.swift */; };
 		38B6494B1E38AC9B00479469 /* FanRef.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38B6494A1E38AC9B00479469 /* FanRef.sks */; };
 		38B737B41E3959FE004B6B95 /* FanTextures.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38B737B31E3959FE004B6B95 /* FanTextures.sks */; };
+		38C44B461E39B193004B76B6 /* GravityNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C44B451E39B193004B76B6 /* GravityNode.swift */; };
+		38C44B481E39BA6D004B76B6 /* GravityRef.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38C44B471E39BA6D004B76B6 /* GravityRef.sks */; };
+		38C44B4A1E39CB9C004B76B6 /* GlueBlockWithGravity.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38C44B491E39CB9C004B76B6 /* GlueBlockWithGravity.sks */; };
 		38C50AF41E36A83600B4EE2A /* GlueToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AEF1E36A83600B4EE2A /* GlueToolNode.swift */; };
 		38C50AF51E36A83600B4EE2A /* TimeToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AF01E36A83600B4EE2A /* TimeToolNode.swift */; };
 		38C50AF61E36A83600B4EE2A /* ToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AF11E36A83600B4EE2A /* ToolNode.swift */; };
@@ -110,6 +113,9 @@
 		38B649481E38AC3400479469 /* FanNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FanNode.swift; sourceTree = "<group>"; };
 		38B6494A1E38AC9B00479469 /* FanRef.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FanRef.sks; sourceTree = "<group>"; };
 		38B737B31E3959FE004B6B95 /* FanTextures.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FanTextures.sks; sourceTree = "<group>"; };
+		38C44B451E39B193004B76B6 /* GravityNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GravityNode.swift; sourceTree = "<group>"; };
+		38C44B471E39BA6D004B76B6 /* GravityRef.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GravityRef.sks; sourceTree = "<group>"; };
+		38C44B491E39CB9C004B76B6 /* GlueBlockWithGravity.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GlueBlockWithGravity.sks; sourceTree = "<group>"; };
 		38C50AEF1E36A83600B4EE2A /* GlueToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlueToolNode.swift; sourceTree = "<group>"; };
 		38C50AF01E36A83600B4EE2A /* TimeToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeToolNode.swift; sourceTree = "<group>"; };
 		38C50AF11E36A83600B4EE2A /* ToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolNode.swift; sourceTree = "<group>"; };
@@ -215,12 +221,13 @@
 		38488EFB1E36028400BCCFD6 /* References */ = {
 			isa = PBXGroup;
 			children = (
+				38F7B1F01E3838ED00A62956 /* Inteface.sks */,
 				383CA9781E1DD5E600F8B998 /* GunRef.sks */,
-				38B6494A1E38AC9B00479469 /* FanRef.sks */,
 				38F7B1E81E38243300A62956 /* ControllerRef.sks */,
 				38F7B1EC1E38342400A62956 /* KeyRef.sks */,
 				38F7B1EE1E38348600A62956 /* LockRef.sks */,
-				38F7B1F01E3838ED00A62956 /* Inteface.sks */,
+				38B6494A1E38AC9B00479469 /* FanRef.sks */,
+				38C44B471E39BA6D004B76B6 /* GravityRef.sks */,
 				38CE1C0D1E38598C00B646DB /* Backgrounds */,
 				38CE1C041E38597400B646DB /* Blocks */,
 				388513FE1E36EF2C0092F058 /* ToolNodes */,
@@ -283,9 +290,10 @@
 				384ACEF21E347FE2004C3E93 /* KeyNode.swift */,
 				385161351E348E6C0041995A /* ControllerNode.swift */,
 				387105EB1E35844E002D010A /* LockNode.swift */,
-				38B649481E38AC3400479469 /* FanNode.swift */,
 				38650F531E25F6A500401ABD /* FireButtonNode.swift */,
 				387105F41E359CA4002D010A /* ReplayButtonNode.swift */,
+				38B649481E38AC3400479469 /* FanNode.swift */,
+				38C44B451E39B193004B76B6 /* GravityNode.swift */,
 				38C50AED1E36A83600B4EE2A /* Tools */,
 				38488EF61E35E4D900BCCFD6 /* Blocks */,
 			);
@@ -319,6 +327,7 @@
 				38CE1C051E38597400B646DB /* BlockBnc.sks */,
 				38CE1C081E38597400B646DB /* Row3BlockMtl.sks */,
 				38CE1C071E38597400B646DB /* Row3BlockBnc.sks */,
+				38C44B491E39CB9C004B76B6 /* GlueBlockWithGravity.sks */,
 			);
 			path = Blocks;
 			sourceTree = "<group>";
@@ -434,6 +443,7 @@
 				383CA9841E1DD61100F8B998 /* Main.storyboard in Resources */,
 				38B649451E3890F800479469 /* BlockGlue.sks in Resources */,
 				38F7B1EF1E38348600A62956 /* LockRef.sks in Resources */,
+				38C44B481E39BA6D004B76B6 /* GravityRef.sks in Resources */,
 				38017A2F1E35DC160051EEE0 /* Assets.xcassets in Resources */,
 				38E4B5C21E37106700C798C0 /* TimeTool.sks in Resources */,
 				38017A2E1E35DC160051EEE0 /* Smash.sks in Resources */,
@@ -446,6 +456,7 @@
 				38017A331E35E01B0051EEE0 /* Smash.caf in Resources */,
 				38CE1C1A1E386B5D00B646DB /* Level3.sks in Resources */,
 				383CA9831E1DD61100F8B998 /* LaunchScreen.storyboard in Resources */,
+				38C44B4A1E39CB9C004B76B6 /* GlueBlockWithGravity.sks in Resources */,
 				388514001E36EF440092F058 /* SpringTool.sks in Resources */,
 				38CE1C091E38597400B646DB /* BlockBnc.sks in Resources */,
 				38CE1C101E38599B00B646DB /* Background-Purple.sks in Resources */,
@@ -468,6 +479,7 @@
 				38B649491E38AC3400479469 /* FanNode.swift in Sources */,
 				38E4B5C61E37137C00C798C0 /* GravityToolNode.swift in Sources */,
 				38650F541E25F6A500401ABD /* FireButtonNode.swift in Sources */,
+				38C44B461E39B193004B76B6 /* GravityNode.swift in Sources */,
 				383CA97B1E1DD5E600F8B998 /* GameViewController.swift in Sources */,
 				38017A311E35DEE20051EEE0 /* BlockMtlNode.swift in Sources */,
 				38E4B5B61E370A0A00C798C0 /* ToolIcon.swift in Sources */,

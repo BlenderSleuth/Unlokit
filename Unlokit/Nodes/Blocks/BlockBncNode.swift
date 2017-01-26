@@ -14,5 +14,6 @@ class BlockBncNode: BlockNode {
 		super.init(coder: aDecoder)
 		
 		physicsBody?.categoryBitMask = Category.blockBnc
+		physicsBody?.contactTestBitMask = Category.tools | Category.key | Category.lock
 	}
 }

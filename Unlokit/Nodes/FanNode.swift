@@ -10,45 +10,32 @@ import SpriteKit
 
 class FanNode: SKSpriteNode {
 	
-	var field: SKFieldNode!
+	private var field: SKFieldNode!
+	
+	var fieldStrength: Float = 50 {
+		didSet {
+			field.strength = fieldStrength
+		}
+	}
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-	}
-	
-	func setupField(side: Side) {
 		// Rectangular field
-		let fieldSize = CGSize(width: frame.width * 4, height: frame.height * 15)
-		let fieldOrigin = CGPoint(x: -frame.width * 2, y: -50)
+		let fieldSize = CGSize(width: frame.width, height: frame.height * 15)
+		let fieldOrigin = CGPoint(x: -frame.width / 2, y: -60)
 		let fieldRect = CGRect(origin: fieldOrigin, size: fieldSize)
 		
 		let regionPath = CGPath(rect: fieldRect, transform: nil)
 		
-		let vector: vector_float3 = vector_float3(0,10,0)
+		// Positive Y, adjust with field strength
+		let vector: vector_float3 = vector_float3(0,1,0)
 		
-		/*
-		switch side {
-		case .up:
-			vector = vector_float3(0,30,0)
-		case .down:
-			vector = vector_float3(0,30,0)
-		case .left:
-			vector = vector_float3(-30,0,0)
-		case .right:
-			vector = vector_float3(30,0,0)
-		}
-		*/
 		field = SKFieldNode.linearGravityField(withVector: vector)
-		field.strength = 5
+		field.strength = fieldStrength
 		field.region = SKRegion(path: regionPath)
 		
 		field.categoryBitMask = Category.fanField
 		addChild(field)
-		
-		//let debugNode = SKShapeNode(path: regionPath)
-		//debugNode.strokeColor = .blue
-		//debugNode.lineWidth = 5
-		//addChild(debugNode)
 	}
 	
 	func setupParticles(scene: SKScene) {

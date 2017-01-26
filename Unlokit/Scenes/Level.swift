@@ -27,6 +27,8 @@ struct Category {
 	static let tools: UInt32		= Category.springTool | Category.glueTool | Category.fanTool | Category.gravityTool | Category.timeTool
 	
 	static let fanField: UInt32     = 0b1000000000000
+	static let gravityField: UInt32 = 0b10000000000000
+	static let fields: UInt32		= Category.fanField | Category.gravityField
 	
 	static let all: UInt32 = UInt32.max
 }

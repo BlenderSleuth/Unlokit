@@ -74,7 +74,7 @@ class FireButtonNode: SKSpriteNode {
 		objectToFire?.prepareForFiring(controller) //objectToFire is of type 'CanBeFired', object is SKSpriteNode, both reference same object
 		
         // Speed of firing
-        let speed: CGFloat = 2400
+        let speed: CGFloat = 50
 		
 		// Compensation
 		let angle = Float(controller.zRotation + CGFloat(90).degreesToRadians())

@@ -24,9 +24,6 @@ extension Level: SKPhysicsContactDelegate {
 			let key = getNode(for: Category.key, type: KeyNode.self, contact: contact)
 			
 			key.smash()
-		case Category.blockBnc | Category.all:
-			// TO DO: animate block
-			break
 		case Category.springTool | Category.blockMtl:
 			let spring = getNode(for: Category.springTool, type: SpringToolNode.self, contact: contact)
 			let block = getNode(for: Category.blockMtl, type: BlockMtlNode.self, contact: contact)
@@ -81,12 +78,20 @@ extension Level: SKPhysicsContactDelegate {
 			// Setup fan node
 			let fanNode = SKNode(fileNamed: "FanRef")?.children.first as! FanNode
 			fanNode.removeFromParent()
+			
 			fanNode.animate(framesAtlas: fanFrames)
 			fanNode.setupParticles(scene: self)
 			
 			let side = block.getSide(contact: contact)
-			fanNode.setupField(side: side)
 			block.add(node: fanNode, to: side)
+		case Category.gravityTool | Category.blockGlue:
+			let gravityTool = getNode(for: Category.gravityTool, type: GravityToolNode.self, contact: contact)
+			let block = getNode(for: Category.blockGlue, type: BlockGlueNode.self, contact: contact)
+			
+			let gravityNode = SKNode(fileNamed: "GravityRef")?.children.first as! GravityNode
+			block.add(gravityNode: gravityNode)
+			
+			gravityTool.removeFromParent()
 			
 		case Category.fanTool | Category.blockMtl:
 			let fanTool = getNode(for: Category.fanTool, type: FanToolNode.self, contact: contact)
@@ -98,8 +103,8 @@ extension Level: SKPhysicsContactDelegate {
 				let tool = getOtherNode(for: bounds, type: ToolNode.self, contact: contact)
 				
 				tool.smash()
-				// Every tool except fan tool								and if it collides with block glue
-			} else if (Category.tools ^ Category.fanTool) & collision != 0 && collision & Category.blockGlue != 0{
+				// Every tool except fan tool and gravity tool										and if it collides with block glue
+			} else if (Category.tools ^ (Category.fanTool | Category.gravityTool)) & collision != 0 && collision & Category.blockGlue != 0{
 				let block = getNode(for: Category.blockGlue, type: BlockGlueNode.self, contact: contact)
 				let tool = getOtherNode(for:block, type: ToolNode.self, contact: contact)
 				
@@ -110,6 +115,10 @@ extension Level: SKPhysicsContactDelegate {
 				
 				let side = block.getSide(contact: contact)
 				block.add(node: tool, to: side)
+			// Bounce block when hit
+			} else if Category.blockBnc & collision != 0 {
+				let block = getNode(for: Category.blockBnc, type: BlockNode.self, contact: contact)
+				block.bounce(side: block.getSide(contact: contact))
 			}
 		}
 	}

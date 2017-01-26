@@ -10,12 +10,16 @@ import SpriteKit
 
 class BlockGlueNode: BlockNode {
 	
-	// Nodes that are connected
-	var connected = [Side: SKSpriteNode]()
+	// Side that are connected
+	var connected = [Side: Bool]()
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		physicsBody?.categoryBitMask = Category.blockGlue
+		checkConnected()
+	}
+	func checkConnected() {
+		
 	}
 	
 	// Add a node, based on side
@@ -42,8 +46,7 @@ class BlockGlueNode: BlockNode {
 			zRotation = CGFloat(270).degreesToRadians()
 		}
 		
-		connected[side] = node
-		
+		connected[side] = true
 		
 		node.physicsBody?.isDynamic = false
 		
@@ -54,6 +57,24 @@ class BlockGlueNode: BlockNode {
 		} else {
 			node.move(toParent: self)
 			node.run(SKAction.group([SKAction.move(to: position, duration: 0.1), SKAction.rotate(toAngle: zRotation, duration: 0.1)]))
+		}
+	}
+	
+	func add(gravityNode: GravityNode) {
+		// Check there is no other nodes
+		guard connected.isEmpty else {
+			return
+		}
+		
+		// Precaution
+		gravityNode.removeFromParent()
+		
+		gravityNode.position = position
+		addChild(gravityNode)
+		
+		// Fill up remaining sides
+		for side in Side.all {
+			connected[side] = true
 		}
 	}
 }

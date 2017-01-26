@@ -13,6 +13,8 @@ enum Side {
 	case down
 	case left
 	case right
+	
+	static let all = [Side.up, Side.down, Side.left, Side.right]
 }
 
 class BlockNode: SKSpriteNode {
@@ -87,7 +89,6 @@ class BlockNode: SKSpriteNode {
 			bounce = SKAction.sequence([SKAction.moveBy(x: 30, y: 0, duration: 0.1), SKAction.moveBy(x: -30, y: 0, duration: 0.1)])
 			bounce.timingMode = .easeInEaseOut
 		}
-		print("bounce")
 		run(bounce)
 	}
 }

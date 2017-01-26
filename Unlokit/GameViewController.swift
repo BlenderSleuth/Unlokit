@@ -40,7 +40,7 @@ class GameViewController: UIViewController, start {
 			skView.ignoresSiblingOrder = true
 			
 			// Causes memory leak...
-			skView.showsPhysics = true
+			//skView.showsPhysics = true
 		}
 	}
 	
