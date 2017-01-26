@@ -7,6 +7,8 @@
 //
 
 import SpriteKit
+import GameplayKit
+
 struct Category {
 	static let zero: UInt32			= 0b0
 	
@@ -52,6 +54,9 @@ protocol start {
 class Level: SKScene, Reload {
     
     //MARK: Variables
+	// From GKScene
+	var entities = [GKEntity]()
+	
     var controller: ControllerNode!
     
     var fireNode: FireButtonNode!
@@ -206,15 +211,15 @@ class Level: SKScene, Reload {
 		for (type, tool) in toolIcons {
 			switch type {
 			case .spring:
-				tool.number = 0
+				tool.number = 6
 			case .bomb:
-				tool.number = 0
+				tool.number = 6
 			case .glue:
-				tool.number = 0
+				tool.number = 6
 			case .fan:
-				tool.number = 0
+				tool.number = 6
 			case .gravity:
-				tool.number = 0
+				tool.number = 6
 			}
 		}
 	}

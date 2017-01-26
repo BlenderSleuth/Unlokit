@@ -13,9 +13,7 @@ class BlockMtlNode: BlockNode {
 		super.init(coder: aDecoder)
 		
 		physicsBody?.categoryBitMask = Category.blockMtl
+		
+		entity = BlockMtlEntity()
 	}
-	
-
 }
-
-

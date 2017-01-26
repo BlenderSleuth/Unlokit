@@ -8,10 +8,11 @@
 
 import UIKit
 import SpriteKit
+import GameplayKit
 
 class GameViewController: UIViewController, start {
 
-    var scene: SKScene!
+    var skScene: SKScene!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,28 +20,61 @@ class GameViewController: UIViewController, start {
     }
 	
 	func startNewGame() {
-		// Check for skView,             load scene from file
-		if let skView = view as? SKView, let scene = Level4(fileNamed: "Level4") {
-			self.scene = scene
-			scene.start = self
-			
-			// Scale scene to fill
-			scene.scaleMode = .aspectFill
-			
-			// Transistion
-			let transition = SKTransition.crossFade(withDuration: 0.5)
-			
-			// Present Scene
-			skView.presentScene(scene, transition: transition)
-			
-			// Set options
-			skView.showsFPS = true
-			skView.showsNodeCount = true
-			//TO DO:
-			skView.ignoresSiblingOrder = true
-			
-			// Causes memory leak...
-			//skView.showsPhysics = true
+		
+		/*
+		// Load 'GameScene.sks' as a GKScene. This provides gameplay related content
+		// including entities and graphs.
+		if let scene = GKScene(fileNamed: "GameScene") {
+		
+		// Get the SKScene from the loaded GKScene
+		if let sceneNode = scene.rootNode as! GameScene? {
+		
+		// Copy gameplay related content over to the scene
+		sceneNode.entities = scene.entities
+		sceneNode.graphs = scene.graphs
+		
+		// Set the scale mode to scale to fit the window
+		sceneNode.scaleMode = .aspectFill
+		
+		// Present the scene
+		if let view = self.view as! SKView? {
+		view.presentScene(sceneNode)
+		
+		view.ignoresSiblingOrder = true
+		
+		view.showsFPS = true
+		view.showsNodeCount = true
+		}
+		}
+		}
+		*/
+		
+		if let gkScene = GKScene(fileNamed: "Level1") {
+			if let skScene = gkScene.rootNode as? Level {
+				skScene.entities = gkScene.entities
+				
+				skScene.start = self
+				
+				// Scale scene to fill
+				skScene.scaleMode = .aspectFill
+				
+				if let view = self.view as? SKView {
+					// Transistion
+					let transition = SKTransition.crossFade(withDuration: 0.5)
+					
+					// Present Scene
+					view.presentScene(skScene, transition: transition)
+					
+					view.ignoresSiblingOrder = true
+					
+					// Set options
+					view.showsFPS = true
+					view.showsNodeCount = true
+					
+					// Causes memory leak...
+					//skView.showsPhysics = true
+				}
+			}
 		}
 	}
 	

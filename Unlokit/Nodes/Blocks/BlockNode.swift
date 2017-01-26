@@ -17,6 +17,38 @@ enum Side {
 	static let all = [Side.up, Side.down, Side.left, Side.right]
 }
 
+enum BlockType {
+	case Metal
+	case Rubber
+	case Glue
+	case Break
+	
+	var category: UInt32 {
+		switch self {
+		case .Metal:
+			return Category.blockMtl
+		case .Rubber:
+			return Category.blockBnc
+		case .Glue:
+			return Category.blockGlue
+		case .Break:
+			return Category.blockBreak
+		}
+	}
+	var contactCategory: UInt32 {
+		switch self {
+		case .Metal:
+			return Category.blockMtl
+		case .Rubber:
+			return Category.blockBnc
+		case .Glue:
+			return Category.blockGlue
+		case .Break:
+			return Category.blockBreak
+		}
+	}
+}
+
 class BlockNode: SKSpriteNode {
 	
 	// For calculating the side that was contacted
@@ -72,34 +104,9 @@ class BlockNode: SKSpriteNode {
 		return CGFloat(sqrt((xDist * xDist) + (yDist * yDist)))
 	}
 	
-	func bounce(side: Side) {
-		let bounce: SKAction
-		
-		switch side{
-		case .up:
-			bounce = SKAction.sequence([SKAction.moveBy(x: 0, y: -30, duration: 0.1), SKAction.moveBy(x: 0, y: 30, duration: 0.1)])
-			bounce.timingMode = .easeInEaseOut
-		case .down:
-			bounce = SKAction.sequence([SKAction.moveBy(x: 0, y: 30, duration: 0.1), SKAction.moveBy(x: 0, y: -30, duration: 0.1)])
-			bounce.timingMode = .easeInEaseOut
-		case .left:
-			bounce = SKAction.sequence([SKAction.moveBy(x: -30, y: 0, duration: 0.1), SKAction.moveBy(x: 30, y: 0, duration: 0.1)])
-			bounce.timingMode = .easeInEaseOut
-		case .right:
-			bounce = SKAction.sequence([SKAction.moveBy(x: 30, y: 0, duration: 0.1), SKAction.moveBy(x: -30, y: 0, duration: 0.1)])
-			bounce.timingMode = .easeInEaseOut
-		}
-		run(bounce)
-	}
+
 	
-	// Create version of self that has kind of bncNode
-	func bncVersion() -> BlockBncNode {
-		let blockBnc = SKNode(fileNamed: "BlockBnc")?.children.first as! BlockBncNode
-		blockBnc.removeFromParent()
-		blockBnc.position = position
-		blockBnc.zPosition = zPosition
-		return blockBnc
-	}
+
 	func glueVersion() -> BlockGlueNode {
 		let blockGlue = SKNode(fileNamed: "BlockGlue")?.children.first as! BlockGlueNode
 		blockGlue.removeFromParent()
