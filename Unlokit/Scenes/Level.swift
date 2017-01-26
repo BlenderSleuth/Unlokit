@@ -23,8 +23,8 @@ struct Category {
 	static let glueTool: UInt32     = 0b100000000
 	static let fanTool: UInt32      = 0b1000000000
 	static let gravityTool: UInt32  = 0b10000000000
-	static let timeTool: UInt32     = 0b100000000000
-	static let tools: UInt32		= Category.springTool | Category.glueTool | Category.fanTool | Category.gravityTool | Category.timeTool
+	static let bombTool: UInt32     = 0b100000000000
+	static let tools: UInt32		= Category.springTool | Category.glueTool | Category.fanTool | Category.gravityTool | Category.bombTool
 	
 	static let fanField: UInt32     = 0b1000000000000
 	static let gravityField: UInt32 = 0b10000000000000
@@ -212,7 +212,7 @@ class Level: SKScene, Reload {
 				tool.number = 0
 			case .gravity:
 				tool.number = 0
-			case .time:
+			case .bomb:
 				tool.number = 0
 			}
 		}

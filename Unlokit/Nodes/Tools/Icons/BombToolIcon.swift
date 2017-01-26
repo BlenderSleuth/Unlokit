@@ -1,5 +1,5 @@
 //
-//  TimeToolIcon.swift
+//  BombToolIcon.swift
 //  Unlokit
 //
 //  Created by Ben Sutherland on 13/01/2017.
@@ -8,11 +8,11 @@
 
 import SpriteKit
 
-class TimeToolIcon: ToolIcon {
+class BombToolIcon: ToolIcon {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        type = .time
+        type = .bomb
     }
 }

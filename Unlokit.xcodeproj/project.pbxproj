@@ -42,7 +42,7 @@
 		38C44B481E39BA6D004B76B6 /* GravityRef.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38C44B471E39BA6D004B76B6 /* GravityRef.sks */; };
 		38C44B4A1E39CB9C004B76B6 /* GlueBlockWithGravity.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38C44B491E39CB9C004B76B6 /* GlueBlockWithGravity.sks */; };
 		38C50AF41E36A83600B4EE2A /* GlueToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AEF1E36A83600B4EE2A /* GlueToolNode.swift */; };
-		38C50AF51E36A83600B4EE2A /* TimeToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AF01E36A83600B4EE2A /* TimeToolNode.swift */; };
+		38C50AF51E36A83600B4EE2A /* BombToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AF01E36A83600B4EE2A /* BombToolNode.swift */; };
 		38C50AF61E36A83600B4EE2A /* ToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AF11E36A83600B4EE2A /* ToolNode.swift */; };
 		38C50AF91E36AA0B00B4EE2A /* SpringToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AF81E36AA0B00B4EE2A /* SpringToolNode.swift */; };
 		38C73B231E35B92F00B3AC6A /* ReloadButtonActions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38C73B221E35B92F00B3AC6A /* ReloadButtonActions.sks */; };
@@ -57,18 +57,21 @@
 		38CE1C191E386B5D00B646DB /* Level2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38CE1C151E386B5D00B646DB /* Level2.sks */; };
 		38CE1C1A1E386B5D00B646DB /* Level3.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38CE1C161E386B5D00B646DB /* Level3.sks */; };
 		38CE1C1B1E386B5D00B646DB /* Level3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CE1C171E386B5D00B646DB /* Level3.swift */; };
+		38D0E00C1E39D2DB00B9A341 /* Level4.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38D0E00B1E39D2DB00B9A341 /* Level4.sks */; };
+		38D0E00E1E39D45000B9A341 /* Level4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D0E00D1E39D45000B9A341 /* Level4.swift */; };
 		38E4B5B31E370A0A00C798C0 /* GlueToolIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4B5AF1E370A0A00C798C0 /* GlueToolIcon.swift */; };
 		38E4B5B41E370A0A00C798C0 /* SpringToolIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4B5B01E370A0A00C798C0 /* SpringToolIcon.swift */; };
-		38E4B5B51E370A0A00C798C0 /* TimeToolIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4B5B11E370A0A00C798C0 /* TimeToolIcon.swift */; };
+		38E4B5B51E370A0A00C798C0 /* BombToolIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4B5B11E370A0A00C798C0 /* BombToolIcon.swift */; };
 		38E4B5B61E370A0A00C798C0 /* ToolIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4B5B21E370A0A00C798C0 /* ToolIcon.swift */; };
 		38E4B5B91E370AF500C798C0 /* FanToolIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4B5B71E370AF500C798C0 /* FanToolIcon.swift */; };
 		38E4B5BA1E370AF500C798C0 /* GravityToolIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4B5B81E370AF500C798C0 /* GravityToolIcon.swift */; };
 		38E4B5BF1E37106700C798C0 /* FanTool.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38E4B5BB1E37106700C798C0 /* FanTool.sks */; };
 		38E4B5C01E37106700C798C0 /* GlueTool.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38E4B5BC1E37106700C798C0 /* GlueTool.sks */; };
 		38E4B5C11E37106700C798C0 /* GravityTool.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38E4B5BD1E37106700C798C0 /* GravityTool.sks */; };
-		38E4B5C21E37106700C798C0 /* TimeTool.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38E4B5BE1E37106700C798C0 /* TimeTool.sks */; };
+		38E4B5C21E37106700C798C0 /* BombTool.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38E4B5BE1E37106700C798C0 /* BombTool.sks */; };
 		38E4B5C51E37137C00C798C0 /* FanToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4B5C31E37137C00C798C0 /* FanToolNode.swift */; };
 		38E4B5C61E37137C00C798C0 /* GravityToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4B5C41E37137C00C798C0 /* GravityToolNode.swift */; };
+		38E50CEF1E39D926007437E7 /* BombFuse.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38E50CEE1E39D926007437E7 /* BombFuse.sks */; };
 		38F7B1E91E38243300A62956 /* ControllerRef.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38F7B1E81E38243300A62956 /* ControllerRef.sks */; };
 		38F7B1ED1E38342400A62956 /* KeyRef.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38F7B1EC1E38342400A62956 /* KeyRef.sks */; };
 		38F7B1EF1E38348600A62956 /* LockRef.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38F7B1EE1E38348600A62956 /* LockRef.sks */; };
@@ -117,7 +120,7 @@
 		38C44B471E39BA6D004B76B6 /* GravityRef.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GravityRef.sks; sourceTree = "<group>"; };
 		38C44B491E39CB9C004B76B6 /* GlueBlockWithGravity.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GlueBlockWithGravity.sks; sourceTree = "<group>"; };
 		38C50AEF1E36A83600B4EE2A /* GlueToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlueToolNode.swift; sourceTree = "<group>"; };
-		38C50AF01E36A83600B4EE2A /* TimeToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeToolNode.swift; sourceTree = "<group>"; };
+		38C50AF01E36A83600B4EE2A /* BombToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BombToolNode.swift; sourceTree = "<group>"; };
 		38C50AF11E36A83600B4EE2A /* ToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolNode.swift; sourceTree = "<group>"; };
 		38C50AF81E36AA0B00B4EE2A /* SpringToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringToolNode.swift; sourceTree = "<group>"; };
 		38C73B221E35B92F00B3AC6A /* ReloadButtonActions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ReloadButtonActions.sks; sourceTree = "<group>"; };
@@ -132,18 +135,21 @@
 		38CE1C151E386B5D00B646DB /* Level2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2.sks; sourceTree = "<group>"; };
 		38CE1C161E386B5D00B646DB /* Level3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level3.sks; sourceTree = "<group>"; };
 		38CE1C171E386B5D00B646DB /* Level3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level3.swift; sourceTree = "<group>"; };
+		38D0E00B1E39D2DB00B9A341 /* Level4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level4.sks; sourceTree = "<group>"; };
+		38D0E00D1E39D45000B9A341 /* Level4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level4.swift; sourceTree = "<group>"; };
 		38E4B5AF1E370A0A00C798C0 /* GlueToolIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlueToolIcon.swift; sourceTree = "<group>"; };
 		38E4B5B01E370A0A00C798C0 /* SpringToolIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringToolIcon.swift; sourceTree = "<group>"; };
-		38E4B5B11E370A0A00C798C0 /* TimeToolIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeToolIcon.swift; sourceTree = "<group>"; };
+		38E4B5B11E370A0A00C798C0 /* BombToolIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BombToolIcon.swift; sourceTree = "<group>"; };
 		38E4B5B21E370A0A00C798C0 /* ToolIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolIcon.swift; sourceTree = "<group>"; };
 		38E4B5B71E370AF500C798C0 /* FanToolIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FanToolIcon.swift; sourceTree = "<group>"; };
 		38E4B5B81E370AF500C798C0 /* GravityToolIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GravityToolIcon.swift; sourceTree = "<group>"; };
 		38E4B5BB1E37106700C798C0 /* FanTool.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FanTool.sks; sourceTree = "<group>"; };
 		38E4B5BC1E37106700C798C0 /* GlueTool.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GlueTool.sks; sourceTree = "<group>"; };
 		38E4B5BD1E37106700C798C0 /* GravityTool.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GravityTool.sks; sourceTree = "<group>"; };
-		38E4B5BE1E37106700C798C0 /* TimeTool.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TimeTool.sks; sourceTree = "<group>"; };
+		38E4B5BE1E37106700C798C0 /* BombTool.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BombTool.sks; sourceTree = "<group>"; };
 		38E4B5C31E37137C00C798C0 /* FanToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FanToolNode.swift; sourceTree = "<group>"; };
 		38E4B5C41E37137C00C798C0 /* GravityToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GravityToolNode.swift; sourceTree = "<group>"; };
+		38E50CEE1E39D926007437E7 /* BombFuse.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BombFuse.sks; sourceTree = "<group>"; };
 		38F7B1E81E38243300A62956 /* ControllerRef.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ControllerRef.sks; sourceTree = "<group>"; };
 		38F7B1EC1E38342400A62956 /* KeyRef.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = KeyRef.sks; sourceTree = "<group>"; };
 		38F7B1EE1E38348600A62956 /* LockRef.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LockRef.sks; sourceTree = "<group>"; };
@@ -167,6 +173,7 @@
 				38017A2C1E35DC160051EEE0 /* Smash.sks */,
 				38017A2D1E35DC160051EEE0 /* Assets.xcassets */,
 				381D5C8B1E39513D0084E56E /* FanParticles.sks */,
+				38E50CEE1E39D926007437E7 /* BombFuse.sks */,
 			);
 			path = Emitters;
 			sourceTree = "<group>";
@@ -242,6 +249,8 @@
 				38CE1C151E386B5D00B646DB /* Level2.sks */,
 				38CE1C161E386B5D00B646DB /* Level3.sks */,
 				38CE1C171E386B5D00B646DB /* Level3.swift */,
+				38D0E00B1E39D2DB00B9A341 /* Level4.sks */,
+				38D0E00D1E39D45000B9A341 /* Level4.swift */,
 			);
 			path = Levels;
 			sourceTree = "<group>";
@@ -265,10 +274,10 @@
 			children = (
 				388514011E36EFA20092F058 /* ToolBox.sks */,
 				388513FF1E36EF440092F058 /* SpringTool.sks */,
+				38E4B5BE1E37106700C798C0 /* BombTool.sks */,
 				38E4B5BC1E37106700C798C0 /* GlueTool.sks */,
 				38E4B5BB1E37106700C798C0 /* FanTool.sks */,
 				38E4B5BD1E37106700C798C0 /* GravityTool.sks */,
-				38E4B5BE1E37106700C798C0 /* TimeTool.sks */,
 			);
 			path = ToolNodes;
 			sourceTree = "<group>";
@@ -346,10 +355,10 @@
 			children = (
 				38E4B5B21E370A0A00C798C0 /* ToolIcon.swift */,
 				38E4B5B01E370A0A00C798C0 /* SpringToolIcon.swift */,
+				38E4B5B11E370A0A00C798C0 /* BombToolIcon.swift */,
 				38E4B5AF1E370A0A00C798C0 /* GlueToolIcon.swift */,
 				38E4B5B71E370AF500C798C0 /* FanToolIcon.swift */,
 				38E4B5B81E370AF500C798C0 /* GravityToolIcon.swift */,
-				38E4B5B11E370A0A00C798C0 /* TimeToolIcon.swift */,
 			);
 			path = Icons;
 			sourceTree = "<group>";
@@ -359,10 +368,10 @@
 			children = (
 				38C50AF11E36A83600B4EE2A /* ToolNode.swift */,
 				38C50AF81E36AA0B00B4EE2A /* SpringToolNode.swift */,
+				38C50AF01E36A83600B4EE2A /* BombToolNode.swift */,
 				38C50AEF1E36A83600B4EE2A /* GlueToolNode.swift */,
 				38E4B5C31E37137C00C798C0 /* FanToolNode.swift */,
 				38E4B5C41E37137C00C798C0 /* GravityToolNode.swift */,
-				38C50AF01E36A83600B4EE2A /* TimeToolNode.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -432,6 +441,7 @@
 				38CE1C181E386B5D00B646DB /* Level1.sks in Resources */,
 				381D5C8C1E39513D0084E56E /* FanParticles.sks in Resources */,
 				38CE1BFB1E3841A200B646DB /* Explosion.caf in Resources */,
+				38D0E00C1E39D2DB00B9A341 /* Level4.sks in Resources */,
 				38E4B5C01E37106700C798C0 /* GlueTool.sks in Resources */,
 				381D5C881E394C240084E56E /* Bounce.sks in Resources */,
 				38B737B41E3959FE004B6B95 /* FanTextures.sks in Resources */,
@@ -442,10 +452,11 @@
 				38B6494B1E38AC9B00479469 /* FanRef.sks in Resources */,
 				383CA9841E1DD61100F8B998 /* Main.storyboard in Resources */,
 				38B649451E3890F800479469 /* BlockGlue.sks in Resources */,
+				38E50CEF1E39D926007437E7 /* BombFuse.sks in Resources */,
 				38F7B1EF1E38348600A62956 /* LockRef.sks in Resources */,
 				38C44B481E39BA6D004B76B6 /* GravityRef.sks in Resources */,
 				38017A2F1E35DC160051EEE0 /* Assets.xcassets in Resources */,
-				38E4B5C21E37106700C798C0 /* TimeTool.sks in Resources */,
+				38E4B5C21E37106700C798C0 /* BombTool.sks in Resources */,
 				38017A2E1E35DC160051EEE0 /* Smash.sks in Resources */,
 				388514021E36EFA20092F058 /* ToolBox.sks in Resources */,
 				38CE1C111E38599B00B646DB /* Canvas-Purple.sks in Resources */,
@@ -475,13 +486,14 @@
 			files = (
 				38CE1C1B1E386B5D00B646DB /* Level3.swift in Sources */,
 				38E4B5B91E370AF500C798C0 /* FanToolIcon.swift in Sources */,
-				38E4B5B51E370A0A00C798C0 /* TimeToolIcon.swift in Sources */,
+				38E4B5B51E370A0A00C798C0 /* BombToolIcon.swift in Sources */,
 				38B649491E38AC3400479469 /* FanNode.swift in Sources */,
 				38E4B5C61E37137C00C798C0 /* GravityToolNode.swift in Sources */,
 				38650F541E25F6A500401ABD /* FireButtonNode.swift in Sources */,
 				38C44B461E39B193004B76B6 /* GravityNode.swift in Sources */,
 				383CA97B1E1DD5E600F8B998 /* GameViewController.swift in Sources */,
 				38017A311E35DEE20051EEE0 /* BlockMtlNode.swift in Sources */,
+				38D0E00E1E39D45000B9A341 /* Level4.swift in Sources */,
 				38E4B5B61E370A0A00C798C0 /* ToolIcon.swift in Sources */,
 				387105EC1E35844E002D010A /* LockNode.swift in Sources */,
 				38E4B5BA1E370AF500C798C0 /* GravityToolIcon.swift in Sources */,
@@ -489,7 +501,7 @@
 				38E4B5B31E370A0A00C798C0 /* GlueToolIcon.swift in Sources */,
 				38C50AF61E36A83600B4EE2A /* ToolNode.swift in Sources */,
 				38488F1D1E3603F100BCCFD6 /* Level.swift in Sources */,
-				38C50AF51E36A83600B4EE2A /* TimeToolNode.swift in Sources */,
+				38C50AF51E36A83600B4EE2A /* BombToolNode.swift in Sources */,
 				387105F51E359CA4002D010A /* ReplayButtonNode.swift in Sources */,
 				385161361E348E6C0041995A /* ControllerNode.swift in Sources */,
 				38488F1E1E3603F100BCCFD6 /* Level+Physics.swift in Sources */,

@@ -13,7 +13,7 @@ enum ToolType: String {
 	case glue		= "GlueTool"
 	case fan		= "FanTool"
 	case gravity	= "GravityTool"
-    case time		= "TimeTool"
+    case bomb		= "BombTool"
 }
 
 // Only use this for subclassing...

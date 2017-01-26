@@ -1,5 +1,5 @@
 //
-//  TimeToolNode.swift
+//  BombToolNode.swift
 //  Unlokit
 //
 //  Created by Ben Sutherland on 13/01/2017.
@@ -8,17 +8,17 @@
 
 import SpriteKit
 
-class TimeToolNode: ToolNode {
+class BombToolNode: ToolNode {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        type = .time
+        type = .bomb
     }
 	override func setupPhysics() {
 		super.setupPhysics()
 		
-		physicsBody?.categoryBitMask = Category.timeTool
+		physicsBody?.categoryBitMask = Category.bombTool
 		physicsBody?.contactTestBitMask = Category.bounds | Category.blockMtl | Category.blockGlue
 	}
 }
