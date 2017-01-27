@@ -45,7 +45,7 @@ class BlockGlueNode: BlockNode {
 			}
 			
 			if child.name == "fan" {
-				connected[side!] = nil // Make sure side is nil
+				connected[side!] = nil // Make sure connected side is nil
 				
 				// Get fan node from file
 				let fanNode = SKNode(fileNamed: "FanRef")?.children.first as! FanNode
@@ -56,13 +56,15 @@ class BlockGlueNode: BlockNode {
 				fanNode.gravityField.direction = vector_float3(0,-1,0)
 				fanNode.dragField.zRotation += CGFloat(180).degreesToRadians()
 				
-				fanNode.animate(framesAtlas: scene.fanFrames)
-				fanNode.setupParticles(scene: scene)
+				fanNode.setup(level: scene, block: self, side: side!)
 				
 				add(node: fanNode, to: side!)
 				child.removeFromParent()
 			}
 		}
+	}
+	func remove(for side: Side) {
+		connected[side] = nil
 	}
 	
 	// Add a node, based on side

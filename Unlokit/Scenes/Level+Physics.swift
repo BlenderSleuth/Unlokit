@@ -73,10 +73,12 @@ extension Level: SKPhysicsContactDelegate {
 			let fanNode = SKNode(fileNamed: "FanRef")?.children.first as! FanNode
 			fanNode.removeFromParent()
 			
-			fanNode.animate(framesAtlas: fanFrames)
-			fanNode.setupParticles(scene: self)
-			
 			let side = block.getSide(contact: contact)
+			
+			// Setup fan
+			fanNode.setup(level: self, block: block, side: side)
+			
+			// Add to block
 			block.add(node: fanNode, to: side)
 		case Category.gravityTool | Category.blockGlue:
 			let gravityTool = getNode(for: Category.gravityTool, type: GravityToolNode.self, contact: contact)
@@ -94,8 +96,12 @@ extension Level: SKPhysicsContactDelegate {
 			let fan = getNode(for: Category.fan, type: FanNode.self, contact: contact)
 			let bomb = getNode(for: Category.bombTool, type: BombToolNode.self, contact: contact)
 			
-			fan.removeFromParent()
+			fan.smash()
 			bomb.explode(scene: self)
+		case Category.secretTeleport | Category.key:
+			// TO DO: new scene
+			
+			reload()
 		default:
 			// Custom checks, more efficient sometimes
 			if collision & Category.tools != 0 && collision & Category.bounds != 0 {

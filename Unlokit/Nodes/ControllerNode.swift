@@ -15,6 +15,8 @@ class ControllerNode: SKSpriteNode {
 	
 	var scenePosition: CGPoint!
 	
+	private var angleLabel: SKLabelNode!
+	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
@@ -36,6 +38,8 @@ class ControllerNode: SKSpriteNode {
 		
 		region = fullRegion.byDifference(from: middleRegion)
 		
+		angleLabel = childNode(withName: "angle") as! SKLabelNode
+		
 		// Show region with SKShapenode
 		let regionRectDebug = regionRect
 		let debugPath = CGPath(ellipseIn: regionRectDebug, transform: nil)
@@ -43,5 +47,10 @@ class ControllerNode: SKSpriteNode {
 		debugNode.strokeColor = .blue
 		debugNode.lineWidth = 5
 		scene.addChild(debugNode)
+	}
+	
+	func updateAngle() {
+		let angle = Int(zRotation.radiansToDegrees() + 0.5) + 90
+		angleLabel.text = "\(angle)"
 	}
 }

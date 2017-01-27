@@ -14,6 +14,9 @@ class FanNode: SKSpriteNode {
 	var dragField: SKFieldNode!
 	private var emitter: SKEmitterNode!
 	
+	var glueBlock: BlockGlueNode!
+	var side: Side!
+	
 	var fieldStrength: Float = 60 {
 		didSet {
 			gravityField.strength = fieldStrength
@@ -65,13 +68,27 @@ class FanNode: SKSpriteNode {
 		//addChild(debugNode)
 	}
 	
-	func setupParticles(scene: SKScene) {
+	func setup(level: Level, block: BlockGlueNode, side: Side) {
+		animate(framesAtlas: level.fanFrames)
+		setupParticles(scene: level)
+		self.glueBlock = block
+		self.side = side
+	}
+	
+	func smash() {
+		glueBlock.remove(for: side)
+		
+		// TO DO: Add particles and sounds effects
+		removeFromParent()
+	}
+	
+	private func setupParticles(scene: SKScene) {
 		// Set emitter target
 		emitter.targetNode = scene
 		emitter.fieldBitMask = Category.zero
 	}
 	
-	func animate(framesAtlas: SKTextureAtlas) {
+	private func animate(framesAtlas: SKTextureAtlas) {
 		var frames = [SKTexture]()
 		
 		let numOfFrame = framesAtlas.textureNames.count - 1

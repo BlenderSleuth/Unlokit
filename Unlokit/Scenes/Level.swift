@@ -8,32 +8,33 @@
 
 import SpriteKit
 struct Category {
-	static let zero: UInt32			= 0b0
+	static let zero: UInt32				= 0b0
 	
-	static let key: UInt32			= 0b1
-	static let lock: UInt32			= 0b10
-	static let bounds: UInt32		= 0b100
+	static let key: UInt32				= 0b1
+	static let lock: UInt32				= 0b10
+	static let bounds: UInt32			= 0b100
 	
-	static let blockMtl: UInt32     = 0b1000
-	static let blockBnc: UInt32     = 0b10000
-	static let blockGlue: UInt32    = 0b100000
-	static let blockBreak: UInt32   = 0b1000000
-	static let blocks: UInt32		= Category.blockMtl | Category.blockBnc | Category.blockGlue | Category.blockBreak
+	static let blockMtl: UInt32			= 0b1000
+	static let blockBnc: UInt32			= 0b10000
+	static let blockGlue: UInt32		= 0b100000
+	static let blockBreak: UInt32		= 0b1000000
+	static let blocks: UInt32 = Category.blockMtl | Category.blockBnc | Category.blockGlue | Category.blockBreak
 	
-	static let springTool: UInt32   = 0b100000000
-	static let glueTool: UInt32     = 0b1000000000
-	static let fanTool: UInt32      = 0b10000000000
-	static let gravityTool: UInt32  = 0b100000000000
-	static let bombTool: UInt32     = 0b1000000000000
-	static let tools: UInt32		= Category.springTool | Category.glueTool | Category.fanTool | Category.gravityTool | Category.bombTool
+	static let springTool: UInt32		= 0b100000000
+	static let glueTool: UInt32			= 0b1000000000
+	static let fanTool: UInt32			= 0b10000000000
+	static let gravityTool: UInt32		= 0b100000000000
+	static let bombTool: UInt32			= 0b1000000000000
+	static let tools: UInt32 = Category.springTool | Category.glueTool | Category.fanTool | Category.gravityTool | Category.bombTool
 	
-	static let fanGravityField: UInt32 = 0b10000000000000
-	static let fanDragField: UInt32 = 0b100000000000000
-	static let fields: UInt32		= Category.fanGravityField | Category.fanDragField
+	static let fanGravityField: UInt32	= 0b10000000000000
+	static let fanDragField: UInt32		= 0b100000000000000
+	static let fields: UInt32			= Category.fanGravityField | Category.fanDragField
 	
-	static let fan: UInt32			= 0b1000000000000000
+	static let fan: UInt32				= 0b1000000000000000
 	
-	static let speed: UInt32		= 0b10000000000000000
+	static let speed: UInt32			= 0b10000000000000000
+	static let secretTeleport: UInt32	= 0b100000000000000000
 	
 	static let all: UInt32 = UInt32.max
 }
@@ -105,6 +106,7 @@ class Level: SKScene, Reload {
 		// Bind controller to local variable
 		controller = childNode(withName: "//controller") as! ControllerNode
 		controller.setupRegion(scene: self) // Pass in scene for controller to use
+		
 		canon = controller.childNode(withName: "//canon") as! SKSpriteNode
 		
 		// Get canvas bounds in scene coordinates
@@ -251,8 +253,11 @@ class Level: SKScene, Reload {
         let rot = atan2(p3.y - p1.y, p3.x - p1.x) - atan2(p2.y - p1.y, p2.x - p1.x)
 		
         // Rotate controller, clamp zRotation
-        let newRot = controller.zRotation + rot
-        if !(newRot <= CGFloat(-90).degreesToRadians() || newRot >= CGFloat(90).degreesToRadians()) {
+        let newRot = CGFloat(Int(controller.zRotation + rot + 0.5))
+		
+		// Bit of room for label to display correctly
+        if !(newRot <= CGFloat(-91).degreesToRadians() || newRot >= CGFloat(90).degreesToRadians()) {
+			// Round rotation
             controller.zRotation += rot
         }
         
@@ -398,15 +403,15 @@ class Level: SKScene, Reload {
 	func endGame() {
 		
 	}
-    
+	
     //MARK: Touch Events
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
-            
+			
             // Get location of touch in different coordinate systems
             let location = touch.location(in: self)
 			let locationCam = touch.location(in: cameraNode)
-
+			
 			currentNode = node(at: location)
 			
 			if let toolIcon = currentNode as? ToolIcon {
@@ -461,11 +466,8 @@ class Level: SKScene, Reload {
 	
 	override func update(_ currentTime: TimeInterval) {
 		if let node = nodeToFollow {
-			if !node.physicsBody!.isResting {
-				moveCamera(with: node)
-			} else {
-				nodeToFollow = nil
-			}
+			moveCamera(with: node)
 		}
+		controller.updateAngle()
 	}
 }

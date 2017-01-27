@@ -30,6 +30,8 @@ class ToolNode: SKSpriteNode, CanBeFired {
 	
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+		
+		
     }
 	
 	func engage(_ controller: ControllerNode) {
@@ -61,6 +63,9 @@ class ToolNode: SKSpriteNode, CanBeFired {
 		isEngaged = false
 		controller.isOccupied = false
 		removeAction(forKey: "rotate")
+		
+		let timer = Timer(timeInterval: 10, target: self, selector: #selector(smash), userInfo: nil, repeats: false)
+		RunLoop.current.add(timer, forMode: RunLoopMode.defaultRunLoopMode)
 	}
 	func setupPhysics() {
 		physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
@@ -76,7 +81,6 @@ class ToolNode: SKSpriteNode, CanBeFired {
 
 	func smash() {
 		removeFromParent()
-		
 		//TO DO: play sound and particle
 	}
 }
