@@ -58,6 +58,8 @@
 		38CE1C191E386B5D00B646DB /* Level2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38CE1C151E386B5D00B646DB /* Level2.sks */; };
 		38CE1C1A1E386B5D00B646DB /* Level3.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38CE1C161E386B5D00B646DB /* Level3.sks */; };
 		38CE1C1B1E386B5D00B646DB /* Level3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CE1C171E386B5D00B646DB /* Level3.swift */; };
+		38D0C2C21E3AC15B00E643DD /* Level5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D0C2C01E3AC15B00E643DD /* Level5.swift */; };
+		38D0C2C41E3AC17500E643DD /* Level5.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38D0C2C31E3AC17500E643DD /* Level5.sks */; };
 		38D0E00C1E39D2DB00B9A341 /* Level4.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38D0E00B1E39D2DB00B9A341 /* Level4.sks */; };
 		38D0E00E1E39D45000B9A341 /* Level4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D0E00D1E39D45000B9A341 /* Level4.swift */; };
 		38E4B5B31E370A0A00C798C0 /* GlueToolIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4B5AF1E370A0A00C798C0 /* GlueToolIcon.swift */; };
@@ -140,6 +142,8 @@
 		38CE1C151E386B5D00B646DB /* Level2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2.sks; sourceTree = "<group>"; };
 		38CE1C161E386B5D00B646DB /* Level3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level3.sks; sourceTree = "<group>"; };
 		38CE1C171E386B5D00B646DB /* Level3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level3.swift; sourceTree = "<group>"; };
+		38D0C2C01E3AC15B00E643DD /* Level5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level5.swift; sourceTree = "<group>"; };
+		38D0C2C31E3AC17500E643DD /* Level5.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level5.sks; sourceTree = "<group>"; };
 		38D0E00B1E39D2DB00B9A341 /* Level4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level4.sks; sourceTree = "<group>"; };
 		38D0E00D1E39D45000B9A341 /* Level4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level4.swift; sourceTree = "<group>"; };
 		38E4B5AF1E370A0A00C798C0 /* GlueToolIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlueToolIcon.swift; sourceTree = "<group>"; };
@@ -261,6 +265,8 @@
 				38CE1C171E386B5D00B646DB /* Level3.swift */,
 				38D0E00B1E39D2DB00B9A341 /* Level4.sks */,
 				38D0E00D1E39D45000B9A341 /* Level4.swift */,
+				38D0C2C31E3AC17500E643DD /* Level5.sks */,
+				38D0C2C01E3AC15B00E643DD /* Level5.swift */,
 			);
 			path = Levels;
 			sourceTree = "<group>";
@@ -464,6 +470,7 @@
 				38B6494B1E38AC9B00479469 /* FanRef.sks in Resources */,
 				383CA9841E1DD61100F8B998 /* Main.storyboard in Resources */,
 				38B649451E3890F800479469 /* BlockGlue.sks in Resources */,
+				38D0C2C41E3AC17500E643DD /* Level5.sks in Resources */,
 				38E50CEF1E39D926007437E7 /* BombFuse.sks in Resources */,
 				38F7B1EF1E38348600A62956 /* LockRef.sks in Resources */,
 				38C44B481E39BA6D004B76B6 /* GravityRef.sks in Resources */,
@@ -511,6 +518,7 @@
 				38017A311E35DEE20051EEE0 /* BlockMtlNode.swift in Sources */,
 				38D0E00E1E39D45000B9A341 /* Level4.swift in Sources */,
 				38E4B5B61E370A0A00C798C0 /* ToolIcon.swift in Sources */,
+				38D0C2C21E3AC15B00E643DD /* Level5.swift in Sources */,
 				387105EC1E35844E002D010A /* LockNode.swift in Sources */,
 				38E4B5BA1E370AF500C798C0 /* GravityToolIcon.swift in Sources */,
 				383CA9641E1DD4F500F8B998 /* AppDelegate.swift in Sources */,
