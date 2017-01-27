@@ -87,6 +87,9 @@
 		38EEC9071E3ACF1D00931A7D /* BlockGlu1Fan.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38EEC9061E3ACF1D00931A7D /* BlockGlu1Fan.sks */; };
 		38F40FE21E3B120500A0A469 /* SpeedNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F40FE11E3B120500A0A469 /* SpeedNode.swift */; };
 		38F40FE41E3B12C500A0A469 /* SpeedRef.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38F40FE31E3B12C500A0A469 /* SpeedRef.sks */; };
+		38F40FE61E3B271300A0A469 /* Level8.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38F40FE51E3B271300A0A469 /* Level8.sks */; };
+		38F40FE81E3B272400A0A469 /* Level8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F40FE71E3B272400A0A469 /* Level8.swift */; };
+		38F40FEA1E3B28CE00A0A469 /* Row4BlockMtlGrav.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38F40FE91E3B28CE00A0A469 /* Row4BlockMtlGrav.sks */; };
 		38F7B1E91E38243300A62956 /* ControllerRef.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38F7B1E81E38243300A62956 /* ControllerRef.sks */; };
 		38F7B1ED1E38342400A62956 /* KeyRef.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38F7B1EC1E38342400A62956 /* KeyRef.sks */; };
 		38F7B1EF1E38348600A62956 /* LockRef.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38F7B1EE1E38348600A62956 /* LockRef.sks */; };
@@ -180,6 +183,9 @@
 		38EEC9061E3ACF1D00931A7D /* BlockGlu1Fan.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockGlu1Fan.sks; sourceTree = "<group>"; };
 		38F40FE11E3B120500A0A469 /* SpeedNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeedNode.swift; sourceTree = "<group>"; };
 		38F40FE31E3B12C500A0A469 /* SpeedRef.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SpeedRef.sks; sourceTree = "<group>"; };
+		38F40FE51E3B271300A0A469 /* Level8.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level8.sks; sourceTree = "<group>"; };
+		38F40FE71E3B272400A0A469 /* Level8.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level8.swift; sourceTree = "<group>"; };
+		38F40FE91E3B28CE00A0A469 /* Row4BlockMtlGrav.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row4BlockMtlGrav.sks; sourceTree = "<group>"; };
 		38F7B1E81E38243300A62956 /* ControllerRef.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ControllerRef.sks; sourceTree = "<group>"; };
 		38F7B1EC1E38342400A62956 /* KeyRef.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = KeyRef.sks; sourceTree = "<group>"; };
 		38F7B1EE1E38348600A62956 /* LockRef.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LockRef.sks; sourceTree = "<group>"; };
@@ -290,6 +296,8 @@
 				385499831E3AC822005DD671 /* Level6.swift */,
 				382368FF1E3B091D00EFC307 /* Level7.sks */,
 				382369011E3B0A2C00EFC307 /* Level7.swift */,
+				38F40FE51E3B271300A0A469 /* Level8.sks */,
+				38F40FE71E3B272400A0A469 /* Level8.swift */,
 			);
 			path = Levels;
 			sourceTree = "<group>";
@@ -378,6 +386,7 @@
 				38CE1C051E38597400B646DB /* BlockBnc.sks */,
 				38E50CF01E39DB2F007437E7 /* BlockBrk.sks */,
 				38CE1C081E38597400B646DB /* Row4BlockMtl.sks */,
+				38F40FE91E3B28CE00A0A469 /* Row4BlockMtlGrav.sks */,
 				38CE1C071E38597400B646DB /* Row4BlockBnc.sks */,
 				38E50CF41E39E2AE007437E7 /* Row4BlockBreak.sks */,
 				382369031E3B0D3800EFC307 /* Row8BlockBreak.sks */,
@@ -506,8 +515,10 @@
 				38F7B1EF1E38348600A62956 /* LockRef.sks in Resources */,
 				38C44B481E39BA6D004B76B6 /* GravityRef.sks in Resources */,
 				38017A2F1E35DC160051EEE0 /* Assets.xcassets in Resources */,
+				38F40FEA1E3B28CE00A0A469 /* Row4BlockMtlGrav.sks in Resources */,
 				38F40FE41E3B12C500A0A469 /* SpeedRef.sks in Resources */,
 				38E4B5C21E37106700C798C0 /* BombTool.sks in Resources */,
+				38F40FE61E3B271300A0A469 /* Level8.sks in Resources */,
 				38017A2E1E35DC160051EEE0 /* Smash.sks in Resources */,
 				388514021E36EFA20092F058 /* ToolBox.sks in Resources */,
 				38CE1C111E38599B00B646DB /* Canvas-Purple.sks in Resources */,
@@ -551,6 +562,7 @@
 				383CA97B1E1DD5E600F8B998 /* GameViewController.swift in Sources */,
 				38017A311E35DEE20051EEE0 /* BlockMtlNode.swift in Sources */,
 				38D0E00E1E39D45000B9A341 /* Level4.swift in Sources */,
+				38F40FE81E3B272400A0A469 /* Level8.swift in Sources */,
 				38E4B5B61E370A0A00C798C0 /* ToolIcon.swift in Sources */,
 				38D0C2C21E3AC15B00E643DD /* Level5.swift in Sources */,
 				385499841E3AC822005DD671 /* Level6.swift in Sources */,

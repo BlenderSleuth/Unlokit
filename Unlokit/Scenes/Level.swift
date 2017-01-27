@@ -273,26 +273,12 @@ class Level: SKScene, Reload {
 		if node.parent == nil {
 			nodeToFollow = nil
 			let point = CGPoint(x: size.width / 2, y: size.height / 2)
-			let action = SKAction.move(to: point, duration: 1)
-			action.timingMode = .easeInEaseOut
-			cameraNode.run(action, withKey: "cameraMove")
+			let move = SKAction.move(to: point, duration: 1)
+			move.timingMode = .easeInEaseOut
+			cameraNode.run(SKAction.sequence([SKAction.wait(forDuration: 2), move]), withKey: "cameraMove")
 		}
 		
-		/*
-		let cameraTarget = convert(player.position, from: fgNode)
-		var targetPosition = CGPoint(x: getCameraPosition().x, y: cameraTarget.y - (scene!.view!.bounds.height * 0.4))
-		
-		let lavaPos = convert(lava.position, from: fgNode)
-		targetPosition.y = max(targetPosition.y, lavaPos.y)
-		
-		let diff = targetPosition - getCameraPosition()
-		
-		let lerpValue: CGFloat = 0.2
-		let lerpDiff = diff * lerpValue
-		let newPosition = getCameraPosition() + lerpDiff
-		
-		setCameraPosition(CGPoint(x: size.width / 2, y: newPosition.y))
-		*/
+		// TO DO: lerp more
 		let cameraTarget = node.position
 		let targetPosition = CGPoint(x: cameraNode.position.x, y: cameraTarget.y - (scene!.view!.bounds.height * 0.4))
 		
