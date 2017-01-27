@@ -63,7 +63,7 @@ class FireButtonNode: SKSpriteNode {
         blueCircle.isHidden = !pressed
     }
     
-	private func fire() {
+	private func fire(scene: Level) {
 		// Make sure object is not nil and is SKSpriteNode
 		guard let sprite = objectToFire as? SKSpriteNode else {
 			return
@@ -94,6 +94,9 @@ class FireButtonNode: SKSpriteNode {
 		let recoilAction = SKAction.sequence([SKAction.moveBy(x: 0, y: -70, duration: 0.03), SKAction.moveBy(x: 0, y: 70, duration: 0.2)])
 		canon.run(recoilAction)// Make canon recoil
 		objectToFire = nil
+		
+		// So camera can follow the sprite
+		scene.nodeToFollow = sprite
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -103,7 +106,9 @@ class FireButtonNode: SKSpriteNode {
 	}
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         press()
-		fire()
+		if let scn = scene as? Level {
+			fire(scene: scn)
+		}
     }
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         press()

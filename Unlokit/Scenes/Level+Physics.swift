@@ -159,14 +159,10 @@ extension Level: SKPhysicsContactDelegate {
 				let speed = getNode(for: Category.speed, type: SpeedNode.self, contact: contact)
 				let tool = getOtherNode(for: speed, type: SKSpriteNode.self, contact: contact)
 				
-				// Add particles
-				let emitter = SKEmitterNode(fileNamed: "BombFuse")!
-				emitter.zPosition = 10
-				emitter.targetNode = self
-				tool.addChild(emitter)
+				// TO DO: Add particles
 				
 				// Make tool go higher
-				tool.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 10))
+				tool.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 20))
 			}
 		}
 	}

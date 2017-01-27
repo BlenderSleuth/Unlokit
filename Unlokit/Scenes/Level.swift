@@ -83,6 +83,9 @@ class Level: SKScene, Reload {
 	
 	var start: start!
 	
+	// For camera following
+	var nodeToFollow: SKSpriteNode?
+	
 	// Preloading textures
 	var fanFrames: SKTextureAtlas!
 	
@@ -257,12 +260,50 @@ class Level: SKScene, Reload {
         //fireNode.angle = Float(newRot) + Float(90).degreesToRadians()
     }
     func moveCamera(to location: CGPoint) {
+		camera?.removeAction(forKey: "cameraMove")
         // Get the delta vector
         let vector = lastTouchCam - location
         
         // Add to camera node position
         cameraNode.position += vector
     }
+	
+	func moveCamera(with node: SKSpriteNode) {
+		// Check if the node is gone
+		if node.parent == nil {
+			nodeToFollow = nil
+			let point = CGPoint(x: size.width / 2, y: size.height / 2)
+			let action = SKAction.move(to: point, duration: 1)
+			action.timingMode = .easeInEaseOut
+			cameraNode.run(action, withKey: "cameraMove")
+		}
+		
+		/*
+		let cameraTarget = convert(player.position, from: fgNode)
+		var targetPosition = CGPoint(x: getCameraPosition().x, y: cameraTarget.y - (scene!.view!.bounds.height * 0.4))
+		
+		let lavaPos = convert(lava.position, from: fgNode)
+		targetPosition.y = max(targetPosition.y, lavaPos.y)
+		
+		let diff = targetPosition - getCameraPosition()
+		
+		let lerpValue: CGFloat = 0.2
+		let lerpDiff = diff * lerpValue
+		let newPosition = getCameraPosition() + lerpDiff
+		
+		setCameraPosition(CGPoint(x: size.width / 2, y: newPosition.y))
+		*/
+		let cameraTarget = node.position
+		let targetPosition = CGPoint(x: cameraNode.position.x, y: cameraTarget.y - (scene!.view!.bounds.height * 0.4))
+		
+		let diff = targetPosition - cameraNode.position
+		
+		let lerpValue: CGFloat = 0.2
+		let lerpDiff = diff * lerpValue
+		let newPosition = cameraNode.position + lerpDiff
+		
+		cameraNode.position = newPosition
+	}
 	
 	// Function to return correct node, different methods of sorting
     func node(at point: CGPoint) -> SKNode {
@@ -431,4 +472,10 @@ class Level: SKScene, Reload {
             currentNode = nil
         }
     }
+	
+	override func update(_ currentTime: TimeInterval) {
+		if let node = nodeToFollow {
+			moveCamera(with: node)
+		}
+	}
 }
