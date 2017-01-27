@@ -1,5 +1,5 @@
 //
-//  Level8.swift
+//  Level9.swift
 //  Unlokit
 //
 //  Created by Ben Sutherland on 29/12/2016.
@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class Level8: Level {
+class Level9: Level {
 	// Set number of tools for level
 	override func setupToolsForLevel() {
 		for (type, tool) in toolIcons {

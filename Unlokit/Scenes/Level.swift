@@ -461,7 +461,11 @@ class Level: SKScene, Reload {
 	
 	override func update(_ currentTime: TimeInterval) {
 		if let node = nodeToFollow {
-			moveCamera(with: node)
+			if !node.physicsBody!.isResting {
+				moveCamera(with: node)
+			} else {
+				nodeToFollow = nil
+			}
 		}
 	}
 }

@@ -10,7 +10,7 @@ import SpriteKit
 
 class GravityNode: SKSpriteNode {
 	
-	let radius: CGFloat = 300
+	let radius: CGFloat = 500
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
@@ -33,7 +33,7 @@ class GravityNode: SKSpriteNode {
 		let field = SKFieldNode.radialGravityField()
 		field.region = fieldRegion
 		field.strength = 650
-		field.falloff = 0.02
+		field.falloff = 2
 		field.categoryBitMask = Category.fanGravityField
 		addChild(field)
 		
