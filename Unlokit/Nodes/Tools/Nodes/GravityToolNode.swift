@@ -21,5 +21,6 @@ class GravityToolNode: ToolNode {
 		
 		physicsBody?.categoryBitMask = Category.gravityTool
 		physicsBody?.contactTestBitMask = Category.bounds | Category.blockMtl | Category.blockGlue
+		physicsBody?.collisionBitMask = Category.all ^ Category.speed // All except speed
 	}
 }

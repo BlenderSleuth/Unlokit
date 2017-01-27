@@ -20,7 +20,7 @@ class GameViewController: UIViewController, start {
 	
 	func startNewGame() {
 		// Check for skView,             load scene from file
-		if let skView = view as? SKView, let scene = Level6(fileNamed: "Level6") {
+		if let skView = view as? SKView, let scene = Level7(fileNamed: "Level7") {
 			self.scene = scene
 			scene.start = self
 			
@@ -39,7 +39,6 @@ class GameViewController: UIViewController, start {
 			//TO DO:
 			skView.ignoresSiblingOrder = true
 			
-			// Causes memory leak...
 			//skView.showsPhysics = true
 		}
 	}

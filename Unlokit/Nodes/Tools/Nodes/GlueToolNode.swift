@@ -21,6 +21,6 @@ class GlueToolNode: ToolNode {
 		
 		physicsBody?.categoryBitMask = Category.glueTool
 		physicsBody?.contactTestBitMask = Category.bounds | Category.blockMtl | Category.blockBreak
-		physicsBody?.collisionBitMask = Category.all
+		physicsBody?.collisionBitMask = Category.all ^ Category.speed // All except speed
 	}
 }

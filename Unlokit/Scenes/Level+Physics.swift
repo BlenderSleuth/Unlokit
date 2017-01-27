@@ -90,9 +90,15 @@ extension Level: SKPhysicsContactDelegate {
 		case Category.fanTool | Category.blockMtl:
 			let fanTool = getNode(for: Category.fanTool, type: FanToolNode.self, contact: contact)
 			fanTool.smash()
+		case Category.fan | Category.bombTool:
+			let fan = getNode(for: Category.fan, type: FanNode.self, contact: contact)
+			let bomb = getNode(for: Category.bombTool, type: BombToolNode.self, contact: contact)
+			
+			fan.removeFromParent()
+			bomb.explode(scene: self)
 		default:
 			// Custom checks, more efficient sometimes
-			if Category.tools & collision != 0 && collision & Category.bounds != 0 {
+			if collision & Category.tools != 0 && collision & Category.bounds != 0 {
 				let bounds = getNode(for: Category.bounds, type: SKSpriteNode.self, contact: contact)
 				let tool = getOtherNode(for: bounds, type: ToolNode.self, contact: contact)
 				
@@ -114,7 +120,7 @@ extension Level: SKPhysicsContactDelegate {
 				let block = getNode(for: Category.blockBnc, type: BlockNode.self, contact: contact)
 				block.bounce(side: block.getSide(contact: contact))
 			
-			} else if collision & Category.blockMtl | Category.blockBreak != 0 && collision & Category.glueTool != 0 {
+			} else if collision & (Category.blockMtl | Category.blockBreak) != 0 && collision & Category.glueTool != 0 {
 				let glue = getNode(for: Category.glueTool, type: GlueToolNode.self, contact: contact)
 				let block = getOtherNode(for: glue, type: BlockNode.self, contact: contact)
 				
@@ -131,7 +137,7 @@ extension Level: SKPhysicsContactDelegate {
 				let side = blockGlue.getSide(contact: contact)
 				blockGlue.bounce(side: side)
 				
-			} else if collision & Category.blockMtl | Category.blockBreak != 0 && collision & Category.springTool != 0 {
+			} else if collision & (Category.blockMtl | Category.blockBreak) != 0 && collision & Category.springTool != 0 {
 				let spring = getNode(for: Category.springTool, type: SpringToolNode.self, contact: contact)
 				let block = getOtherNode(for: spring, type: BlockNode.self, contact: contact)
 				
@@ -148,6 +154,19 @@ extension Level: SKPhysicsContactDelegate {
 				let side = blockGlue.getSide(contact: contact)
 				blockGlue.bounce(side: side)
 				
+			// Check for all tools/key and speed node
+			} else if collision & Category.tools | Category.key != 0 && collision & Category.speed != 0 {
+				let speed = getNode(for: Category.speed, type: SpeedNode.self, contact: contact)
+				let tool = getOtherNode(for: speed, type: SKSpriteNode.self, contact: contact)
+				
+				// Add particles
+				let emitter = SKEmitterNode(fileNamed: "BombFuse")!
+				emitter.zPosition = 10
+				emitter.targetNode = self
+				tool.addChild(emitter)
+				
+				// Make tool go higher
+				tool.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 10))
 			}
 		}
 	}

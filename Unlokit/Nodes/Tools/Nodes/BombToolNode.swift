@@ -20,6 +20,7 @@ class BombToolNode: ToolNode {
 		
 		physicsBody?.categoryBitMask = Category.bombTool
 		physicsBody?.contactTestBitMask = Category.bounds | Category.blockMtl | Category.blockGlue | Category.blockBreak
+		physicsBody?.collisionBitMask = Category.all ^ Category.speed // All except speed
 	}
 	
 	func setupFuse(scene: SKScene) {
@@ -27,11 +28,15 @@ class BombToolNode: ToolNode {
 	}
 	
 	func explode(scene: SKScene) {
+		// Check if this is the first explosion
+		if parent == nil {
+			return
+		}
+		
 		// TO DO: add sound
 		let emitter = SKEmitterNode(fileNamed: "BombExplode")!
 		emitter.position = scene.convert(position, from: self.parent!)
 		scene.addChild(emitter)
-		
 		removeFromParent()
 	}
 }

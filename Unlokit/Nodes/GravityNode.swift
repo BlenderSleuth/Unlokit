@@ -29,7 +29,7 @@ class GravityNode: SKSpriteNode {
 		let field = SKFieldNode.radialGravityField()
 		field.region = fieldRegion
 		field.strength = 750
-		field.categoryBitMask = Category.gravityField
+		field.categoryBitMask = Category.fanGravityField
 		addChild(field)
 		
 		// Debug node

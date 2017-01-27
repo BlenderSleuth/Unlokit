@@ -40,16 +40,23 @@ class FanNode: SKSpriteNode {
 		gravityField.falloff = 0.1
 		gravityField.strength = fieldStrength
 		gravityField.region = region
-		
-		gravityField.categoryBitMask = Category.fanField
+		//gravityField.isEnabled = false
+		gravityField.categoryBitMask = Category.fanGravityField
 		addChild(gravityField)
 		
 		dragField = SKFieldNode.dragField()
 		dragField.region = region
 		dragField.strength = 0.01
+		//dragField.isEnabled = false
+		dragField.categoryBitMask = Category.fanDragField
 		addChild(dragField)
 		
 		emitter = self.childNode(withName: "emitter")?.children.first as! SKEmitterNode
+		
+		physicsBody? = SKPhysicsBody(edgeLoopFrom: frame)
+		physicsBody?.categoryBitMask = Category.fan
+		physicsBody?.contactTestBitMask = Category.bombTool
+		physicsBody?.collisionBitMask = Category.all
 		
 		// Debug node
 		let debugNode = SKShapeNode(rect: fieldRect)
