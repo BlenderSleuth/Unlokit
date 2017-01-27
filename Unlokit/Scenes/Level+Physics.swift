@@ -20,7 +20,7 @@ extension Level: SKPhysicsContactDelegate {
 			let lock = getNode(for: Category.lock, type: LockNode.self, contact: contact)
 			
 			key.lock(lock)
-		case Category.blockMtl | Category.key, Category.bounds | Category.key:
+		case Category.blockMtl | Category.key, Category.bounds | Category.key, Category.blockBreak | Category.key:
 			let key = getNode(for: Category.key, type: KeyNode.self, contact: contact)
 			
 			key.smash()
@@ -91,7 +91,7 @@ extension Level: SKPhysicsContactDelegate {
 			let fanTool = getNode(for: Category.fanTool, type: FanToolNode.self, contact: contact)
 			fanTool.smash()
 		default:
-			// Custom checks, more efficient
+			// Custom checks, more efficient sometimes
 			if Category.tools & collision != 0 && collision & Category.bounds != 0 {
 				let bounds = getNode(for: Category.bounds, type: SKSpriteNode.self, contact: contact)
 				let tool = getOtherNode(for: bounds, type: ToolNode.self, contact: contact)
@@ -113,7 +113,7 @@ extension Level: SKPhysicsContactDelegate {
 			} else if Category.blockBnc & collision != 0 {
 				let block = getNode(for: Category.blockBnc, type: BlockNode.self, contact: contact)
 				block.bounce(side: block.getSide(contact: contact))
-			//		if
+			
 			} else if collision & Category.blockMtl | Category.blockBreak != 0 && collision & Category.glueTool != 0 {
 				let glue = getNode(for: Category.glueTool, type: GlueToolNode.self, contact: contact)
 				let block = getOtherNode(for: glue, type: BlockNode.self, contact: contact)

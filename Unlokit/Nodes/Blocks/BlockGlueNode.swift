@@ -17,18 +17,24 @@ class BlockGlueNode: BlockNode {
 		super.init(coder: aDecoder)
 		physicsBody?.categoryBitMask = Category.blockGlue
 	}
+	
 	func checkConnected(scene: Level) {
 		for child in children {
 			// Modify connected array to include pre-added nodes
+			var side: Side?
 			switch child.position {
 			case up:
 				connected[.up] = true
+				side = .up
 			case down:
 				connected[.down] = true
+				side = .down
 			case left:
 				connected[.left] = true
+				side = .left
 			case right:
 				connected[.right] = true
+				side = .right
 			case CGPoint.zero:
 				// for gravity
 				for side in Side.all {
@@ -37,19 +43,24 @@ class BlockGlueNode: BlockNode {
 			default:
 				break
 			}
-			if let ref = child as? SKReferenceNode {
-				if let node = ref.children.first?.children.first {
-					
-					if let fan = node as? FanNode {
-						// Setup fan
-						fan.field.zRotation += CGFloat(180).degreesToRadians()
-						fan.field.direction = vector_float3(0,-10,0)
-						fan.setupParticles(scene: scene)
-						fan.animate(framesAtlas: scene.fanFrames)
-					}
-					node.move(toParent: self)
-					ref.removeFromParent()
-				}
+			
+			if child.name == "fan" {
+				connected[side!] = nil // Make sure side is nil
+				
+				// Get fan node from file
+				let fanNode = SKNode(fileNamed: "FanRef")?.children.first as! FanNode
+				fanNode.removeFromParent()
+				
+				// Fix fields, break them again... :/
+				fanNode.gravityField.zRotation += CGFloat(180).degreesToRadians()
+				fanNode.gravityField.direction = vector_float3(0,-1,0)
+				fanNode.dragField.zRotation += CGFloat(180).degreesToRadians()
+				
+				fanNode.animate(framesAtlas: scene.fanFrames)
+				fanNode.setupParticles(scene: scene)
+				
+				add(node: fanNode, to: side!)
+				child.removeFromParent()
 			}
 		}
 	}

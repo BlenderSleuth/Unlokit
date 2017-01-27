@@ -10,12 +10,13 @@ import SpriteKit
 
 class FanNode: SKSpriteNode {
 	
-	var field: SKFieldNode!
+	var gravityField: SKFieldNode!
+	var dragField: SKFieldNode!
 	private var emitter: SKEmitterNode!
 	
-	var fieldStrength: Float = 50 {
+	var fieldStrength: Float = 60 {
 		didSet {
-			field.strength = fieldStrength
+			gravityField.strength = fieldStrength
 			emitter.yAcceleration = CGFloat(fieldStrength * 2)
 		}
 	}
@@ -23,23 +24,30 @@ class FanNode: SKSpriteNode {
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		// Rectangular field
-		let fieldSize = CGSize(width: frame.width, height: frame.height * 40)
+		let fieldSize = CGSize(width: frame.width, height: frame.height * 35)
 		let fieldOrigin = CGPoint(x: -frame.width / 2, y: 0)
 		let fieldRect = CGRect(origin: fieldOrigin, size: fieldSize)
 		
 		let regionPath = CGPath(rect: fieldRect, transform: nil)
+		let region = SKRegion(path: regionPath)
 		
 		// Positive Y, adjust with field strength
 		let vector: vector_float3 = vector_float3(0,1,0)
 		
-		field = SKFieldNode.linearGravityField(withVector: vector)
+		gravityField = SKFieldNode.linearGravityField(withVector: vector)
 		//field = childNode(withName: "field") as! SKFieldNode
 		//field.direction = vector
-		field.strength = fieldStrength
-		field.region = SKRegion(path: regionPath)
+		gravityField.falloff = 0.1
+		gravityField.strength = fieldStrength
+		gravityField.region = region
 		
-		field.categoryBitMask = Category.fanField
-		addChild(field)
+		gravityField.categoryBitMask = Category.fanField
+		addChild(gravityField)
+		
+		dragField = SKFieldNode.dragField()
+		dragField.region = region
+		dragField.strength = 0.01
+		addChild(dragField)
 		
 		emitter = self.childNode(withName: "emitter")?.children.first as! SKEmitterNode
 		
@@ -52,7 +60,6 @@ class FanNode: SKSpriteNode {
 	
 	func setupParticles(scene: SKScene) {
 		// Set emitter target
-		field.position = CGPoint.zero
 		emitter.targetNode = scene
 		emitter.fieldBitMask = Category.zero
 	}
