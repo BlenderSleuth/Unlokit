@@ -101,7 +101,7 @@ class BlockNode: SKSpriteNode {
 		return blockBnc
 	}
 	func glueVersion() -> BlockGlueNode {
-		let blockGlue = SKNode(fileNamed: "BlockGlue")?.children.first as! BlockGlueNode
+		let blockGlue = SKNode(fileNamed: "BlockGlu")?.children.first as! BlockGlueNode
 		blockGlue.removeFromParent()
 		blockGlue.position = position
 		blockGlue.zPosition = zPosition

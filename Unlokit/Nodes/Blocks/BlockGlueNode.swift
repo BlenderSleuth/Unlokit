@@ -16,10 +16,42 @@ class BlockGlueNode: BlockNode {
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		physicsBody?.categoryBitMask = Category.blockGlue
-		checkConnected()
 	}
-	func checkConnected() {
-		
+	func checkConnected(scene: Level) {
+		for child in children {
+			// Modify connected array to include pre-added nodes
+			switch child.position {
+			case up:
+				connected[.up] = true
+			case down:
+				connected[.down] = true
+			case left:
+				connected[.left] = true
+			case right:
+				connected[.right] = true
+			case CGPoint.zero:
+				// for gravity
+				for side in Side.all {
+					connected[side] = true
+				}
+			default:
+				break
+			}
+			if let ref = child as? SKReferenceNode {
+				if let node = ref.children.first?.children.first {
+					
+					if let fan = node as? FanNode {
+						// Setup fan
+						fan.field.zRotation += CGFloat(180).degreesToRadians()
+						fan.field.direction = vector_float3(0,-10,0)
+						fan.setupParticles(scene: scene)
+						fan.animate(framesAtlas: scene.fanFrames)
+					}
+					node.move(toParent: self)
+					ref.removeFromParent()
+				}
+			}
+		}
 	}
 	
 	// Add a node, based on side

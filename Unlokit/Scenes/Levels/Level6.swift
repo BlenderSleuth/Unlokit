@@ -1,5 +1,5 @@
 //
-//  Level5.swift
+//  Level6.swift
 //  Unlokit
 //
 //  Created by Ben Sutherland on 29/12/2016.
@@ -8,15 +8,15 @@
 
 import SpriteKit
 
-class Level5: Level {
+class Level6: Level {
 	// Set number of tools for level
 	override func setupToolsForLevel() {
 		for (type, tool) in toolIcons {
 			switch type {
 			case .spring:
-				tool.number = 6
-			case .bomb:
 				tool.number = 4
+			case .bomb:
+				tool.number = 6
 			case .glue:
 				tool.number = 0
 			case .fan:

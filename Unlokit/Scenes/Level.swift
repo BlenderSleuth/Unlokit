@@ -82,12 +82,16 @@ class Level: SKScene, Reload {
 	// Preloading textures
 	var fanFrames: SKTextureAtlas!
 	
+	// Array of blocks
+	var blocks = [BlockNode]()
+	
 	//MARK: Setup
     override func didMove(to view: SKView) {
 		setupNodes()
 		setupCamera()
         setupTools()
 		setupTextures()
+		setupBlocks()
 		physicsWorld.contactDelegate = self
     }
 	func setupNodes() {
@@ -222,6 +226,12 @@ class Level: SKScene, Reload {
 		fanFrames = SKTextureAtlas(named: "FanFrames")
 		fanFrames.preload {
 			print("loaded textures")
+		}
+	}
+	func setupBlocks() {
+		enumerateChildNodes(withName: "//blockGlue") { node, _ in
+			let block = node as! BlockGlueNode
+			block.checkConnected(scene: self)
 		}
 	}
 	
