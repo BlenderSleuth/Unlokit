@@ -35,7 +35,7 @@
 		385499861E3ACAF9005DD671 /* Row4BlockMtl2Fan.sks in Resources */ = {isa = PBXBuildFile; fileRef = 385499851E3ACAF9005DD671 /* Row4BlockMtl2Fan.sks */; };
 		38650F541E25F6A500401ABD /* FireButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38650F531E25F6A500401ABD /* FireButtonNode.swift */; };
 		387105EC1E35844E002D010A /* LockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387105EB1E35844E002D010A /* LockNode.swift */; };
-		387105F31E359640002D010A /* AudioUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387105F21E359640002D010A /* AudioUtils.swift */; };
+		387105F31E359640002D010A /* SoundFX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387105F21E359640002D010A /* SoundFX.swift */; };
 		387105F51E359CA4002D010A /* ReplayButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387105F41E359CA4002D010A /* ReplayButtonNode.swift */; };
 		38792B6F1E3B330E00421250 /* Level10.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38792B6E1E3B330E00421250 /* Level10.swift */; };
 		38792B711E3B334400421250 /* Level10.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38792B701E3B334400421250 /* Level10.sks */; };
@@ -92,6 +92,11 @@
 		38E6DA2F1E3BF2AA004F8A79 /* SecretTeleportNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E6DA2E1E3BF2AA004F8A79 /* SecretTeleportNode.swift */; };
 		38E6DA321E3BF95E004F8A79 /* Level8.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38E6DA301E3BF95E004F8A79 /* Level8.sks */; };
 		38E6DA331E3BF95E004F8A79 /* Level8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E6DA311E3BF95E004F8A79 /* Level8.swift */; };
+		38E6DA341E3C02E8004F8A79 /* Bounce1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 38AE07551E36199500D127D2 /* Bounce1.caf */; };
+		38E6DA351E3C02E8004F8A79 /* Bounce2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 38AE07561E36199500D127D2 /* Bounce2.caf */; };
+		38E6DA361E3C02E8004F8A79 /* Bounce3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 38AE07571E36199500D127D2 /* Bounce3.caf */; };
+		38E6DA371E3C02E8004F8A79 /* Bounce4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 38AE07581E36199500D127D2 /* Bounce4.caf */; };
+		38E6DA391E3C0A06004F8A79 /* Block.caf in Resources */ = {isa = PBXBuildFile; fileRef = 38E6DA381E3C0A06004F8A79 /* Block.caf */; };
 		38EEC9071E3ACF1D00931A7D /* BlockGlu1Fan.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38EEC9061E3ACF1D00931A7D /* BlockGlu1Fan.sks */; };
 		38F40FE21E3B120500A0A469 /* SpeedNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F40FE11E3B120500A0A469 /* SpeedNode.swift */; };
 		38F40FE41E3B12C500A0A469 /* SpeedRef.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38F40FE31E3B12C500A0A469 /* SpeedRef.sks */; };
@@ -135,7 +140,7 @@
 		385499851E3ACAF9005DD671 /* Row4BlockMtl2Fan.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row4BlockMtl2Fan.sks; sourceTree = "<group>"; };
 		38650F531E25F6A500401ABD /* FireButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireButtonNode.swift; sourceTree = "<group>"; };
 		387105EB1E35844E002D010A /* LockNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LockNode.swift; sourceTree = "<group>"; };
-		387105F21E359640002D010A /* AudioUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioUtils.swift; sourceTree = "<group>"; };
+		387105F21E359640002D010A /* SoundFX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundFX.swift; sourceTree = "<group>"; };
 		387105F41E359CA4002D010A /* ReplayButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplayButtonNode.swift; sourceTree = "<group>"; };
 		38792B6E1E3B330E00421250 /* Level10.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level10.swift; sourceTree = "<group>"; };
 		38792B701E3B334400421250 /* Level10.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level10.sks; sourceTree = "<group>"; };
@@ -196,6 +201,7 @@
 		38E6DA2E1E3BF2AA004F8A79 /* SecretTeleportNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecretTeleportNode.swift; sourceTree = "<group>"; };
 		38E6DA301E3BF95E004F8A79 /* Level8.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level8.sks; sourceTree = "<group>"; };
 		38E6DA311E3BF95E004F8A79 /* Level8.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level8.swift; sourceTree = "<group>"; };
+		38E6DA381E3C0A06004F8A79 /* Block.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Block.caf; sourceTree = "<group>"; };
 		38EEC9061E3ACF1D00931A7D /* BlockGlu1Fan.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockGlu1Fan.sks; sourceTree = "<group>"; };
 		38F40FE11E3B120500A0A469 /* SpeedNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeedNode.swift; sourceTree = "<group>"; };
 		38F40FE31E3B12C500A0A469 /* SpeedRef.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SpeedRef.sks; sourceTree = "<group>"; };
@@ -261,7 +267,7 @@
 				383CA9811E1DD61100F8B998 /* Main.storyboard */,
 				383CA9771E1DD5E600F8B998 /* GameViewController.swift */,
 				383CA97D1E1DD5F100F8B998 /* Utils.swift */,
-				387105F21E359640002D010A /* AudioUtils.swift */,
+				387105F21E359640002D010A /* SoundFX.swift */,
 				383CA96F1E1DD4F500F8B998 /* Info.plist */,
 			);
 			path = Unlokit;
@@ -333,6 +339,7 @@
 				38AE07581E36199500D127D2 /* Bounce4.caf */,
 				38AE07591E361DDC00D127D2 /* Lock.caf */,
 				38017A321E35DFD00051EEE0 /* Smash.caf */,
+				38E6DA381E3C0A06004F8A79 /* Block.caf */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -536,8 +543,11 @@
 				38B6494B1E38AC9B00479469 /* FanRef.sks in Resources */,
 				383CA9841E1DD61100F8B998 /* Main.storyboard in Resources */,
 				38B649451E3890F800479469 /* BlockGlu.sks in Resources */,
+				38E6DA371E3C02E8004F8A79 /* Bounce4.caf in Resources */,
 				38D0C2C41E3AC17500E643DD /* Level5.sks in Resources */,
+				38E6DA391E3C0A06004F8A79 /* Block.caf in Resources */,
 				38E50CEF1E39D926007437E7 /* BombFuse.sks in Resources */,
+				38E6DA361E3C02E8004F8A79 /* Bounce3.caf in Resources */,
 				38F7B1EF1E38348600A62956 /* LockRef.sks in Resources */,
 				38C44B481E39BA6D004B76B6 /* GravityRef.sks in Resources */,
 				38017A2F1E35DC160051EEE0 /* Assets.xcassets in Resources */,
@@ -555,6 +565,7 @@
 				38CE1C191E386B5D00B646DB /* Level2.sks in Resources */,
 				38A4F2C81E3B6EE300205B79 /* Row2Block2Fan.sks in Resources */,
 				38017A331E35E01B0051EEE0 /* Smash.caf in Resources */,
+				38E6DA351E3C02E8004F8A79 /* Bounce2.caf in Resources */,
 				3804F12D1E39FAEB007099AD /* BombExplode.sks in Resources */,
 				38EEC9071E3ACF1D00931A7D /* BlockGlu1Fan.sks in Resources */,
 				38CE1C1A1E386B5D00B646DB /* Level3.sks in Resources */,
@@ -562,6 +573,7 @@
 				38E50CF11E39DB2F007437E7 /* BlockBrk.sks in Resources */,
 				38C44B4A1E39CB9C004B76B6 /* BlockGlueGravity.sks in Resources */,
 				388514001E36EF440092F058 /* SpringTool.sks in Resources */,
+				38E6DA341E3C02E8004F8A79 /* Bounce1.caf in Resources */,
 				38CE1C091E38597400B646DB /* BlockBnc.sks in Resources */,
 				38CE1C101E38599B00B646DB /* Background-Purple.sks in Resources */,
 				38E50CF51E39E2AE007437E7 /* Row4BlockBreak.sks in Resources */,
@@ -610,7 +622,7 @@
 				38C50AF91E36AA0B00B4EE2A /* SpringToolNode.swift in Sources */,
 				38488EF81E35E4F000BCCFD6 /* BlockBncNode.swift in Sources */,
 				384ACEF31E347FE2004C3E93 /* KeyNode.swift in Sources */,
-				387105F31E359640002D010A /* AudioUtils.swift in Sources */,
+				387105F31E359640002D010A /* SoundFX.swift in Sources */,
 				381D5C8A1E394E3C0084E56E /* BlockNode.swift in Sources */,
 				38C50AF41E36A83600B4EE2A /* GlueToolNode.swift in Sources */,
 				38E6DA2F1E3BF2AA004F8A79 /* SecretTeleportNode.swift in Sources */,

@@ -84,6 +84,9 @@ class Level: SKScene, Reload {
 	
 	var start: start!
 	
+	// Audio
+	let soundFX = SoundFX.sharedInstance
+	
 	// For camera following
 	var nodeToFollow: SKSpriteNode?
 	

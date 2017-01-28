@@ -17,6 +17,8 @@ class KeyNode: SKSpriteNode, CanBeFired {
 	var animating = false
 	private var isGreyed = false
 	
+	let emitter = SKEmitterNode(fileNamed: "Smash")!
+	
 	// Initial key position, to return to
 	var startPosition: CGPoint!
 	
@@ -25,6 +27,8 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		
 		// Set position to start
 		startPosition = position
+		
+		emitter.isPaused = true
 	}
 	
 	func engage(_ controller: ControllerNode) {
@@ -79,16 +83,22 @@ class KeyNode: SKSpriteNode, CanBeFired {
 	}
 	
 	func smash() {
-		removeFromParent()
+		let wait = SKAction.wait(forDuration: 5)
+		let sound = SoundFX.sharedInstance["smash"]!
+		let group = SKAction.group([wait, sound])
 		
-		// TO DO: smash key
-		//SKTAudio.sharedInstance().playSoundEffect(filename: "Smash.caf")
-		
-		// Reload scene
-		if reloadable != nil {
-			reloadable.reload()
+		scene?.run(group) {
+			// Reload scene
+			if self.reloadable != nil {
+				self.reloadable.reload()
+			}
 		}
 		
+		emitter.isPaused = false
+		emitter.position = scene!.convert(position, from: parent!)
+		scene?.addChild(emitter)
+		
+		removeFromParent()
 	}
 	
 	func lock(_ lock: LockNode) {
@@ -103,8 +113,7 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		let group = SKAction.group([move, rotate])
 		run(group) {
 			self.removeAllActions()
-			//SKTAudio.sharedInstance().playSoundEffect(filename: "Lock.caf")
-			
+			self.run(SoundFX.sharedInstance["lock"]!)
 		}
 	}
 	

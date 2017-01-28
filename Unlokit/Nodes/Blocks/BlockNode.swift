@@ -90,6 +90,7 @@ class BlockNode: SKSpriteNode {
 			bounce.timingMode = .easeInEaseOut
 		}
 		run(bounce)
+		run(SoundFX.sharedInstance["block"]!)
 	}
 	
 	// Create version of self that has kind of bncNode

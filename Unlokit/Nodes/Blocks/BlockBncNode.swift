@@ -18,4 +18,11 @@ class BlockBncNode: BlockNode {
 		physicsBody?.categoryBitMask = Category.blockBnc
 		physicsBody?.contactTestBitMask = Category.tools | Category.key | Category.lock
 	}
+	
+	override func bounce(side: Side) {
+		super.bounce(side: side)
+		// Play random bounce sound effect
+		let random = arc4random_uniform(4)+1
+		run(SoundFX.sharedInstance["bounce\(random)"]!)
+	}
 }
