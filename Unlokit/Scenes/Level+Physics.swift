@@ -74,12 +74,11 @@ extension Level: SKPhysicsContactDelegate {
 			fanNode.removeFromParent()
 			
 			let side = block.getSide(contact: contact)
+			// Add to block
+			block.add(node: fanNode, to: side)
 			
 			// Setup fan
 			fanNode.setup(level: self, block: block, side: side)
-			
-			// Add to block
-			block.add(node: fanNode, to: side)
 		case Category.gravityTool | Category.blockGlue:
 			let gravityTool = getNode(for: Category.gravityTool, type: GravityToolNode.self, contact: contact)
 			let block = getNode(for: Category.blockGlue, type: BlockGlueNode.self, contact: contact)
@@ -91,7 +90,7 @@ extension Level: SKPhysicsContactDelegate {
 			
 		case Category.fanTool | Category.blockMtl:
 			let fanTool = getNode(for: Category.fanTool, type: FanToolNode.self, contact: contact)
-			fanTool.smash()
+			fanTool.smash(scene: self)
 		case Category.fan | Category.bombTool:
 			let fan = getNode(for: Category.fan, type: FanNode.self, contact: contact)
 			let bomb = getNode(for: Category.bombTool, type: BombToolNode.self, contact: contact)
@@ -108,7 +107,7 @@ extension Level: SKPhysicsContactDelegate {
 				let bounds = getNode(for: Category.bounds, type: SKSpriteNode.self, contact: contact)
 				let tool = getOtherNode(for: bounds, type: ToolNode.self, contact: contact)
 				
-				tool.smash()
+				tool.smash(scene: self)
 				// Every tool except fan tool and gravity tool										and if it collides with block glue
 			} else if (Category.tools ^ (Category.fanTool | Category.gravityTool)) & collision != 0 && collision & Category.blockGlue != 0{
 				let block = getNode(for: Category.blockGlue, type: BlockGlueNode.self, contact: contact)

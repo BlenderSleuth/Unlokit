@@ -20,7 +20,7 @@ class GameViewController: UIViewController, start {
 	
 	func startNewGame() {
 		// Check for skView,             load scene from file
-		if let skView = view as? SKView, let scene = Level(fileNamed: "Level3") {
+		if let skView = view as? SKView, let scene = Level(fileNamed: "FixFan") {
 			self.scene = scene
 			scene.start = self
 			
@@ -39,7 +39,8 @@ class GameViewController: UIViewController, start {
 			//TO DO:
 			skView.ignoresSiblingOrder = true
 			
-			//skView.showsPhysics = true
+			skView.showsPhysics = true
+			skView.showsFields = true
 		}
 	}
 	

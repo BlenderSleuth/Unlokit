@@ -45,20 +45,23 @@ class BlockGlueNode: BlockNode {
 			}
 			
 			if child.name == "fan" {
-				connected[side!] = nil // Make sure connected side is nil
+				// Make sure connected side is nil
+				connected[side!] = nil
 				
 				// Get fan node from file
 				let fanNode = SKNode(fileNamed: "FanRef")?.children.first as! FanNode
 				fanNode.removeFromParent()
 				
 				// Fix fields, break them again... :/
-				fanNode.gravityField.zRotation += CGFloat(180).degreesToRadians()
-				fanNode.gravityField.direction = vector_float3(0,-1,0)
-				fanNode.dragField.zRotation += CGFloat(180).degreesToRadians()
+				//fanNode.gravityField.zRotation += CGFloat(180).degreesToRadians()
+				//fanNode.dragField.zRotation += CGFloat(180).degreesToRadians()
+
+				add(node: fanNode, to: side!)
 				
+				// Fan setup after has been added
 				fanNode.setup(level: scene, block: self, side: side!)
 				
-				add(node: fanNode, to: side!)
+				// Removes the placeholder for the scene
 				child.removeFromParent()
 			}
 		}

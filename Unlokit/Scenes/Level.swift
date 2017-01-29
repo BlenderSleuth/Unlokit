@@ -104,6 +104,8 @@ class Level: SKScene, Reload {
 		setupTextures()
 		setupBlocks()
 		physicsWorld.contactDelegate = self
+		
+		soundFX.playBackgroundMusic(filename: "background.mp3")
     }
 	func setupNodes() {
 		// Bind controller to local variable
@@ -241,8 +243,14 @@ class Level: SKScene, Reload {
 		}
 	}
 	func setupBlocks() {
+		// Edit blocks outside of enumeration to prevent crash
+		var blocks = [BlockGlueNode]()
+		
 		enumerateChildNodes(withName: "//blockGlue") { node, _ in
 			let block = node as! BlockGlueNode
+			blocks.append(block)
+		}
+		for block in blocks {
 			block.checkConnected(scene: self)
 		}
 	}

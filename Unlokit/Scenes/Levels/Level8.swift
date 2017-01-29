@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class Level7: Level {
+class Level8: Level {
 	// Set number of tools for level
 	override func setupToolsForLevel() {
 		for (type, tool) in toolIcons {
@@ -18,9 +18,9 @@ class Level7: Level {
 			case .bomb:
 				tool.number = 10
 			case .glue:
-				tool.number = 10
+				tool.number = 15
 			case .fan:
-				tool.number = 5
+				tool.number = 15
 			case .gravity:
 				tool.number = 0
 			}

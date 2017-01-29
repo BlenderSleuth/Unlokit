@@ -28,10 +28,13 @@ class ToolNode: SKSpriteNode, CanBeFired {
 	
 	var used = false
 	
+	let emitter = SKEmitterNode(fileNamed: "Smash")!
+	
+	var timer: Timer?
+	
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-		
-		
+		emitter.particleTexture = texture
     }
 	
 	func engage(_ controller: ControllerNode) {
@@ -64,8 +67,8 @@ class ToolNode: SKSpriteNode, CanBeFired {
 		controller.isOccupied = false
 		removeAction(forKey: "rotate")
 		
-		let timer = Timer(timeInterval: 10, target: self, selector: #selector(smash), userInfo: nil, repeats: false)
-		RunLoop.current.add(timer, forMode: RunLoopMode.defaultRunLoopMode)
+		//timer = Timer(timeInterval: 10, target: self, selector: #selector(smash), userInfo: nil, repeats: false)
+		//RunLoop.current.add(timer!, forMode: RunLoopMode.defaultRunLoopMode)
 	}
 	func setupPhysics() {
 		physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
@@ -79,8 +82,18 @@ class ToolNode: SKSpriteNode, CanBeFired {
 		physicsBody?.fieldBitMask = Category.fields
 	}
 
-	func smash() {
+	func smash(scene: Level) {
+		// Invalidate timer
+		if let t = timer {
+			t.invalidate()
+		}
+		guard parent != nil else {
+			return
+		}
+		emitter.position = scene.convert(position, from: parent!)
+		scene.addChild(emitter)
+		scene.run(SoundFX.sharedInstance["smash"]!)
+		
 		removeFromParent()
-		//TO DO: play sound and particle
 	}
 }

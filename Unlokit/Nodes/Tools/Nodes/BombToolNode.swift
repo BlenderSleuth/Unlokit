@@ -34,6 +34,9 @@ class BombToolNode: ToolNode {
 		}
 		
 		// TO DO: add sound
+		let sound = SoundFX.sharedInstance["explosion"]!
+		scene.run(sound)
+		
 		let emitter = SKEmitterNode(fileNamed: "BombExplode")!
 		emitter.position = scene.convert(position, from: self.parent!)
 		scene.addChild(emitter)
