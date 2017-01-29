@@ -51,17 +51,13 @@ class BlockGlueNode: BlockNode {
 				// Get fan node from file
 				let fanNode = SKNode(fileNamed: "FanRef")?.children.first as! FanNode
 				fanNode.removeFromParent()
-				
-				// Fix fields, break them again... :/
-				//fanNode.gravityField.zRotation += CGFloat(180).degreesToRadians()
-				//fanNode.dragField.zRotation += CGFloat(180).degreesToRadians()
 
 				add(node: fanNode, to: side!)
 				
-				// Fan setup after has been added
+				// Fan setup after it has been added
 				fanNode.setup(level: scene, block: self, side: side!)
 				
-				// Removes the placeholder for the scene
+				// Removes the placeholder
 				child.removeFromParent()
 			}
 		}
@@ -109,7 +105,7 @@ class BlockGlueNode: BlockNode {
 	}
 	
 	func add(gravityNode: GravityNode) {
-		// Check there is no other nodes
+		// Check there are no other nodes
 		guard connected.isEmpty else {
 			return
 		}
