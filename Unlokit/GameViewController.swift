@@ -41,7 +41,7 @@ class GameViewController: UIViewController, start {
 			skView.showsNodeCount = true
 			skView.showsDrawCount = true
 			//skView.showsPhysics = true
-			skView.showsFields = true
+			//skView.showsFields = true
 		}
 	}
 	

@@ -23,7 +23,10 @@ extension Level: SKPhysicsContactDelegate {
 		case Category.blockMtl | Category.key, Category.bounds | Category.key, Category.blockBreak | Category.key:
 			let key = getNode(for: Category.key, type: KeyNode.self, contact: contact)
 			
-			key.smash()
+			// Check if key has already been smashed
+			if key.parent != nil {
+				key.smash()
+			}
 		case Category.springTool | Category.blockMtl:
 			let spring = getNode(for: Category.springTool, type: SpringToolNode.self, contact: contact)
 			let block = getNode(for: Category.blockMtl, type: BlockMtlNode.self, contact: contact)

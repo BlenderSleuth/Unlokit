@@ -9,7 +9,22 @@
 import SpriteKit
 
 class BombToolNode: ToolNode {
-    
+	// PArticles
+	var fuse: SKEmitterNode!
+	var explode = SKEmitterNode(fileNamed: "BombExplode")!
+	
+	
+	var radius = 50
+	
+	required init(texture: SKTexture?, color: UIColor, size: CGSize) {
+		super.init(texture: texture, color: color, size: size)
+	}
+	
+	override func copy() -> Any {
+		let node = super.copy() as! BombToolNode
+		node.explode = explode.copy() as! SKEmitterNode
+		return node
+	}
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -23,9 +38,17 @@ class BombToolNode: ToolNode {
 		physicsBody?.contactTestBitMask = Category.bounds | Category.blockMtl | Category.blockGlue | Category.blockBreak
 		physicsBody?.collisionBitMask = Category.all ^ Category.speed // All except speed
 	}
+	override func smash(scene: Level) {
+		explode(scene: scene)
+	}
 	
 	func setupFuse(scene: SKScene) {
-		(childNode(withName: "fuse")?.children.first as! SKEmitterNode).targetNode = scene
+		fuse = childNode(withName: "fuse")?.children.first as! SKEmitterNode
+		fuse.targetNode = scene
+	}
+	override func remove() {
+		fuse.removeFromParent()
+		super.remove()
 	}
 	
 	func explode(scene: SKScene) {
@@ -38,9 +61,9 @@ class BombToolNode: ToolNode {
 		let sound = SoundFX.sharedInstance["explosion"]!
 		scene.run(sound)
 		
-		let emitter = SKEmitterNode(fileNamed: "BombExplode")!
-		emitter.position = scene.convert(position, from: self.parent!)
-		scene.addChild(emitter)
+		let explode = SKEmitterNode(fileNamed: "BombExplode")!
+		explode.position = scene.convert(position, from: self.parent!)
+		scene.addChild(explode)
 		removeFromParent()
 	}
 }

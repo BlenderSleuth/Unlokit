@@ -96,13 +96,18 @@ class Level: SKScene, Reload {
 	// Array of blocks
 	var blocks = [BlockNode]()
 	
+	// Dict of fans
+	var fans = [FanNode]()
+	
 	// Preloaded SKS files
 	let fanNode = SKNode(fileNamed: "FanRef")!.children.first as! FanNode
 	let gravityNode = SKNode(fileNamed: "GravityRef")!.children.first as! GravityNode
+	var toolNodesRef = [ToolType: ToolNode]()
 	
 	//MARK: Setup
     override func didMove(to view: SKView) {
 		setupNodes()
+		preloadNodes()
 		setupCamera()
         setupTools()
 		setupTextures()
@@ -154,6 +159,11 @@ class Level: SKScene, Reload {
 		// Bind lock to local variable
 		lock = childNode(withName: "//lock") as! LockNode
 		lock.setupPhysics()
+	}
+	func preloadNodes() {
+		for type in ToolType.all {
+			toolNodesRef[type] = (SKNode(fileNamed: type.rawValue)?.children.first?.copy() as! ToolNode)
+		}
 	}
 	func setupCamera() {
 		//Get correct aspect ratio for device
@@ -275,9 +285,6 @@ class Level: SKScene, Reload {
 			// Round rotation
             controller.zRotation += rot
         }
-        
-        // Give fireNode the angle for the bullets
-        //fireNode.angle = Float(newRot) + Float(90).degreesToRadians()
     }
     func moveCamera(to location: CGPoint) {
 		camera?.removeAction(forKey: "cameraMove")
@@ -381,7 +388,8 @@ class Level: SKScene, Reload {
 		}
 		
 		// Unarchive a tool from file
-		let newTool = SKNode(fileNamed: tool.type.rawValue)?.children.first as! ToolNode //toolNodeRef[tool.type]!.copy() as! ToolNode
+		//let newTool = SKNode(fileNamed: tool.type.rawValue)?.children.first as! ToolNode //toolNodeRef[tool.type]!.copy() as! ToolNode
+		let newTool = toolNodesRef[tool.type]?.copy() as! ToolNode
 
 		// Remove tool from unarchived scene, add it to this one and engage
 		newTool.removeFromParent()
@@ -483,5 +491,12 @@ class Level: SKScene, Reload {
 			moveCamera(with: node)
 		}
 		controller.updateAngle()
+		
+		for fan in fans {
+			if fan.isMoving {
+				let rot = fan.rotationRelativeToSceneFor(node: fan)
+				fan.updateFields(rotation: rot)
+			}
+		}
 	}
 }

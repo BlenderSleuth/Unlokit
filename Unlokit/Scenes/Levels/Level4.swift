@@ -14,9 +14,9 @@ class Level4: Level {
 		for (type, tool) in toolIcons {
 			switch type {
 			case .spring:
-				tool.number = 2
+				tool.number = 4
 			case .bomb:
-				tool.number = 6
+				tool.number = 8
 			case .glue:
 				tool.number = 0
 			case .fan:

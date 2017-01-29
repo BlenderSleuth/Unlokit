@@ -18,7 +18,8 @@ class FanNode: SKSpriteNode {
 	var glueBlock: BlockGlueNode!
 	var side: Side!
 	
-	var region: SKRegion!
+	var fieldRect: CGRect!
+	var fieldRegion: SKRegion!
 	
 	var strength: CGFloat = 0 {
 		didSet {
@@ -26,6 +27,8 @@ class FanNode: SKSpriteNode {
 			setParticleVelocity(strength: strength)
 		}
 	}
+	
+	var isMoving = false
 	
 	required override init(texture: SKTexture?, color: UIColor, size: CGSize) {
 		super.init(texture: texture, color: color, size: size)
@@ -67,6 +70,10 @@ class FanNode: SKSpriteNode {
 		self.glueBlock = block
 		self.side = side
 		
+		isMoving = checkHasActions(node: self)
+		
+		level.fans.append(self)
+		
 		// Set strength to default value
 		strength = 60
 	}
@@ -83,7 +90,7 @@ class FanNode: SKSpriteNode {
 		}
 		
 		
-		run(SKAction.repeatForever(SKAction.animate(with: frames, timePerFrame: 1/25)))
+		run(SKAction.repeatForever(SKAction.animate(with: frames, timePerFrame: 1/25)), withKey: "animate")
 	}
 	private func setupParticles(scene: SKScene) {
 		// Set emitter target
@@ -108,23 +115,26 @@ class FanNode: SKSpriteNode {
 		
 		let fieldSize = CGSize(width: frame.width, height: frame.height * 40)
 		let fieldOrigin = CGPoint(x: -frame.width/2, y: 0)
-		let fieldRect = CGRect(origin: fieldOrigin, size: fieldSize)
+		fieldRect = CGRect(origin: fieldOrigin, size: fieldSize)
 		
 		// Calculate region rotation transform
 		let rot = rotation - (CGFloat(360).degreesToRadians() - rotation)
 		
 		var transform = CGAffineTransform(rotationAngle: rot)
 		let regionPath = CGPath(rect: fieldRect, transform: &transform)
-		region = SKRegion(path: regionPath)
+		fieldRegion = SKRegion(path: regionPath)
 		
-		gravityField.region = region
-		dragField.region = region
+		gravityField.region = fieldRegion
+		dragField.region = fieldRegion
 	}
 	
 	func smash() {
 		glueBlock.remove(for: side)
 		
 		// TO DO: Add particles and sounds effects
+		if let level = scene as?  Level {
+			level.fans.remove(at: level.fans.index(of: self)!)
+		}
 		removeFromParent()
 	}
 	func rotationRelativeToSceneFor(node: SKNode) -> CGFloat {
@@ -137,5 +147,33 @@ class FanNode: SKSpriteNode {
 		}
 		
 		return nodeRotation
+	}
+	
+	// Check for actions other than animate
+	func checkHasActions(node: SKNode) -> Bool {
+		var tempNode = node
+		
+		while !(tempNode is SKScene) {
+			if !tempNode.actionForKeyIsRunning(key: "animate") {
+				if tempNode.hasActions() {
+					return true
+				}
+			}
+			tempNode = tempNode.parent!
+		}
+		return false
+	}
+	
+	// Update the region rotations
+	func updateFields(rotation: CGFloat) {
+		// Calculate region rotation transform
+		let rot = rotation - (CGFloat(360).degreesToRadians() - rotation)
+		
+		var transform = CGAffineTransform(rotationAngle: rot)
+		let regionPath = CGPath(rect: fieldRect, transform: &transform)
+		fieldRegion = SKRegion(path: regionPath)
+		
+		gravityField.region = fieldRegion
+		dragField.region = fieldRegion
 	}
 }

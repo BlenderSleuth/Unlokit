@@ -16,13 +16,13 @@ class Level3: Level {
 			case .spring:
 				tool.number = 4
 			case .bomb:
-				tool.number = 6
+				tool.number = 0
 			case .glue:
-				tool.number = 4
+				tool.number = 0
 			case .fan:
-				tool.number = 6
+				tool.number = 0
 			case .gravity:
-				tool.number = 6
+				tool.number = 0
 			}
 		}
 	}

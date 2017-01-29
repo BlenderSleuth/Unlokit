@@ -18,11 +18,11 @@ class Level7: Level {
 			case .bomb:
 				tool.number = 20
 			case .glue:
-				tool.number = 0
+				tool.number = 10
 			case .fan:
 				tool.number = 0
 			case .gravity:
-				tool.number = 0
+				tool.number = 50
 			}
 		}
 	}

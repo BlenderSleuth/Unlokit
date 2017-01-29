@@ -30,14 +30,28 @@ class ToolNode: SKSpriteNode, CanBeFired {
 	
 	var used = false
 	
-	let emitter = SKEmitterNode(fileNamed: "Smash")!
+	var emitter = SKEmitterNode(fileNamed: "Smash")!
 	
 	var timer: Timer?
 	
+	required override init(texture: SKTexture?, color: UIColor, size: CGSize) {
+		super.init(texture: texture, color: color, size: size)
+	}
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 		emitter.particleTexture = texture
     }
+	func remove() {
+		// For overriding to clean up
+		removeFromParent()
+	}
+	
+	override func copy() -> Any {
+		let node = super.copy() as! ToolNode
+		node.type = type
+		node.emitter = emitter.copy() as! SKEmitterNode
+		return node
+	}
 	
 	func engage(_ controller: ControllerNode) {
 		isEngaged = true
@@ -57,7 +71,7 @@ class ToolNode: SKSpriteNode, CanBeFired {
 		run(SKAction.move(to: position, duration: 0.2)) {
 			self.animating = false
 			self.icon.number += 1
-			self.removeFromParent()
+			self.remove()
 		}
 		isEngaged = false
 		controller.isOccupied = false

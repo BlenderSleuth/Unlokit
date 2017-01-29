@@ -25,8 +25,6 @@ class BlockNode: SKSpriteNode {
 	var left: CGPoint!
 	var right: CGPoint!
 	
-	
-	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		
@@ -68,7 +66,7 @@ class BlockNode: SKSpriteNode {
 	}
 	
 	// Difference between two points
-	func getDistance(p1:CGPoint,p2:CGPoint)->CGFloat {
+	func getDistance(p1:CGPoint,p2:CGPoint) -> CGFloat {
 		let xDist = (p2.x - p1.x)
 		let yDist = (p2.y - p1.y)
 		return CGFloat(sqrt((xDist * xDist) + (yDist * yDist)))
@@ -94,6 +92,4 @@ class BlockNode: SKSpriteNode {
 		run(bounce)
 		run(SoundFX.sharedInstance["block"]!)
 	}
-	
-
 }
