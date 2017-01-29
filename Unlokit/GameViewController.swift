@@ -20,7 +20,7 @@ class GameViewController: UIViewController, start {
 	
 	func startNewGame() {
 		// Check for skView,             load scene from file
-		if let skView = view as? SKView, let scene = Level(fileNamed: "Level7") {
+		if let skView = view as? SKView, let scene = Level(fileNamed: "Level3") {
 			self.scene = scene
 			scene.start = self
 			
@@ -33,15 +33,15 @@ class GameViewController: UIViewController, start {
 			// Present Scene
 			skView.presentScene(scene, transition: transition)
 			
-			// Set options
-			skView.showsFPS = true
-			skView.showsNodeCount = true
 			//TO DO:
 			skView.ignoresSiblingOrder = true
 			
-			skView.showsPhysics = true
-			//skView.showsFields = true
+			// Set options
+			skView.showsFPS = true
+			skView.showsNodeCount = true
 			skView.showsDrawCount = true
+			//skView.showsPhysics = true
+			skView.showsFields = true
 		}
 	}
 	

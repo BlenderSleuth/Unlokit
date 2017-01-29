@@ -52,9 +52,9 @@ class ToolIcon: SKSpriteNode {
 			return
 		}
 		if isGreyed {
-			run(SKAction.colorize(with: .red, colorBlendFactor: 0, duration: 0.2), withKey: "colorise")
+			run(SKAction.colorize(with: .gray, colorBlendFactor: 0, duration: 0.2), withKey: "colorise")
 		} else {
-			run(SKAction.colorize(with: .red, colorBlendFactor: 0.6, duration: 0.2), withKey: "colorise")
+			run(SKAction.colorize(with: .gray, colorBlendFactor: 0.6, duration: 0.2), withKey: "colorise")
 		}
 		isGreyed = !isGreyed
 	}

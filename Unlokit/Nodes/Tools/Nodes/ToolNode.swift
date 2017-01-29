@@ -10,10 +10,12 @@ import SpriteKit
 
 enum ToolType: String {
 	case spring		= "SpringTool"
+	case bomb		= "BombTool"
 	case glue		= "GlueTool"
 	case fan		= "FanTool"
 	case gravity	= "GravityTool"
-    case bomb		= "BombTool"
+	
+	static let all: [ToolType] = [.spring, .bomb, .glue, .fan, .gravity]
 }
 
 // Only use this for subclassing...

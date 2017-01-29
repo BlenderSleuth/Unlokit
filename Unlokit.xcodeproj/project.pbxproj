@@ -280,9 +280,9 @@
 			children = (
 				381D5C891E394E3C0084E56E /* BlockNode.swift */,
 				38017A301E35DEE20051EEE0 /* BlockMtlNode.swift */,
+				38E50CF21E39E1B5007437E7 /* BlockBreakNode.swift */,
 				38488EF71E35E4F000BCCFD6 /* BlockBncNode.swift */,
 				38B649421E3890AF00479469 /* BlockGlueNode.swift */,
-				38E50CF21E39E1B5007437E7 /* BlockBreakNode.swift */,
 			);
 			path = Blocks;
 			sourceTree = "<group>";

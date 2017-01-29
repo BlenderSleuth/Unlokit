@@ -96,6 +96,10 @@ class Level: SKScene, Reload {
 	// Array of blocks
 	var blocks = [BlockNode]()
 	
+	// Preloaded SKS files
+	let fanNode = SKNode(fileNamed: "FanRef")!.children.first as! FanNode
+	let gravityNode = SKNode(fileNamed: "GravityRef")!.children.first as! GravityNode
+	
 	//MARK: Setup
     override func didMove(to view: SKView) {
 		setupNodes()
@@ -224,15 +228,15 @@ class Level: SKScene, Reload {
 		for (type, tool) in toolIcons {
 			switch type {
 			case .spring:
-				tool.number = 0
+				tool.number = 50
 			case .bomb:
-				tool.number = 0
+				tool.number = 50
 			case .glue:
-				tool.number = 0
+				tool.number = 50
 			case .fan:
-				tool.number = 0
+				tool.number = 50
 			case .gravity:
-				tool.number = 0
+				tool.number = 50
 			}
 		}
 	}
@@ -283,7 +287,6 @@ class Level: SKScene, Reload {
         // Add to camera node position
         cameraNode.position += vector
     }
-	
 	func moveCamera(with node: SKSpriteNode) {
 		// Check if the node is gone
 		if node.parent == nil {
@@ -378,7 +381,7 @@ class Level: SKScene, Reload {
 		}
 		
 		// Unarchive a tool from file
-		let newTool = SKNode(fileNamed: tool.type.rawValue)?.children.first as! ToolNode
+		let newTool = SKNode(fileNamed: tool.type.rawValue)?.children.first as! ToolNode //toolNodeRef[tool.type]!.copy() as! ToolNode
 
 		// Remove tool from unarchived scene, add it to this one and engage
 		newTool.removeFromParent()

@@ -25,6 +25,8 @@ class BlockNode: SKSpriteNode {
 	var left: CGPoint!
 	var right: CGPoint!
 	
+	
+	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		
@@ -93,19 +95,5 @@ class BlockNode: SKSpriteNode {
 		run(SoundFX.sharedInstance["block"]!)
 	}
 	
-	// Create version of self that has kind of bncNode
-	func bncVersion() -> BlockBncNode {
-		let blockBnc = SKNode(fileNamed: "BlockBnc")?.children.first as! BlockBncNode
-		blockBnc.removeFromParent()
-		blockBnc.position = position
-		blockBnc.zPosition = zPosition
-		return blockBnc
-	}
-	func glueVersion() -> BlockGlueNode {
-		let blockGlue = SKNode(fileNamed: "BlockGlu")?.children.first as! BlockGlueNode
-		blockGlue.removeFromParent()
-		blockGlue.position = position
-		blockGlue.zPosition = zPosition
-		return blockGlue
-	}
+
 }

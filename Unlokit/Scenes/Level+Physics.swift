@@ -69,16 +69,17 @@ extension Level: SKPhysicsContactDelegate {
 			}
 			fanTool.used = true
 			
-			// Setup fan node
-			let fanNode = SKNode(fileNamed: "FanRef")?.children.first as! FanNode
-			fanNode.removeFromParent()
+			// Copy fan node from ref
+			//let fanNode = SKNode(fileNamed: "FanRef")?.children.first as! FanNode
+			let fan = fanNode.copy() as! FanNode
+			fan.removeFromParent()
 			
 			let side = block.getSide(contact: contact)
 			// Add to block
-			block.add(node: fanNode, to: side)
+			block.add(node: fan, to: side)
 			
 			// Setup fan
-			fanNode.setup(level: self, block: block, side: side)
+			fan.setup(level: self, block: block, side: side)
 		case Category.gravityTool | Category.blockGlue:
 			let gravityTool = getNode(for: Category.gravityTool, type: GravityToolNode.self, contact: contact)
 			let block = getNode(for: Category.blockGlue, type: BlockGlueNode.self, contact: contact)
@@ -127,7 +128,7 @@ extension Level: SKPhysicsContactDelegate {
 			
 			} else if collision & (Category.blockMtl | Category.blockBreak) != 0 && collision & Category.glueTool != 0 {
 				let glue = getNode(for: Category.glueTool, type: GlueToolNode.self, contact: contact)
-				let block = getOtherNode(for: glue, type: BlockNode.self, contact: contact)
+				let block = getOtherNode(for: glue, type: BlockMtlNode.self, contact: contact)
 				
 				if glue.used {
 					return
@@ -144,7 +145,7 @@ extension Level: SKPhysicsContactDelegate {
 				
 			} else if collision & (Category.blockMtl | Category.blockBreak) != 0 && collision & Category.springTool != 0 {
 				let spring = getNode(for: Category.springTool, type: SpringToolNode.self, contact: contact)
-				let block = getOtherNode(for: spring, type: BlockNode.self, contact: contact)
+				let block = getOtherNode(for: spring, type: BlockMtlNode.self, contact: contact)
 				
 				if spring.used {
 					return

@@ -10,14 +10,13 @@ import SpriteKit
 
 class FanNode: SKSpriteNode {
 	
+	// Children
 	var gravityField: SKFieldNode!
 	var dragField: SKFieldNode!
 	private var emitter: SKEmitterNode!
 	
 	var glueBlock: BlockGlueNode!
 	var side: Side!
-	
-	var debugNode: SKShapeNode!
 	
 	var region: SKRegion!
 	
@@ -26,6 +25,19 @@ class FanNode: SKSpriteNode {
 			gravityField.strength = Float(strength)
 			setParticleVelocity(strength: strength)
 		}
+	}
+	
+	required override init(texture: SKTexture?, color: UIColor, size: CGSize) {
+		super.init(texture: texture, color: color, size: size)
+	}
+	
+	// Copy all instance variables
+	override func copy() -> Any {
+		let node = super.copy() as! FanNode
+		node.gravityField = node.childNode(withName: "gravityField") as! SKFieldNode
+		node.dragField = node.childNode(withName: "dragField") as! SKFieldNode
+		node.emitter = node.childNode(withName: "emitter")!.children.first as! SKEmitterNode
+		return node
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
@@ -94,21 +106,14 @@ class FanNode: SKSpriteNode {
 	private func setupFields(scene: SKScene) {
 		let rotation = rotationRelativeToSceneFor(node: self)
 		
-		// Find vector for angle
-		let dx = -Float(cos(rotation + CGFloat(-90).degreesToRadians()))
-		let dy = -Float(sin(rotation + CGFloat(-90).degreesToRadians()))
-		
-		gravityField.direction = vector_float3(dx,dy,0)
-		
-		gravityField.move(toParent: scene)
-		dragField.move(toParent: scene)
-		
 		let fieldSize = CGSize(width: frame.width, height: frame.height * 40)
 		let fieldOrigin = CGPoint(x: -frame.width/2, y: 0)
 		let fieldRect = CGRect(origin: fieldOrigin, size: fieldSize)
 		
-		var transform = CGAffineTransform(rotationAngle: rotation)
+		// Calculate region rotation transform
+		let rot = rotation - (CGFloat(360).degreesToRadians() - rotation)
 		
+		var transform = CGAffineTransform(rotationAngle: rot)
 		let regionPath = CGPath(rect: fieldRect, transform: &transform)
 		region = SKRegion(path: regionPath)
 		
@@ -121,9 +126,6 @@ class FanNode: SKSpriteNode {
 		
 		// TO DO: Add particles and sounds effects
 		removeFromParent()
-		
-		gravityField.removeFromParent()
-		dragField.removeFromParent()
 	}
 	func rotationRelativeToSceneFor(node: SKNode) -> CGFloat {
 		var nodeRotation = CGFloat(0)

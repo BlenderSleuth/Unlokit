@@ -15,6 +15,7 @@ class BombToolNode: ToolNode {
         
         type = .bomb
     }
+	
 	override func setupPhysics() {
 		super.setupPhysics()
 		
