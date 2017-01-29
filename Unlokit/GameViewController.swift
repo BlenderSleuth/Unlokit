@@ -10,9 +10,6 @@ import UIKit
 import SpriteKit
 
 class GameViewController: UIViewController, start {
-
-    var scene: SKScene!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         startNewGame()
@@ -20,9 +17,10 @@ class GameViewController: UIViewController, start {
 	
 	func startNewGame() {
 		// Check for skView,             load scene from file
-		if let skView = view as? SKView, let scene = Level(fileNamed: "Level3") {
-			self.scene = scene
+		if let skView = view as? SKView, let scene = Level(fileNamed: "Level4") {
 			scene.start = self
+			
+			scene.levelNumber = 4
 			
 			// Scale scene to fill
 			scene.scaleMode = .aspectFill

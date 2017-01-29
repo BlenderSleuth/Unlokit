@@ -57,6 +57,9 @@ protocol start {
 class Level: SKScene, Reload {
     
     //MARK: Variables
+	var levelNumber = 1
+	
+	// Node references
     var controller: ControllerNode!
     
     var fireNode: FireButtonNode!
@@ -231,22 +234,17 @@ class Level: SKScene, Reload {
 			}
 		}
 		
-		setupToolsForLevel()
-	}
-	func setupToolsForLevel() {
-		// To be overridden
+		// Get plist
+		let plist = Bundle.main.path(forResource: "LevelData", ofType: "plist")!
+		let levelDict = NSDictionary(contentsOfFile: plist) as! [String: [String: Int]]
+		
+		let level = levelDict["Level\(levelNumber)"]!
+		
+		// Iterate through all tol icons
 		for (type, tool) in toolIcons {
-			switch type {
-			case .spring:
-				tool.number = 50
-			case .bomb:
-				tool.number = 50
-			case .glue:
-				tool.number = 50
-			case .fan:
-				tool.number = 50
-			case .gravity:
-				tool.number = 50
+			// Check if value is present
+			if let number = level[type.rawValue] {
+				tool.number = number
 			}
 		}
 	}
@@ -388,8 +386,8 @@ class Level: SKScene, Reload {
 		}
 		
 		// Unarchive a tool from file
-		//let newTool = SKNode(fileNamed: tool.type.rawValue)?.children.first as! ToolNode //toolNodeRef[tool.type]!.copy() as! ToolNode
-		let newTool = toolNodesRef[tool.type]?.copy() as! ToolNode
+		let newTool = SKNode(fileNamed: tool.type.rawValue)?.children.first as! ToolNode
+		//let newTool = toolNodesRef[tool.type]?.copy() as! ToolNode
 
 		// Remove tool from unarchived scene, add it to this one and engage
 		newTool.removeFromParent()
