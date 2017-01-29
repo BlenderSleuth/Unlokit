@@ -18,6 +18,7 @@
 		382369001E3B091D00EFC307 /* Level7.sks in Resources */ = {isa = PBXBuildFile; fileRef = 382368FF1E3B091D00EFC307 /* Level7.sks */; };
 		382369021E3B0A2C00EFC307 /* Level7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382369011E3B0A2C00EFC307 /* Level7.swift */; };
 		382369041E3B0D3800EFC307 /* Row8BlockBreak.sks in Resources */ = {isa = PBXBuildFile; fileRef = 382369031E3B0D3800EFC307 /* Row8BlockBreak.sks */; };
+		38395CBB1E3DB7020014E5E3 /* background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 38395CBA1E3DB7020014E5E3 /* background.mp3 */; };
 		383CA9641E1DD4F500F8B998 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383CA9631E1DD4F500F8B998 /* AppDelegate.swift */; };
 		383CA96B1E1DD4F500F8B998 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 383CA96A1E1DD4F500F8B998 /* Assets.xcassets */; };
 		383CA97B1E1DD5E600F8B998 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383CA9771E1DD5E600F8B998 /* GameViewController.swift */; };
@@ -121,6 +122,7 @@
 		382368FF1E3B091D00EFC307 /* Level7.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level7.sks; sourceTree = "<group>"; };
 		382369011E3B0A2C00EFC307 /* Level7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level7.swift; sourceTree = "<group>"; };
 		382369031E3B0D3800EFC307 /* Row8BlockBreak.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row8BlockBreak.sks; sourceTree = "<group>"; };
+		38395CBA1E3DB7020014E5E3 /* background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background.mp3; sourceTree = "<group>"; };
 		383CA9601E1DD4F500F8B998 /* Unlokit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unlokit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		383CA9631E1DD4F500F8B998 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		383CA96A1E1DD4F500F8B998 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -332,6 +334,7 @@
 		387105ED1E358D75002D010A /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				38395CBA1E3DB7020014E5E3 /* background.mp3 */,
 				38CE1BFA1E3841A200B646DB /* Explosion.caf */,
 				38AE07551E36199500D127D2 /* Bounce1.caf */,
 				38AE07561E36199500D127D2 /* Bounce2.caf */,
@@ -557,6 +560,7 @@
 				38E4B5C21E37106700C798C0 /* BombTool.sks in Resources */,
 				38F40FE61E3B271300A0A469 /* Level9.sks in Resources */,
 				38017A2E1E35DC160051EEE0 /* Smash.sks in Resources */,
+				38395CBB1E3DB7020014E5E3 /* background.mp3 in Resources */,
 				388514021E36EFA20092F058 /* ToolBox.sks in Resources */,
 				38CE1C111E38599B00B646DB /* Canvas-Purple.sks in Resources */,
 				38C73B231E35B92F00B3AC6A /* ReloadButtonActions.sks in Resources */,
