@@ -17,6 +17,12 @@
 		<integer>4</integer>
 		<key>BombTool</key>
 		<integer>8</integer>
+		<key>GlueTool</key>
+		<integer>50</integer>
+		<key>FanTool</key>
+		<integer>50</integer>
+		<key>GravityTool</key>
+		<integer>0</integer>
 	</dict>
 	<key>Level5</key>
 	<dict>

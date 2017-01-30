@@ -30,19 +30,6 @@ class FanNode: SKSpriteNode {
 	
 	var isMoving = false
 	
-	required override init(texture: SKTexture?, color: UIColor, size: CGSize) {
-		super.init(texture: texture, color: color, size: size)
-	}
-	
-	// Copy all instance variables
-	override func copy() -> Any {
-		let node = super.copy() as! FanNode
-		node.gravityField = node.childNode(withName: "gravityField") as! SKFieldNode
-		node.dragField = node.childNode(withName: "dragField") as! SKFieldNode
-		node.emitter = node.childNode(withName: "emitter")!.children.first as! SKEmitterNode
-		return node
-	}
-	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		// Get field references

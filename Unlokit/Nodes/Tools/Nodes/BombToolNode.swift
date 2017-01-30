@@ -9,22 +9,13 @@
 import SpriteKit
 
 class BombToolNode: ToolNode {
-	// PArticles
+	// Particles
 	var fuse: SKEmitterNode!
 	var explode = SKEmitterNode(fileNamed: "BombExplode")!
 	
-	
+	// TO DO:
 	var radius = 50
 	
-	required init(texture: SKTexture?, color: UIColor, size: CGSize) {
-		super.init(texture: texture, color: color, size: size)
-	}
-	
-	override func copy() -> Any {
-		let node = super.copy() as! BombToolNode
-		node.explode = explode.copy() as! SKEmitterNode
-		return node
-	}
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -38,19 +29,25 @@ class BombToolNode: ToolNode {
 		physicsBody?.contactTestBitMask = Category.bounds | Category.blockMtl | Category.blockGlue | Category.blockBreak
 		physicsBody?.collisionBitMask = Category.all ^ Category.speed // All except speed
 	}
-	override func smash(scene: Level) {
-		explode(scene: scene)
-	}
-	
 	func setupFuse(scene: SKScene) {
 		fuse = childNode(withName: "fuse")?.children.first as! SKEmitterNode
 		fuse.targetNode = scene
 	}
+	
+	override func smash(scene: Level) {
+		explode(scene: scene)
+	}
 	override func remove() {
-		fuse.removeFromParent()
+		// Hide fuse behind bomb while particles dissipate
+		fuse.position = CGPoint.zero
+		fuse.particleAlpha = 0
+		fuse.move(toParent: scene!)
+		
+		let action = SKAction.sequence([SKAction.wait(forDuration: 0.7), SKAction.removeFromParent()])
+		fuse.run(action)
+		
 		super.remove()
 	}
-	
 	func explode(scene: SKScene) {
 		// Check if this is the first explosion
 		if parent == nil {

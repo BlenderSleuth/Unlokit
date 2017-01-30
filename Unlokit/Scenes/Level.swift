@@ -102,15 +102,9 @@ class Level: SKScene, Reload {
 	// Dict of fans
 	var fans = [FanNode]()
 	
-	// Preloaded SKS files
-	let fanNode = SKNode(fileNamed: "FanRef")!.children.first as! FanNode
-	let gravityNode = SKNode(fileNamed: "GravityRef")!.children.first as! GravityNode
-	var toolNodesRef = [ToolType: ToolNode]()
-	
 	//MARK: Setup
     override func didMove(to view: SKView) {
 		setupNodes()
-		preloadNodes()
 		setupCamera()
         setupTools()
 		setupTextures()
@@ -162,11 +156,6 @@ class Level: SKScene, Reload {
 		// Bind lock to local variable
 		lock = childNode(withName: "//lock") as! LockNode
 		lock.setupPhysics()
-	}
-	func preloadNodes() {
-		for type in ToolType.all {
-			toolNodesRef[type] = (SKNode(fileNamed: type.rawValue)?.children.first?.copy() as! ToolNode)
-		}
 	}
 	func setupCamera() {
 		//Get correct aspect ratio for device

@@ -9,28 +9,23 @@
 import SpriteKit
 
 class BlockMtlNode: BlockNode {
-	var blockBnc: BlockBncNode!
-	var blockGlue: BlockGlueNode!
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		
 		physicsBody?.categoryBitMask = Category.blockMtl
-		
-		blockBnc = SKNode(fileNamed: "BlockBnc")?.children.first as! BlockBncNode
-		blockGlue = SKNode(fileNamed: "BlockGlu")?.children.first as! BlockGlueNode
 	}
 	// Create version of self that has kind of bncNode
 	func bncVersion() -> BlockBncNode {
-		
+		let blockBnc = SKNode(fileNamed: "BlockBnc")?.children.first as! BlockBncNode
 		blockBnc.removeFromParent()
 		blockBnc.position = position
 		blockBnc.zPosition = zPosition
 		return blockBnc
 	}
+	// Create version of self that has kind of glueNode
 	func glueVersion() -> BlockGlueNode {
-		
-		
+		let blockGlue = SKNode(fileNamed: "BlockGlu")?.children.first as! BlockGlueNode
 		blockGlue.removeFromParent()
 		blockGlue.position = position
 		blockGlue.zPosition = zPosition

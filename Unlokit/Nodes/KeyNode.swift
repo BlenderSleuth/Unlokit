@@ -83,6 +83,11 @@ class KeyNode: SKSpriteNode, CanBeFired {
 	}
 	
 	func smash() {
+		// Check if key has already been smashed
+		guard parent != nil else {
+			return
+		}
+		
 		let wait = SKAction.wait(forDuration: 5)
 		let sound = SoundFX.sharedInstance["smash"]!
 		let group = SKAction.group([wait, sound])

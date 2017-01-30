@@ -23,10 +23,7 @@ extension Level: SKPhysicsContactDelegate {
 		case Category.blockMtl | Category.key, Category.bounds | Category.key, Category.blockBreak | Category.key:
 			let key = getNode(for: Category.key, type: KeyNode.self, contact: contact)
 			
-			// Check if key has already been smashed
-			if key.parent != nil {
-				key.smash()
-			}
+			key.smash()
 		case Category.springTool | Category.blockMtl:
 			let spring = getNode(for: Category.springTool, type: SpringToolNode.self, contact: contact)
 			let block = getNode(for: Category.blockMtl, type: BlockMtlNode.self, contact: contact)
@@ -73,16 +70,15 @@ extension Level: SKPhysicsContactDelegate {
 			fanTool.used = true
 			
 			// Copy fan node from ref
-			//let fanNode = SKNode(fileNamed: "FanRef")?.children.first as! FanNode
-			let fan = fanNode.copy() as! FanNode
-			fan.removeFromParent()
+			let fanNode = SKNode(fileNamed: "FanRef")?.children.first as! FanNode
+			fanNode.removeFromParent()
 			
 			let side = block.getSide(contact: contact)
 			// Add to block
-			block.add(node: fan, to: side)
+			block.add(node: fanNode, to: side)
 			
 			// Setup fan
-			fan.setup(level: self, block: block, side: side)
+			fanNode.setup(level: self, block: block, side: side)
 		case Category.gravityTool | Category.blockGlue:
 			let gravityTool = getNode(for: Category.gravityTool, type: GravityToolNode.self, contact: contact)
 			let block = getNode(for: Category.blockGlue, type: BlockGlueNode.self, contact: contact)

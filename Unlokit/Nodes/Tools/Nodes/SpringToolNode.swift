@@ -15,9 +15,8 @@ class SpringToolNode: ToolNode {
 		
 		type = .spring
 	}
-	required init(texture: SKTexture?, color: UIColor, size: CGSize) {
-		super.init(texture: texture, color: color, size: size)
-	}
+
+	
 	override func setupPhysics() {
 		super.setupPhysics()
 		

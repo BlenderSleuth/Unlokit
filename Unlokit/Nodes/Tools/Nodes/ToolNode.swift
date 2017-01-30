@@ -25,32 +25,22 @@ class ToolNode: SKSpriteNode, CanBeFired {
 	
 	var isEngaged = false
 	var animating = false
+	var used = false
 	
 	var icon: ToolIcon!
 	
-	var used = false
-	
-	var emitter = SKEmitterNode(fileNamed: "Smash")!
+	var emitter: SKEmitterNode!
 	
 	var timer: Timer?
 	
-	required override init(texture: SKTexture?, color: UIColor, size: CGSize) {
-		super.init(texture: texture, color: color, size: size)
-	}
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+		emitter = SKEmitterNode(fileNamed: "Smash")!
 		emitter.particleTexture = texture
     }
 	func remove() {
 		// For overriding to clean up
 		removeFromParent()
-	}
-	
-	override func copy() -> Any {
-		let node = super.copy() as! ToolNode
-		node.type = type
-		node.emitter = emitter.copy() as! SKEmitterNode
-		return node
 	}
 	
 	func engage(_ controller: ControllerNode) {
@@ -106,7 +96,9 @@ class ToolNode: SKSpriteNode, CanBeFired {
 		guard parent != nil else {
 			return
 		}
+		
 		emitter.position = scene.convert(position, from: parent!)
+		print(emitter.zPosition)
 		scene.addChild(emitter)
 		scene.run(SoundFX.sharedInstance["smash"]!)
 		
