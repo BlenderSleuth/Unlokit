@@ -1,5 +1,5 @@
 //
-//  Level+Physics.swift
+//  LevelScene+Physics.swift
 //  Unlokit
 //
 //  Created by Ben Sutherland on 23/1/17.
@@ -9,7 +9,7 @@
 import SpriteKit
 
 //Separate file for physics contact, its gonna get heavy...
-extension Level: SKPhysicsContactDelegate {
+extension LevelScene: SKPhysicsContactDelegate {
 	func didBegin(_ contact: SKPhysicsContact) {
 		// Find collision
 		let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask

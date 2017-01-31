@@ -1,5 +1,5 @@
 //
-//  Level.swift
+//  LevelScene.swift
 //  Unlokit
 //
 //  Created by Ben Sutherland on 29/12/2016.
@@ -59,7 +59,7 @@ protocol start {
 	func startNewGame()
 }
 
-class Level: SKScene, Reload {
+class LevelScene: SKScene, Reload {
     
     //MARK: Variables
 	var levelNumber = 1
@@ -229,10 +229,10 @@ class Level: SKScene, Reload {
 		}
 		
 		// Get plist
-		let plist = Bundle.main.path(forResource: "LevelData", ofType: "plist")!
+		let plist = Bundle.main.path(forResource: "LevelSceneData", ofType: "plist")!
 		let levelDict = NSDictionary(contentsOfFile: plist) as! [String: [String: Int]]
 		
-		let level = levelDict["Level\(levelNumber)"]!
+		let level = levelDict["LevelScene\(levelNumber)"]!
 		
 		
 		

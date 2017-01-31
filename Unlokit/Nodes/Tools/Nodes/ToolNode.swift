@@ -88,7 +88,7 @@ class ToolNode: SKSpriteNode, CanBeFired {
 		physicsBody?.fieldBitMask = Category.fields
 	}
 
-	func smash(scene: Level) {
+	func smash(scene: LevelScene) {
 		// Invalidate timer
 		if let t = timer {
 			t.invalidate()

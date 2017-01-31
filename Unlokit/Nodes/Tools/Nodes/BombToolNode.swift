@@ -33,7 +33,7 @@ class BombToolNode: ToolNode {
 		fuse.targetNode = scene
 	}
 	
-	override func smash(scene: Level) {
+	override func smash(scene: LevelScene) {
 		explode(scene: scene, at: self.position)
 	}
 	override func remove() {

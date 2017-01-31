@@ -26,28 +26,30 @@ class Stages {
 class Stage {
 	let name: String
 	
-	let levels: [level]
+	let levels: [Level]
 	
 	init(name: String) {
 		self.name = name
 		
-		let level1 = level(number: 1)
-		let level2 = level(number: 2)
-		let level3 = level(number: 3)
-		let level4 = level(number: 4)
-		let level5 = level(number: 5)
-		let level6 = level(number: 6)
-		let level7 = level(number: 7)
-		let level8 = level(number: 8)
+		let level1 = Level(number: 1, imageName: "Thumbnail")
+		let level2 = Level(number: 2, imageName: "Thumbnail")
+		let level3 = Level(number: 3, imageName: "Thumbnail")
+		let level4 = Level(number: 4, imageName: "Thumbnail")
+		let level5 = Level(number: 5, imageName: "Thumbnail")
+		let level6 = Level(number: 6, imageName: "Thumbnail")
+		let level7 = Level(number: 7, imageName: "Thumbnail")
+		let level8 = Level(number: 8, imageName: "Thumbnail")
 		
 		levels = [level1, level2, level3, level4, level5, level6, level7, level8]
 	}
 }
 
-class level {
+class Level {
 	let number: Int
+	let thumbnail: UIImage
 	
-	init(number: Int) {
+	init(number: Int, imageName: String) {
 		self.number = number
+		thumbnail = UIImage(named: imageName)!
 	}
 }
