@@ -109,15 +109,8 @@ class Stage1: SKScene, Reload {
 	
 	//MARK: Setup
     override func didMove(to view: SKView) {
-		setupNodes()
-		setupCamera()
-        setupTools()
-		setupTextures()
-		setupBlocks()
-		physicsWorld.contactDelegate = self
-		
-		soundFX.playBackgroundMusic(filename: "background.mp3")
     }
+
 	func setupNodes() {
 		// Bind controller to local variable
 		controller = childNode(withName: "//controller") as! ControllerNode
@@ -239,6 +232,7 @@ class Stage1: SKScene, Reload {
 		for (type, tool) in toolIcons {
 			// Check if value is present
 			if let number = level[type.rawValue] {
+				// Set tool number
 				tool.number = number
 			}
 		}

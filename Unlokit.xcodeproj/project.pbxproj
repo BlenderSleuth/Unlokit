@@ -44,6 +44,7 @@
 		38B08F621E4039D9000A7232 /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B08F611E4039D9000A7232 /* Stage.swift */; };
 		38B08F651E40448D000A7232 /* neuropol x rg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 38B08F641E40445C000A7232 /* neuropol x rg.ttf */; };
 		38B08F671E4046AA000A7232 /* LevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B08F661E4046AA000A7232 /* LevelView.swift */; };
+		38B08F6A1E408006000A7232 /* LoadingScreen.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38B08F691E408006000A7232 /* LoadingScreen.sks */; };
 		38B649431E3890AF00479469 /* BlockGlueNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B649421E3890AF00479469 /* BlockGlueNode.swift */; };
 		38B649491E38AC3400479469 /* FanNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B649481E38AC3400479469 /* FanNode.swift */; };
 		38B6494B1E38AC9B00479469 /* FanRef.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38B6494A1E38AC9B00479469 /* FanRef.sks */; };
@@ -158,6 +159,7 @@
 		38B08F611E4039D9000A7232 /* Stage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stage.swift; sourceTree = "<group>"; };
 		38B08F641E40445C000A7232 /* neuropol x rg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "neuropol x rg.ttf"; sourceTree = "<group>"; };
 		38B08F661E4046AA000A7232 /* LevelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelView.swift; sourceTree = "<group>"; };
+		38B08F691E408006000A7232 /* LoadingScreen.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LoadingScreen.sks; sourceTree = "<group>"; };
 		38B649421E3890AF00479469 /* BlockGlueNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockGlueNode.swift; sourceTree = "<group>"; };
 		38B649481E38AC3400479469 /* FanNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FanNode.swift; sourceTree = "<group>"; };
 		38B6494A1E38AC9B00479469 /* FanRef.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FanRef.sks; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 		38488EFB1E36028400BCCFD6 /* References */ = {
 			isa = PBXGroup;
 			children = (
+				38B08F691E408006000A7232 /* LoadingScreen.sks */,
 				38F7B1F01E3838ED00A62956 /* Inteface.sks */,
 				383CA9781E1DD5E600F8B998 /* GunRef.sks */,
 				38F7B1E81E38243300A62956 /* ControllerRef.sks */,
@@ -634,6 +637,7 @@
 				38BECCFF1E3F1D02009BADD6 /* BlockBrkGlu.sks in Resources */,
 				38E4B5BF1E37106700C798C0 /* FanTool.sks in Resources */,
 				38BECD011E3F1D2B009BADD6 /* BlockBrkBnc.sks in Resources */,
+				38B08F6A1E408006000A7232 /* LoadingScreen.sks in Resources */,
 				38CE1C191E386B5D00B646DB /* Level2.sks in Resources */,
 				38017A331E35E01B0051EEE0 /* Smash.caf in Resources */,
 				38E6DA351E3C02E8004F8A79 /* Bounce2.caf in Resources */,

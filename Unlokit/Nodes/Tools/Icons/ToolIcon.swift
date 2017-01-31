@@ -34,7 +34,6 @@ class ToolIcon: SKSpriteNode {
 			if number > 0 {
 				enabled = true
 			} else {
-				print(false)
 				enabled = false
 			}
 		}
@@ -44,11 +43,11 @@ class ToolIcon: SKSpriteNode {
         super.init(coder: aDecoder)
 		
 		defer {
-			// Make sure default is greyed out
-			enabled = false
+			// Make sure default is not greyed out
+			enabled = true
 		}
 		
-		// Set label, if there is one
+		// Set label
 		label = childNode(withName: "label") as! SKLabelNode
     }
 	
