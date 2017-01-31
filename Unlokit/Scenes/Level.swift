@@ -11,41 +11,46 @@ struct Category {
 	static let zero: UInt32				= 0b0
 	
 	static let key: UInt32				= 0b1
-	static let lock: UInt32				= 0b10
-	static let bounds: UInt32			= 0b100
+	static let lock: UInt32				= 0b1 << 1
+	static let bounds: UInt32			= 0b1 << 2
 	
-	static let blockMtl: UInt32			= 0b1000
-	static let blockBnc: UInt32			= 0b10000
-	static let blockGlue: UInt32		= 0b100000
-	static let blockBreak: UInt32		= 0b1000000
+	static let blockMtl: UInt32			= 0b1 << 3
+	static let blockBnc: UInt32			= 0b1 << 4
+	static let blockGlue: UInt32		= 0b1 << 5
+	
+	static let blockBreak: UInt32		= 0b1 << 6
+	static let blockBreakBnc: UInt32	= 0b1 << 7
+	static let blockBreakGlue: UInt32	= 0b1 << 8
+	static let blockBreakable: UInt32	= Category.blockBreak | Category.blockBreakBnc | Category.blockBreakGlue
+	
 	static let blocks: UInt32 = Category.blockMtl | Category.blockBnc | Category.blockGlue | Category.blockBreak
 	
-	static let springTool: UInt32		= 0b100000000
-	static let glueTool: UInt32			= 0b1000000000
-	static let fanTool: UInt32			= 0b10000000000
-	static let gravityTool: UInt32		= 0b100000000000
-	static let bombTool: UInt32			= 0b1000000000000
+	static let springTool: UInt32		= 0b1 << 9
+	static let glueTool: UInt32			= 0b1 << 10
+	static let fanTool: UInt32			= 0b1 << 11
+	static let gravityTool: UInt32		= 0b1 << 12
+	static let bombTool: UInt32			= 0b1 << 13
 	static let tools: UInt32 = Category.springTool | Category.glueTool | Category.fanTool | Category.gravityTool | Category.bombTool
 	
-	static let fanGravityField: UInt32	= 0b10000000000000
-	static let fanDragField: UInt32		= 0b100000000000000
+	static let fanGravityField: UInt32	= 0b1 << 14
+	static let fanDragField: UInt32		= 0b1 << 15
 	static let fields: UInt32			= Category.fanGravityField | Category.fanDragField
 	
-	static let fan: UInt32				= 0b1000000000000000
+	static let fan: UInt32				= 0b1 << 16
 	
-	static let speed: UInt32			= 0b10000000000000000
-	static let secretTeleport: UInt32	= 0b100000000000000000
+	static let speed: UInt32			= 0b1 << 17
+	static let secretTeleport: UInt32	= 0b1 << 18
 	
 	static let all: UInt32 = UInt32.max
 }
 
 struct ZPosition {
-	static let background: CGFloat	= 10
-	static let levelNodes: CGFloat	= 20
+	static let background: CGFloat	= 0
 	static let tools: CGFloat		= 40
-	static let toolIcons: CGFloat	= 50
+	static let toolIcons: CGFloat	= 45
+	static let levelNodes: CGFloat	= 50
 	static let key: CGFloat			= 60
-	static let controller			= 70
+	static let canon				= 70
 	static let activeItem: CGFloat	= 80
 	static let interface: CGFloat	= 100
 }
@@ -228,6 +233,8 @@ class Level: SKScene, Reload {
 		let levelDict = NSDictionary(contentsOfFile: plist) as! [String: [String: Int]]
 		
 		let level = levelDict["Level\(levelNumber)"]!
+		
+		
 		
 		// Iterate through all tol icons
 		for (type, tool) in toolIcons {

@@ -44,7 +44,7 @@ class BlockGlueNode: BlockNode {
 				break
 			}
 			
-			if child.name == "fan" {
+			if child.name == "fanPlaceholder" {
 				// Make sure connected side is nil
 				connected[side!] = nil
 				

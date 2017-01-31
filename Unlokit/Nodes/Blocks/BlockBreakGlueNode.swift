@@ -1,22 +1,18 @@
 //
-//  BlockBreakNode.swift
+//  BlockBreakGlueNode.swift
 //  Unlokit
 //
-//  Created by Ben Sutherland on 25/1/17.
+//  Created by Ben Sutherland on 28/1/17.
 //  Copyright © 2017 blendersleuthdev. All rights reserved.
 //
 
 import SpriteKit
 
-protocol Breakable {
-	func shatter()
-}
-
-class BlockBreakNode: BlockMtlNode, Breakable {
+class BlockBreakGlueNode: BlockGlueNode, Breakable {
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-		physicsBody?.categoryBitMask = Category.blockBreak
+		physicsBody?.categoryBitMask = Category.blockBreak | Category.blockGlue
 	}
 	
 	func shatter() {

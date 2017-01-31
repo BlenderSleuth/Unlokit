@@ -13,8 +13,7 @@ class BombToolNode: ToolNode {
 	var fuse: SKEmitterNode!
 	var explode = SKEmitterNode(fileNamed: "BombExplode")!
 	
-	// TO DO:
-	var radius = 50
+	var radius: CGFloat = 200
 	
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -35,7 +34,7 @@ class BombToolNode: ToolNode {
 	}
 	
 	override func smash(scene: Level) {
-		explode(scene: scene)
+		explode(scene: scene, at: self.position)
 	}
 	override func remove() {
 		// Hide fuse behind bomb while particles dissipate
@@ -48,13 +47,27 @@ class BombToolNode: ToolNode {
 		
 		super.remove()
 	}
-	func explode(scene: SKScene) {
+	func explode(scene: SKScene, at point: CGPoint) {
 		// Check if this is the first explosion
 		if parent == nil {
 			return
 		}
+		let regionRect = CGRect(origin: CGPoint(x: -radius, y: -radius), size: CGSize(width: radius * 2, height: radius * 2))
+		let regionPath = CGPath(ellipseIn: regionRect, transform: nil)
+		let region = SKRegion(path: regionPath)
 		
-		// TO DO: add sound
+		self.position = point
+		
+		// Shatter all breakables in radius
+		scene.enumerateChildNodes(withName: "//breakable*") {node, _ in
+			if let breakable = (node as? Breakable) {
+				let position = self.convert(node.position, from: node.parent!)
+				if region.contains(position) {
+					breakable.shatter()
+				}
+			}
+		}
+		
 		let sound = SoundFX.sharedInstance["explosion"]!
 		scene.run(sound)
 		
@@ -62,5 +75,40 @@ class BombToolNode: ToolNode {
 		explode.position = scene.convert(position, from: self.parent!)
 		scene.addChild(explode)
 		removeFromParent()
+	}
+	func countDown(scene: SKScene, at point: CGPoint, side: Side) {
+		var countDown = 5
+		
+		let position: CGPoint
+		if let block = self.parent as? BlockGlueNode {
+			position = scene.convert(side.position, from: block)
+		} else {
+			position = point
+		}
+		
+		let label = SKLabelNode(text: "\(countDown)")
+		label.fontSize = 75
+		label.verticalAlignmentMode = .center
+		label.zPosition = 100
+		label.position = position
+		scene.addChild(label)
+		
+		let wait = SKAction.wait(forDuration: 1)
+		let block = SKAction.run {
+			countDown -= 1
+			label.text = "\(countDown)"
+		}
+		
+		let sequence = SKAction.sequence([wait, block])
+		let repeatAction = SKAction.repeat(sequence, count: countDown)
+		
+		run(repeatAction) {
+			label.removeFromParent()
+			if let glueBlock = self.parent as? BlockGlueNode {
+				glueBlock.remove(for: side)
+			}
+			self.move(toParent: scene)
+			self.explode(scene: scene, at: position)
+		}
 	}
 }

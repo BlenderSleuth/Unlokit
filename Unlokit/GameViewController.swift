@@ -17,10 +17,10 @@ class GameViewController: UIViewController, start {
 	
 	func startNewGame() {
 		// Check for skView,             load scene from file
-		if let skView = view as? SKView, let scene = Level(fileNamed: "Level4") {
+		if let skView = view as? SKView, let scene = Level(fileNamed: "Level7") {
 			scene.start = self
 			
-			scene.levelNumber = 4
+			scene.levelNumber = 0
 			
 			// Scale scene to fill
 			scene.scaleMode = .aspectFill

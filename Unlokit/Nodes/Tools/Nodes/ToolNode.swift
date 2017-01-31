@@ -98,7 +98,6 @@ class ToolNode: SKSpriteNode, CanBeFired {
 		}
 		
 		emitter.position = scene.convert(position, from: parent!)
-		print(emitter.zPosition)
 		scene.addChild(emitter)
 		scene.run(SoundFX.sharedInstance["smash"]!)
 		

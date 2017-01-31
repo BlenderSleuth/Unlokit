@@ -31,35 +31,42 @@
 		384ACEF31E347FE2004C3E93 /* KeyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384ACEF21E347FE2004C3E93 /* KeyNode.swift */; };
 		385161361E348E6C0041995A /* ControllerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385161351E348E6C0041995A /* ControllerNode.swift */; };
 		385499821E3AC816005DD671 /* Level6.sks in Resources */ = {isa = PBXBuildFile; fileRef = 385499811E3AC816005DD671 /* Level6.sks */; };
-		385499861E3ACAF9005DD671 /* Row4BlockMtl2Fan.sks in Resources */ = {isa = PBXBuildFile; fileRef = 385499851E3ACAF9005DD671 /* Row4BlockMtl2Fan.sks */; };
 		38650F541E25F6A500401ABD /* FireButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38650F531E25F6A500401ABD /* FireButtonNode.swift */; };
 		387105EC1E35844E002D010A /* LockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387105EB1E35844E002D010A /* LockNode.swift */; };
 		387105F31E359640002D010A /* SoundFX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387105F21E359640002D010A /* SoundFX.swift */; };
 		387105F51E359CA4002D010A /* ReplayButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387105F41E359CA4002D010A /* ReplayButtonNode.swift */; };
 		38792B711E3B334400421250 /* Level10.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38792B701E3B334400421250 /* Level10.sks */; };
-		38792B751E3B33C000421250 /* Row8BlockMtl.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38792B741E3B33BF00421250 /* Row8BlockMtl.sks */; };
 		388514001E36EF440092F058 /* SpringTool.sks in Resources */ = {isa = PBXBuildFile; fileRef = 388513FF1E36EF440092F058 /* SpringTool.sks */; };
 		388514021E36EFA20092F058 /* ToolBox.sks in Resources */ = {isa = PBXBuildFile; fileRef = 388514011E36EFA20092F058 /* ToolBox.sks */; };
-		38A4F2C81E3B6EE300205B79 /* Row2Block2Fan.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38A4F2C71E3B6EE300205B79 /* Row2Block2Fan.sks */; };
 		38AE075A1E36221400D127D2 /* Lock.caf in Resources */ = {isa = PBXBuildFile; fileRef = 38AE07591E361DDC00D127D2 /* Lock.caf */; };
 		38B649431E3890AF00479469 /* BlockGlueNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B649421E3890AF00479469 /* BlockGlueNode.swift */; };
-		38B649451E3890F800479469 /* BlockGlu.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38B649441E3890F800479469 /* BlockGlu.sks */; };
 		38B649491E38AC3400479469 /* FanNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B649481E38AC3400479469 /* FanNode.swift */; };
 		38B6494B1E38AC9B00479469 /* FanRef.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38B6494A1E38AC9B00479469 /* FanRef.sks */; };
 		38B737B41E3959FE004B6B95 /* FanTextures.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38B737B31E3959FE004B6B95 /* FanTextures.sks */; };
+		38BD09EC1E401E2900AE6AF2 /* BlockBnc.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38BD09E01E401E2900AE6AF2 /* BlockBnc.sks */; };
+		38BD09ED1E401E2900AE6AF2 /* BlockGlu.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38BD09E11E401E2900AE6AF2 /* BlockGlu.sks */; };
+		38BD09EE1E401E2900AE6AF2 /* BlockGlu1Fan.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38BD09E21E401E2900AE6AF2 /* BlockGlu1Fan.sks */; };
+		38BD09EF1E401E2900AE6AF2 /* BlockGluGravity.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38BD09E31E401E2900AE6AF2 /* BlockGluGravity.sks */; };
+		38BD09F01E401E2900AE6AF2 /* BlockMtl.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38BD09E41E401E2900AE6AF2 /* BlockMtl.sks */; };
+		38BD09F11E401E2900AE6AF2 /* Row2BlockFan.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38BD09E51E401E2900AE6AF2 /* Row2BlockFan.sks */; };
+		38BD09F21E401E2900AE6AF2 /* Row2BlockMtl.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38BD09E61E401E2900AE6AF2 /* Row2BlockMtl.sks */; };
+		38BD09F31E401E2900AE6AF2 /* Row4BlockBnc.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38BD09E71E401E2900AE6AF2 /* Row4BlockBnc.sks */; };
+		38BD09F41E401E2900AE6AF2 /* Row4BlockMtl.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38BD09E81E401E2900AE6AF2 /* Row4BlockMtl.sks */; };
+		38BD09F51E401E2900AE6AF2 /* Row4BlockMtl2Fan.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38BD09E91E401E2900AE6AF2 /* Row4BlockMtl2Fan.sks */; };
+		38BD09F61E401E2900AE6AF2 /* Row4Fan.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38BD09EA1E401E2900AE6AF2 /* Row4Fan.sks */; };
+		38BD09F71E401E2900AE6AF2 /* Row8BlockMtl.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38BD09EB1E401E2900AE6AF2 /* Row8BlockMtl.sks */; };
+		38BECCFF1E3F1D02009BADD6 /* BlockBrkGlu.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38BECCFE1E3F1D02009BADD6 /* BlockBrkGlu.sks */; };
+		38BECD011E3F1D2B009BADD6 /* BlockBrkBnc.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38BECD001E3F1D2B009BADD6 /* BlockBrkBnc.sks */; };
+		38BECD041E3F1E7E009BADD6 /* BlockBreakBounce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BECD021E3F1E7E009BADD6 /* BlockBreakBounce.swift */; };
+		38BECD051E3F1E7E009BADD6 /* BlockBreakGlueNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BECD031E3F1E7E009BADD6 /* BlockBreakGlueNode.swift */; };
 		38C44B461E39B193004B76B6 /* GravityNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C44B451E39B193004B76B6 /* GravityNode.swift */; };
 		38C44B481E39BA6D004B76B6 /* GravityRef.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38C44B471E39BA6D004B76B6 /* GravityRef.sks */; };
-		38C44B4A1E39CB9C004B76B6 /* BlockGlueGravity.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38C44B491E39CB9C004B76B6 /* BlockGlueGravity.sks */; };
 		38C50AF41E36A83600B4EE2A /* GlueToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AEF1E36A83600B4EE2A /* GlueToolNode.swift */; };
 		38C50AF51E36A83600B4EE2A /* BombToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AF01E36A83600B4EE2A /* BombToolNode.swift */; };
 		38C50AF61E36A83600B4EE2A /* ToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AF11E36A83600B4EE2A /* ToolNode.swift */; };
 		38C50AF91E36AA0B00B4EE2A /* SpringToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AF81E36AA0B00B4EE2A /* SpringToolNode.swift */; };
 		38C73B231E35B92F00B3AC6A /* ReloadButtonActions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38C73B221E35B92F00B3AC6A /* ReloadButtonActions.sks */; };
 		38CE1BFB1E3841A200B646DB /* Explosion.caf in Resources */ = {isa = PBXBuildFile; fileRef = 38CE1BFA1E3841A200B646DB /* Explosion.caf */; };
-		38CE1C091E38597400B646DB /* BlockBnc.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38CE1C051E38597400B646DB /* BlockBnc.sks */; };
-		38CE1C0A1E38597400B646DB /* BlockMtl.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38CE1C061E38597400B646DB /* BlockMtl.sks */; };
-		38CE1C0B1E38597400B646DB /* Row4BlockBnc.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38CE1C071E38597400B646DB /* Row4BlockBnc.sks */; };
-		38CE1C0C1E38597400B646DB /* Row4BlockMtl.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38CE1C081E38597400B646DB /* Row4BlockMtl.sks */; };
 		38CE1C101E38599B00B646DB /* Background-Purple.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38CE1C0E1E38599B00B646DB /* Background-Purple.sks */; };
 		38CE1C111E38599B00B646DB /* Canvas-Purple.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38CE1C0F1E38599B00B646DB /* Canvas-Purple.sks */; };
 		38CE1C181E386B5D00B646DB /* Level1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38CE1C141E386B5D00B646DB /* Level1.sks */; };
@@ -92,7 +99,6 @@
 		38E6DA361E3C02E8004F8A79 /* Bounce3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 38AE07571E36199500D127D2 /* Bounce3.caf */; };
 		38E6DA371E3C02E8004F8A79 /* Bounce4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 38AE07581E36199500D127D2 /* Bounce4.caf */; };
 		38E6DA391E3C0A06004F8A79 /* Block.caf in Resources */ = {isa = PBXBuildFile; fileRef = 38E6DA381E3C0A06004F8A79 /* Block.caf */; };
-		38EEC9071E3ACF1D00931A7D /* BlockGlu1Fan.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38EEC9061E3ACF1D00931A7D /* BlockGlu1Fan.sks */; };
 		38F40FE21E3B120500A0A469 /* SpeedNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F40FE11E3B120500A0A469 /* SpeedNode.swift */; };
 		38F40FE41E3B12C500A0A469 /* SpeedRef.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38F40FE31E3B12C500A0A469 /* SpeedRef.sks */; };
 		38F40FE61E3B271300A0A469 /* Level9.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38F40FE51E3B271300A0A469 /* Level9.sks */; };
@@ -130,39 +136,46 @@
 		384ACEF21E347FE2004C3E93 /* KeyNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyNode.swift; sourceTree = "<group>"; };
 		385161351E348E6C0041995A /* ControllerNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerNode.swift; sourceTree = "<group>"; };
 		385499811E3AC816005DD671 /* Level6.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level6.sks; sourceTree = "<group>"; };
-		385499851E3ACAF9005DD671 /* Row4BlockMtl2Fan.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row4BlockMtl2Fan.sks; sourceTree = "<group>"; };
 		38650F531E25F6A500401ABD /* FireButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireButtonNode.swift; sourceTree = "<group>"; };
 		387105EB1E35844E002D010A /* LockNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LockNode.swift; sourceTree = "<group>"; };
 		387105F21E359640002D010A /* SoundFX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundFX.swift; sourceTree = "<group>"; };
 		387105F41E359CA4002D010A /* ReplayButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplayButtonNode.swift; sourceTree = "<group>"; };
 		38792B701E3B334400421250 /* Level10.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level10.sks; sourceTree = "<group>"; };
-		38792B741E3B33BF00421250 /* Row8BlockMtl.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row8BlockMtl.sks; sourceTree = "<group>"; };
 		388513FF1E36EF440092F058 /* SpringTool.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SpringTool.sks; sourceTree = "<group>"; };
 		388514011E36EFA20092F058 /* ToolBox.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ToolBox.sks; sourceTree = "<group>"; };
-		38A4F2C71E3B6EE300205B79 /* Row2Block2Fan.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row2Block2Fan.sks; sourceTree = "<group>"; };
 		38AE07551E36199500D127D2 /* Bounce1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bounce1.caf; sourceTree = "<group>"; };
 		38AE07561E36199500D127D2 /* Bounce2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bounce2.caf; sourceTree = "<group>"; };
 		38AE07571E36199500D127D2 /* Bounce3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bounce3.caf; sourceTree = "<group>"; };
 		38AE07581E36199500D127D2 /* Bounce4.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bounce4.caf; sourceTree = "<group>"; };
 		38AE07591E361DDC00D127D2 /* Lock.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lock.caf; sourceTree = "<group>"; };
 		38B649421E3890AF00479469 /* BlockGlueNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockGlueNode.swift; sourceTree = "<group>"; };
-		38B649441E3890F800479469 /* BlockGlu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockGlu.sks; sourceTree = "<group>"; };
 		38B649481E38AC3400479469 /* FanNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FanNode.swift; sourceTree = "<group>"; };
 		38B6494A1E38AC9B00479469 /* FanRef.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FanRef.sks; sourceTree = "<group>"; };
 		38B737B31E3959FE004B6B95 /* FanTextures.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FanTextures.sks; sourceTree = "<group>"; };
+		38BD09E01E401E2900AE6AF2 /* BlockBnc.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockBnc.sks; sourceTree = "<group>"; };
+		38BD09E11E401E2900AE6AF2 /* BlockGlu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockGlu.sks; sourceTree = "<group>"; };
+		38BD09E21E401E2900AE6AF2 /* BlockGlu1Fan.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockGlu1Fan.sks; sourceTree = "<group>"; };
+		38BD09E31E401E2900AE6AF2 /* BlockGluGravity.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockGluGravity.sks; sourceTree = "<group>"; };
+		38BD09E41E401E2900AE6AF2 /* BlockMtl.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockMtl.sks; sourceTree = "<group>"; };
+		38BD09E51E401E2900AE6AF2 /* Row2BlockFan.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row2BlockFan.sks; sourceTree = "<group>"; };
+		38BD09E61E401E2900AE6AF2 /* Row2BlockMtl.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row2BlockMtl.sks; sourceTree = "<group>"; };
+		38BD09E71E401E2900AE6AF2 /* Row4BlockBnc.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row4BlockBnc.sks; sourceTree = "<group>"; };
+		38BD09E81E401E2900AE6AF2 /* Row4BlockMtl.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row4BlockMtl.sks; sourceTree = "<group>"; };
+		38BD09E91E401E2900AE6AF2 /* Row4BlockMtl2Fan.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row4BlockMtl2Fan.sks; sourceTree = "<group>"; };
+		38BD09EA1E401E2900AE6AF2 /* Row4Fan.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row4Fan.sks; sourceTree = "<group>"; };
+		38BD09EB1E401E2900AE6AF2 /* Row8BlockMtl.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row8BlockMtl.sks; sourceTree = "<group>"; };
+		38BECCFE1E3F1D02009BADD6 /* BlockBrkGlu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockBrkGlu.sks; sourceTree = "<group>"; };
+		38BECD001E3F1D2B009BADD6 /* BlockBrkBnc.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockBrkBnc.sks; sourceTree = "<group>"; };
+		38BECD021E3F1E7E009BADD6 /* BlockBreakBounce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockBreakBounce.swift; sourceTree = "<group>"; };
+		38BECD031E3F1E7E009BADD6 /* BlockBreakGlueNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockBreakGlueNode.swift; sourceTree = "<group>"; };
 		38C44B451E39B193004B76B6 /* GravityNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GravityNode.swift; sourceTree = "<group>"; };
 		38C44B471E39BA6D004B76B6 /* GravityRef.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GravityRef.sks; sourceTree = "<group>"; };
-		38C44B491E39CB9C004B76B6 /* BlockGlueGravity.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockGlueGravity.sks; sourceTree = "<group>"; };
 		38C50AEF1E36A83600B4EE2A /* GlueToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlueToolNode.swift; sourceTree = "<group>"; };
 		38C50AF01E36A83600B4EE2A /* BombToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BombToolNode.swift; sourceTree = "<group>"; };
 		38C50AF11E36A83600B4EE2A /* ToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolNode.swift; sourceTree = "<group>"; };
 		38C50AF81E36AA0B00B4EE2A /* SpringToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringToolNode.swift; sourceTree = "<group>"; };
 		38C73B221E35B92F00B3AC6A /* ReloadButtonActions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ReloadButtonActions.sks; sourceTree = "<group>"; };
 		38CE1BFA1E3841A200B646DB /* Explosion.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Explosion.caf; sourceTree = "<group>"; };
-		38CE1C051E38597400B646DB /* BlockBnc.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockBnc.sks; sourceTree = "<group>"; };
-		38CE1C061E38597400B646DB /* BlockMtl.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockMtl.sks; sourceTree = "<group>"; };
-		38CE1C071E38597400B646DB /* Row4BlockBnc.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row4BlockBnc.sks; sourceTree = "<group>"; };
-		38CE1C081E38597400B646DB /* Row4BlockMtl.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row4BlockMtl.sks; sourceTree = "<group>"; };
 		38CE1C0E1E38599B00B646DB /* Background-Purple.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Background-Purple.sks"; sourceTree = "<group>"; };
 		38CE1C0F1E38599B00B646DB /* Canvas-Purple.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Canvas-Purple.sks"; sourceTree = "<group>"; };
 		38CE1C141E386B5D00B646DB /* Level1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1.sks; sourceTree = "<group>"; };
@@ -191,7 +204,6 @@
 		38E6DA2E1E3BF2AA004F8A79 /* SecretTeleportNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecretTeleportNode.swift; sourceTree = "<group>"; };
 		38E6DA301E3BF95E004F8A79 /* Level8.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level8.sks; sourceTree = "<group>"; };
 		38E6DA381E3C0A06004F8A79 /* Block.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Block.caf; sourceTree = "<group>"; };
-		38EEC9061E3ACF1D00931A7D /* BlockGlu1Fan.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockGlu1Fan.sks; sourceTree = "<group>"; };
 		38F40FE11E3B120500A0A469 /* SpeedNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeedNode.swift; sourceTree = "<group>"; };
 		38F40FE31E3B12C500A0A469 /* SpeedRef.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SpeedRef.sks; sourceTree = "<group>"; };
 		38F40FE51E3B271300A0A469 /* Level9.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level9.sks; sourceTree = "<group>"; };
@@ -266,9 +278,11 @@
 			children = (
 				381D5C891E394E3C0084E56E /* BlockNode.swift */,
 				38017A301E35DEE20051EEE0 /* BlockMtlNode.swift */,
-				38E50CF21E39E1B5007437E7 /* BlockBreakNode.swift */,
 				38488EF71E35E4F000BCCFD6 /* BlockBncNode.swift */,
 				38B649421E3890AF00479469 /* BlockGlueNode.swift */,
+				38E50CF21E39E1B5007437E7 /* BlockBreakNode.swift */,
+				38BECD021E3F1E7E009BADD6 /* BlockBreakBounce.swift */,
+				38BECD031E3F1E7E009BADD6 /* BlockBreakGlueNode.swift */,
 			);
 			path = Blocks;
 			sourceTree = "<group>";
@@ -368,6 +382,38 @@
 			path = Nodes;
 			sourceTree = "<group>";
 		};
+		38BD09DF1E401E2900AE6AF2 /* Metal */ = {
+			isa = PBXGroup;
+			children = (
+				38BD09E01E401E2900AE6AF2 /* BlockBnc.sks */,
+				38BD09E11E401E2900AE6AF2 /* BlockGlu.sks */,
+				38BD09E21E401E2900AE6AF2 /* BlockGlu1Fan.sks */,
+				38BD09E31E401E2900AE6AF2 /* BlockGluGravity.sks */,
+				38BD09E41E401E2900AE6AF2 /* BlockMtl.sks */,
+				38BD09E51E401E2900AE6AF2 /* Row2BlockFan.sks */,
+				38BD09E61E401E2900AE6AF2 /* Row2BlockMtl.sks */,
+				38BD09E71E401E2900AE6AF2 /* Row4BlockBnc.sks */,
+				38BD09E81E401E2900AE6AF2 /* Row4BlockMtl.sks */,
+				38BD09E91E401E2900AE6AF2 /* Row4BlockMtl2Fan.sks */,
+				38BD09EA1E401E2900AE6AF2 /* Row4Fan.sks */,
+				38BD09EB1E401E2900AE6AF2 /* Row8BlockMtl.sks */,
+			);
+			path = Metal;
+			sourceTree = "<group>";
+		};
+		38BECCFC1E3F1669009BADD6 /* Break */ = {
+			isa = PBXGroup;
+			children = (
+				38E50CF01E39DB2F007437E7 /* BlockBrk.sks */,
+				38BECCFE1E3F1D02009BADD6 /* BlockBrkGlu.sks */,
+				38BECD001E3F1D2B009BADD6 /* BlockBrkBnc.sks */,
+				38E50CF41E39E2AE007437E7 /* Row4BlockBreak.sks */,
+				38F40FE91E3B28CE00A0A469 /* Row4BlockBreakGrav.sks */,
+				382369031E3B0D3800EFC307 /* Row8BlockBreak.sks */,
+			);
+			path = Break;
+			sourceTree = "<group>";
+		};
 		38C50AED1E36A83600B4EE2A /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -390,20 +436,8 @@
 		38CE1C041E38597400B646DB /* Blocks */ = {
 			isa = PBXGroup;
 			children = (
-				38CE1C061E38597400B646DB /* BlockMtl.sks */,
-				38B649441E3890F800479469 /* BlockGlu.sks */,
-				38EEC9061E3ACF1D00931A7D /* BlockGlu1Fan.sks */,
-				38C44B491E39CB9C004B76B6 /* BlockGlueGravity.sks */,
-				38CE1C051E38597400B646DB /* BlockBnc.sks */,
-				38E50CF01E39DB2F007437E7 /* BlockBrk.sks */,
-				38CE1C081E38597400B646DB /* Row4BlockMtl.sks */,
-				38792B741E3B33BF00421250 /* Row8BlockMtl.sks */,
-				38CE1C071E38597400B646DB /* Row4BlockBnc.sks */,
-				38E50CF41E39E2AE007437E7 /* Row4BlockBreak.sks */,
-				38F40FE91E3B28CE00A0A469 /* Row4BlockBreakGrav.sks */,
-				382369031E3B0D3800EFC307 /* Row8BlockBreak.sks */,
-				385499851E3ACAF9005DD671 /* Row4BlockMtl2Fan.sks */,
-				38A4F2C71E3B6EE300205B79 /* Row2Block2Fan.sks */,
+				38BD09DF1E401E2900AE6AF2 /* Metal */,
+				38BECCFC1E3F1669009BADD6 /* Break */,
 			);
 			path = Blocks;
 			sourceTree = "<group>";
@@ -506,65 +540,69 @@
 				38E4B5C11E37106700C798C0 /* GravityTool.sks in Resources */,
 				385499821E3AC816005DD671 /* Level6.sks in Resources */,
 				38F7B1E91E38243300A62956 /* ControllerRef.sks in Resources */,
+				38BD09F71E401E2900AE6AF2 /* Row8BlockMtl.sks in Resources */,
 				38792B711E3B334400421250 /* Level10.sks in Resources */,
 				38CE1C181E386B5D00B646DB /* Level1.sks in Resources */,
 				381D5C8C1E39513D0084E56E /* FanParticles.sks in Resources */,
 				38CE1BFB1E3841A200B646DB /* Explosion.caf in Resources */,
+				38BD09EF1E401E2900AE6AF2 /* BlockGluGravity.sks in Resources */,
 				38D0E00C1E39D2DB00B9A341 /* Level4.sks in Resources */,
 				38E4B5C01E37106700C798C0 /* GlueTool.sks in Resources */,
 				381D5C881E394C240084E56E /* Bounce.sks in Resources */,
 				38B737B41E3959FE004B6B95 /* FanTextures.sks in Resources */,
 				382369041E3B0D3800EFC307 /* Row8BlockBreak.sks in Resources */,
+				38BD09EE1E401E2900AE6AF2 /* BlockGlu1Fan.sks in Resources */,
 				38E6DA2D1E3BF26F004F8A79 /* SecretTeleport.sks in Resources */,
-				38CE1C0B1E38597400B646DB /* Row4BlockBnc.sks in Resources */,
 				383CA97C1E1DD5E600F8B998 /* GunRef.sks in Resources */,
 				382369001E3B091D00EFC307 /* Level7.sks in Resources */,
 				38F7B1F11E3838ED00A62956 /* Inteface.sks in Resources */,
 				38AE075A1E36221400D127D2 /* Lock.caf in Resources */,
-				385499861E3ACAF9005DD671 /* Row4BlockMtl2Fan.sks in Resources */,
+				38BD09EC1E401E2900AE6AF2 /* BlockBnc.sks in Resources */,
 				38B6494B1E38AC9B00479469 /* FanRef.sks in Resources */,
 				383CA9841E1DD61100F8B998 /* Main.storyboard in Resources */,
-				38B649451E3890F800479469 /* BlockGlu.sks in Resources */,
 				38E6DA371E3C02E8004F8A79 /* Bounce4.caf in Resources */,
 				38D0C2C41E3AC17500E643DD /* Level5.sks in Resources */,
+				38BD09ED1E401E2900AE6AF2 /* BlockGlu.sks in Resources */,
 				38E6DA391E3C0A06004F8A79 /* Block.caf in Resources */,
 				38E50CEF1E39D926007437E7 /* BombFuse.sks in Resources */,
 				38E6DA361E3C02E8004F8A79 /* Bounce3.caf in Resources */,
 				38F7B1EF1E38348600A62956 /* LockRef.sks in Resources */,
 				38C44B481E39BA6D004B76B6 /* GravityRef.sks in Resources */,
+				38BD09F51E401E2900AE6AF2 /* Row4BlockMtl2Fan.sks in Resources */,
 				38017A2F1E35DC160051EEE0 /* Assets.xcassets in Resources */,
 				38F40FEA1E3B28CE00A0A469 /* Row4BlockBreakGrav.sks in Resources */,
 				38F40FE41E3B12C500A0A469 /* SpeedRef.sks in Resources */,
+				38BD09F61E401E2900AE6AF2 /* Row4Fan.sks in Resources */,
+				38BD09F11E401E2900AE6AF2 /* Row2BlockFan.sks in Resources */,
 				38E6DA321E3BF95E004F8A79 /* Level8.sks in Resources */,
 				38E4B5C21E37106700C798C0 /* BombTool.sks in Resources */,
 				38F40FE61E3B271300A0A469 /* Level9.sks in Resources */,
+				38BD09F01E401E2900AE6AF2 /* BlockMtl.sks in Resources */,
 				38017A2E1E35DC160051EEE0 /* Smash.sks in Resources */,
 				38395CBB1E3DB7020014E5E3 /* background.mp3 in Resources */,
 				38DFCF871E3EAE9A006FD3C9 /* LevelData.plist in Resources */,
 				388514021E36EFA20092F058 /* ToolBox.sks in Resources */,
 				38CE1C111E38599B00B646DB /* Canvas-Purple.sks in Resources */,
 				38C73B231E35B92F00B3AC6A /* ReloadButtonActions.sks in Resources */,
-				38CE1C0A1E38597400B646DB /* BlockMtl.sks in Resources */,
+				38BECCFF1E3F1D02009BADD6 /* BlockBrkGlu.sks in Resources */,
 				38E4B5BF1E37106700C798C0 /* FanTool.sks in Resources */,
+				38BECD011E3F1D2B009BADD6 /* BlockBrkBnc.sks in Resources */,
 				38CE1C191E386B5D00B646DB /* Level2.sks in Resources */,
-				38A4F2C81E3B6EE300205B79 /* Row2Block2Fan.sks in Resources */,
 				38017A331E35E01B0051EEE0 /* Smash.caf in Resources */,
 				38E6DA351E3C02E8004F8A79 /* Bounce2.caf in Resources */,
+				38BD09F21E401E2900AE6AF2 /* Row2BlockMtl.sks in Resources */,
 				3804F12D1E39FAEB007099AD /* BombExplode.sks in Resources */,
-				38EEC9071E3ACF1D00931A7D /* BlockGlu1Fan.sks in Resources */,
 				38CE1C1A1E386B5D00B646DB /* Level3.sks in Resources */,
 				383CA9831E1DD61100F8B998 /* LaunchScreen.storyboard in Resources */,
 				38E50CF11E39DB2F007437E7 /* BlockBrk.sks in Resources */,
-				38C44B4A1E39CB9C004B76B6 /* BlockGlueGravity.sks in Resources */,
 				388514001E36EF440092F058 /* SpringTool.sks in Resources */,
 				38E6DA341E3C02E8004F8A79 /* Bounce1.caf in Resources */,
-				38CE1C091E38597400B646DB /* BlockBnc.sks in Resources */,
+				38BD09F41E401E2900AE6AF2 /* Row4BlockMtl.sks in Resources */,
 				38CE1C101E38599B00B646DB /* Background-Purple.sks in Resources */,
 				38E50CF51E39E2AE007437E7 /* Row4BlockBreak.sks in Resources */,
 				383CA96B1E1DD4F500F8B998 /* Assets.xcassets in Resources */,
-				38CE1C0C1E38597400B646DB /* Row4BlockMtl.sks in Resources */,
 				38F7B1ED1E38342400A62956 /* KeyRef.sks in Resources */,
-				38792B751E3B33C000421250 /* Row8BlockMtl.sks in Resources */,
+				38BD09F31E401E2900AE6AF2 /* Row4BlockBnc.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -579,6 +617,7 @@
 				38E4B5B91E370AF500C798C0 /* FanToolIcon.swift in Sources */,
 				38E4B5B51E370A0A00C798C0 /* BombToolIcon.swift in Sources */,
 				38B649491E38AC3400479469 /* FanNode.swift in Sources */,
+				38BECD041E3F1E7E009BADD6 /* BlockBreakBounce.swift in Sources */,
 				38E4B5C61E37137C00C798C0 /* GravityToolNode.swift in Sources */,
 				38E50CF31E39E1B5007437E7 /* BlockBreakNode.swift in Sources */,
 				38650F541E25F6A500401ABD /* FireButtonNode.swift in Sources */,
@@ -590,6 +629,7 @@
 				38E4B5BA1E370AF500C798C0 /* GravityToolIcon.swift in Sources */,
 				383CA9641E1DD4F500F8B998 /* AppDelegate.swift in Sources */,
 				38E4B5B31E370A0A00C798C0 /* GlueToolIcon.swift in Sources */,
+				38BECD051E3F1E7E009BADD6 /* BlockBreakGlueNode.swift in Sources */,
 				38C50AF61E36A83600B4EE2A /* ToolNode.swift in Sources */,
 				38488F1D1E3603F100BCCFD6 /* Level.swift in Sources */,
 				38C50AF51E36A83600B4EE2A /* BombToolNode.swift in Sources */,

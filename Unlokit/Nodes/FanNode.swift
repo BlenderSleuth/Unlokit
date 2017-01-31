@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class FanNode: SKSpriteNode {
+class FanNode: SKSpriteNode, Breakable {
 	
 	// Children
 	var gravityField: SKFieldNode!
@@ -18,6 +18,7 @@ class FanNode: SKSpriteNode {
 	var glueBlock: BlockGlueNode!
 	var side: Side!
 	
+	var fieldLength: CGFloat?
 	var fieldRect: CGRect!
 	var fieldRegion: SKRegion!
 	
@@ -49,20 +50,46 @@ class FanNode: SKSpriteNode {
 		physicsBody?.contactTestBitMask = Category.bombTool
 		physicsBody?.collisionBitMask = Category.all
 	}
-	
 	func setup(level: Level, block: BlockGlueNode, side: Side) {
+		// If level has different properties
+		getDataFromParent()
+		// Animate fan with frames
 		animate(framesAtlas: level.fanFrames)
+		// Setup particles and fields
 		setupParticles(scene: level)
 		setupFields(scene: level)
 		self.glueBlock = block
 		self.side = side
 		
+		// Check if fan needs field updates
 		isMoving = checkHasActions(node: self)
 		
+		// Append to fan array
 		level.fans.append(self)
 		
 		// Set strength to default value
 		strength = 60
+	}
+	
+	func getDataFromParent() {
+		var data: NSDictionary?
+		
+		// Find user data from parents
+		var tempNode: SKNode = self
+		while !(tempNode is SKScene) {
+			if let userData = tempNode.userData {
+				data = userData
+			}
+			tempNode = tempNode.parent!
+		}
+		
+		// Set instance properties
+		if let length = data?["length"] as? Float {
+			fieldLength = CGFloat(length)
+		}
+		if let strength = data?["strength"] as? Float {
+			self.strength = CGFloat(strength)
+		}
 	}
 	
 	private func animate(framesAtlas: SKTextureAtlas) {
@@ -86,6 +113,7 @@ class FanNode: SKSpriteNode {
 		let rotation = rotationRelativeToSceneFor(node: self)
 		emitter.emissionAngle += rotation
 	}
+	
 	// Set emitter velocity based on strength of fan
 	private func setParticleVelocity(strength: CGFloat) {
 		let rotation = rotationRelativeToSceneFor(node: self)  + CGFloat(-90).degreesToRadians()
@@ -100,7 +128,15 @@ class FanNode: SKSpriteNode {
 	private func setupFields(scene: SKScene) {
 		let rotation = rotationRelativeToSceneFor(node: self)
 		
-		let fieldSize = CGSize(width: frame.width, height: frame.height * 40)
+		// Check if custom user properties
+		let height: CGFloat
+		if fieldLength != nil {
+			height = fieldLength!
+		} else {
+			height = frame.height * 40
+		}
+		
+		let fieldSize = CGSize(width: frame.width, height: height)
 		let fieldOrigin = CGPoint(x: -frame.width/2, y: 0)
 		fieldRect = CGRect(origin: fieldOrigin, size: fieldSize)
 		
@@ -115,7 +151,7 @@ class FanNode: SKSpriteNode {
 		dragField.region = fieldRegion
 	}
 	
-	func smash() {
+	func shatter() {
 		glueBlock.remove(for: side)
 		
 		// TO DO: Add particles and sounds effects

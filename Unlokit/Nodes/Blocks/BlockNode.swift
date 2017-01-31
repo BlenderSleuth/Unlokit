@@ -15,6 +15,19 @@ enum Side {
 	case right
 	
 	static let all = [Side.up, Side.down, Side.left, Side.right]
+	
+	var position: CGPoint {
+		switch self {
+		case .up:
+			return CGPoint(x: 0, y: 64)
+		case .down:
+			return CGPoint(x: 0, y: -64)
+		case .left:
+			return CGPoint(x: -64, y: 0)
+		case .right:
+			return CGPoint(x: 64, y: 0)
+		}
+	}
 }
 
 class BlockNode: SKSpriteNode {

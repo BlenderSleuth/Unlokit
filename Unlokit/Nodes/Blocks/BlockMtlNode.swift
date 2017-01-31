@@ -17,7 +17,14 @@ class BlockMtlNode: BlockNode {
 	}
 	// Create version of self that has kind of bncNode
 	func bncVersion() -> BlockBncNode {
-		let blockBnc = SKNode(fileNamed: "BlockBnc")?.children.first as! BlockBncNode
+		// Check if self is breakable
+		let blockBnc: BlockBncNode
+		if self is Breakable {
+			blockBnc = SKNode(fileNamed: "BlockBrkBnc")?.children.first as! BlockBncNode
+		} else {
+			blockBnc = SKNode(fileNamed: "BlockBnc")?.children.first as! BlockBncNode
+		}
+		
 		blockBnc.removeFromParent()
 		blockBnc.position = position
 		blockBnc.zPosition = zPosition
@@ -25,13 +32,19 @@ class BlockMtlNode: BlockNode {
 	}
 	// Create version of self that has kind of glueNode
 	func glueVersion() -> BlockGlueNode {
-		let blockGlue = SKNode(fileNamed: "BlockGlu")?.children.first as! BlockGlueNode
+		// Check if self is breakable
+		let blockGlue: BlockGlueNode
+		if self is Breakable {
+			blockGlue = SKNode(fileNamed: "BlockBrkGlu")?.children.first as! BlockGlueNode
+		} else {
+			blockGlue = SKNode(fileNamed: "BlockGlu")?.children.first as! BlockGlueNode
+		}
+		
 		blockGlue.removeFromParent()
 		blockGlue.position = position
 		blockGlue.zPosition = zPosition
 		return blockGlue
 	}
-
 }
 
 
