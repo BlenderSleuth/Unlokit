@@ -233,7 +233,7 @@ class Stage1: SKScene, Reload {
 		let stageDict = NSDictionary(contentsOfFile: plist) as! [String: [String: [String: Int]]]
 		let levelDict = stageDict["Stage1"]!
 		
-		let level = levelDict["\(levelNumber)"]!
+		let level = levelDict["Level\(levelNumber)"]!
 		
 		// Iterate through all tool icons
 		for (type, tool) in toolIcons {

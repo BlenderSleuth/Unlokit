@@ -8,11 +8,9 @@
 
 import UIKit
 
-class LevelSelectViewController: UIViewController {
+class LevelSelectViewController: UIViewController, LevelSelectDelegate {
 
 	@IBOutlet weak var mainScrollView: UIScrollView!
-	
-	var selectedLevel = 1
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,11 +32,15 @@ class LevelSelectViewController: UIViewController {
 		var yPos: CGFloat = 0
 		
 		for stage in Stages.sharedInstance.stages {
-			let stageView = StageView(frame: CGRect(origin: CGPoint(x: 0, y: yPos), size: size), stage: stage)
+			let stageView = StageView(frame: CGRect(origin: CGPoint(x: 0, y: yPos), size: size), stage: stage, delegate: self)
 			mainScrollView.addSubview(stageView)
 			
 			yPos += height
 		}
+	}
+	
+	func present(level: Int) {
+		performSegue(withIdentifier: "ToGameSeque", sender: level)
 	}
 	
 	override var prefersStatusBarHidden: Bool {
@@ -48,6 +50,6 @@ class LevelSelectViewController: UIViewController {
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		let gameVC = segue.destination as! GameViewController
-		gameVC.level = selectedLevel
+		gameVC.level = sender as! Int
     }
 }

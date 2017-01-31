@@ -8,14 +8,21 @@
 
 import UIKit
 
+protocol LevelSelectDelegate {
+	func present(level: Int)
+}
+
 class LevelView: UIView {
 	
 	let level: Level
 	
 	let imageView: UIImageView
+	
+	var delegate: LevelSelectDelegate
 
-	init(frame: CGRect, level: Level) {
+	init(frame: CGRect, level: Level, delegate: LevelSelectDelegate) {
 		self.level = level
+		self.delegate = delegate
 		
 		let label = UILabel(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
 		label.font = UIFont(name: "NeuropolXRg-Regular", size: 64)
@@ -38,4 +45,11 @@ class LevelView: UIView {
 		fatalError("init(coder:) has not been implemented")
 	}
 
+	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		for _ in touches {
+			self.layer.borderWidth = 15
+			self.layer.borderColor = UIColor.orange.cgColor
+			delegate.present(level: level.number)
+		}
+	}
 }

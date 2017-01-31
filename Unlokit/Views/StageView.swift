@@ -15,8 +15,11 @@ class StageView: UIView {
 	
 	let stage: Stage
 	
-	init(frame: CGRect, stage: Stage) {
+	let delegate: LevelSelectDelegate
+	
+	init(frame: CGRect, stage: Stage, delegate: LevelSelectDelegate) {
 		self.stage = stage
+		self.delegate = delegate
 		
 		// Setup views
 		titleView = UIView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height / 4))
@@ -58,7 +61,7 @@ class StageView: UIView {
 		for level in stage.levels {
 			let rect = CGRect(x: xPos, y: padding, width: width, height: height)
 			
-			let levelView = LevelView(frame: rect, level: level)
+			let levelView = LevelView(frame: rect, level: level, delegate: delegate)
 			levelView.backgroundColor = .red
 			levelScrollView.addSubview(levelView)
 			
