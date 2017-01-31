@@ -69,6 +69,7 @@ class Stage1: SKScene, Reload {
     
     var fireNode: FireButtonNode!
 	var replayNode: ReplayButtonNode!
+	var backButton: BackButtonNode!
 	var canon: SKSpriteNode!
     var cameraNode: SKCameraNode!
     var bounds: SKSpriteNode!
@@ -110,8 +111,8 @@ class Stage1: SKScene, Reload {
 	//MARK: Setup
     override func didMove(to view: SKView) {
     }
-
-	func setupNodes() {
+	deinit{print("deinit")}
+	func setupNodes(vc: GameViewController) {
 		// Bind controller to local variable
 		controller = childNode(withName: "//controller") as! ControllerNode
 		controller.setupRegion(scene: self) // Pass in scene for controller to use
@@ -129,7 +130,6 @@ class Stage1: SKScene, Reload {
 		if let cam = camera {
 			cameraNode = cam
 		}
-		
 		// Bind boundary box to local variable
 		bounds = childNode(withName: "bounds") as! SKSpriteNode
 		
@@ -145,6 +145,9 @@ class Stage1: SKScene, Reload {
 		fireNode.canon = childNode(withName: "//canon") as! SKSpriteNode
 		replayNode = cameraNode.childNode(withName: "//replayButton") as! ReplayButtonNode
 		replayNode.reloadable = self
+		
+		backButton = childNode(withName: "//backButton") as! BackButtonNode
+		backButton.vc = vc
 		
 		// Bind key to local variable
 		key = childNode(withName: "//key") as! KeyNode
@@ -206,6 +209,7 @@ class Stage1: SKScene, Reload {
 		if iPhone {
 			fireNode.position.y  += 250
 			replayNode.position.y -= 250
+			backButton.position.y -= 250
 		}
 		
 		// Set camera constraints

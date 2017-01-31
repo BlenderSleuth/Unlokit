@@ -38,6 +38,7 @@
 		38792B711E3B334400421250 /* Level10.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38792B701E3B334400421250 /* Level10.sks */; };
 		388514001E36EF440092F058 /* SpringTool.sks in Resources */ = {isa = PBXBuildFile; fileRef = 388513FF1E36EF440092F058 /* SpringTool.sks */; };
 		388514021E36EFA20092F058 /* ToolBox.sks in Resources */ = {isa = PBXBuildFile; fileRef = 388514011E36EFA20092F058 /* ToolBox.sks */; };
+		38AC34CA1E4118AD00FB9B50 /* BackButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AC34C91E4118AD00FB9B50 /* BackButtonNode.swift */; };
 		38AE075A1E36221400D127D2 /* Lock.caf in Resources */ = {isa = PBXBuildFile; fileRef = 38AE07591E361DDC00D127D2 /* Lock.caf */; };
 		38B08F5B1E4037C4000A7232 /* LevelSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B08F5A1E4037C4000A7232 /* LevelSelectViewController.swift */; };
 		38B08F601E4039AE000A7232 /* StageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B08F5F1E4039AE000A7232 /* StageView.swift */; };
@@ -149,6 +150,7 @@
 		38792B701E3B334400421250 /* Level10.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Level10.sks; path = ../Stage1/Level10.sks; sourceTree = "<group>"; };
 		388513FF1E36EF440092F058 /* SpringTool.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SpringTool.sks; sourceTree = "<group>"; };
 		388514011E36EFA20092F058 /* ToolBox.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ToolBox.sks; sourceTree = "<group>"; };
+		38AC34C91E4118AD00FB9B50 /* BackButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackButtonNode.swift; sourceTree = "<group>"; };
 		38AE07551E36199500D127D2 /* Bounce1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bounce1.caf; sourceTree = "<group>"; };
 		38AE07561E36199500D127D2 /* Bounce2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bounce2.caf; sourceTree = "<group>"; };
 		38AE07571E36199500D127D2 /* Bounce3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bounce3.caf; sourceTree = "<group>"; };
@@ -379,6 +381,7 @@
 				387105EB1E35844E002D010A /* LockNode.swift */,
 				38650F531E25F6A500401ABD /* FireButtonNode.swift */,
 				387105F41E359CA4002D010A /* ReplayButtonNode.swift */,
+				38AC34C91E4118AD00FB9B50 /* BackButtonNode.swift */,
 				38B649481E38AC3400479469 /* FanNode.swift */,
 				38C44B451E39B193004B76B6 /* GravityNode.swift */,
 				38F40FE11E3B120500A0A469 /* SpeedNode.swift */,
@@ -429,7 +432,8 @@
 				38F40FE51E3B271300A0A469 /* Level9.sks */,
 				38792B701E3B334400421250 /* Level10.sks */,
 			);
-			path = "Stage 1";
+			name = "Stage 1";
+			path = Stage1;
 			sourceTree = "<group>";
 		};
 		38BD09DF1E401E2900AE6AF2 /* Metal */ = {
@@ -676,6 +680,7 @@
 				38C44B461E39B193004B76B6 /* GravityNode.swift in Sources */,
 				383CA97B1E1DD5E600F8B998 /* GameViewController.swift in Sources */,
 				38017A311E35DEE20051EEE0 /* BlockMtlNode.swift in Sources */,
+				38AC34CA1E4118AD00FB9B50 /* BackButtonNode.swift in Sources */,
 				38E4B5B61E370A0A00C798C0 /* ToolIcon.swift in Sources */,
 				387105EC1E35844E002D010A /* LockNode.swift in Sources */,
 				38B08F601E4039AE000A7232 /* StageView.swift in Sources */,

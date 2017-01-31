@@ -16,9 +16,8 @@ class GameViewController: UIViewController, start {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-		weak var weakSelf = self
 		DispatchQueue.global(qos: .userInitiated).async {
-			weakSelf?.startNewGame()
+			self.startNewGame()
 		}
     }
 	
@@ -33,7 +32,7 @@ class GameViewController: UIViewController, start {
 				scene.levelNumber = level
 				
 				DispatchQueue.global(qos: .userInitiated).async {
-					scene.setupNodes()
+					scene.setupNodes(vc: self)
 					scene.setupCamera()
 					scene.setupTools()
 					scene.setupTextures()
@@ -48,7 +47,6 @@ class GameViewController: UIViewController, start {
 						
 						// Transistion
 						let transition = SKTransition.crossFade(withDuration: 0.5)
-						
 						// Present Scene
 						skView.presentScene(scene, transition: transition)
 						
@@ -65,6 +63,13 @@ class GameViewController: UIViewController, start {
 				}
 
 			}
+		}
+	}
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if let skView = self.view as? SKView {
+			skView.scene?.removeFromParent()
+			skView.presentScene(nil)
 		}
 	}
 	
