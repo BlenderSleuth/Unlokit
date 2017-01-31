@@ -1,5 +1,5 @@
 //
-//  LevelScene.swift
+//  Stage1.swift
 //  Unlokit
 //
 //  Created by Ben Sutherland on 29/12/2016.
@@ -59,7 +59,7 @@ protocol start {
 	func startNewGame()
 }
 
-class LevelScene: SKScene, Reload {
+class Stage1: SKScene, Reload {
     
     //MARK: Variables
 	var levelNumber = 1
@@ -229,14 +229,13 @@ class LevelScene: SKScene, Reload {
 		}
 		
 		// Get plist
-		let plist = Bundle.main.path(forResource: "LevelSceneData", ofType: "plist")!
-		let levelDict = NSDictionary(contentsOfFile: plist) as! [String: [String: Int]]
+		let plist = Bundle.main.path(forResource: "LevelData", ofType: "plist")!
+		let stageDict = NSDictionary(contentsOfFile: plist) as! [String: [String: [String: Int]]]
+		let levelDict = stageDict["Stage1"]!
 		
-		let level = levelDict["LevelScene\(levelNumber)"]!
+		let level = levelDict["\(levelNumber)"]!
 		
-		
-		
-		// Iterate through all tol icons
+		// Iterate through all tool icons
 		for (type, tool) in toolIcons {
 			// Check if value is present
 			if let number = level[type.rawValue] {

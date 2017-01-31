@@ -18,7 +18,7 @@ class BlockGlueNode: BlockNode {
 		physicsBody?.categoryBitMask = Category.blockGlue
 	}
 	
-	func checkConnected(scene: LevelScene) {
+	func checkConnected(scene: Stage1) {
 		for child in children {
 			// Modify connected array to include pre-added nodes
 			var side: Side?

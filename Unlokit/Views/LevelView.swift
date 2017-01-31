@@ -14,7 +14,6 @@ class LevelView: UIView {
 	
 	let imageView: UIImageView
 
-	
 	init(frame: CGRect, level: Level) {
 		self.level = level
 		

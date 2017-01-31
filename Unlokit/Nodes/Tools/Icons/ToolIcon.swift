@@ -21,7 +21,6 @@ class ToolIcon: SKSpriteNode {
 			if enabled {
 				colorBlendFactor = 0.0
 			} else {
-				
 				color = .darkGray
 				run(SKAction.colorize(with: .darkGray, colorBlendFactor: 0.9, duration: 0.5))
 			}
@@ -35,6 +34,7 @@ class ToolIcon: SKSpriteNode {
 			if number > 0 {
 				enabled = true
 			} else {
+				print(false)
 				enabled = false
 			}
 		}
@@ -42,6 +42,11 @@ class ToolIcon: SKSpriteNode {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+		
+		defer {
+			// Make sure default is greyed out
+			enabled = false
+		}
 		
 		// Set label, if there is one
 		label = childNode(withName: "label") as! SKLabelNode

@@ -242,7 +242,7 @@ extension SKNode
 	Adds an action to the list of actions executed by the node.
 	- parameters:
 		- action : The action to perform.
-		- withKey: A unique key used to identify the action.
+		- withKey : A unique key used to identify the action.
 		- block : A completion block called when the action completes.
 	*/
 	func run(_ action: SKAction, withKey: String, completion block:@escaping ((Void) -> Void)) {
@@ -253,6 +253,15 @@ extension SKNode
 	
 	func actionForKeyIsRunning(key: String) -> Bool {
 		return self.action(forKey: key) != nil ? true : false
+	}
+}
+
+//********* String extension *****************************
+extension String {
+	func numbers() -> Int? {
+		let numberStringArray = self.components(separatedBy: NSCharacterSet.decimalDigits.inverted)
+		
+		return Int(numberStringArray.joined())
 	}
 }
 

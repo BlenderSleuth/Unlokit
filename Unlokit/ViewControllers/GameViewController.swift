@@ -11,6 +11,7 @@ import SpriteKit
 
 class GameViewController: UIViewController, start {
 	
+	var stage = 1
 	var level = 1
 	
     override func viewDidLoad() {
@@ -20,7 +21,7 @@ class GameViewController: UIViewController, start {
 	
 	func startNewGame() {
 		// Check for skView,             load scene from file
-		if let skView = view as? SKView, let scene = LevelScene(fileNamed: "LevelScene\(level)") {
+		if let skView = view as? SKView, let scene = Stage1(fileNamed: "Level\(level)") {
 			scene.start = self
 			
 			scene.levelNumber = level

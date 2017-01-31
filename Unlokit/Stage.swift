@@ -14,42 +14,75 @@ class Stages {
 	let stages: [Stage]
 	
 	init() {
-		// Stub stages
-		let stage1 = Stage(name: "Stage 1")
-		let stage2 = Stage(name: "Stage 2")
-		let stage3 = Stage(name: "Stage 3")
-		let stage4 = Stage(name: "Stage 4")
-		stages = [stage1, stage2, stage3, stage4]
+		stages = Stages.getStagesFromPlist()
+	}
+	
+	private class func getStagesFromPlist() -> [Stage]{
+		// Get plist
+		let plist = Bundle.main.path(forResource: "LevelData", ofType: "plist")!
+		let stageDict = NSDictionary(contentsOfFile: plist) as! [String: Any]
+		
+		var stageArray = [Stage]()
+		
+		for (stage, _)in stageDict {
+			// Get stage number
+			let number = Int("\(stage.characters.last!)")!
+			let stage = Stage(number: number)
+			stageArray.append(stage)
+		}
+
+		// Sort array to be in the correct order
+		stageArray.sort {
+			$0.number < $1.number
+		}
+		
+		return stageArray
 	}
 }
 
 class Stage {
 	let name: String
+	let number: Int
 	
 	let levels: [Level]
 	
-	init(name: String) {
-		self.name = name
+	init(number: Int) {
+		self.number = number
+		self.name = "Stage \(number)"
 		
-		let level1 = Level(number: 1, imageName: "Thumbnail")
-		let level2 = Level(number: 2, imageName: "Thumbnail")
-		let level3 = Level(number: 3, imageName: "Thumbnail")
-		let level4 = Level(number: 4, imageName: "Thumbnail")
-		let level5 = Level(number: 5, imageName: "Thumbnail")
-		let level6 = Level(number: 6, imageName: "Thumbnail")
-		let level7 = Level(number: 7, imageName: "Thumbnail")
-		let level8 = Level(number: 8, imageName: "Thumbnail")
+		levels = Stage.getLevelsFromPlist(number: number)
+	}
+	
+	private class func getLevelsFromPlist(number: Int) -> [Level]{
+		// Get plist
+		let plist = Bundle.main.path(forResource: "LevelData", ofType: "plist")!
+		let stageDict = NSDictionary(contentsOfFile: plist) as! [String: [String: Any]]
+		let levelDict = stageDict["Stage\(number)"]!
 		
-		levels = [level1, level2, level3, level4, level5, level6, level7, level8]
+		var levelArray = [Level]()
+		
+		// Iterate through levels in plist
+		for (levelNumberStr, _) in levelDict {
+			let levelNumber = levelNumberStr.numbers() ?? 0
+			
+			let level = Level(number: levelNumber, imageName: "Thumbnail")
+			levelArray.append(level)
+		}
+		// Sort array to be in the correct order
+		levelArray.sort {
+			$0.number < $1.number
+		}
+		
+		return levelArray
 	}
 }
 
 class Level {
 	let number: Int
-	let thumbnail: UIImage
+	var thumbnail: UIImage?
 	
 	init(number: Int, imageName: String) {
 		self.number = number
-		thumbnail = UIImage(named: imageName)!
+		thumbnail = UIImage(named: imageName)
 	}
 }
