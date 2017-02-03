@@ -109,6 +109,10 @@ class Stage1: SKScene, Reload {
     override func didMove(to view: SKView) {
     }
 	
+	override func willMove(from view: SKView) {
+		soundFX.pauseBackgroundMusic()
+	}
+	
 	func setupNodes(vc: GameViewController) {
 		// Bind controller to local variable
 		controller = childNode(withName: "//controller") as! ControllerNode
@@ -235,7 +239,11 @@ class Stage1: SKScene, Reload {
 			if let number = level[type.rawValue] {
 				// Set tool number
 				tool.number = number
+			} else {
+				// Or zero
+				tool.number = 0
 			}
+			
 		}
 	}
 	func setupTextures() {

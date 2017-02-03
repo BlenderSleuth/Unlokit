@@ -81,6 +81,7 @@
 		38CE1C1A1E386B5D00B646DB /* Level3.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38CE1C161E386B5D00B646DB /* Level3.sks */; };
 		38D0C2C41E3AC17500E643DD /* Level5.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38D0C2C31E3AC17500E643DD /* Level5.sks */; };
 		38D0E00C1E39D2DB00B9A341 /* Level4.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38D0E00B1E39D2DB00B9A341 /* Level4.sks */; };
+		38D24A9F1E44959400323861 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D24A9E1E44959400323861 /* ProgressView.swift */; };
 		38DFCF871E3EAE9A006FD3C9 /* LevelData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38DFCF861E3EAE9A006FD3C9 /* LevelData.plist */; };
 		38E4B5B31E370A0A00C798C0 /* GlueToolIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4B5AF1E370A0A00C798C0 /* GlueToolIcon.swift */; };
 		38E4B5B41E370A0A00C798C0 /* SpringToolIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4B5B01E370A0A00C798C0 /* SpringToolIcon.swift */; };
@@ -197,6 +198,7 @@
 		38CE1C161E386B5D00B646DB /* Level3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Level3.sks; path = ../Stage1/Level3.sks; sourceTree = "<group>"; };
 		38D0C2C31E3AC17500E643DD /* Level5.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Level5.sks; path = ../Stage1/Level5.sks; sourceTree = "<group>"; };
 		38D0E00B1E39D2DB00B9A341 /* Level4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Level4.sks; path = ../Stage1/Level4.sks; sourceTree = "<group>"; };
+		38D24A9E1E44959400323861 /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		38DFCF861E3EAE9A006FD3C9 /* LevelData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LevelData.plist; sourceTree = "<group>"; };
 		38E4B5AF1E370A0A00C798C0 /* GlueToolIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlueToolIcon.swift; sourceTree = "<group>"; };
 		38E4B5B01E370A0A00C798C0 /* SpringToolIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringToolIcon.swift; sourceTree = "<group>"; };
@@ -406,6 +408,7 @@
 			children = (
 				38B08F5F1E4039AE000A7232 /* StageView.swift */,
 				38B08F661E4046AA000A7232 /* LevelView.swift */,
+				38D24A9E1E44959400323861 /* ProgressView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -706,6 +709,7 @@
 				38E6DA2F1E3BF2AA004F8A79 /* SecretTeleportNode.swift in Sources */,
 				38E4B5B41E370A0A00C798C0 /* SpringToolIcon.swift in Sources */,
 				38E4B5C51E37137C00C798C0 /* FanToolNode.swift in Sources */,
+				38D24A9F1E44959400323861 /* ProgressView.swift in Sources */,
 				383CA97E1E1DD5F100F8B998 /* Utils.swift in Sources */,
 				38B649431E3890AF00479469 /* BlockGlueNode.swift in Sources */,
 			);

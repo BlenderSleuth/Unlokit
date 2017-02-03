@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol LevelSelectDelegate {
+protocol LevelSelectDelegate: class {
 	func present(level: Int)
 	var levels: [LevelView] { get set }
 }

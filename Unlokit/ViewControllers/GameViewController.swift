@@ -14,25 +14,33 @@ class GameViewController: UIViewController, start {
 	var stage = 1
 	var level = 1
 	
-    override func viewDidLoad() {
-        super.viewDidLoad()
-		DispatchQueue.global(qos: .userInitiated).async {
-			self.startNewGame()
-		}
-    }
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		startNewGame()
+	}
 	
 	func startNewGame() {
-		// Check for skView,             load scene from file
-		if let skView = view as? SKView, let loading = SKScene(fileNamed: "LoadingScreen") {
-			loading.scaleMode = .aspectFill
-			skView.presentScene(loading)
-			
-			if let scene = Stage1(fileNamed: "Level\(level)") {
-				weak var weakScene = scene
-				weakScene?.start = self
-				weakScene?.levelNumber = level
+		DispatchQueue.global(qos: .userInitiated).async {
+			// Check for skView,             load scene from file
+			if let skView = self.view as? SKView, let loading = SKScene(fileNamed: "LoadingScreen") {
+				loading.scaleMode = .aspectFill
+				skView.presentScene(loading)
 				
-				DispatchQueue.global(qos: .userInitiated).async {
+				// TODO:
+				skView.ignoresSiblingOrder = true
+				
+				// Set options
+				skView.showsFPS = true
+				skView.showsNodeCount = true
+				skView.showsDrawCount = true
+				//skView.showsPhysics = true
+				//skView.showsFields = true
+				
+				if let scene = Stage1(fileNamed: "Level\(self.level)") {
+					weak var weakScene = scene
+					weakScene?.start = self
+					weakScene?.levelNumber = self.level
+					
 					weakScene?.setupNodes(vc: self)
 					weakScene?.setupCamera()
 					weakScene?.setupTools()
@@ -40,29 +48,29 @@ class GameViewController: UIViewController, start {
 					weakScene?.setupBlocks()
 					weakScene?.physicsWorld.contactDelegate = weakScene
 					weakScene?.soundFX.playBackgroundMusic(filename: "background.mp3")
-
+					
+					// Scale scene to fill
+					weakScene?.scaleMode = .aspectFill
+					
+					// Transistion
+					let transition = SKTransition.crossFade(withDuration: 0.5)
+					
 					// Bounce back to the main thread to update the UI
 					DispatchQueue.main.async {
-						// Scale scene to fill
-						weakScene?.scaleMode = .aspectFill
-						
-						// Transistion
-						let transition = SKTransition.crossFade(withDuration: 0.5)
 						// Present Scene
 						skView.presentScene(weakScene!, transition: transition)
-						
-						//TO DO:
-						skView.ignoresSiblingOrder = true
-						
-						// Set options
-						skView.showsFPS = true
-						skView.showsNodeCount = true
-						skView.showsDrawCount = true
-						//skView.showsPhysics = true
-						//skView.showsFields = true
 					}
 				}
 			}
+		}
+	}
+	
+	// Clean up
+	override func viewDidDisappear(_ animated: Bool) {
+		super.viewDidDisappear(animated)
+		if let skView = self.view as? SKView {
+			skView.scene?.removeFromParent()
+			skView.presentScene(nil)
 		}
 	}
 	
@@ -70,15 +78,8 @@ class GameViewController: UIViewController, start {
 		performSegue(withIdentifier: "toLevelSelect", sender: nil)
 	}
 	
-	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		if let skView = self.view as? SKView {
-			skView.scene?.removeFromParent()
-			skView.presentScene(nil)
-		}
+	override var prefersStatusBarHidden: Bool {
+		return true
 	}
-	
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
 }
 
