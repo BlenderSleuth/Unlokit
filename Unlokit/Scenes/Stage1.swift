@@ -109,8 +109,6 @@ class Stage1: SKScene, Reload {
     override func didMove(to view: SKView) {
     }
 	
-	deinit{print("deinit")}
-	
 	func setupNodes(vc: GameViewController) {
 		// Bind controller to local variable
 		controller = childNode(withName: "//controller") as! ControllerNode

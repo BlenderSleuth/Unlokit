@@ -27,6 +27,8 @@ extension Stage1: SKPhysicsContactDelegate {
 			return (contact.bodyB.node == node ? contact.bodyA.node : contact.bodyB.node) as! T
 		}
 		
+		// TODO: Make this neater...
+		
 		if collided(with: Category.key, and: Category.lock) {
 			let key = getNode(for: Category.key, type: KeyNode.self)
 			let lock = getNode(for: Category.lock, type: LockNode.self)
@@ -34,9 +36,22 @@ extension Stage1: SKPhysicsContactDelegate {
 			key.lock(lock)
 		}
 		else if collided(with: Category.blockMtl, and: Category.key) ||
-				collided(with: Category.blockBreak, and: Category.key) ||
 				collided(with: Category.bounds, and: Category.key){
 			let key = getNode(for: Category.key, type: KeyNode.self)
+			
+			key.smash()
+		}
+		else if collided(with: Category.blockBreak, and: Category.key) {
+			let key = getNode(for: Category.key, type: KeyNode.self)
+			let block = getNode(for: Category.blockBreak, type: BlockNode.self)
+			
+			if block is BlockBreakBncNode {
+				return
+			} else if let blockGlue = block as? BlockBreakGlueNode {
+				let side = blockGlue.getSide(contact: contact)
+				blockGlue.add(node: key, to: side)
+				return
+			}
 			
 			key.smash()
 		}
