@@ -23,10 +23,10 @@ class BackButtonNode: SKSpriteNode {
 	// Used for initialising from file
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-		//
 		redCircle = SKShapeNode(circleOfRadius: size.width / 2)
 		redCircle.fillColor = .red
 		redCircle.strokeColor = .red
+		redCircle.alpha = 0.2
 		
 		blueCircle = SKShapeNode(circleOfRadius: size.width / 2)
 		blueCircle.fillColor = .blue
@@ -55,7 +55,7 @@ class BackButtonNode: SKSpriteNode {
 	}
 	
 	private func returnToLevel(vc: GameViewController) {
-		vc.performSegue(withIdentifier: "levelSelectSegue", sender: nil)
+		vc.goToLevelSelect()
 	}
 	
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

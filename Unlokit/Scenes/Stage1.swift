@@ -102,16 +102,15 @@ class Stage1: SKScene, Reload {
 	// Preloading textures
 	var fanFrames: SKTextureAtlas!
 	
-	// Array of blocks
-	var blocks = [BlockNode]()
-	
 	// Dict of fans
 	var fans = [FanNode]()
 	
 	//MARK: Setup
     override func didMove(to view: SKView) {
     }
+	
 	deinit{print("deinit")}
+	
 	func setupNodes(vc: GameViewController) {
 		// Bind controller to local variable
 		controller = childNode(withName: "//controller") as! ControllerNode

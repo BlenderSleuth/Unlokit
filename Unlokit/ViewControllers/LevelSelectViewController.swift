@@ -12,10 +12,19 @@ class LevelSelectViewController: UIViewController, LevelSelectDelegate {
 
 	@IBOutlet weak var mainScrollView: UIScrollView!
 	
+	var levels = [LevelView]()
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		setupScroll(frame: view.frame)
     }
+	
+	override func viewWillAppear(_ animated: Bool) {
+		// Reset colour
+		for level in levels {
+			level.reset()
+		}
+	}
 	
 	func setupScroll(frame: CGRect) {
 		// Each stage view is the width of the screen, and 1/4 of the width in height
@@ -39,17 +48,20 @@ class LevelSelectViewController: UIViewController, LevelSelectDelegate {
 		}
 	}
 	
+	@IBAction func unwindToList(sender: UIStoryboardSegue) {
+		if let _ = sender.source as? GameViewController {
+			// Stub for getting stuff from game view controller
+		}
+	}
+	
 	func present(level: Int) {
-		performSegue(withIdentifier: "ToGameSeque", sender: level)
+		if let gameViewController = storyboard?.instantiateViewController(withIdentifier: "GameViewController") as? GameViewController {
+			navigationController?.pushViewController(gameViewController, animated: true)
+			gameViewController.level = level
+		}
 	}
 	
 	override var prefersStatusBarHidden: Bool {
 		return true
 	}
-	
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		let gameVC = segue.destination as! GameViewController
-		gameVC.level = sender as! Int
-    }
 }

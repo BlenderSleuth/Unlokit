@@ -11,7 +11,7 @@ import SpriteKit
 class BlockGlueNode: BlockNode {
 	
 	// Side that are connected
-	var connected = [Side: Bool]()
+	var connected = [Side : Bool]()
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)

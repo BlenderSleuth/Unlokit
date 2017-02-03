@@ -10,12 +10,12 @@ import SpriteKit
 
 class KeyNode: SKSpriteNode, CanBeFired {
 	
-	var reloadable: Reload!
-	
 	// Status flags
 	var isEngaged = false
 	var animating = false
 	private var isGreyed = false
+	
+	weak var reloadable: Reload?
 	
 	let emitter = SKEmitterNode(fileNamed: "Smash")!
 	
@@ -95,7 +95,7 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		scene?.run(group) {
 			// Reload scene
 			if self.reloadable != nil {
-				self.reloadable.reload()
+				self.reloadable?.reload()
 			}
 		}
 		

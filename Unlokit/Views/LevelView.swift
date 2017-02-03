@@ -10,6 +10,7 @@ import UIKit
 
 protocol LevelSelectDelegate {
 	func present(level: Int)
+	var levels: [LevelView] { get set }
 }
 
 class LevelView: UIView {
@@ -33,22 +34,30 @@ class LevelView: UIView {
 		imageView = UIImageView(image: level.thumbnail)
 		imageView.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
 
+		
+		
 		super.init(frame: frame)
 		addSubview(imageView)
 		addSubview(label)
 		
+		self.delegate.levels.append(self)
+		
 		self.layer.cornerRadius = 15
+		self.layer.borderColor = UIColor.orange.cgColor
 		self.layer.masksToBounds = true
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
+	
+	func reset() {
+		self.layer.borderWidth = 0
+	}
 
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		for _ in touches {
-			self.layer.borderWidth = 15
-			self.layer.borderColor = UIColor.orange.cgColor
+			self.layer.borderWidth = 5
 			delegate.present(level: level.number)
 		}
 	}

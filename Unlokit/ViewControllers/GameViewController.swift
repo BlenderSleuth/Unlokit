@@ -28,27 +28,28 @@ class GameViewController: UIViewController, start {
 			skView.presentScene(loading)
 			
 			if let scene = Stage1(fileNamed: "Level\(level)") {
-				scene.start = self
-				scene.levelNumber = level
+				weak var weakScene = scene
+				weakScene?.start = self
+				weakScene?.levelNumber = level
 				
 				DispatchQueue.global(qos: .userInitiated).async {
-					scene.setupNodes(vc: self)
-					scene.setupCamera()
-					scene.setupTools()
-					scene.setupTextures()
-					scene.setupBlocks()
-					scene.physicsWorld.contactDelegate = scene
-					scene.soundFX.playBackgroundMusic(filename: "background.mp3")
+					weakScene?.setupNodes(vc: self)
+					weakScene?.setupCamera()
+					weakScene?.setupTools()
+					weakScene?.setupTextures()
+					weakScene?.setupBlocks()
+					weakScene?.physicsWorld.contactDelegate = weakScene
+					weakScene?.soundFX.playBackgroundMusic(filename: "background.mp3")
 
 					// Bounce back to the main thread to update the UI
 					DispatchQueue.main.async {
 						// Scale scene to fill
-						scene.scaleMode = .aspectFill
+						weakScene?.scaleMode = .aspectFill
 						
 						// Transistion
 						let transition = SKTransition.crossFade(withDuration: 0.5)
 						// Present Scene
-						skView.presentScene(scene, transition: transition)
+						skView.presentScene(weakScene!, transition: transition)
 						
 						//TO DO:
 						skView.ignoresSiblingOrder = true
@@ -61,9 +62,12 @@ class GameViewController: UIViewController, start {
 						//skView.showsFields = true
 					}
 				}
-
 			}
 		}
+	}
+	
+	func goToLevelSelect() {
+		performSegue(withIdentifier: "toLevelSelect", sender: nil)
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
