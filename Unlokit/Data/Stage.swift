@@ -61,41 +61,35 @@ class Stage {
 	
 	func loadLevels() {
 		// Check if first file is present
-		if FileManager.default.fileExists(atPath: levelFileURL.appendingPathExtension("\(1)\(1)").path) {
+		if FileManager.default.fileExists(atPath: levelFileURL.appendingPathExtension("\(1):\(1)").path) {
 			var isNil = false
 			var levelNumber = 1
 			
 			while !isNil {
-				let fileURL = levelFileURL.appendingPathExtension("\(number)\(levelNumber)")
+				let fileURL = levelFileURL.appendingPathExtension("\(number):\(levelNumber)")
 				
 				do {
 					let levelData = try Data(contentsOf: fileURL)
 					let level = NSKeyedUnarchiver.unarchiveObject(with: levelData) as! Level
 					
 					levels.append(level)
+					
+					levelNumber += 1
 				} catch {
 					isNil = true
 				}
-				
-				levelNumber += 1
 			}
 		} else {
 			print("loaded from plist")
 			levels = getDefaultLevelsFromPlist(stage: number)
 		}
-		
-		// Mark first level as available
-		if number == 1 {
-			self.levels[0].available = true
-		}
 	}
 	func saveLevels() {
-		
 		// Archive levels
 		for level in levels {
 			let levelData = NSKeyedArchiver.archivedData(withRootObject: level)
 			// URL with stage and level number
-			let fileURL = levelFileURL.appendingPathExtension("\(number)\(level.number)")
+			let fileURL = levelFileURL.appendingPathExtension("\(number):\(level.number)")
 			
 			do {
 				try levelData.write(to: fileURL)

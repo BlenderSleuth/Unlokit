@@ -33,6 +33,13 @@ class ProgressView: UIView {
 		// Set position here, easier
 		view.center = point
 		addSubview(view)
+		
+		if level.level.available {
+			
+		}
+	}
+	func animateToLevel() {
+		
 	}
 	
 	required init?(coder aDecoder: NSCoder) {

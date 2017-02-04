@@ -15,7 +15,7 @@ class KeyNode: SKSpriteNode, CanBeFired {
 	var animating = false
 	private var isGreyed = false
 	
-	weak var reloadable: Reload?
+	weak var reloadable: Reloadable!
 	
 	let emitter = SKEmitterNode(fileNamed: "Smash")!
 	
@@ -95,7 +95,7 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		scene?.run(group) {
 			// Reload scene
 			if self.reloadable != nil {
-				self.reloadable?.reload()
+				self.reloadable.reload()
 			}
 		}
 		
@@ -124,7 +124,7 @@ class KeyNode: SKSpriteNode, CanBeFired {
 			
 			self.run(SKAction.wait(forDuration: 1)) {
 				if let stage1 = self.scene as? Stage1 {
-					stage1.endGame(completed: true)
+					stage1.endGame()
 				}
 			}
 		}

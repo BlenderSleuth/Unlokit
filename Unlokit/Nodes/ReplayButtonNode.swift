@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-protocol Reload: class {
+protocol Reloadable: class {
 	func reload()
 }
 
@@ -16,7 +16,7 @@ class ReplayButtonNode: SKSpriteNode {
 	
 	var pressed = false
 	
-	weak var reloadable: Reload!
+	weak var reloadable: Reloadable!
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)

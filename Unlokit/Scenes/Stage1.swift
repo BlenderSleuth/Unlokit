@@ -57,10 +57,10 @@ struct ZPosition {
 
 protocol LevelController {
 	func startNewGame()
-	func endGame(completed: Bool)
+	func endGame()
 }
 
-class Stage1: SKScene, Reload {
+class Stage1: SKScene, Reloadable {
     
     //MARK: Variables
 	var levelNumber = 1
@@ -419,8 +419,8 @@ class Stage1: SKScene, Reload {
 			start.startNewGame()
 		}
 	}
-	func endGame(completed: Bool) {
-		start.endGame(completed: completed)
+	func endGame() {
+		start.endGame()
 	}
 	
     //MARK: Touch Events

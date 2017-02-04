@@ -11,10 +11,9 @@ import SpriteKit
 
 class GameViewController: UIViewController, LevelController {
 	
-	var stage: Stage1!
 	var level: Level!
 	
-	var nowAvailable = false
+	var completed = false
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -72,8 +71,8 @@ class GameViewController: UIViewController, LevelController {
 		}
 	}
 	
-	func endGame(completed: Bool) {
-		nowAvailable = completed
+	func endGame() {
+		level.completed = true
 		goToLevelSelect()
 	}
 	

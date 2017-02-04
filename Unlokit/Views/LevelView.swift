@@ -9,9 +9,11 @@
 import UIKit
 
 protocol LevelViewDelegate: class {
-	func present(level: Level)
-	var levelViews: [Int: LevelView] { get set }
+	var levelViews: [String: LevelView] { get set }
+	var currentLevelView: LevelView? { get set }
 	var nextLevelView: LevelView? { get set }
+	
+	func present(level: Level)
 	func setNextLevelView(from levelView: LevelView)
 }
 
@@ -25,7 +27,6 @@ class LevelView: UIView {
 
 	init(frame: CGRect, level: Level, delegate: LevelViewDelegate) {
 		self.level = level
-		self.level.available = level.available
 		self.delegate = delegate
 		
 		let label = UILabel(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
@@ -42,7 +43,7 @@ class LevelView: UIView {
 		addSubview(imageView)
 		addSubview(label)
 		
-		self.delegate.levelViews[level.number] = self
+		self.delegate.levelViews["\(level.stageNumber):\(level.number)"] = self
 		
 		// Check if level is available
 		if !level.available {
@@ -63,7 +64,11 @@ class LevelView: UIView {
 		level.available = true
 	}
 	func reset() {
-		self.layer.borderWidth = 0
+		if !level.completed {
+			layer.borderWidth = 0
+		} else {
+			layer.borderWidth = 5
+		}
 	}
 	
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -71,9 +76,8 @@ class LevelView: UIView {
 		guard level.available else {
 			return
 		}
-		
+		delegate.currentLevelView = self
 		delegate.setNextLevelView(from: self)
-		print("nextlevelView")
 		
 		for _ in touches {
 			self.layer.borderWidth = 5

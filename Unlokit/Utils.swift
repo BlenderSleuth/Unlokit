@@ -265,14 +265,6 @@ extension String {
 	}
 }
 
-
-class Weak<T: AnyObject> {
-	weak var value : T?
-	init (_ value: T) {
-		self.value = value
-	}
-}
-
 //********* Plist Loading *****************************
 func getDefaultLevelsFromPlist(stage number: Int) -> [Level]{
 	// Get plist
@@ -286,7 +278,15 @@ func getDefaultLevelsFromPlist(stage number: Int) -> [Level]{
 	for (levelNumberStr, _) in levelDict {
 		let levelNumber = levelNumberStr.numbers() ?? 0
 		
-		let level = Level(number: levelNumber, imageName: "Thumbnail")
+		// Mark first level as available
+		let available: Bool
+		if number == 1 && levelNumber == 1 {
+			available = true
+		} else {
+			available = false
+		}
+		
+		let level = Level(number: levelNumber, stageNumber: number, imageName: "Thumbnail", available: available)
 		levelArray.append(level)
 	}
 	// Sort array to be in the correct order

@@ -14,29 +14,38 @@ class Level: NSObject, NSCoding {
 	private let imageName: String
 	var thumbnail: UIImage?
 	
-	var available: Bool
+	var stageNumber: Int
 	
-	init(number: Int, imageName: String, available: Bool = false) {
+	var available: Bool
+	var completed: Bool
+	
+	init(number: Int, stageNumber: Int, imageName: String, available: Bool, completed: Bool = false) {
 		self.number = number
 		self.imageName = imageName
 		self.available = available
+		self.completed = completed
+		self.stageNumber = stageNumber
 		thumbnail = UIImage(named: imageName)
 	}
 	
 	required convenience init?(coder aDecoder: NSCoder) {
 		// Decode properties
 		let number = aDecoder.decodeInteger(forKey: "number")
+		let stageNumber = aDecoder.decodeInteger(forKey: "stageNumber")
 		let imageName = aDecoder.decodeObject(forKey: "imageName") as! String
 		let available = aDecoder.decodeBool(forKey: "available")
+		let completed = aDecoder.decodeBool(forKey: "completed")
 		
 		// Initialise with decoded properties
-		self.init(number: number, imageName: imageName, available: available)
+		self.init(number: number, stageNumber: stageNumber, imageName: imageName, available: available, completed: completed)
 	}
 	
 	func encode(with aCoder: NSCoder) {
 		// Encode properties
 		aCoder.encode(number, forKey: "number")
+		aCoder.encode(stageNumber, forKey: "stageNumber")
 		aCoder.encode(imageName, forKey: "imageName")
 		aCoder.encode(available, forKey: "available")
+		aCoder.encode(completed, forKey: "completed")
 	}
 }
