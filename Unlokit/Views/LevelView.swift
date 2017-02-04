@@ -33,6 +33,7 @@ class LevelView: UIView {
 		label.textAlignment = .center
 		label.text = "\(level.number)"
 		label.textColor = .white
+		label.layer.zPosition = 10
 		
 		imageView = UIImageView(image: level.thumbnail)
 		imageView.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
@@ -72,7 +73,7 @@ class LevelView: UIView {
 		}
 		
 		delegate.setNextLevelView(from: self)
-		
+		print("nextlevelView")
 		
 		for _ in touches {
 			self.layer.borderWidth = 5

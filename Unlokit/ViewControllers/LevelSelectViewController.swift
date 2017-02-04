@@ -62,13 +62,12 @@ class LevelSelectViewController: UIViewController, LevelViewDelegate {
 	}
 	func setCurrentLevel(levelView: LevelView) {
 		nextLevelView = levelView
-		print("current level")
 	}
 	
 	func setNextLevelView(from levelView: LevelView) {
 		// Find next level view and make it avaible
 		let number = levelView.level.number
-		levelViews[number + 1]?.makeAvailable()
+		nextLevelView = levelViews[number + 1]
 	}
 	
 	func present(level: Level) {
