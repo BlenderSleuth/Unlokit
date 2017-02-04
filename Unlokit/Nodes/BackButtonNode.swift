@@ -34,9 +34,9 @@ class BackButtonNode: SKSpriteNode {
 		blueCircle.isHidden = true
 		
 		label = SKLabelNode(text: "Back")
-		label.position = CGPoint(x: 60, y: -60)
-		label.fontName = "Helvetica Neue Thin"
-		label.fontSize = 48
+		label.position = CGPoint(x: 60, y: -50)
+		label.fontName = "NeuropolXRg-Regular"
+		label.fontSize = 42
 		label.zPosition = 10
 		
 		self.position = position

@@ -73,6 +73,7 @@ class GameViewController: UIViewController, LevelController {
 	
 	func endGame() {
 		level.completed = true
+		completed = true
 		goToLevelSelect()
 	}
 	
@@ -93,4 +94,3 @@ class GameViewController: UIViewController, LevelController {
 		return true
 	}
 }
-

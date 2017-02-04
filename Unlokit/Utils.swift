@@ -275,7 +275,7 @@ func getDefaultLevelsFromPlist(stage number: Int) -> [Level]{
 	var levelArray = [Level]()
 	
 	// Iterate through levels in plist
-	for (levelNumberStr, _) in levelDict {
+	for (levelNumberStr, levelDict) in levelDict {
 		let levelNumber = levelNumberStr.numbers() ?? 0
 		
 		// Mark first level as available
@@ -286,7 +286,9 @@ func getDefaultLevelsFromPlist(stage number: Int) -> [Level]{
 			available = false
 		}
 		
-		let level = Level(number: levelNumber, stageNumber: number, imageName: "Thumbnail", available: available)
+		let imageName = ((levelDict as? [String: Any])?["imageName"] as? String) ?? "Thumbnail"
+		
+		let level = Level(number: levelNumber, stageNumber: number, imageName: imageName, available: available)
 		levelArray.append(level)
 	}
 	// Sort array to be in the correct order

@@ -75,7 +75,7 @@ class StageView: UIView {
 			xPos += width + xPadding
 			
 			// Add level to progreess view
-			progressView.addLevel(level: levelView, padding: xPadding)
+			progressView.addLevel(levelView: levelView, padding: xPadding)
 		}
 		super.init(frame: frame)
 		

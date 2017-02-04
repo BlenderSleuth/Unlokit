@@ -22,9 +22,13 @@ class LevelView: UIView {
 	let level: Level
 	
 	let imageView: UIImageView
+	// For darkinging the image view
+	let coverLayer = CALayer()
 	
 	var delegate: LevelViewDelegate
-
+	
+	var pressed = false
+	
 	init(frame: CGRect, level: Level, delegate: LevelViewDelegate) {
 		self.level = level
 		self.delegate = delegate
@@ -38,6 +42,10 @@ class LevelView: UIView {
 		
 		imageView = UIImageView(image: level.thumbnail)
 		imageView.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
+		coverLayer.frame = imageView.bounds;
+		coverLayer.backgroundColor = UIColor.black.cgColor
+		coverLayer.opacity = 0.0
+		imageView.layer.addSublayer(coverLayer)
 		
 		super.init(frame: frame)
 		addSubview(imageView)
@@ -54,6 +62,11 @@ class LevelView: UIView {
 		self.layer.cornerRadius = 15
 		self.layer.borderColor = UIColor.orange.cgColor
 		self.layer.masksToBounds = true
+		
+		let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongTap(_:)))
+		longPressGesture.minimumPressDuration = 0.1
+		longPressGesture.allowableMovement = 5
+		addGestureRecognizer(longPressGesture)
 	}
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
@@ -70,18 +83,40 @@ class LevelView: UIView {
 			layer.borderWidth = 5
 		}
 	}
-	
-	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-		// Check if it is available
+	func press() {
+		pressed = !pressed
+		if pressed {
+			self.imageView.backgroundColor = .darkGray
+		} else {
+			self.imageView.backgroundColor = nil
+		}
+	}
+	func handleLongTap(_ sender: UIGestureRecognizer) {
 		guard level.available else {
 			return
 		}
-		delegate.currentLevelView = self
-		delegate.setNextLevelView(from: self)
 		
-		for _ in touches {
-			self.layer.borderWidth = 5
-			delegate.present(level: level)
+		switch (sender.state) {
+		case .began: // Object pressed
+			coverLayer.opacity = 0.7
+		case .changed:
+			return
+		case .ended: // Object released
+			coverLayer.opacity = 0
+			
+			let convertedPosition = convert(sender.location(in: self), to: superview!)
+			
+			if self.frame.contains(convertedPosition) {
+				delegate.currentLevelView = self
+				delegate.setNextLevelView(from: self)
+				
+				delegate.present(level: level)
+			}
+			
+		case .failed:
+			coverLayer.opacity = 0
+		default: // Unknown tap
+			print(sender.state);
 		}
 	}
 }

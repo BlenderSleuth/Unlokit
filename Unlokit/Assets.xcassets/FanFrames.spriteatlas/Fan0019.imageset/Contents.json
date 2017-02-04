@@ -7,11 +7,12 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "Fan0019@2x.png",
+      "filename" : "Fan@2x0019.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Fan@3x0019.png",
       "scale" : "3x"
     }
   ],

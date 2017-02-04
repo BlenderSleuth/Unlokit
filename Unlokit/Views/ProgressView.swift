@@ -15,9 +15,11 @@ class ProgressView: UIView {
 		self.backgroundColor = .orange
 	}
 	
-	func addLevel(level: LevelView, padding: CGFloat) {
+	var circles = [UIView]()
+	
+	func addLevel(levelView: LevelView, padding: CGFloat) {
 		let yPos = frame.height / 2
-		let xPos =  level.frame.origin.x - (padding/2) - 10
+		let xPos =  levelView.frame.origin.x - (padding/2) - 10
 		
 		let point = CGPoint(x: xPos, y: yPos)
 		
@@ -29,12 +31,15 @@ class ProgressView: UIView {
 		view.backgroundColor = .red
 		view.layer.cornerRadius = size / 2
 		view.layer.masksToBounds = true
+		view.layer.zPosition = 10
 		
 		// Set position here, easier
 		view.center = point
 		addSubview(view)
 		
-		if level.level.available {
+		circles.append(view)
+		
+		if levelView.level.available {
 			
 		}
 	}

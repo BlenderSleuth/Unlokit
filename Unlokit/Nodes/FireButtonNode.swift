@@ -42,10 +42,10 @@ class FireButtonNode: SKSpriteNode {
 		blueCircle.strokeColor = .blue
 		blueCircle.isHidden = true
 		
-		label = SKLabelNode(text: "Fire!")
+		label = SKLabelNode(text: "Fire")
 		label.position = CGPoint(x: 0, y: -30)
-		label.fontName = "Helvetica Neue Thin"
-		label.fontSize = 100
+		label.fontName = "NeuropolXRg-Regular"
+		label.fontSize = 84
 		label.zPosition = 10
 		
 		self.position = position

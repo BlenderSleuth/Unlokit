@@ -75,9 +75,10 @@ class LevelSelectViewController: UIViewController, LevelViewDelegate {
 		}
 	}
 	
-	@IBAction func unwindToList(sender: UIStoryboardSegue) {
+	@IBAction func unwindToList(sender: UIStoryboardSegue) {		
 		if let gameVC = sender.source as? GameViewController {
 			if gameVC.completed {
+				
 				nextLevelView?.makeAvailable()
 			}
 		}
