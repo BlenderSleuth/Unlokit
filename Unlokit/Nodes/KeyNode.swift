@@ -88,7 +88,7 @@ class KeyNode: SKSpriteNode, CanBeFired {
 			return
 		}
 		
-		let wait = SKAction.wait(forDuration: 5)
+		let wait = SKAction.wait(forDuration: 1)
 		let sound = SoundFX.sharedInstance["smash"]!
 		let group = SKAction.group([wait, sound])
 		
@@ -117,9 +117,16 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		let move = SKAction.move(to: position, duration: 0.2)
 		let rotate = SKAction.rotate(toAngle: lock.zPosition, duration: 0.2)
 		let group = SKAction.group([move, rotate])
+		
 		run(group) {
 			self.removeAllActions()
 			self.run(SoundFX.sharedInstance["lock"]!)
+			
+			self.run(SKAction.wait(forDuration: 1)) {
+				if let stage1 = self.scene as? Stage1 {
+					stage1.endGame(completed: true)
+				}
+			}
 		}
 	}
 	

@@ -8,9 +8,11 @@
 
 import UIKit
 
-protocol LevelSelectDelegate: class {
-	func present(level: Int)
-	var levels: [LevelView] { get set }
+protocol LevelViewDelegate: class {
+	func present(level: Level)
+	var levelViews: [Int: LevelView] { get set }
+	var nextLevelView: LevelView? { get set }
+	func setNextLevelView(from levelView: LevelView)
 }
 
 class LevelView: UIView {
@@ -19,10 +21,11 @@ class LevelView: UIView {
 	
 	let imageView: UIImageView
 	
-	var delegate: LevelSelectDelegate
+	var delegate: LevelViewDelegate
 
-	init(frame: CGRect, level: Level, delegate: LevelSelectDelegate) {
+	init(frame: CGRect, level: Level, delegate: LevelViewDelegate) {
 		self.level = level
+		self.level.available = level.available
 		self.delegate = delegate
 		
 		let label = UILabel(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
@@ -33,32 +36,47 @@ class LevelView: UIView {
 		
 		imageView = UIImageView(image: level.thumbnail)
 		imageView.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
-
-		
 		
 		super.init(frame: frame)
 		addSubview(imageView)
 		addSubview(label)
 		
-		self.delegate.levels.append(self)
+		self.delegate.levelViews[level.number] = self
+		
+		// Check if level is available
+		if !level.available {
+			self.backgroundColor = #colorLiteral(red: 0.3176470697, green: 0.07450980693, blue: 0.02745098062, alpha: 1)
+			self.imageView.removeFromSuperview()
+		}
 		
 		self.layer.cornerRadius = 15
 		self.layer.borderColor = UIColor.orange.cgColor
 		self.layer.masksToBounds = true
 	}
-	
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
+	func makeAvailable() {
+		addSubview(imageView)
+		level.available = true
+	}
 	func reset() {
 		self.layer.borderWidth = 0
 	}
-
+	
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		// Check if it is available
+		guard level.available else {
+			return
+		}
+		
+		delegate.setNextLevelView(from: self)
+		
+		
 		for _ in touches {
 			self.layer.borderWidth = 5
-			delegate.present(level: level.number)
+			delegate.present(level: level)
 		}
 	}
 }

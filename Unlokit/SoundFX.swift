@@ -21,6 +21,7 @@ class SoundFX {
 	}
 	
 	private init() {
+		// Load sounds into memory
 		let lock = SKAction.playSoundFileNamed("Lock.caf", waitForCompletion: false)
 		let smash = SKAction.playSoundFileNamed("Smash.caf", waitForCompletion: false)
 		let explosion = SKAction.playSoundFileNamed("Explosion.caf", waitForCompletion: false)
@@ -32,7 +33,8 @@ class SoundFX {
 		let bounce4 = SKAction.playSoundFileNamed("Bounce4.caf", waitForCompletion: false)
 		
 		// Dictionary for sounds to be preloaded
-		soundActions = ["lock":lock, "smash":smash,
+		soundActions = ["lock":lock,
+		                "smash":smash,
 		                "explosion":explosion,
 		                "bounce1": bounce1,
 		                "bounce2": bounce2,
@@ -72,11 +74,13 @@ class SoundFX {
 			}
 		}
 	}
-	public func resumeBackgroundMusic() {
+	public func resumeBackgroundMusic() -> Bool {
 		if let player = backgroundMusicPlayer {
 			if !player.isPlaying {
 				player.play()
+				return true
 			}
 		}
+		return false
 	}
 }

@@ -9,7 +9,6 @@
 import UIKit
 
 class StageView: UIView {
-	
 	let titleView: UIView
 	let levelScrollView: UIScrollView
 	
@@ -17,9 +16,9 @@ class StageView: UIView {
 	
 	let stage: Stage
 	
-	let delegate: LevelSelectDelegate
+	let delegate: LevelViewDelegate
 	
-	init(frame: CGRect, stage: Stage, delegate: LevelSelectDelegate) {
+	init(frame: CGRect, stage: Stage, delegate: LevelViewDelegate) {
 		self.stage = stage
 		self.delegate = delegate
 		
@@ -40,33 +39,43 @@ class StageView: UIView {
 		levelScrollView.showsHorizontalScrollIndicator = false
 		
 		// Space inbetween level views
-		let padding: CGFloat = 20
+		let yPadding: CGFloat = 20
+		let xPadding: CGFloat = 50
+
 		// Height minus padding to get level height
-		let height = levelScrollView.frame.height - (padding * 2)
+		let height = levelScrollView.frame.height - (yPadding * 2)
 		let width = height
 		
 		// Find full width based on padding and level width
-		let fullWidth = ((width + padding) * CGFloat(stage.levels.count)) + padding
+		let fullWidth = ((width + xPadding) * CGFloat(stage.levels.count)) + xPadding
 		levelScrollView.contentSize.width = fullWidth
 		
 		// Create progress bar
 		let progressHeight = levelScrollView.frame.height / 12
 		let progressYPos = (levelScrollView.frame.height / 2) - (levelScrollView.frame.height / 24)
-		progressView = ProgressView(frame: CGRect(x: 0, y: progressYPos, width: levelScrollView.contentSize.width, height: progressHeight))
+		
+		// For continuing when user drags scroll view over edge
+		let insetWidth: CGFloat = 1000
+		
+		let progressFrame = CGRect(x: -insetWidth, y: progressYPos, width: levelScrollView.contentSize.width + insetWidth * 2, height: progressHeight)
+		progressView = ProgressView(frame: progressFrame)
 		levelScrollView.addSubview(progressView)
 		
 		// Iterate through levels to add them all
-		var xPos = padding
+		var xPos = xPadding
 		for level in stage.levels {
 			// Size and position of levels
-			let rect = CGRect(x: xPos, y: padding, width: width, height: height)
+			let rect = CGRect(x: xPos, y: yPadding, width: width, height: height)
 			
 			// Create level view
 			let levelView = LevelView(frame: rect, level: level, delegate: delegate)
 			levelScrollView.addSubview(levelView)
 			
 			// Update xPos
-			xPos += width + padding
+			xPos += width + xPadding
+			
+			// Add level to progreess view
+			progressView.addLevel(level: levelView, padding: xPadding)
 		}
 		super.init(frame: frame)
 		

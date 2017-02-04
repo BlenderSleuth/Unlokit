@@ -55,8 +55,9 @@ struct ZPosition {
 	static let interface: CGFloat	= 100
 }
 
-protocol start {
+protocol LevelController {
 	func startNewGame()
+	func endGame(completed: Bool)
 }
 
 class Stage1: SKScene, Reload {
@@ -91,7 +92,7 @@ class Stage1: SKScene, Reload {
 
 	var currentNode: SKNode?
 	
-	var start: start!
+	var start: LevelController!
 	
 	// Audio
 	let soundFX = SoundFX.sharedInstance
@@ -108,7 +109,6 @@ class Stage1: SKScene, Reload {
 	//MARK: Setup
     override func didMove(to view: SKView) {
     }
-	
 	override func willMove(from view: SKView) {
 		soundFX.pauseBackgroundMusic()
 	}
@@ -335,6 +335,7 @@ class Stage1: SKScene, Reload {
 		return cameraNode
     }
 	
+	// Check if point is in canvas
 	func isInCanvas(location: CGPoint) -> Bool {
 		// Check is location is inside cnavas
 		if location.x < canvasBounds.maxX && location.x > canvasBounds.minX &&
@@ -418,8 +419,8 @@ class Stage1: SKScene, Reload {
 			start.startNewGame()
 		}
 	}
-	func endGame() {
-		
+	func endGame(completed: Bool) {
+		start.endGame(completed: completed)
 	}
 	
     //MARK: Touch Events

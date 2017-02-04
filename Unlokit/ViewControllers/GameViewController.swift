@@ -9,10 +9,12 @@
 import UIKit
 import SpriteKit
 
-class GameViewController: UIViewController, start {
+class GameViewController: UIViewController, LevelController {
 	
-	var stage = 1
-	var level = 1
+	var stage: Stage1!
+	var level: Level!
+	
+	var nowAvailable = false
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -36,21 +38,26 @@ class GameViewController: UIViewController, start {
 				//skView.showsPhysics = true
 				//skView.showsFields = true
 				
-				if let scene = Stage1(fileNamed: "Level\(self.level)") {
-					weak var weakScene = scene
-					weakScene?.start = self
-					weakScene?.levelNumber = self.level
+				if let scene = Stage1(fileNamed: "Level\(self.level.number)") {
+					weak var weakScene: Stage1! = scene
+					weakScene.start = self
+					weakScene.levelNumber = self.level.number
 					
-					weakScene?.setupNodes(vc: self)
-					weakScene?.setupCamera()
-					weakScene?.setupTools()
-					weakScene?.setupTextures()
-					weakScene?.setupBlocks()
-					weakScene?.physicsWorld.contactDelegate = weakScene
-					weakScene?.soundFX.playBackgroundMusic(filename: "background.mp3")
+					weakScene.setupNodes(vc: self)
+					weakScene.setupCamera()
+					weakScene.setupTools()
+					weakScene.setupTextures()
+					weakScene.setupBlocks()
+					weakScene.physicsWorld.contactDelegate = weakScene
+					
+					// If background music was paused, resume
+					if !weakScene.soundFX.resumeBackgroundMusic() {
+						// Otherwise, play
+						weakScene.soundFX.playBackgroundMusic(filename: "background.mp3")
+					}
 					
 					// Scale scene to fill
-					weakScene?.scaleMode = .aspectFill
+					weakScene.scaleMode = .aspectFill
 					
 					// Transistion
 					let transition = SKTransition.crossFade(withDuration: 0.5)
@@ -58,11 +65,16 @@ class GameViewController: UIViewController, start {
 					// Bounce back to the main thread to update the UI
 					DispatchQueue.main.async {
 						// Present Scene
-						skView.presentScene(weakScene!, transition: transition)
+						skView.presentScene(weakScene, transition: transition)
 					}
 				}
 			}
 		}
+	}
+	
+	func endGame(completed: Bool) {
+		nowAvailable = completed
+		goToLevelSelect()
 	}
 	
 	// Clean up

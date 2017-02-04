@@ -273,7 +273,29 @@ class Weak<T: AnyObject> {
 	}
 }
 
-
+//********* Plist Loading *****************************
+func getDefaultLevelsFromPlist(stage number: Int) -> [Level]{
+	// Get plist
+	let plist = Bundle.main.path(forResource: "LevelData", ofType: "plist")!
+	let stageDict = NSDictionary(contentsOfFile: plist) as! [String: [String: Any]]
+	let levelDict = stageDict["Stage\(number)"]!
+	
+	var levelArray = [Level]()
+	
+	// Iterate through levels in plist
+	for (levelNumberStr, _) in levelDict {
+		let levelNumber = levelNumberStr.numbers() ?? 0
+		
+		let level = Level(number: levelNumber, imageName: "Thumbnail")
+		levelArray.append(level)
+	}
+	// Sort array to be in the correct order
+	levelArray.sort {
+		$0.number < $1.number
+	}
+	
+	return levelArray
+}
 
 
 

@@ -8,22 +8,33 @@
 
 import UIKit
 
-class LevelSelectViewController: UIViewController, LevelSelectDelegate {
+class LevelSelectViewController: UIViewController, LevelViewDelegate {
 
 	@IBOutlet weak var mainScrollView: UIScrollView!
 	
-	var levels = [LevelView]()
+	var stageViews = [Int: StageView]()
+	var levelViews = [Int: LevelView]()
+	var levels = [Level]()
+	
+	var nextLevelView: LevelView?
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 		setupScroll(frame: view.frame)
     }
-	
 	override func viewWillAppear(_ animated: Bool) {
 		// Reset colour
-		for level in levels {
-			level.reset()
+		for (_, levelView) in levelViews {
+			levelView.reset()
 		}
+		// Save levels
+		for (_, stageView) in stageViews {
+			stageView.stage.saveLevels()
+		}
+		
+		
+		// reset current level view
+		nextLevelView = nil
 	}
 	
 	func setupScroll(frame: CGRect) {
@@ -44,23 +55,36 @@ class LevelSelectViewController: UIViewController, LevelSelectDelegate {
 			let stageView = StageView(frame: CGRect(origin: CGPoint(x: 0, y: yPos), size: size), stage: stage, delegate: self)
 			mainScrollView.addSubview(stageView)
 			
+			stageViews[stageView.stage.number] = stageView
+			
 			yPos += height
 		}
 	}
-	
-	@IBAction func unwindToList(sender: UIStoryboardSegue) {
-		if let _ = sender.source as? GameViewController {
-			// Stub for getting stuff from game view controller
-		}
+	func setCurrentLevel(levelView: LevelView) {
+		nextLevelView = levelView
+		print("current level")
 	}
 	
-	func present(level: Int) {
+	func setNextLevelView(from levelView: LevelView) {
+		// Find next level view and make it avaible
+		let number = levelView.level.number
+		levelViews[number + 1]?.makeAvailable()
+	}
+	
+	func present(level: Level) {
 		if let gameViewController = storyboard?.instantiateViewController(withIdentifier: "GameViewController") as? GameViewController {
 			navigationController?.pushViewController(gameViewController, animated: true)
 			gameViewController.level = level
 		}
 	}
 	
+	@IBAction func unwindToList(sender: UIStoryboardSegue) {
+		if let game = sender.source as? GameViewController {
+			if game.nowAvailable {
+				nextLevelView?.makeAvailable()
+			}
+		}
+	}
 	override var prefersStatusBarHidden: Bool {
 		return true
 	}
