@@ -16,6 +16,8 @@ class LevelSelectViewController: UIViewController, LevelViewDelegate {
 	var levelViews = [String: LevelView]()
 	var levels = [Level]()
 	
+	var stages = [Int: Stage]()
+	
 	var currentLevelView: LevelView?
 	var nextLevelView: LevelView?
 	
@@ -51,6 +53,9 @@ class LevelSelectViewController: UIViewController, LevelViewDelegate {
 		
 		// To find the y position of each stage view
 		var yPos: CGFloat = 0
+		
+		// Local variable, cleaner
+		
 		
 		for stage in Stages.sharedInstance.stages {
 			let stageView = StageView(frame: CGRect(origin: CGPoint(x: 0, y: yPos), size: size), stage: stage, delegate: self)

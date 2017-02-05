@@ -8,15 +8,11 @@
 
 import SpriteKit
 
-protocol Reloadable: class {
-	func reload()
-}
-
 class ReplayButtonNode: SKSpriteNode {
 	
 	var pressed = false
 	
-	weak var reloadable: Reloadable!
+	weak var levelController: LevelController!
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
@@ -50,9 +46,7 @@ class ReplayButtonNode: SKSpriteNode {
 			press()
 			let location = touch.location(in: parent!)
 			if frame.contains(location) {
-				if reloadable != nil {
-					reloadable.reload()
-				}
+				levelController.startNewGame()
 			}
 		}
 	}

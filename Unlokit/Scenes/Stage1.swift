@@ -55,12 +55,13 @@ struct ZPosition {
 	static let interface: CGFloat	= 100
 }
 
-protocol LevelController {
+protocol LevelController: class {
 	func startNewGame()
 	func endGame()
+	func returnToLevelSelect()
 }
 
-class Stage1: SKScene, Reloadable {
+class Stage1: SKScene {
     
     //MARK: Variables
 	var levelNumber = 1
@@ -92,7 +93,7 @@ class Stage1: SKScene, Reloadable {
 
 	var currentNode: SKNode?
 	
-	var start: LevelController!
+	var levelController: LevelController!
 	
 	// Audio
 	let soundFX = SoundFX.sharedInstance
@@ -107,13 +108,11 @@ class Stage1: SKScene, Reloadable {
 	var fans = [FanNode]()
 	
 	//MARK: Setup
-    override func didMove(to view: SKView) {
-    }
 	override func willMove(from view: SKView) {
 		soundFX.pauseBackgroundMusic()
 	}
 	
-	func setupNodes(vc: GameViewController) {
+	func setupNodes(delegate: LevelController) {
 		// Bind controller to local variable
 		controller = childNode(withName: "//controller") as! ControllerNode
 		controller.setupRegion(scene: self) // Pass in scene for controller to use
@@ -145,15 +144,15 @@ class Stage1: SKScene, Reloadable {
 		fireNode.controller = controller
 		fireNode.canon = childNode(withName: "//canon") as! SKSpriteNode
 		replayNode = cameraNode.childNode(withName: "//replayButton") as! ReplayButtonNode
-		replayNode.reloadable = self
+		replayNode.levelController = delegate
 		
 		backButton = childNode(withName: "//backButton") as! BackButtonNode
-		backButton.vc = vc
+		backButton.delegate = delegate
 		
 		// Bind key to local variable
 		key = childNode(withName: "//key") as! KeyNode
 		// Allow key to call for reload
-		key.reloadable = self
+		key.levelController = delegate
 		
 		// Bind lock to local variable
 		lock = childNode(withName: "//lock") as! LockNode
@@ -241,6 +240,7 @@ class Stage1: SKScene, Reloadable {
 				tool.number = number
 			} else {
 				// Or zero
+				tool.colorBlendFactor = 0.9
 				tool.number = 0
 			}
 			
@@ -414,13 +414,8 @@ class Stage1: SKScene, Reloadable {
 		}
 	}
 	
-	func reload() {
-		if start != nil {
-			start.startNewGame()
-		}
-	}
 	func endGame() {
-		start.endGame()
+		levelController.endGame()
 	}
 	
     //MARK: Touch Events

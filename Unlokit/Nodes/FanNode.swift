@@ -104,7 +104,7 @@ class FanNode: SKSpriteNode, Breakable {
 		}
 		
 		
-		run(SKAction.repeatForever(SKAction.animate(with: frames, timePerFrame: 1/25)), withKey: "animate")
+		run(SKAction.repeatForever(SKAction.animate(with: frames, timePerFrame: 1/15)), withKey: "animate")
 	}
 	private func setupParticles(scene: SKScene) {
 		// Set emitter target

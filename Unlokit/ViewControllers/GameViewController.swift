@@ -39,10 +39,10 @@ class GameViewController: UIViewController, LevelController {
 				
 				if let scene = Stage1(fileNamed: "Level\(self.level.number)") {
 					weak var weakScene: Stage1! = scene
-					weakScene.start = self
+					weakScene.levelController = self
 					weakScene.levelNumber = self.level.number
 					
-					weakScene.setupNodes(vc: self)
+					weakScene.setupNodes(delegate: self)
 					weakScene.setupCamera()
 					weakScene.setupTools()
 					weakScene.setupTextures()
@@ -74,7 +74,7 @@ class GameViewController: UIViewController, LevelController {
 	func endGame() {
 		level.completed = true
 		completed = true
-		goToLevelSelect()
+		returnToLevelSelect()
 	}
 	
 	// Clean up
@@ -86,7 +86,7 @@ class GameViewController: UIViewController, LevelController {
 		}
 	}
 	
-	func goToLevelSelect() {
+	func returnToLevelSelect() {
 		performSegue(withIdentifier: "toLevelSelect", sender: nil)
 	}
 	

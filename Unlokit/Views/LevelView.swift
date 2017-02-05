@@ -17,7 +17,7 @@ protocol LevelViewDelegate: class {
 	func setNextLevelView(from levelView: LevelView)
 }
 
-class LevelView: UIView {
+class LevelView: UIView, UIGestureRecognizerDelegate {
 	
 	let level: Level
 	
@@ -26,8 +26,6 @@ class LevelView: UIView {
 	let coverLayer = CALayer()
 	
 	var delegate: LevelViewDelegate
-	
-	var pressed = false
 	
 	init(frame: CGRect, level: Level, delegate: LevelViewDelegate) {
 		self.level = level
@@ -64,32 +62,19 @@ class LevelView: UIView {
 		self.layer.masksToBounds = true
 		
 		let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongTap(_:)))
-		longPressGesture.minimumPressDuration = 0.1
+		longPressGesture.minimumPressDuration = 0.01
 		longPressGesture.allowableMovement = 5
+		longPressGesture.cancelsTouchesInView = false
+		longPressGesture.delegate = self
 		addGestureRecognizer(longPressGesture)
 	}
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	func makeAvailable() {
-		addSubview(imageView)
-		level.available = true
-	}
-	func reset() {
-		if !level.completed {
-			layer.borderWidth = 0
-		} else {
-			layer.borderWidth = 5
-		}
-	}
-	func press() {
-		pressed = !pressed
-		if pressed {
-			self.imageView.backgroundColor = .darkGray
-		} else {
-			self.imageView.backgroundColor = nil
-		}
+	// Make sure scroll view gets gestures as well
+	func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+		return true
 	}
 	func handleLongTap(_ sender: UIGestureRecognizer) {
 		guard level.available else {
@@ -100,7 +85,7 @@ class LevelView: UIView {
 		case .began: // Object pressed
 			coverLayer.opacity = 0.7
 		case .changed:
-			return
+			break
 		case .ended: // Object released
 			coverLayer.opacity = 0
 			
@@ -113,10 +98,27 @@ class LevelView: UIView {
 				delegate.present(level: level)
 			}
 			
-		case .failed:
+		case .failed, .cancelled:
 			coverLayer.opacity = 0
+			
+			
 		default: // Unknown tap
-			print(sender.state);
+			print(sender.state.rawValue);
 		}
 	}
+	
+	func makeAvailable() {
+		addSubview(imageView)
+		level.available = true
+	}
+	func reset() {
+		// Check if level is completed or not
+		if !level.completed {
+			layer.borderWidth = 0
+		} else {
+			layer.borderWidth = 5
+		}
+	}
+	
+	
 }

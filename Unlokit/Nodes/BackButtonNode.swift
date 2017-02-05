@@ -18,7 +18,7 @@ class BackButtonNode: SKSpriteNode {
 	var pressed = false
 	
 	// Must be initalised from scene
-	weak var vc: GameViewController?
+	weak var delegate: LevelController!
 	
 	// Used for initialising from file
 	required init?(coder aDecoder: NSCoder) {
@@ -34,9 +34,9 @@ class BackButtonNode: SKSpriteNode {
 		blueCircle.isHidden = true
 		
 		label = SKLabelNode(text: "Back")
-		label.position = CGPoint(x: 60, y: -50)
+		label.position = CGPoint(x: 40, y: -40)
 		label.fontName = "NeuropolXRg-Regular"
-		label.fontSize = 42
+		label.fontSize = 26
 		label.zPosition = 10
 		
 		self.position = position
@@ -54,10 +54,6 @@ class BackButtonNode: SKSpriteNode {
 		blueCircle.isHidden = !pressed
 	}
 	
-	private func returnToLevel(vc: GameViewController) {
-		vc.goToLevelSelect()
-	}
-	
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		press()
 	}
@@ -65,9 +61,7 @@ class BackButtonNode: SKSpriteNode {
 	}
 	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 		press()
-		if let gamevc = vc {
-			returnToLevel(vc: gamevc)
-		}
+		delegate.returnToLevelSelect()
 	}
 	override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
 		press()

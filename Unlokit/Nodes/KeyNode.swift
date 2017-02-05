@@ -15,7 +15,7 @@ class KeyNode: SKSpriteNode, CanBeFired {
 	var animating = false
 	private var isGreyed = false
 	
-	weak var reloadable: Reloadable!
+	weak var levelController: LevelController!
 	
 	let emitter = SKEmitterNode(fileNamed: "Smash")!
 	
@@ -94,9 +94,7 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		
 		scene?.run(group) {
 			// Reload scene
-			if self.reloadable != nil {
-				self.reloadable.reload()
-			}
+			self.levelController.startNewGame()
 		}
 		
 		emitter.isPaused = false

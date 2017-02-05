@@ -117,7 +117,7 @@ extension Stage1: SKPhysicsContactDelegate {
 		else if collided(with: Category.secretTeleport , and: Category.key) {
 			// TO DO: new scene
 			
-			reload()
+			levelController.startNewGame()
 		}
 		else if collided(with: Category.bounds, and: Category.tools) {
 			let bounds = getNode(for: Category.bounds, type: SKSpriteNode.self)

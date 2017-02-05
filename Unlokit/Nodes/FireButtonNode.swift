@@ -32,10 +32,10 @@ class FireButtonNode: SKSpriteNode {
     // Used for initialising from file
     required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-		//
 		redCircle = SKShapeNode(circleOfRadius: size.width / 2)
 		redCircle.fillColor = .red
 		redCircle.strokeColor = .red
+		redCircle.alpha = 0.8
 		
 		blueCircle = SKShapeNode(circleOfRadius: size.width / 2)
 		blueCircle.fillColor = .blue
