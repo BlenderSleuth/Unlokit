@@ -11,17 +11,18 @@ import UIKit
 class ProgressView: UIView {
 	let padding: CGFloat
 	let scrollInsetWidth: CGFloat
+	let originalWidth: CGFloat
+	let circle: UIView
+	let levelScrollView: UIScrollView
 	
 	var xPos: CGFloat
 	
-	let circle: UIView
-	
-	let originalWidth: CGFloat
-	
-	init(frame: CGRect, scrollInsetWidth: CGFloat, padding: CGFloat) {
+	init(frame: CGRect, scrollInsetWidth: CGFloat, padding: CGFloat, levelScrollView: UIScrollView) {
 		self.scrollInsetWidth = scrollInsetWidth
 		self.padding = padding
 		self.originalWidth = frame.width
+		self.levelScrollView = levelScrollView
+		
 		xPos = padding / 2 + scrollInsetWidth
 		
 		// Size of circle indicator
@@ -35,10 +36,10 @@ class ProgressView: UIView {
 		circle.layer.zPosition = 10
 		
 		let yPos = frame.height / 2
-		let point = CGPoint(x: xPos, y: yPos)
 		
 		// Set position here, easier
-		circle.center = point
+		circle.center.y = yPos
+		circle.center.x = scrollInsetWidth + padding / 2
 		
 		super.init(frame: frame)
 		
@@ -64,26 +65,39 @@ class ProgressView: UIView {
 			xPos += levelView.frame.width + padding
 			return false
 		}
-		xPos = 0
 		return true
 	}
 	
 	func animateToNextLevel(x: CGFloat) {
-		let convertedX = convert(CGPoint(x: x, y: 0), to: self)
+		// Get delta position to move by
+		let deltaX = x - frame.width
+		let convertedX = convert(CGPoint(x: deltaX, y: 0), to: self)
+		
+		// get max offset for scroll view, less than zero makes it the size of the scroll view
+		var maxOffset = levelScrollView.contentSize.width - levelScrollView.frame.width
+		if maxOffset <= 0 {
+			maxOffset = levelScrollView.contentSize.width
+		}
+		
+		// Get the content offset of the view
+		let contentOffset: CGFloat
+		if deltaX >=  maxOffset {
+			contentOffset = maxOffset
+		} else {
+			contentOffset = deltaX
+		}
 		
 		// Animate to new position
 		UIView.animate(withDuration: 3) {
-			
-			self.frame.size.width += x
+			self.frame.size.width += deltaX
 			self.circle.center.x += convertedX.x
+			self.levelScrollView.contentOffset.x = contentOffset
 		}
 	}
 	
 	func update(levelViews: [LevelView]) {
 		// Reset
-		self.frame.size.width = originalWidth
-		circle.center.x = scrollInsetWidth + padding / 2
-		xPos = 0
+		xPos = scrollInsetWidth + padding/2
 		
 		// Iterate through levels
 		for levelView in levelViews {

@@ -59,7 +59,7 @@ class StageView: UIView {
 		
 		// Make progress view shortest it will ever be, it will extend after
 		let progressFrame = CGRect(x: -insetWidth, y: progressYPos, width: insetWidth + xPadding / 2, height: progressHeight)
-		progressView = ProgressView(frame: progressFrame, scrollInsetWidth: insetWidth, padding: xPadding)
+		progressView = ProgressView(frame: progressFrame, scrollInsetWidth: insetWidth, padding: xPadding, levelScrollView: levelScrollView)
 		levelScrollView.addSubview(progressView)
 		
 		// Iterate through levels to add them all
