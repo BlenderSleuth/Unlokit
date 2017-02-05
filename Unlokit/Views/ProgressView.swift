@@ -68,42 +68,48 @@ class ProgressView: UIView {
 		return true
 	}
 	
-	func animateToNextLevel(x: CGFloat) {
+	func animateToNextLevel(x: CGFloat, levelView: LevelView) {
 		// Get delta position to move by
 		let deltaX = x - frame.width
-		let convertedX = convert(CGPoint(x: deltaX, y: 0), to: self)
 		
-		// get max offset for scroll view, less than zero makes it the size of the scroll view
+		// get max offset for scroll view, if less than zero make it zero
 		var maxOffset = levelScrollView.contentSize.width - levelScrollView.frame.width
 		if maxOffset <= 0 {
-			maxOffset = levelScrollView.contentSize.width
+			maxOffset = 0
 		}
 		
-		// Get the content offset of the view
+		// Set the content offset of the view
 		let contentOffset: CGFloat
-		if deltaX >=  maxOffset {
+		if deltaX >= maxOffset {
 			contentOffset = maxOffset
-		} else {
+		// If the progress view is smaller than half the scroll view, don't move to centre
+		} else if (self.frame.width + deltaX - scrollInsetWidth) < levelScrollView.frame.width / 2 {
+			contentOffset = 0
+		// If the delta is too small, don't centre it
+		} else if deltaX <= levelView.frame.width + padding {
 			contentOffset = deltaX
+		} else {
+			// Animate to centre
+			contentOffset = deltaX - levelScrollView.frame.width / 2
 		}
 		
 		// Animate to new position
-		UIView.animate(withDuration: 3) {
+		UIView.animate(withDuration: 1.5) {
 			self.frame.size.width += deltaX
-			self.circle.center.x += convertedX.x
-			self.levelScrollView.contentOffset.x = contentOffset
+			self.circle.center.x += deltaX
+			self.levelScrollView.contentOffset.x += contentOffset
 		}
 	}
 	
 	func update(levelViews: [LevelView]) {
 		// Reset
-		xPos = scrollInsetWidth + padding/2
+		xPos = scrollInsetWidth + padding / 2
 		
 		// Iterate through levels
 		for levelView in levelViews {
 			// Add levels until it reaches a completed one
 			if addLevel(levelView) {
-				animateToNextLevel(x: xPos)
+				animateToNextLevel(x: xPos, levelView: levelView)
 				return
 			}
 		}

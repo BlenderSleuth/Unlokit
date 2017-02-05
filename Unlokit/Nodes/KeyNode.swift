@@ -113,7 +113,7 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		
 		// Move and rotate to lock position
 		let move = SKAction.move(to: position, duration: 0.2)
-		let rotate = SKAction.rotate(toAngle: lock.zPosition, duration: 0.2)
+		let rotate = SKAction.rotate(toAngle: lock.zRotation, duration: 0.2)
 		let group = SKAction.group([move, rotate])
 		
 		run(group) {

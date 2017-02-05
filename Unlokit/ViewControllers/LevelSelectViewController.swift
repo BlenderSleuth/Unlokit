@@ -22,12 +22,15 @@ class LevelSelectViewController: UIViewController, LevelViewDelegate {
 	var currentLevelView: LevelView?
 	var nextLevelView: LevelView?
 	
+	// Start off true for when the game starts
+	var backFromCompletion = true
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		setupScroll(frame: view.frame)
     }
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
 		// Reset colours
 		for (_, stage) in levelViews {
 			for _/*levelView*/ in stage {
@@ -40,10 +43,13 @@ class LevelSelectViewController: UIViewController, LevelViewDelegate {
 			// Save levels
 			stageView.stage.saveLevels()
 			
-			// Check if levelViews
-			if let levelViews = levelViews[stageView.stage.number] {
-				// Update progress view with stage
-				stageView.progressView.update(levelViews: levelViews)
+			// If there it is back from completing, update levels
+			if backFromCompletion {
+				// Check if levelViews
+				if let levelViews = levelViews[stageView.stage.number] {
+					// Update progress view with stage
+					stageView.progressView.update(levelViews: levelViews)
+				}
 			}
 		}
 		
@@ -89,12 +95,16 @@ class LevelSelectViewController: UIViewController, LevelViewDelegate {
 		if let gameViewController = storyboard?.instantiateViewController(withIdentifier: "GameViewController") as? GameViewController {
 			navigationController?.pushViewController(gameViewController, animated: true)
 			gameViewController.level = level
+			
+			// Reset
+			backFromCompletion = false
 		}
 	}
 	
 	@IBAction func unwindToList(sender: UIStoryboardSegue) {		
 		if let gameVC = sender.source as? GameViewController {
 			if gameVC.completed {
+				backFromCompletion = true
 				nextLevelView?.makeAvailable()
 			}
 		}

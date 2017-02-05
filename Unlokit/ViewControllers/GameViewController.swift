@@ -27,7 +27,6 @@ class GameViewController: UIViewController, LevelController {
 				loading.scaleMode = .aspectFill
 				skView.presentScene(loading)
 				
-				// TODO:
 				skView.ignoresSiblingOrder = true
 				
 				// Set options
