@@ -12,6 +12,8 @@ protocol CanBeFired {
 	func engage(_ controller: ControllerNode)
 	func disengage(_ controller: ControllerNode)
 	func prepareForFiring(_ controller: ControllerNode)
+	
+	func startTimer()
 }
 
 class FireButtonNode: SKSpriteNode {
