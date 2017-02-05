@@ -13,10 +13,11 @@ class LevelSelectViewController: UIViewController, LevelViewDelegate {
 	@IBOutlet weak var mainScrollView: UIScrollView!
 	
 	var stageViews = [Int: StageView]()
-	var levelViews = [String: LevelView]()
-	var levels = [Level]()
+	// Level views based on stage
+	var levelViews = [Int: [LevelView]]()
 	
 	var stages = [Int: Stage]()
+	var levels = [Level]()
 	
 	var currentLevelView: LevelView?
 	var nextLevelView: LevelView?
@@ -27,13 +28,23 @@ class LevelSelectViewController: UIViewController, LevelViewDelegate {
     }
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		// Reset colour
-		for (_, levelView) in levelViews {
-			levelView.reset()
+		// Reset colours
+		for (_, stage) in levelViews {
+			for _/*levelView*/ in stage {
+				//levelView.reset()
+			}
 		}
-		// Save levels
+		
+		// Iterate through stages
 		for (_, stageView) in stageViews {
+			// Save levels
 			stageView.stage.saveLevels()
+			
+			// Check if levelViews
+			if let levelViews = levelViews[stageView.stage.number] {
+				// Update progress view with stage
+				stageView.progressView.update(levelViews: levelViews)
+			}
 		}
 		
 		// reset current level view
@@ -70,7 +81,8 @@ class LevelSelectViewController: UIViewController, LevelViewDelegate {
 	func setNextLevelView(from levelView: LevelView) {
 		// Find next level view and make it avaible
 		let number = levelView.level.number
-		nextLevelView = levelViews["\(levelView.level.stageNumber):\(number + 1)"]
+		// Zero indexing of array means that returning the number
+		nextLevelView = levelViews[levelView.level.stageNumber]?[number]
 	}
 	
 	func present(level: Level) {
@@ -83,7 +95,6 @@ class LevelSelectViewController: UIViewController, LevelViewDelegate {
 	@IBAction func unwindToList(sender: UIStoryboardSegue) {		
 		if let gameVC = sender.source as? GameViewController {
 			if gameVC.completed {
-				
 				nextLevelView?.makeAvailable()
 			}
 		}

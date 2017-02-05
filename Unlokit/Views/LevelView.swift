@@ -9,7 +9,7 @@
 import UIKit
 
 protocol LevelViewDelegate: class {
-	var levelViews: [String: LevelView] { get set }
+	var levelViews: [Int: [LevelView]] { get set }
 	var currentLevelView: LevelView? { get set }
 	var nextLevelView: LevelView? { get set }
 	
@@ -49,7 +49,11 @@ class LevelView: UIView, UIGestureRecognizerDelegate {
 		addSubview(imageView)
 		addSubview(label)
 		
-		self.delegate.levelViews["\(level.stageNumber):\(level.number)"] = self
+		if self.delegate.levelViews[level.stageNumber] == nil {
+			self.delegate.levelViews[level.stageNumber] = [self]
+		} else {
+			self.delegate.levelViews[level.stageNumber]?.insert(self, at: level.number - 1)
+		}
 		
 		// Check if level is available
 		if !level.available {
@@ -58,10 +62,9 @@ class LevelView: UIView, UIGestureRecognizerDelegate {
 		}
 		
 		self.layer.cornerRadius = 15
-		self.layer.borderColor = UIColor.orange.cgColor
 		self.layer.masksToBounds = true
 		
-		let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongTap(_:)))
+		let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
 		longPressGesture.minimumPressDuration = 0.01
 		longPressGesture.allowableMovement = 5
 		longPressGesture.cancelsTouchesInView = false
@@ -76,7 +79,7 @@ class LevelView: UIView, UIGestureRecognizerDelegate {
 	func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
 		return true
 	}
-	func handleLongTap(_ sender: UIGestureRecognizer) {
+	func handleLongPress(_ sender: UIGestureRecognizer) {
 		guard level.available else {
 			return
 		}
@@ -113,12 +116,10 @@ class LevelView: UIView, UIGestureRecognizerDelegate {
 	}
 	func reset() {
 		// Check if level is completed or not
-		if !level.completed {
-			layer.borderWidth = 0
-		} else {
-			layer.borderWidth = 5
+		if level.completed {
+			layer.borderColor = UIColor.green.cgColor
+		} else if level.available {
+			layer.borderColor = UIColor.orange.cgColor
 		}
 	}
-	
-	
 }

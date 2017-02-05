@@ -24,7 +24,7 @@ class StageView: UIView {
 		
 		// Setup views
 		titleView = UIView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height / 4))
-		titleView.backgroundColor = .blue
+		titleView.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
 		
 		// Create title label for stage
 		let titleLabel = UILabel(frame: CGRect(x: 40, y: 0, width: frame.width, height: frame.height / 4))
@@ -54,11 +54,12 @@ class StageView: UIView {
 		let progressHeight = levelScrollView.frame.height / 12
 		let progressYPos = (levelScrollView.frame.height / 2) - (levelScrollView.frame.height / 24)
 		
-		// For continuing when user drags scroll view over edge
+		// For continuing progress view when user drags scroll view over edge
 		let insetWidth: CGFloat = 1000
 		
-		let progressFrame = CGRect(x: -insetWidth, y: progressYPos, width: levelScrollView.contentSize.width + insetWidth * 2, height: progressHeight)
-		progressView = ProgressView(frame: progressFrame)
+		// Make progress view shortest it will ever be, it will extend after
+		let progressFrame = CGRect(x: -insetWidth, y: progressYPos, width: insetWidth + xPadding / 2, height: progressHeight)
+		progressView = ProgressView(frame: progressFrame, scrollInsetWidth: insetWidth, padding: xPadding)
 		levelScrollView.addSubview(progressView)
 		
 		// Iterate through levels to add them all
@@ -74,8 +75,7 @@ class StageView: UIView {
 			// Update xPos
 			xPos += width + xPadding
 			
-			// Add level to progreess view
-			progressView.addLevel(levelView: levelView, padding: xPadding)
+			
 		}
 		super.init(frame: frame)
 		
