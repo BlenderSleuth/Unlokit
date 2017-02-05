@@ -106,7 +106,7 @@ class ToolNode: SKSpriteNode, CanBeFired {
 	
 	func startTimer() {
 		let wait = SKAction.wait(forDuration: 3)
-		run(wait, withKey: "timer") {
+		run(wait) {
 			weak var `self` =  self
 			
 			if let scene = self?.scene as? Stage1 {
