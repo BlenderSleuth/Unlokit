@@ -58,7 +58,7 @@ struct ZPosition {
 	
 	static let canon: CGFloat							=  50
 	
-	static let interface: CGFloat						=  60
+	static let interface: CGFloat						=  100
 }
 
 protocol LevelController: class {
