@@ -27,6 +27,8 @@ class LevelSelectViewController: UIViewController, LevelViewDelegate {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		navigationController?.view.backgroundColor = .black
+		
 		setupScroll(frame: view.frame)
     }
 	override func viewDidAppear(_ animated: Bool) {
@@ -93,7 +95,13 @@ class LevelSelectViewController: UIViewController, LevelViewDelegate {
 	
 	func present(level: Level) {
 		if let gameViewController = storyboard?.instantiateViewController(withIdentifier: "GameViewController") as? GameViewController {
-			navigationController?.pushViewController(gameViewController, animated: true)
+			
+			// Animate with cross dissolve
+			let transition = CATransition()
+			transition.duration = 0.5
+			navigationController?.view.layer.add(transition, forKey: nil)
+			navigationController?.pushViewController(gameViewController, animated: false)
+			
 			gameViewController.level = level
 			
 			// Reset

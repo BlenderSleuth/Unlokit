@@ -87,6 +87,11 @@ class GameViewController: UIViewController, LevelController {
 	}
 	
 	func returnToLevelSelect() {
+		// Animate with cross dissolve
+		let transition = CATransition()
+		transition.duration = 0.5
+		navigationController?.view.layer.add(transition, forKey: nil)
+		
 		performSegue(withIdentifier: "toLevelSelect", sender: nil)
 	}
 	
