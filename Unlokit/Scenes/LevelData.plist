@@ -72,11 +72,11 @@
 			<key>BombTool</key>
 			<integer>10</integer>
 			<key>GlueTool</key>
-			<integer>0</integer>
+			<integer>10</integer>
 			<key>FanTool</key>
-			<integer>0</integer>
+			<integer>10</integer>
 			<key>GravityTool</key>
-			<integer>0</integer>
+			<integer>3</integer>
 		</dict>
 	</dict>
 	<key>Stage2</key>

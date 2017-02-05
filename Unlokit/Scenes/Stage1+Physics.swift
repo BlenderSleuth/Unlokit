@@ -28,7 +28,6 @@ extension Stage1: SKPhysicsContactDelegate {
 		}
 		
 		// TODO: Make this neater...
-		
 		if collided(with: Category.key, and: Category.lock) {
 			let key = getNode(for: Category.key, type: KeyNode.self)
 			let lock = getNode(for: Category.lock, type: LockNode.self)
