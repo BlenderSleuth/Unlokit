@@ -166,6 +166,9 @@ extension Stage1: SKPhysicsContactDelegate {
 		else if collided(with: Category.blockBnc, and: Category.tools ^ Category.bombTool) {
 			let block = getNode(for: Category.blockBnc, type: BlockNode.self)
 			
+			let canBeFired = getOtherNode(for: block, type: CanBeFired.self)
+			canBeFired.startTimer()
+				
 			block.bounce(side: block.getSide(contact: contact))
 			
 		}

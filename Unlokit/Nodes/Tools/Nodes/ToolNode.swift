@@ -103,4 +103,15 @@ class ToolNode: SKSpriteNode, CanBeFired {
 		
 		removeFromParent()
 	}
+	
+	func startTimer() {
+		let wait = SKAction.wait(forDuration: 3)
+		run(wait) {
+			weak var `self` =  self
+			
+			if let scene = self?.scene as? Stage1 {
+				self?.smash(scene: scene)
+			}
+		}
+	}
 }
