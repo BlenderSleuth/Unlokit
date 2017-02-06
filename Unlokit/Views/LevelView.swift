@@ -88,7 +88,9 @@ class LevelView: UIView, UIGestureRecognizerDelegate {
 		case .began: // Object pressed
 			coverLayer.opacity = 0.7
 		case .changed:
-			break
+			// Reset sender
+			sender.isEnabled = false
+			sender.isEnabled = true
 		case .ended: // Object released
 			coverLayer.opacity = 0
 			
