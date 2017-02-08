@@ -40,7 +40,7 @@ class GameViewController: UIViewController, LevelController {
 				//skView.showsPhysics = true
 				//skView.showsFields = true
 				
-				if let scene = Stage1(fileNamed: "Level\(self.level.number)") {
+				if let scene = Stage1(fileNamed: "Level\(self.level.stageNumber)_\(self.level.number)") {
 					//weak var weakScene: Stage1! = scene
 					scene.levelController = self
 					scene.levelNumber = self.level.number

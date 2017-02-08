@@ -113,6 +113,38 @@ extension Stage1: SKPhysicsContactDelegate {
 			let bomb = getNode(for: Category.bombTool, type: BombToolNode.self)
 			bomb.explode(scene: self, at: contact.contactPoint)
 		}
+		else if collided(with: Category.bombTool, and: Category.blockBreak) {
+			let bombTool = getNode(for: Category.bombTool, type: BombToolNode.self)
+			let block = getOtherNode(for: bombTool, type: Breakable.self)
+			
+			if bombTool.used {
+				return
+			}
+			bombTool.used = true
+			
+			if let glue = block as? BlockBreakGlueNode {
+				let side = glue.getSide(contact: contact)
+				glue.add(node: bombTool, to: side)
+				// If bomb tool was added to the block...
+				if bombTool.parent == glue {
+					bombTool.countDown(scene: self, at: contact.contactPoint, side: side)
+				}
+				return
+			}
+			
+			bombTool.explode(scene: self, at: contact.contactPoint)
+			
+			// Bounce block when hit
+		}
+		else if collided(with: Category.blockBnc, and: Category.tools ^ Category.bombTool) {
+			let block = getNode(for: Category.blockBnc, type: BlockNode.self)
+			
+			let canBeFired = getOtherNode(for: block, type: CanBeFired.self)
+			canBeFired.startTimer()
+			
+			block.bounce(side: block.getSide(contact: contact))
+			
+		}
 		else if collided(with: Category.secretTeleport , and: Category.key) {
 			// TO DO: new scene
 			
@@ -141,36 +173,6 @@ extension Stage1: SKPhysicsContactDelegate {
 			if let bombTool = tool as? BombToolNode {
 				bombTool.countDown(scene: self, at: contact.contactPoint, side: side)
 			}
-		}
-		else if collided(with: Category.bombTool, and: Category.blockBreak) {
-			let bombTool = getNode(for: Category.bombTool, type: BombToolNode.self)
-			let block = getOtherNode(for: bombTool, type: Breakable.self)
-			
-			if bombTool.used {
-				return
-			}
-			bombTool.used = true
-			
-			if let glue = block as? BlockBreakGlueNode {
-				let side = glue.getSide(contact: contact)
-				glue.add(node: bombTool, to: side)
-				bombTool.countDown(scene: self, at: contact.contactPoint, side: side)
-				//bombTool.explode(scene: self, at: contact.contactPoint)
-				return
-			}
-			
-			bombTool.explode(scene: self, at: contact.contactPoint)
-			
-			// Bounce block when hit
-		}
-		else if collided(with: Category.blockBnc, and: Category.tools ^ Category.bombTool) {
-			let block = getNode(for: Category.blockBnc, type: BlockNode.self)
-			
-			let canBeFired = getOtherNode(for: block, type: CanBeFired.self)
-			canBeFired.startTimer()
-				
-			block.bounce(side: block.getSide(contact: contact))
-			
 		}
 		else if collided(with: (Category.blockMtl | Category.blockBreak), and: Category.glueTool) {
 			if collided(with: Category.blockGlue, and: Category.glueTool) {
