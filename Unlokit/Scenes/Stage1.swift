@@ -14,45 +14,51 @@ struct Category {
 	static let lock: UInt32				= 0b1 << 1
 	static let bounds: UInt32			= 0b1 << 2
 	
+	// MARK: - Blocks
 	static let blockMtl: UInt32			= 0b1 << 3
 	static let blockBnc: UInt32			= 0b1 << 4
 	static let blockGlue: UInt32		= 0b1 << 5
 	
 	static let blockBreak: UInt32		= 0b1 << 6
-	static let blockBreakBnc: UInt32	= 0b1 << 7
-	static let blockBreakGlue: UInt32	= 0b1 << 8
-	static let blockBreakable: UInt32	= Category.blockBreak | Category.blockBreakBnc | Category.blockBreakGlue
 	
 	static let blocks: UInt32 = Category.blockMtl | Category.blockBnc | Category.blockGlue | Category.blockBreak
 	
-	static let springTool: UInt32		= 0b1 << 9
-	static let glueTool: UInt32			= 0b1 << 10
-	static let fanTool: UInt32			= 0b1 << 11
-	static let gravityTool: UInt32		= 0b1 << 12
-	static let bombTool: UInt32			= 0b1 << 13
+	// MARK: - Tools
+	static let springTool: UInt32		= 0b1 << 7
+	static let glueTool: UInt32			= 0b1 << 8
+	static let fanTool: UInt32			= 0b1 << 9
+	static let gravityTool: UInt32		= 0b1 << 10
+	static let bombTool: UInt32			= 0b1 << 11
 	static let tools: UInt32 = Category.springTool | Category.glueTool | Category.fanTool | Category.gravityTool | Category.bombTool
 	
-	static let fanGravityField: UInt32	= 0b1 << 14
-	static let fanDragField: UInt32		= 0b1 << 15
+	// MARK: - Fields
+	static let fanGravityField: UInt32	= 0b1 << 12
+	static let fanDragField: UInt32		= 0b1 << 13
 	static let fields: UInt32			= Category.fanGravityField | Category.fanDragField
 	
-	static let fan: UInt32				= 0b1 << 16
+	// MARK: - Other nodes
+	static let fan: UInt32				= 0b1 << 14
 	
-	static let speed: UInt32			= 0b1 << 17
-	static let secretTeleport: UInt32	= 0b1 << 18
+	static let speed: UInt32			= 0b1 << 15
+	static let secretTeleport: UInt32	= 0b1 << 16
 	
 	static let all: UInt32 = UInt32.max
 }
 
 struct ZPosition {
-	static let background: CGFloat	= 0
-	static let tools: CGFloat		= 40
-	static let toolIcons: CGFloat	= 45
-	static let levelNodes: CGFloat	= 50
-	static let key: CGFloat			= 60
-	static let canon				= 70
-	static let activeItem: CGFloat	= 80
-	static let interface: CGFloat	= 100
+	static let background: CGFloat					    = -10
+	
+	static let canonTower_controller: CGFloat			=  10
+	
+	static let levelBlocks: CGFloat						=  20
+	
+	static let tools_key: CGFloat						=  30
+	
+	static let toolIcons_particles: CGFloat				=  40
+	
+	static let canon: CGFloat							=  50
+	
+	static let interface: CGFloat						=  100
 }
 
 protocol LevelController: class {
@@ -63,7 +69,7 @@ protocol LevelController: class {
 
 class Stage1: SKScene {
     
-    //MARK: Variables
+    // MARK: - Variables
 	var levelNumber = 1
 	
 	// Node references
@@ -107,7 +113,7 @@ class Stage1: SKScene {
 	// Dict of fans
 	var fans = [FanNode]()
 	
-	//MARK: Setup
+	//MARK: - Setup
 	override func willMove(from view: SKView) {
 		soundFX.pauseBackgroundMusic()
 	}
@@ -265,6 +271,7 @@ class Stage1: SKScene {
 		}
 	}
 	
+	// MARK: - Moving nodes
     func moveController(_ location: CGPoint) {
         let p1 = controller.scenePosition! // Controller position in scene coordinates
         let p2 = lastTouchPoint
@@ -313,6 +320,7 @@ class Stage1: SKScene {
 		cameraNode.position = newPosition
 	}
 	
+	// MARK: - Getting info
 	// Function to return correct node, different methods of sorting
     func node(at point: CGPoint) -> SKNode {
         // Check if controller region contains touch location
@@ -345,6 +353,7 @@ class Stage1: SKScene {
 		return false
 	}
 	
+	// MARK: - Loading into gun
 	func load(_ key: KeyNode) {
 		// If key is animating, don't do anything
 		guard !key.animating else {
@@ -391,7 +400,7 @@ class Stage1: SKScene {
 		// Remove tool from unarchived scene, add it to this one and engage
 		newTool.removeFromParent()
 		newTool.position = toolBox.convert(tool.position, to: self)
-		newTool.zPosition = ZPosition.tools
+		newTool.zPosition = ZPosition.tools_key
 		newTool.icon = tool
 		if let bomb = newTool as? BombToolNode {
 			bomb.setupFuse(scene: self)
@@ -418,7 +427,7 @@ class Stage1: SKScene {
 		levelController.endGame()
 	}
 	
-    //MARK: Touch Events
+    // MARK: - Touch Events
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
 			
@@ -478,6 +487,7 @@ class Stage1: SKScene {
         }
     }
 	
+	// MARK: - Update
 	override func update(_ currentTime: TimeInterval) {
 		if let node = nodeToFollow {
 			moveCamera(with: node)

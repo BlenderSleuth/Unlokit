@@ -21,13 +21,16 @@ class GameViewController: UIViewController, LevelController {
 	}
 	
 	func startNewGame() {
+		
 		DispatchQueue.global(qos: .userInitiated).async {
+			// Transistion
+			let transition = SKTransition.crossFade(withDuration: 0.5)
+			
 			// Check for skView,             load scene from file
 			if let skView = self.view as? SKView, let loading = SKScene(fileNamed: "LoadingScreen") {
 				loading.scaleMode = .aspectFill
-				skView.presentScene(loading)
+				skView.presentScene(loading, transition: transition)
 				
-				// TODO:
 				skView.ignoresSiblingOrder = true
 				
 				// Set options
@@ -37,34 +40,31 @@ class GameViewController: UIViewController, LevelController {
 				//skView.showsPhysics = true
 				//skView.showsFields = true
 				
-				if let scene = Stage1(fileNamed: "Level\(self.level.number)") {
-					weak var weakScene: Stage1! = scene
-					weakScene.levelController = self
-					weakScene.levelNumber = self.level.number
+				if let scene = Stage1(fileNamed: "Level\(self.level.stageNumber)_\(self.level.number)") {
+					//weak var weakScene: Stage1! = scene
+					scene.levelController = self
+					scene.levelNumber = self.level.number
 					
-					weakScene.setupNodes(delegate: self)
-					weakScene.setupCamera()
-					weakScene.setupTools()
-					weakScene.setupTextures()
-					weakScene.setupBlocks()
-					weakScene.physicsWorld.contactDelegate = weakScene
+					scene.setupNodes(delegate: self)
+					scene.setupCamera()
+					scene.setupTools()
+					scene.setupTextures()
+					scene.setupBlocks()
+					scene.physicsWorld.contactDelegate = scene
 					
 					// If background music was paused, resume
-					if !weakScene.soundFX.resumeBackgroundMusic() {
+					if !scene.soundFX.resumeBackgroundMusic() {
 						// Otherwise, play
-						weakScene.soundFX.playBackgroundMusic(filename: "background.mp3")
+						scene.soundFX.playBackgroundMusic(filename: "background.mp3")
 					}
 					
 					// Scale scene to fill
-					weakScene.scaleMode = .aspectFill
-					
-					// Transistion
-					let transition = SKTransition.crossFade(withDuration: 0.5)
+					scene.scaleMode = .aspectFill
 					
 					// Bounce back to the main thread to update the UI
 					DispatchQueue.main.async {
 						// Present Scene
-						skView.presentScene(weakScene, transition: transition)
+						skView.presentScene(scene, transition: transition)
 					}
 				}
 			}
@@ -87,6 +87,11 @@ class GameViewController: UIViewController, LevelController {
 	}
 	
 	func returnToLevelSelect() {
+		// Animate with cross dissolve
+		let transition = CATransition()
+		transition.duration = 0.5
+		navigationController?.view.layer.add(transition, forKey: nil)
+		
 		performSegue(withIdentifier: "toLevelSelect", sender: nil)
 	}
 	

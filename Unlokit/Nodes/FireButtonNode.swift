@@ -12,6 +12,8 @@ protocol CanBeFired {
 	func engage(_ controller: ControllerNode)
 	func disengage(_ controller: ControllerNode)
 	func prepareForFiring(_ controller: ControllerNode)
+	
+	func startTimer()
 }
 
 class FireButtonNode: SKSpriteNode {
@@ -46,7 +48,7 @@ class FireButtonNode: SKSpriteNode {
 		label.position = CGPoint(x: 0, y: -30)
 		label.fontName = "NeuropolXRg-Regular"
 		label.fontSize = 84
-		label.zPosition = 10
+		label.zPosition = ZPosition.interface
 		
 		self.position = position
 		

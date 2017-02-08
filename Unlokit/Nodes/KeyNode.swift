@@ -104,6 +104,15 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		removeFromParent()
 	}
 	
+	func startTimer() {
+		let wait = SKAction.wait(forDuration: 3)
+		run(wait, withKey: "timer") {
+			weak var `self` =  self
+			
+			self?.smash()
+		}
+	}
+	
 	func lock(_ lock: LockNode) {
 		guard let position = getPosition(from: lock) else {
 			return
@@ -113,7 +122,7 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		
 		// Move and rotate to lock position
 		let move = SKAction.move(to: position, duration: 0.2)
-		let rotate = SKAction.rotate(toAngle: lock.zPosition, duration: 0.2)
+		let rotate = SKAction.rotate(toAngle: lock.zRotation, duration: 0.2)
 		let group = SKAction.group([move, rotate])
 		
 		run(group) {

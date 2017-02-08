@@ -39,6 +39,7 @@ class ControllerNode: SKSpriteNode {
 		region = fullRegion.byDifference(from: middleRegion)
 		
 		angleLabel = childNode(withName: "angle") as! SKLabelNode
+		angleLabel.zPosition = ZPosition.interface
 		
 		// Show region with SKShapenode
 		let regionRectDebug = regionRect

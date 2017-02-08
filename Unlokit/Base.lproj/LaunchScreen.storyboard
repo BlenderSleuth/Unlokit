@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -19,12 +19,27 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="4kV-DX-o41">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.0078415796160697937" green="0.0078441333025693893" blue="0.007841021753847599" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="4kV-DX-o41" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="3y7-Kp-lBk"/>
+                            <constraint firstAttribute="trailing" secondItem="4kV-DX-o41" secondAttribute="trailing" id="C54-5u-RS6"/>
+                            <constraint firstItem="4kV-DX-o41" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="NX4-AM-LEo"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="4kV-DX-o41" secondAttribute="bottom" id="fmt-Jm-pcr"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-44" y="313"/>
+            <point key="canvasLocation" x="-44" y="312.59370314842579"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="LaunchScreen" width="2732" height="2048"/>
+    </resources>
 </document>
