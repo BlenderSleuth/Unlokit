@@ -40,6 +40,9 @@
 		387105EC1E35844E002D010A /* LockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387105EB1E35844E002D010A /* LockNode.swift */; };
 		387105F31E359640002D010A /* SoundFX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387105F21E359640002D010A /* SoundFX.swift */; };
 		387105F51E359CA4002D010A /* ReplayButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387105F41E359CA4002D010A /* ReplayButtonNode.swift */; };
+		38721CD21E4E9D27008D9033 /* Row4BlockGlu.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38721CD11E4E9D27008D9033 /* Row4BlockGlu.sks */; };
+		38721CD41E4E9F2B008D9033 /* Row4BlockMtlGlu.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38721CD31E4E9F2B008D9033 /* Row4BlockMtlGlu.sks */; };
+		38721CD61E4E9F78008D9033 /* Row3BlockBreak.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38721CD51E4E9F78008D9033 /* Row3BlockBreak.sks */; };
 		388514001E36EF440092F058 /* SpringTool.sks in Resources */ = {isa = PBXBuildFile; fileRef = 388513FF1E36EF440092F058 /* SpringTool.sks */; };
 		388514021E36EFA20092F058 /* ToolBox.sks in Resources */ = {isa = PBXBuildFile; fileRef = 388514011E36EFA20092F058 /* ToolBox.sks */; };
 		38AC34CA1E4118AD00FB9B50 /* BackButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AC34C91E4118AD00FB9B50 /* BackButtonNode.swift */; };
@@ -159,6 +162,9 @@
 		387105EB1E35844E002D010A /* LockNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LockNode.swift; sourceTree = "<group>"; };
 		387105F21E359640002D010A /* SoundFX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundFX.swift; sourceTree = "<group>"; };
 		387105F41E359CA4002D010A /* ReplayButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplayButtonNode.swift; sourceTree = "<group>"; };
+		38721CD11E4E9D27008D9033 /* Row4BlockGlu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row4BlockGlu.sks; sourceTree = "<group>"; };
+		38721CD31E4E9F2B008D9033 /* Row4BlockMtlGlu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row4BlockMtlGlu.sks; sourceTree = "<group>"; };
+		38721CD51E4E9F78008D9033 /* Row3BlockBreak.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row3BlockBreak.sks; sourceTree = "<group>"; };
 		388513FF1E36EF440092F058 /* SpringTool.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SpringTool.sks; sourceTree = "<group>"; };
 		388514011E36EFA20092F058 /* ToolBox.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ToolBox.sks; sourceTree = "<group>"; };
 		38AC34C91E4118AD00FB9B50 /* BackButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackButtonNode.swift; sourceTree = "<group>"; };
@@ -475,7 +481,9 @@
 				38BD09E71E401E2900AE6AF2 /* Row4BlockBnc.sks */,
 				38BD09E81E401E2900AE6AF2 /* Row4BlockMtl.sks */,
 				38BD09E91E401E2900AE6AF2 /* Row4BlockMtl2Fan.sks */,
+				38721CD31E4E9F2B008D9033 /* Row4BlockMtlGlu.sks */,
 				382835A91E4AFDF6006FA602 /* Row4BlockMtl2Glu.sks */,
+				38721CD11E4E9D27008D9033 /* Row4BlockGlu.sks */,
 				38BD09EA1E401E2900AE6AF2 /* Row4Fan.sks */,
 				38BD09EB1E401E2900AE6AF2 /* Row8BlockMtl.sks */,
 			);
@@ -490,6 +498,7 @@
 				384F449E1E4B01B3005F6FF7 /* BlockBrkGluGrav.sks */,
 				38BECD001E3F1D2B009BADD6 /* BlockBrkBnc.sks */,
 				38E50CF41E39E2AE007437E7 /* Row4BlockBreak.sks */,
+				38721CD51E4E9F78008D9033 /* Row3BlockBreak.sks */,
 				38F40FE91E3B28CE00A0A469 /* Row4BlockBreakGrav.sks */,
 				384F44A01E4B02EB005F6FF7 /* Row4BlockBreakGlu.sks */,
 				382369031E3B0D3800EFC307 /* Row8BlockBreak.sks */,
@@ -675,7 +684,9 @@
 				38BD09F01E401E2900AE6AF2 /* BlockMtl.sks in Resources */,
 				38E99E6E1E4AF9D600781E6C /* Level1_10.sks in Resources */,
 				38017A2E1E35DC160051EEE0 /* Smash.sks in Resources */,
+				38721CD41E4E9F2B008D9033 /* Row4BlockMtlGlu.sks in Resources */,
 				38395CBB1E3DB7020014E5E3 /* background.mp3 in Resources */,
+				38721CD21E4E9D27008D9033 /* Row4BlockGlu.sks in Resources */,
 				38DFCF871E3EAE9A006FD3C9 /* LevelData.plist in Resources */,
 				388514021E36EFA20092F058 /* ToolBox.sks in Resources */,
 				38CE1C111E38599B00B646DB /* Canvas-Purple.sks in Resources */,
@@ -694,6 +705,7 @@
 				38E50CF11E39DB2F007437E7 /* BlockBrk.sks in Resources */,
 				388514001E36EF440092F058 /* SpringTool.sks in Resources */,
 				38E6DA341E3C02E8004F8A79 /* Bounce1.caf in Resources */,
+				38721CD61E4E9F78008D9033 /* Row3BlockBreak.sks in Resources */,
 				38BD09F41E401E2900AE6AF2 /* Row4BlockMtl.sks in Resources */,
 				38CE1C101E38599B00B646DB /* Background-Purple.sks in Resources */,
 				38E50CF51E39E2AE007437E7 /* Row4BlockBreak.sks in Resources */,

@@ -77,7 +77,7 @@ class BombToolNode: ToolNode {
 		removeFromParent()
 	}
 	func countDown(scene: SKScene, at point: CGPoint, side: Side) {
-		var countDown = 5
+		var countDown = 3
 		
 		let position: CGPoint
 		if let block = self.parent as? BlockGlueNode {
