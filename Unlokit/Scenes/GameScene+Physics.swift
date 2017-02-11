@@ -1,5 +1,5 @@
 //
-//  Stage1+Physics.swift
+//  GameScene+Physics.swift
 //  Unlokit
 //
 //  Created by Ben Sutherland on 23/1/17.
@@ -9,7 +9,7 @@
 import SpriteKit
 
 //Separate file for physics contact, its gonna get heavy...
-extension Stage1: SKPhysicsContactDelegate {
+extension GameScene: SKPhysicsContactDelegate {
 	func didBegin(_ contact: SKPhysicsContact) {
 		// Find collision
 		let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask

@@ -50,7 +50,7 @@ class FanNode: SKSpriteNode, Breakable {
 		physicsBody?.contactTestBitMask = Category.bombTool
 		physicsBody?.collisionBitMask = Category.all
 	}
-	func setup(level: Stage1, block: BlockGlueNode, side: Side) {
+	func setup(level: GameScene, block: BlockGlueNode, side: Side) {
 		// If level has different properties
 		getDataFromParent()
 		// Animate fan with frames
@@ -102,7 +102,6 @@ class FanNode: SKSpriteNode, Breakable {
 			let texture = framesAtlas.textureNamed(textureName)
 			frames.append(texture)
 		}
-		
 		
 		run(SKAction.repeatForever(SKAction.animate(with: frames, timePerFrame: 1/15)), withKey: "animate")
 	}
@@ -156,7 +155,7 @@ class FanNode: SKSpriteNode, Breakable {
 		glueBlock.remove(for: side)
 		
 		// TO DO: Add particles and sounds effects
-		if let level = scene as?  Stage1 {
+		if let level = scene as?  GameScene {
 			level.fans.remove(at: level.fans.index(of: self)!)
 		}
 		removeFromParent()

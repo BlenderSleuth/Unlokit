@@ -18,7 +18,7 @@ class BlockGlueNode: BlockNode {
 		physicsBody?.categoryBitMask = Category.blockGlue
 	}
 	
-	func checkConnected(scene: Stage1) {
+	func checkConnected(scene: GameScene) {
 		for child in children {
 			// Modify connected array to include pre-added nodes
 			var side: Side?
@@ -41,7 +41,8 @@ class BlockGlueNode: BlockNode {
 					connected[side] = true
 				}
 			default:
-				break
+				print("Couldn't find side at \(child.position)")
+				return
 			}
 			
 			if child.name == "fanPlaceholder" {

@@ -65,7 +65,7 @@ class FireButtonNode: SKSpriteNode {
         blueCircle.isHidden = !pressed
     }
     
-	private func fire(scene: Stage1) {
+	private func fire(scene: GameScene) {
 		// Make sure object is not nil and is SKSpriteNode
 		guard let sprite = objectToFire as? SKSpriteNode else {
 			return
@@ -108,7 +108,7 @@ class FireButtonNode: SKSpriteNode {
 	}
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         press()
-		if let scn = scene as? Stage1 {
+		if let scn = scene as? GameScene {
 			fire(scene: scn)
 		}
     }

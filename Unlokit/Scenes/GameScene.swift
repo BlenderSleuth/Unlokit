@@ -1,5 +1,5 @@
 //
-//  Stage1.swift
+//  GameScene.swift
 //  Unlokit
 //
 //  Created by Ben Sutherland on 29/12/2016.
@@ -61,6 +61,7 @@ struct ZPosition {
 	static let interface: CGFloat						=  100
 }
 
+// For accessing the GameViewController
 protocol LevelController: class {
 	var level: Level! { get set }
 	
@@ -71,7 +72,7 @@ protocol LevelController: class {
 	func returnToLevelSelect()
 }
 
-class Stage1: SKScene {
+class GameScene: SKScene {
     
     // MARK: - Variables
 	var level: Level!
@@ -238,7 +239,7 @@ class Stage1: SKScene {
 		// Get plist
 		let plist = Bundle.main.path(forResource: "LevelData", ofType: "plist")!
 		let stageDict = NSDictionary(contentsOfFile: plist) as! [String: [String: [String: Int]]]
-		let levelDict = stageDict["Stage1"]!
+		let levelDict = stageDict["Stage\(level.stageNumber)"]!
 		
 		if let level = levelDict["Level\(level.number)"] {
 			// Iterate through all tool icons

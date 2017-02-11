@@ -9,7 +9,7 @@
 import SpriteKit
 
 class BackButtonNode: SKSpriteNode {
-	//MARK: Variable
+	// MARK: Variable
 	// Initialised as implicitly-unwrapped optionals for file archive compatability
 	var label: SKLabelNode!
 	var redCircle: SKShapeNode!

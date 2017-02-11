@@ -18,14 +18,11 @@ class GameViewController: UIViewController, LevelController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// DEBUG if this is the initial view controller
-		let stage = 1
-		let level = 9
+		let stage = 2
+		let level = 4
 		
 		self.level = Stages.sharedInstance.stages[stage-1].levels[level-1]
-		print("Level\(self.level.stageNumber)_\(self.level.number)")
-		
-		self.level.isSecret = true
-		startNewGame(levelname: "Level1_S")
+		startNewGame()
 	}
 	
 	func startNewGame(levelname: String) {
@@ -41,15 +38,15 @@ class GameViewController: UIViewController, LevelController {
 				
 				skView.ignoresSiblingOrder = true
 				
-				// Set options
+				// Set debug options
 				skView.showsFPS = true
 				skView.showsNodeCount = true
 				skView.showsDrawCount = true
-				//skView.showsPhysics = true
+				skView.showsPhysics = true
 				//skView.showsFields = true
 				
-				if let scene = Stage1(fileNamed: levelname) {
-					//weak var weakScene: Stage1! = scene
+				if let scene = GameScene(fileNamed: levelname) {
+					//weak var weakScene: GameScene! = scene
 					scene.levelController = self
 					scene.level = self.level
 					

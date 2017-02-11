@@ -130,7 +130,7 @@ class KeyNode: SKSpriteNode, CanBeFired {
 			self.run(SoundFX.sharedInstance["lock"]!)
 			
 			self.run(SKAction.wait(forDuration: 1)) {
-				if let stage1 = self.scene as? Stage1 {
+				if let stage1 = self.scene as? GameScene {
 					stage1.endGame()
 				}
 			}

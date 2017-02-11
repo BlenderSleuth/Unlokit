@@ -83,7 +83,7 @@ class ToolNode: SKSpriteNode, CanBeFired {
 		physicsBody?.fieldBitMask = Category.fields
 	}
 
-	func smash(scene: Stage1) {
+	func smash(scene: GameScene) {
 		guard parent != nil else {
 			return
 		}
@@ -100,7 +100,7 @@ class ToolNode: SKSpriteNode, CanBeFired {
 		run(wait, withKey: "timer") {
 			weak var `self` =  self
 			
-			if let scene = self?.scene as? Stage1 {
+			if let scene = self?.scene as? GameScene {
 				self?.smash(scene: scene)
 			}
 		}

@@ -24,7 +24,7 @@ class Stages {
 		
 		var stageArray = [Stage]()
 		
-		for (stage, _)in stageDict {
+		for (stage, _) in stageDict {
 			// Get stage number
 			let number = Int("\(stage.characters.last!)")!
 			let stage = Stage(number: number)

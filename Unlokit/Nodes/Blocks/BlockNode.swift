@@ -40,7 +40,10 @@ class BlockNode: SKSpriteNode {
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-		
+
+		physicsBody?.contactTestBitMask = Category.zero
+		physicsBody?.collisionBitMask = Category.all
+
 		// Get coordinates of sides of block
 		let halfWidth = frame.width / 2
 		let halfHeight = frame.height / 2
