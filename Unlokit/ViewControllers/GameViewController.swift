@@ -18,14 +18,17 @@ class GameViewController: UIViewController, LevelController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// DEBUG if this is the initial view controller
-		self.level = Stages.sharedInstance.stages[0].levels[10]
+		let stage = 1
+		let level = 9
+		
+		self.level = Stages.sharedInstance.stages[stage-1].levels[level-1]
 		print("Level\(self.level.stageNumber)_\(self.level.number)")
 		
-		
-		startNewGame()
+		self.level.isSecret = true
+		startNewGame(levelname: "Level1_S")
 	}
 	
-	func startNewGame() {
+	func startNewGame(levelname: String) {
 		// Put all this on seperate thread or loading
 		DispatchQueue.global(qos: .userInitiated).async {
 			// Transistion
@@ -45,10 +48,10 @@ class GameViewController: UIViewController, LevelController {
 				//skView.showsPhysics = true
 				//skView.showsFields = true
 				
-				if let scene = Stage1(fileNamed: "Level\(self.level.stageNumber)_\(self.level.number)") {
+				if let scene = Stage1(fileNamed: levelname) {
 					//weak var weakScene: Stage1! = scene
 					scene.levelController = self
-					scene.levelNumber = self.level.number
+					scene.level = self.level
 					
 					scene.setupNodes(delegate: self)
 					scene.setupCamera()
@@ -75,11 +78,17 @@ class GameViewController: UIViewController, LevelController {
 			}
 		}
 	}
+	func startNewGame() {
+		startNewGame(levelname: "Level\(self.level.stageNumber)_\(self.level.number)")
+	}
 	
 	func endGame() {
 		level.completed = true
 		completed = true
 		returnToLevelSelect()
+	}
+	func endSecret() {
+		startNewGame()
 	}
 	
 	// Clean up

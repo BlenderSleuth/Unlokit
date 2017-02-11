@@ -146,9 +146,8 @@ extension Stage1: SKPhysicsContactDelegate {
 			
 		}
 		else if collided(with: Category.secretTeleport , and: Category.key) {
-			// TO DO: new scene
-			
-			levelController.startNewGame()
+			levelController.startNewGame(levelname: "Level\(level.stageNumber)_S")
+			levelController.level.isSecret = true
 		}
 		else if collided(with: Category.bounds, and: Category.tools) {
 			let bounds = getNode(for: Category.bounds, type: SKSpriteNode.self)

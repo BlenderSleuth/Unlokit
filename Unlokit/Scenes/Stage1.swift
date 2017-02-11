@@ -62,15 +62,19 @@ struct ZPosition {
 }
 
 protocol LevelController: class {
+	var level: Level! { get set }
+	
+	func startNewGame(levelname: String)
 	func startNewGame()
 	func endGame()
+	func endSecret()
 	func returnToLevelSelect()
 }
 
 class Stage1: SKScene {
     
     // MARK: - Variables
-	var levelNumber = 1
+	var level: Level!
 	
 	// Node references
     var controller: ControllerNode!
@@ -236,20 +240,20 @@ class Stage1: SKScene {
 		let stageDict = NSDictionary(contentsOfFile: plist) as! [String: [String: [String: Int]]]
 		let levelDict = stageDict["Stage1"]!
 		
-		let level = levelDict["Level\(levelNumber)"]!
-		
-		// Iterate through all tool icons
-		for (type, tool) in toolIcons {
-			// Check if value is present
-			if let number = level[type.rawValue] {
-				// Set tool number
-				tool.number = number
-			} else {
-				// Or zero
-				tool.colorBlendFactor = 0.9
-				tool.number = 0
+		if let level = levelDict["Level\(level.number)"] {
+			// Iterate through all tool icons
+			for (type, tool) in toolIcons {
+				// Check if value is present
+				if let number = level[type.rawValue] {
+					// Set tool number
+					tool.number = number
+				} else {
+					// Or zero
+					tool.colorBlendFactor = 0.9
+					tool.number = 0
+				}
+				
 			}
-			
 		}
 	}
 	func setupTextures() {
@@ -424,7 +428,11 @@ class Stage1: SKScene {
 	}
 	
 	func endGame() {
-		levelController.endGame()
+		if level.isSecret {
+			levelController.endSecret()
+		} else {
+			levelController.endGame()
+		}
 	}
 	
     // MARK: - Touch Events

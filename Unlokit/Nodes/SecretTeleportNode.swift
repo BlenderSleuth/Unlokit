@@ -12,7 +12,6 @@ class SecretTeleportNode: SKSpriteNode {
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		
-		physicsBody = SKPhysicsBody(edgeFrom: CGPoint.zero, to: CGPoint(x: frame.height, y: 0))
 		physicsBody?.categoryBitMask = Category.secretTeleport
 		physicsBody?.contactTestBitMask = Category.key
 		physicsBody?.collisionBitMask = Category.zero

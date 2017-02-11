@@ -18,6 +18,7 @@
 		381D5C8A1E394E3C0084E56E /* BlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381D5C891E394E3C0084E56E /* BlockNode.swift */; };
 		381D5C8C1E39513D0084E56E /* FanParticles.sks in Resources */ = {isa = PBXBuildFile; fileRef = 381D5C8B1E39513D0084E56E /* FanParticles.sks */; };
 		382369041E3B0D3800EFC307 /* Row8BlockBreak.sks in Resources */ = {isa = PBXBuildFile; fileRef = 382369031E3B0D3800EFC307 /* Row8BlockBreak.sks */; };
+		382559321E4EBE86006EA05C /* Level1_S.sks in Resources */ = {isa = PBXBuildFile; fileRef = 382559311E4EBE86006EA05C /* Level1_S.sks */; };
 		382835A61E4AFCBE006FA602 /* Level2_1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 382835A51E4AFCBE006FA602 /* Level2_1.sks */; };
 		382835A81E4AFCC7006FA602 /* Level1_9.sks in Resources */ = {isa = PBXBuildFile; fileRef = 382835A71E4AFCC7006FA602 /* Level1_9.sks */; };
 		382835AA1E4AFDF6006FA602 /* Row4BlockMtl2Glu.sks in Resources */ = {isa = PBXBuildFile; fileRef = 382835A91E4AFDF6006FA602 /* Row4BlockMtl2Glu.sks */; };
@@ -84,6 +85,8 @@
 		38CE1C101E38599B00B646DB /* Background-Purple.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38CE1C0E1E38599B00B646DB /* Background-Purple.sks */; };
 		38CE1C111E38599B00B646DB /* Canvas-Purple.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38CE1C0F1E38599B00B646DB /* Canvas-Purple.sks */; };
 		38D24A9F1E44959400323861 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D24A9E1E44959400323861 /* ProgressView.swift */; };
+		38D738191E4EDA6E00E79D10 /* SecretTeleportParticles.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38D738181E4EDA6E00E79D10 /* SecretTeleportParticles.sks */; };
+		38D7381B1E4EE36300E79D10 /* Row3BlockBnc.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38D7381A1E4EE36300E79D10 /* Row3BlockBnc.sks */; };
 		38DFCF871E3EAE9A006FD3C9 /* LevelData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38DFCF861E3EAE9A006FD3C9 /* LevelData.plist */; };
 		38E4B5B31E370A0A00C798C0 /* GlueToolIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4B5AF1E370A0A00C798C0 /* GlueToolIcon.swift */; };
 		38E4B5B41E370A0A00C798C0 /* SpringToolIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4B5B01E370A0A00C798C0 /* SpringToolIcon.swift */; };
@@ -139,6 +142,7 @@
 		381D5C891E394E3C0084E56E /* BlockNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockNode.swift; sourceTree = "<group>"; };
 		381D5C8B1E39513D0084E56E /* FanParticles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FanParticles.sks; sourceTree = "<group>"; };
 		382369031E3B0D3800EFC307 /* Row8BlockBreak.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row8BlockBreak.sks; sourceTree = "<group>"; };
+		382559311E4EBE86006EA05C /* Level1_S.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1_S.sks; sourceTree = "<group>"; };
 		382835A51E4AFCBE006FA602 /* Level2_1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2_1.sks; sourceTree = "<group>"; };
 		382835A71E4AFCC7006FA602 /* Level1_9.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1_9.sks; sourceTree = "<group>"; };
 		382835A91E4AFDF6006FA602 /* Row4BlockMtl2Glu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row4BlockMtl2Glu.sks; sourceTree = "<group>"; };
@@ -211,6 +215,8 @@
 		38CE1C0E1E38599B00B646DB /* Background-Purple.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Background-Purple.sks"; sourceTree = "<group>"; };
 		38CE1C0F1E38599B00B646DB /* Canvas-Purple.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Canvas-Purple.sks"; sourceTree = "<group>"; };
 		38D24A9E1E44959400323861 /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		38D738181E4EDA6E00E79D10 /* SecretTeleportParticles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SecretTeleportParticles.sks; sourceTree = "<group>"; };
+		38D7381A1E4EE36300E79D10 /* Row3BlockBnc.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row3BlockBnc.sks; sourceTree = "<group>"; };
 		38DFCF861E3EAE9A006FD3C9 /* LevelData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LevelData.plist; sourceTree = "<group>"; };
 		38E4B5AF1E370A0A00C798C0 /* GlueToolIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlueToolIcon.swift; sourceTree = "<group>"; };
 		38E4B5B01E370A0A00C798C0 /* SpringToolIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringToolIcon.swift; sourceTree = "<group>"; };
@@ -269,6 +275,7 @@
 				381D5C8B1E39513D0084E56E /* FanParticles.sks */,
 				38E50CEE1E39D926007437E7 /* BombFuse.sks */,
 				3804F12C1E39FAEB007099AD /* BombExplode.sks */,
+				38D738181E4EDA6E00E79D10 /* SecretTeleportParticles.sks */,
 			);
 			path = Emitters;
 			sourceTree = "<group>";
@@ -463,6 +470,7 @@
 				38E99E611E4AF9D600781E6C /* Level1_7.sks */,
 				38E99E631E4AF9D600781E6C /* Level1_8.sks */,
 				382835A71E4AFCC7006FA602 /* Level1_9.sks */,
+				382559311E4EBE86006EA05C /* Level1_S.sks */,
 				38E99E641E4AF9D600781E6C /* Level1_10.sks */,
 				38A6D9361E4EAD0000068113 /* Level1_11.sks */,
 				38E99E621E4AF9D600781E6C /* Level1_12.sks */,
@@ -482,6 +490,7 @@
 				38BD09E51E401E2900AE6AF2 /* Row2BlockFan.sks */,
 				38BD09E61E401E2900AE6AF2 /* Row2BlockMtl.sks */,
 				38BD09E71E401E2900AE6AF2 /* Row4BlockBnc.sks */,
+				38D7381A1E4EE36300E79D10 /* Row3BlockBnc.sks */,
 				38BD09E81E401E2900AE6AF2 /* Row4BlockMtl.sks */,
 				38BD09E91E401E2900AE6AF2 /* Row4BlockMtl2Fan.sks */,
 				38721CD31E4E9F2B008D9033 /* Row4BlockMtlGlu.sks */,
@@ -664,6 +673,7 @@
 				38E99E6D1E4AF9D600781E6C /* Level1_8.sks in Resources */,
 				38AE075A1E36221400D127D2 /* Lock.caf in Resources */,
 				38BD09EC1E401E2900AE6AF2 /* BlockBnc.sks in Resources */,
+				38D7381B1E4EE36300E79D10 /* Row3BlockBnc.sks in Resources */,
 				38A6D9371E4EAD0000068113 /* Level1_11.sks in Resources */,
 				38B6494B1E38AC9B00479469 /* FanRef.sks in Resources */,
 				383CA9841E1DD61100F8B998 /* Main.storyboard in Resources */,
@@ -698,9 +708,11 @@
 				38BECCFF1E3F1D02009BADD6 /* BlockBrkGlu.sks in Resources */,
 				38E4B5BF1E37106700C798C0 /* FanTool.sks in Resources */,
 				38BECD011E3F1D2B009BADD6 /* BlockBrkBnc.sks in Resources */,
+				382559321E4EBE86006EA05C /* Level1_S.sks in Resources */,
 				38E99E691E4AF9D600781E6C /* Level1_5.sks in Resources */,
 				38B08F6A1E408006000A7232 /* LoadingScreen.sks in Resources */,
 				38017A331E35E01B0051EEE0 /* Smash.caf in Resources */,
+				38D738191E4EDA6E00E79D10 /* SecretTeleportParticles.sks in Resources */,
 				382835A81E4AFCC7006FA602 /* Level1_9.sks in Resources */,
 				38E6DA351E3C02E8004F8A79 /* Bounce2.caf in Resources */,
 				38BD09F21E401E2900AE6AF2 /* Row2BlockMtl.sks in Resources */,

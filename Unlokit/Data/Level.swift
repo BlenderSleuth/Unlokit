@@ -18,6 +18,7 @@ class Level: NSObject, NSCoding {
 	
 	var available: Bool
 	var completed: Bool
+	var isSecret: Bool
 	
 	init(number: Int, stageNumber: Int, imageName: String, available: Bool, completed: Bool = false) {
 		self.number = number
@@ -26,6 +27,9 @@ class Level: NSObject, NSCoding {
 		self.completed = completed
 		self.stageNumber = stageNumber
 		thumbnail = UIImage(named: imageName)
+		
+		// Not to be encoded
+		self.isSecret = false
 	}
 	
 	required convenience init?(coder aDecoder: NSCoder) {
