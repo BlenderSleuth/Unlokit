@@ -17,11 +17,16 @@ class GameViewController: UIViewController, LevelController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		// DEBUG if this is the initial view controller
+		self.level = Stages.sharedInstance.stages[0].levels[10]
+		print("Level\(self.level.stageNumber)_\(self.level.number)")
+		
+		
 		startNewGame()
 	}
 	
 	func startNewGame() {
-		
+		// Put all this on seperate thread or loading
 		DispatchQueue.global(qos: .userInitiated).async {
 			// Transistion
 			let transition = SKTransition.crossFade(withDuration: 0.5)

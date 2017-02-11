@@ -112,6 +112,7 @@ class FanNode: SKSpriteNode, Breakable {
 		// Make particles go in the right direction
 		let rotation = rotationRelativeToSceneFor(node: self)
 		emitter.emissionAngle += rotation
+		
 	}
 	
 	// Set emitter velocity based on strength of fan
@@ -162,11 +163,12 @@ class FanNode: SKSpriteNode, Breakable {
 	}
 	func rotationRelativeToSceneFor(node: SKNode) -> CGFloat {
 		var nodeRotation = CGFloat(0)
-		var tempNode: SKNode = node
+		var tempNode: SKNode? = node
 		
-		while !(tempNode is SKScene) {
-			nodeRotation += tempNode.zRotation
-			tempNode = tempNode.parent!
+		// Loop through parents until scene or nil
+		while !(tempNode is SKScene) && (tempNode != nil){
+			nodeRotation += tempNode!.zRotation
+			tempNode = tempNode!.parent
 		}
 		
 		return nodeRotation

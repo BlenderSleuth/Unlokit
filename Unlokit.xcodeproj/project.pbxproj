@@ -45,6 +45,7 @@
 		38721CD61E4E9F78008D9033 /* Row3BlockBreak.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38721CD51E4E9F78008D9033 /* Row3BlockBreak.sks */; };
 		388514001E36EF440092F058 /* SpringTool.sks in Resources */ = {isa = PBXBuildFile; fileRef = 388513FF1E36EF440092F058 /* SpringTool.sks */; };
 		388514021E36EFA20092F058 /* ToolBox.sks in Resources */ = {isa = PBXBuildFile; fileRef = 388514011E36EFA20092F058 /* ToolBox.sks */; };
+		38A6D9371E4EAD0000068113 /* Level1_11.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38A6D9361E4EAD0000068113 /* Level1_11.sks */; };
 		38AC34CA1E4118AD00FB9B50 /* BackButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AC34C91E4118AD00FB9B50 /* BackButtonNode.swift */; };
 		38AE075A1E36221400D127D2 /* Lock.caf in Resources */ = {isa = PBXBuildFile; fileRef = 38AE07591E361DDC00D127D2 /* Lock.caf */; };
 		38B08F5B1E4037C4000A7232 /* LevelSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B08F5A1E4037C4000A7232 /* LevelSelectViewController.swift */; };
@@ -167,6 +168,7 @@
 		38721CD51E4E9F78008D9033 /* Row3BlockBreak.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row3BlockBreak.sks; sourceTree = "<group>"; };
 		388513FF1E36EF440092F058 /* SpringTool.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SpringTool.sks; sourceTree = "<group>"; };
 		388514011E36EFA20092F058 /* ToolBox.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ToolBox.sks; sourceTree = "<group>"; };
+		38A6D9361E4EAD0000068113 /* Level1_11.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1_11.sks; sourceTree = "<group>"; };
 		38AC34C91E4118AD00FB9B50 /* BackButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackButtonNode.swift; sourceTree = "<group>"; };
 		38AE07551E36199500D127D2 /* Bounce1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bounce1.caf; sourceTree = "<group>"; };
 		38AE07561E36199500D127D2 /* Bounce2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bounce2.caf; sourceTree = "<group>"; };
@@ -462,6 +464,7 @@
 				38E99E631E4AF9D600781E6C /* Level1_8.sks */,
 				382835A71E4AFCC7006FA602 /* Level1_9.sks */,
 				38E99E641E4AF9D600781E6C /* Level1_10.sks */,
+				38A6D9361E4EAD0000068113 /* Level1_11.sks */,
 				38E99E621E4AF9D600781E6C /* Level1_12.sks */,
 			);
 			name = "Stage 1";
@@ -661,6 +664,7 @@
 				38E99E6D1E4AF9D600781E6C /* Level1_8.sks in Resources */,
 				38AE075A1E36221400D127D2 /* Lock.caf in Resources */,
 				38BD09EC1E401E2900AE6AF2 /* BlockBnc.sks in Resources */,
+				38A6D9371E4EAD0000068113 /* Level1_11.sks in Resources */,
 				38B6494B1E38AC9B00479469 /* FanRef.sks in Resources */,
 				383CA9841E1DD61100F8B998 /* Main.storyboard in Resources */,
 				38E6DA371E3C02E8004F8A79 /* Bounce4.caf in Resources */,

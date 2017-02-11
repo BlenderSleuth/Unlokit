@@ -431,6 +431,8 @@ class Stage1: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
 			
+			nodeToFollow = nil
+			
             // Get location of touch in different coordinate systems
             let location = touch.location(in: self)
 			let locationCam = touch.location(in: cameraNode)
