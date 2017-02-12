@@ -14,10 +14,11 @@ class FanToolNode: ToolNode {
 		
 		type = .fan
 	}
-	
-	override func setupPhysics() {
-		super.setupPhysics()
-		
+
+	override func setupPhysics(shadowed isShadowed: Bool) {
+		super.setupPhysics(shadowed: isShadowed)
+
+
 		physicsBody?.categoryBitMask = Category.fanTool
 		physicsBody?.contactTestBitMask = Category.bounds | Category.blockMtl | Category.blockGlue
 		physicsBody?.collisionBitMask = Category.all ^ Category.speed // All except speed

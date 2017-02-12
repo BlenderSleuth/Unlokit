@@ -21,7 +21,7 @@ class KeyNode: SKSpriteNode, CanBeFired {
 	
 	// Initial key position, to return to
 	var startPosition: CGPoint!
-	
+
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		
@@ -57,12 +57,12 @@ class KeyNode: SKSpriteNode, CanBeFired {
 
 	func prepareForFiring(_ controller: ControllerNode) {
 		// Sets up before firing
-		setupPhysics()
+		setupPhysics(shadowed: controller.isShadowed)
 		isEngaged = false
 		controller.isOccupied = false
 		removeAction(forKey: "rotate")
 	}
-	private func setupPhysics() {
+	private func setupPhysics(shadowed isShadowed: Bool) {
 		// Physicsbody
 		physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
 		physicsBody?.isDynamic = true
@@ -71,6 +71,13 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		physicsBody?.categoryBitMask = Category.key
 		physicsBody?.contactTestBitMask = Category.lock | Category.blocks | Category.bounds
 		physicsBody?.collisionBitMask = Category.all ^ (Category.lock | Category.speed) // All except lock
+
+		if isShadowed {
+			let light = SKLightNode()
+			light.categoryBitMask = Category.toolLight
+			light.falloff = 0.6
+			addChild(light)
+		}
 	}
 	
 	func getPosition(from node: SKNode) -> CGPoint? {

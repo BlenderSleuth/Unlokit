@@ -19,7 +19,7 @@ class GameViewController: UIViewController, LevelController {
 		super.viewDidLoad()
 		// DEBUG if this is the initial view controller
 		let stage = 2
-		let level = 5
+		let level = 6
 		
 		self.level = Stages.sharedInstance.stages[stage-1].levels[level-1]
 		startNewGame()
@@ -42,7 +42,7 @@ class GameViewController: UIViewController, LevelController {
 				skView.showsFPS = true
 				skView.showsNodeCount = true
 				skView.showsDrawCount = true
-				skView.showsPhysics = true
+				//skView.showsPhysics = true
 				//skView.showsFields = true
 				
 				if let scene = GameScene(fileNamed: levelname) {

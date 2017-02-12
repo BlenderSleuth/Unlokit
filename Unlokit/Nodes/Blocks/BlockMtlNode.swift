@@ -16,7 +16,7 @@ class BlockMtlNode: BlockNode {
 		physicsBody?.categoryBitMask = Category.blockMtl
 	}
 	// Create version of self that has kind of bncNode
-	func bncVersion(scene: SKScene) -> BlockBncNode {
+	func bncVersion(scene: GameScene) -> BlockBncNode {
 		// Check if self is breakable
 		let blockBnc: BlockBncNode
 		if self is Breakable {
@@ -33,7 +33,7 @@ class BlockMtlNode: BlockNode {
 			blockBnc.position = beam.convert(position, from: self.parent!)
 			self.removeFromParent()
 			beam.addChild(blockBnc)
-			beam.setup(physicsWorld: scene.physicsWorld)
+			beam.setup(scene: scene)
 
 			blockBnc.physicsBody?.isDynamic = true
 		} else {
@@ -44,7 +44,7 @@ class BlockMtlNode: BlockNode {
 		return blockBnc
 	}
 	// Create version of self that has kind of glueNode
-	func glueVersion(scene: SKScene) -> BlockGlueNode {
+	func glueVersion(scene: GameScene) -> BlockGlueNode {
 		// Check if self is breakable
 		let blockGlue: BlockGlueNode
 		if self is Breakable {
@@ -61,7 +61,7 @@ class BlockMtlNode: BlockNode {
 			blockGlue.position = beam.convert(position, from: self.parent!)
 			self.removeFromParent()
 			beam.addChild(blockGlue)
-			beam.setup(physicsWorld: scene.physicsWorld)
+			beam.setup(scene: scene)
 
 			blockGlue.physicsBody?.isDynamic = true
 		} else {
@@ -72,5 +72,3 @@ class BlockMtlNode: BlockNode {
 		return blockGlue
 	}
 }
-
-

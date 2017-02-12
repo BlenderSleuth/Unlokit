@@ -15,9 +15,9 @@ class GlueToolNode: ToolNode {
         type = .glue
     }
 	
-	override func setupPhysics() {
-		super.setupPhysics()
-		
+	override func setupPhysics(shadowed isShadowed: Bool) {
+		super.setupPhysics(shadowed: isShadowed)
+
 		physicsBody?.categoryBitMask = Category.glueTool
 		physicsBody?.contactTestBitMask = Category.bounds | Category.blockMtl | Category.blockBreak
 		physicsBody?.collisionBitMask = Category.all ^ Category.speed // All except speed

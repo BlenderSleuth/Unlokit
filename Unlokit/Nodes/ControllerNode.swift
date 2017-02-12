@@ -14,6 +14,8 @@ class ControllerNode: SKSpriteNode {
 	var isOccupied = false
 	
 	var scenePosition: CGPoint!
+
+	var isShadowed = false
 	
 	private var angleLabel: SKLabelNode!
 	
@@ -49,7 +51,15 @@ class ControllerNode: SKSpriteNode {
 		debugNode.lineWidth = 5
 		scene.addChild(debugNode)
 	}
-	
+
+	func addLight() {
+		let light = SKLightNode()
+		light.categoryBitMask = Category.all
+		self.addChild(light)
+
+		isShadowed = true
+	}
+
 	func updateAngle() {
 		let angle = Int(zRotation.radiansToDegrees() + 0.5) + 90
 		angleLabel.text = "\(angle)"

@@ -17,9 +17,9 @@ class SpringToolNode: ToolNode {
 	}
 
 	
-	override func setupPhysics() {
-		super.setupPhysics()
-		
+	override func setupPhysics(shadowed isShadowed: Bool) {
+		super.setupPhysics(shadowed: isShadowed)
+
 		physicsBody?.restitution = 0.5
 		physicsBody?.categoryBitMask = Category.springTool
 		physicsBody?.contactTestBitMask = Category.bounds | Category.blockMtl | Category.blockGlue | Category.blockBreak

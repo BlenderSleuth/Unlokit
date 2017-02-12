@@ -9,6 +9,8 @@
 import SpriteKit
 
 class BeamBlockNode: BlockNode {
+	var pinnedBlock: BlockNode?
+
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 
@@ -17,7 +19,7 @@ class BeamBlockNode: BlockNode {
 		physicsBody?.collisionBitMask = Category.all// ^ Category.blocks
 	}
 
-	func setup(physicsWorld: SKPhysicsWorld) {
+	func setup(scene: GameScene) {
 
 		var blocks = [BlockNode]()
 		for child in children {
@@ -29,30 +31,60 @@ class BeamBlockNode: BlockNode {
 				blocks.append(block)
 			}
 		}
-		// Sort them by x position
+		// Sort block by x position
 		blocks.sort {
-			$0.position.x > $1.position.x
+			$0.convert($0.position, to: scene).x > $1.convert($1.position, to: scene).x
 		}
 
 		var lastBlock: BlockNode?
 		for block in blocks {
+			// Remove existing joints
+			if !block.physicsBody!.joints.isEmpty, let joint = block.physicsBody?.joints[0] {
+				scene.physicsWorld.remove(joint)
+			}
 
+			if block.physicsBody!.pinned {
+				pinnedBlock = block
+			}
+
+			block.physicsBody?.isDynamic = true
 			block.beamNode = self
 
 			if lastBlock == nil {
 				lastBlock = block
 			} else {
-				let anchor = scene!.convert(block.position, from: block.parent!)
+				let anchor = scene.convert(block.position, from: block.parent!)
 
 				let physicsJoint = SKPhysicsJointPin.joint(withBodyA: block.physicsBody!,
 				                                           bodyB: lastBlock!.physicsBody!,
 				                                           anchor: anchor)
 				physicsJoint.shouldEnableLimits = true
 
-				physicsWorld.add(physicsJoint)
+				scene.physicsWorld.add(physicsJoint)
 
 				lastBlock = block
 			}
+		}
+
+		lastBlock = nil
+		getDataFromParent()
+	}
+
+	private func getDataFromParent() {
+		var data: NSDictionary?
+
+		// Find user data from parents
+		var tempNode: SKNode = self
+		while !(tempNode is SKScene) {
+			if let userData = tempNode.userData {
+				data = userData
+			}
+			tempNode = tempNode.parent!
+		}
+
+		// Set instance properties
+		if let torque = data?["torque"] as? CGFloat {
+			pinnedBlock?.physicsBody?.applyAngularImpulse(torque)
 		}
 	}
 }

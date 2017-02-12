@@ -10,7 +10,7 @@ import SpriteKit
 struct Category {
 	static let zero: UInt32				= 0b0
 	
-	static let key: UInt32				= 0b1
+	static let key: UInt32				= 0b1 << 0
 	static let lock: UInt32				= 0b1 << 1
 	static let bounds: UInt32			= 0b1 << 2
 	
@@ -41,7 +41,10 @@ struct Category {
 	
 	static let speed: UInt32			= 0b1 << 15
 	static let secretTeleport: UInt32	= 0b1 << 16
-	
+
+	static let controllerLight: UInt32	= 0b1 << 0
+	static let toolLight: UInt32		= 0b1 << 0
+
 	static let all: UInt32 = UInt32.max
 }
 
@@ -117,6 +120,8 @@ class GameScene: SKScene {
 	
 	// Dict of fans
 	var fans = [FanNode]()
+
+	var isShadowed = false
 	
 	//MARK: - Setup
 	override func willMove(from view: SKView) {
@@ -127,17 +132,25 @@ class GameScene: SKScene {
 		// Bind controller to local variable
 		controller = childNode(withName: "//controller") as! ControllerNode
 		controller.setupRegion(scene: self) // Pass in scene for controller to use
-		
+
+		// Check for shadow nodes
+		enumerateChildNodes(withName: "//blockShdo") { _, stop in
+			self.isShadowed = true
+		}
+		if isShadowed {
+			controller.addLight()
+		}
+
 		canon = controller.childNode(withName: "//canon") as! SKSpriteNode
 		
 		// Get canvas bounds in scene coordinates
 		let canvas = childNode(withName: "//canvas")!
 		canvasBounds = CGRect(origin: convert(canvas.frame.origin, from: canvas.parent!), size: canvas.frame.size)
 		
-		// parent of all tools
+		// Parent of all tools
 		toolBox = childNode(withName: "toolBox")?.children.first! // Root node of SKReferenceNode
 		
-		//Bind the camera to local variable
+		// Bind the camera to local variable
 		if let cam = camera {
 			cameraNode = cam
 		}
@@ -283,7 +296,7 @@ class GameScene: SKScene {
 			}
 		}
 		for block in beamBlocks {
-			block.setup(physicsWorld: physicsWorld)
+			block.setup(scene: self)
 		}
 	}
 	

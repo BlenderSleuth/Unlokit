@@ -43,6 +43,10 @@ class BlockNode: SKSpriteNode {
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 
+		lightingBitMask = Category.controllerLight  | Category.toolLight
+		shadowCastBitMask = Category.zero
+		shadowedBitMask = Category.controllerLight | Category.toolLight
+
 		physicsBody?.contactTestBitMask = Category.zero
 		physicsBody?.collisionBitMask = Category.all
 

@@ -133,13 +133,23 @@ class FanNode: SKSpriteNode, Breakable {
 		
 		run(SKAction.repeatForever(SKAction.animate(with: frames, timePerFrame: 1/15)), withKey: "animate")
 	}
-	private func setupParticles(scene: SKScene) {
-		// Set emitter target
+	private func setupParticles(scene: GameScene) {
+		// Set emitter target, doesn't work at the moment
 		emitter.targetNode = scene
 		// Make particles go in the right direction
 		let rotation = rotationRelativeToSceneFor(node: self)
 		emitter.emissionAngle += rotation
-		
+
+		// Make sure particles don't stand out
+		if scene.isShadowed {
+			//SKKeyframeSequence(keyframeValues: [SKColor.black]
+			emitter.particleColor = .black
+			emitter.particleColorBlendFactor = 1.0
+			emitter.particleBlendMode = .add
+			emitter.particleColorSequence = nil
+
+			print(emitter.particleColorBlendFactor)
+		}
 	}
 	
 	// Set emitter velocity based on strength of fan

@@ -66,12 +66,12 @@ class ToolNode: SKSpriteNode, CanBeFired {
 	}
 	
 	func prepareForFiring(_ controller: ControllerNode) {
-		setupPhysics()
+		setupPhysics(shadowed: controller.isShadowed)
 		isEngaged = false
 		controller.isOccupied = false
 		removeAction(forKey: "rotate")
 	}
-	func setupPhysics() {
+	func setupPhysics(shadowed isShadowed: Bool) {
 		physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
 		physicsBody?.isDynamic = true
 		physicsBody?.mass = 0.01
@@ -81,6 +81,13 @@ class ToolNode: SKSpriteNode, CanBeFired {
 		physicsBody?.contactTestBitMask = Category.bounds
 		physicsBody?.collisionBitMask = Category.all
 		physicsBody?.fieldBitMask = Category.fields
+
+		if isShadowed {
+			let light = SKLightNode()
+			light.categoryBitMask = Category.toolLight
+			light.falloff = 0.6
+			addChild(light)
+		}
 	}
 
 	func smash(scene: GameScene) {

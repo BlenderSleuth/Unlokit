@@ -21,8 +21,9 @@ class BombToolNode: ToolNode {
         type = .bomb
     }
 	
-	override func setupPhysics() {
-		super.setupPhysics()
+	override func setupPhysics(shadowed isShadowed: Bool) {
+		super.setupPhysics(shadowed: isShadowed)
+
 		
 		physicsBody?.categoryBitMask = Category.bombTool
 		physicsBody?.contactTestBitMask = Category.bounds | Category.blockMtl | Category.blockGlue | Category.blockBreak

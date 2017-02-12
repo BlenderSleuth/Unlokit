@@ -15,9 +15,9 @@ class GravityToolNode: ToolNode {
 		type = .gravity
 	}
 	
-	override func setupPhysics() {
-		super.setupPhysics()
-		
+	override func setupPhysics(shadowed isShadowed: Bool) {
+		super.setupPhysics(shadowed: isShadowed)
+
 		physicsBody?.categoryBitMask = Category.gravityTool
 		physicsBody?.contactTestBitMask = Category.bounds | Category.blockMtl | Category.blockGlue
 		physicsBody?.collisionBitMask = Category.all ^ Category.speed // All except speed
