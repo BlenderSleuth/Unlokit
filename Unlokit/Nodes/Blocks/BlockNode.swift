@@ -19,19 +19,21 @@ enum Side {
 	var position: CGPoint {
 		switch self {
 		case .up:
-			return CGPoint(x: 0, y: 64)
+			return CGPoint(x: 0.0, y: 64)
 		case .down:
-			return CGPoint(x: 0, y: -64)
+			return CGPoint(x: 0.0, y: -64)
 		case .left:
-			return CGPoint(x: -64, y: 0)
+			return CGPoint(x: -64, y: 0.0)
 		case .right:
-			return CGPoint(x: 64, y: 0)
+			return CGPoint(x: 64, y: 0.0)
 		}
 	}
 }
 
 class BlockNode: SKSpriteNode {
-	
+
+	var beamNode: BeamBlockNode?
+
 	// For calculating the side that was contacted
 	var up: CGPoint!
 	var down: CGPoint!
@@ -107,5 +109,12 @@ class BlockNode: SKSpriteNode {
 		}
 		run(bounce)
 		run(SoundFX.sharedInstance["block"]!)
+	}
+
+	func addPinJoint(with body: SKPhysicsBody, node: SKNode, scene: SKScene) {
+		let anchor = scene.convert(node.position, from: node.parent!)
+		let jointPin = SKPhysicsJointPin.joint(withBodyA: self.physicsBody!, bodyB: body, anchor: anchor)
+
+		scene.physicsWorld.add(jointPin)
 	}
 }

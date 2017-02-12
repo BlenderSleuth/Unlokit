@@ -265,14 +265,25 @@ class GameScene: SKScene {
 	}
 	func setupBlocks() {
 		// Edit blocks outside of enumeration to prevent crash
-		var blocks = [BlockGlueNode]()
+		var glueBlocks = [BlockGlueNode]()
 		
 		enumerateChildNodes(withName: "//blockGlue") { node, _ in
 			let block = node as! BlockGlueNode
-			blocks.append(block)
+			glueBlocks.append(block)
 		}
-		for block in blocks {
+		for block in glueBlocks {
 			block.checkConnected(scene: self)
+		}
+
+		var beamBlocks = [BeamBlockNode]()
+
+		enumerateChildNodes(withName: "//beamBlock") { node, _ in
+			if let block = node as? BeamBlockNode {
+				beamBlocks.append(block)
+			}
+		}
+		for block in beamBlocks {
+			block.setup(physicsWorld: physicsWorld)
 		}
 	}
 	
@@ -506,7 +517,7 @@ class GameScene: SKScene {
 		controller.updateAngle()
 		
 		for fan in fans {
-			if fan.isMoving {
+			if fan.isMoving || fan.physicsBody!.isDynamic {
 				let rot = fan.rotationRelativeToSceneFor(node: fan)
 				fan.updateFields(rotation: rot)
 			}

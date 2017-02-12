@@ -19,7 +19,7 @@ class GameViewController: UIViewController, LevelController {
 		super.viewDidLoad()
 		// DEBUG if this is the initial view controller
 		let stage = 2
-		let level = 4
+		let level = 3
 		
 		self.level = Stages.sharedInstance.stages[stage-1].levels[level-1]
 		startNewGame()

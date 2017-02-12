@@ -63,7 +63,7 @@ extension GameScene: SKPhysicsContactDelegate {
 			}
 			spring.used = true
 			
-			let blockBnc = block.bncVersion()
+			let blockBnc = block.bncVersion(scene: self)
 			block.parent?.addChild(blockBnc)
 			block.removeFromParent()
 			
@@ -185,8 +185,8 @@ extension GameScene: SKPhysicsContactDelegate {
 			}
 			glue.used = true
 			
-			let blockGlue = block.glueVersion()
-			block.parent?.addChild(blockGlue)
+			let blockGlue = block.glueVersion(scene: self)
+			//block.parent?.addChild(blockGlue)
 			block.removeFromParent()
 			glue.removeFromParent()
 			
@@ -206,16 +206,15 @@ extension GameScene: SKPhysicsContactDelegate {
 			}
 			spring.used = true
 			
-			let blockGlue = block.bncVersion()
-			block.parent?.addChild(blockGlue)
+			let blockGlue = block.bncVersion(scene: self)
+			//block.parent?.addChild(blockGlue)
 			block.removeFromParent()
 			spring.removeFromParent()
 			
 			let side = blockGlue.getSide(contact: contact)
 			blockGlue.bounce(side: side)
-			
-			// Check for all tools/key and speed node
-		}
+
+		} // Check for all tools/key and speed node
 		else if collided(with: (Category.tools | Category.key), and: Category.speed) {
 			let speed = getNode(for: Category.speed, type: SpeedNode.self)
 			let tool = getOtherNode(for: speed, type: SKSpriteNode.self)

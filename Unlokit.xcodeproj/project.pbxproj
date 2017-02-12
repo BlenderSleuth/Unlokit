@@ -38,6 +38,8 @@
 		384ACEF31E347FE2004C3E93 /* KeyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384ACEF21E347FE2004C3E93 /* KeyNode.swift */; };
 		384F449F1E4B01B3005F6FF7 /* BlockBrkGluGrav.sks in Resources */ = {isa = PBXBuildFile; fileRef = 384F449E1E4B01B3005F6FF7 /* BlockBrkGluGrav.sks */; };
 		384F44A11E4B02EB005F6FF7 /* Row4BlockBreakGlu.sks in Resources */ = {isa = PBXBuildFile; fileRef = 384F44A01E4B02EB005F6FF7 /* Row4BlockBreakGlu.sks */; };
+		384FA0651E4FA66B00604506 /* BeamBlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384FA0641E4FA66B00604506 /* BeamBlockNode.swift */; };
+		384FA0671E4FB3CB00604506 /* BlockPin.sks in Resources */ = {isa = PBXBuildFile; fileRef = 384FA0661E4FB3CB00604506 /* BlockPin.sks */; };
 		385161361E348E6C0041995A /* ControllerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385161351E348E6C0041995A /* ControllerNode.swift */; };
 		38650F541E25F6A500401ABD /* FireButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38650F531E25F6A500401ABD /* FireButtonNode.swift */; };
 		387105EC1E35844E002D010A /* LockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387105EB1E35844E002D010A /* LockNode.swift */; };
@@ -174,6 +176,8 @@
 		384ACEF21E347FE2004C3E93 /* KeyNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyNode.swift; sourceTree = "<group>"; };
 		384F449E1E4B01B3005F6FF7 /* BlockBrkGluGrav.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockBrkGluGrav.sks; sourceTree = "<group>"; };
 		384F44A01E4B02EB005F6FF7 /* Row4BlockBreakGlu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row4BlockBreakGlu.sks; sourceTree = "<group>"; };
+		384FA0641E4FA66B00604506 /* BeamBlockNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeamBlockNode.swift; sourceTree = "<group>"; };
+		384FA0661E4FB3CB00604506 /* BlockPin.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockPin.sks; sourceTree = "<group>"; };
 		385161351E348E6C0041995A /* ControllerNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerNode.swift; sourceTree = "<group>"; };
 		38650F531E25F6A500401ABD /* FireButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireButtonNode.swift; sourceTree = "<group>"; };
 		387105EB1E35844E002D010A /* LockNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LockNode.swift; sourceTree = "<group>"; };
@@ -358,6 +362,7 @@
 				38E50CF21E39E1B5007437E7 /* BlockBreakNode.swift */,
 				38BECD021E3F1E7E009BADD6 /* BlockBreakBounce.swift */,
 				38BECD031E3F1E7E009BADD6 /* BlockBreakGlueNode.swift */,
+				384FA0641E4FA66B00604506 /* BeamBlockNode.swift */,
 			);
 			path = Blocks;
 			sourceTree = "<group>";
@@ -508,6 +513,7 @@
 				38BD09E31E401E2900AE6AF2 /* BlockGluGravity.sks */,
 				38BD09E41E401E2900AE6AF2 /* BlockMtl.sks */,
 				3892F2611E4EECE900EA68D9 /* BlockMtlDyn.sks */,
+				384FA0661E4FB3CB00604506 /* BlockPin.sks */,
 				38BD09E51E401E2900AE6AF2 /* Row2BlockFan.sks */,
 				38BD09E61E401E2900AE6AF2 /* Row2BlockMtl.sks */,
 				38BD09E71E401E2900AE6AF2 /* Row4BlockBnc.sks */,
@@ -729,6 +735,7 @@
 				38BD09F61E401E2900AE6AF2 /* Row4Fan.sks in Resources */,
 				38E99E671E4AF9D600781E6C /* Level1_3.sks in Resources */,
 				38BD09F11E401E2900AE6AF2 /* Row2BlockFan.sks in Resources */,
+				384FA0671E4FB3CB00604506 /* BlockPin.sks in Resources */,
 				38E4B5C21E37106700C798C0 /* BombTool.sks in Resources */,
 				38BD09F01E401E2900AE6AF2 /* BlockMtl.sks in Resources */,
 				38E99E6E1E4AF9D600781E6C /* Level1_10.sks in Resources */,
@@ -819,6 +826,7 @@
 				38E4B5C51E37137C00C798C0 /* FanToolNode.swift in Sources */,
 				38D24A9F1E44959400323861 /* ProgressView.swift in Sources */,
 				383CA97E1E1DD5F100F8B998 /* Utils.swift in Sources */,
+				384FA0651E4FA66B00604506 /* BeamBlockNode.swift in Sources */,
 				38B649431E3890AF00479469 /* BlockGlueNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

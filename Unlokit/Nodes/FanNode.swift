@@ -45,7 +45,8 @@ class FanNode: SKSpriteNode, Breakable {
 		
 		emitter = self.childNode(withName: "emitter")?.children.first as! SKEmitterNode
 		
-		physicsBody? = SKPhysicsBody(edgeLoopFrom: frame)
+		physicsBody = SKPhysicsBody(rectangleOf: frame.size, center: CGPoint(x: 0, y: frame.size.height / 2))
+
 		physicsBody?.categoryBitMask = Category.fan
 		physicsBody?.contactTestBitMask = Category.bombTool
 		physicsBody?.collisionBitMask = Category.all
@@ -53,6 +54,8 @@ class FanNode: SKSpriteNode, Breakable {
 	func setup(level: GameScene, block: BlockGlueNode, side: Side) {
 		// If level has different properties
 		getDataFromParent()
+		// Setup other physics things
+		setupPhysics(scene: level)
 		// Animate fan with frames
 		animate(framesAtlas: level.fanFrames)
 		// Setup particles and fields
@@ -71,7 +74,7 @@ class FanNode: SKSpriteNode, Breakable {
 		strength = 60
 	}
 	
-	func getDataFromParent() {
+	private func getDataFromParent() {
 		var data: NSDictionary?
 		
 		// Find user data from parents
@@ -91,7 +94,32 @@ class FanNode: SKSpriteNode, Breakable {
 			self.strength = CGFloat(strength)
 		}
 	}
-	
+	private func setupPhysics(scene: SKScene) {
+		// Check if fan should be dynamic
+		let dynamic: Bool
+		if let parentPhysics = self.parent?.physicsBody {
+
+			if parentPhysics.isDynamic {
+				dynamic = true
+
+				let anchor = scene.convert(self.position, from: self.parent!)
+
+				let pinJoint = SKPhysicsJointPin.joint(withBodyA: physicsBody!, bodyB: parentPhysics, anchor: anchor)
+				pinJoint.shouldEnableLimits = true
+
+				scene.physicsWorld.add(pinJoint)
+
+				self.physicsBody?.fieldBitMask = Category.zero
+
+			} else {
+				dynamic = false
+			}
+		} else {
+			dynamic = false
+		}
+		physicsBody?.isDynamic = dynamic
+	}
+
 	private func animate(framesAtlas: SKTextureAtlas) {
 		var frames = [SKTexture]()
 		
