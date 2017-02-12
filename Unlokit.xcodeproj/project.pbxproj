@@ -22,6 +22,7 @@
 		382835A61E4AFCBE006FA602 /* Level2_1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 382835A51E4AFCBE006FA602 /* Level2_1.sks */; };
 		382835A81E4AFCC7006FA602 /* Level1_9.sks in Resources */ = {isa = PBXBuildFile; fileRef = 382835A71E4AFCC7006FA602 /* Level1_9.sks */; };
 		382835AA1E4AFDF6006FA602 /* Row4BlockMtl2Glu.sks in Resources */ = {isa = PBXBuildFile; fileRef = 382835A91E4AFDF6006FA602 /* Row4BlockMtl2Glu.sks */; };
+		3835DA351E4FE8A900AD85F0 /* Level2_5.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3835DA341E4FE8A900AD85F0 /* Level2_5.sks */; };
 		38395CBB1E3DB7020014E5E3 /* background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 38395CBA1E3DB7020014E5E3 /* background.mp3 */; };
 		383CA9641E1DD4F500F8B998 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383CA9631E1DD4F500F8B998 /* AppDelegate.swift */; };
 		383CA96B1E1DD4F500F8B998 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 383CA96A1E1DD4F500F8B998 /* Assets.xcassets */; };
@@ -85,6 +86,7 @@
 		38BECD011E3F1D2B009BADD6 /* BlockBrkBnc.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38BECD001E3F1D2B009BADD6 /* BlockBrkBnc.sks */; };
 		38BECD041E3F1E7E009BADD6 /* BlockBreakBounce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BECD021E3F1E7E009BADD6 /* BlockBreakBounce.swift */; };
 		38BECD051E3F1E7E009BADD6 /* BlockBreakGlueNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BECD031E3F1E7E009BADD6 /* BlockBreakGlueNode.swift */; };
+		38C43AFE1E4FE3F000449B09 /* Row6BlockMtlDyn.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38C43AFD1E4FE3F000449B09 /* Row6BlockMtlDyn.sks */; };
 		38C44B461E39B193004B76B6 /* GravityNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C44B451E39B193004B76B6 /* GravityNode.swift */; };
 		38C44B481E39BA6D004B76B6 /* GravityRef.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38C44B471E39BA6D004B76B6 /* GravityRef.sks */; };
 		38C50AF41E36A83600B4EE2A /* GlueToolNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C50AEF1E36A83600B4EE2A /* GlueToolNode.swift */; };
@@ -158,6 +160,7 @@
 		382835A51E4AFCBE006FA602 /* Level2_1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2_1.sks; sourceTree = "<group>"; };
 		382835A71E4AFCC7006FA602 /* Level1_9.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1_9.sks; sourceTree = "<group>"; };
 		382835A91E4AFDF6006FA602 /* Row4BlockMtl2Glu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row4BlockMtl2Glu.sks; sourceTree = "<group>"; };
+		3835DA341E4FE8A900AD85F0 /* Level2_5.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2_5.sks; sourceTree = "<group>"; };
 		38395CBA1E3DB7020014E5E3 /* background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background.mp3; sourceTree = "<group>"; };
 		383CA9601E1DD4F500F8B998 /* Unlokit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unlokit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		383CA9631E1DD4F500F8B998 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -227,6 +230,7 @@
 		38BECD001E3F1D2B009BADD6 /* BlockBrkBnc.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockBrkBnc.sks; sourceTree = "<group>"; };
 		38BECD021E3F1E7E009BADD6 /* BlockBreakBounce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockBreakBounce.swift; sourceTree = "<group>"; };
 		38BECD031E3F1E7E009BADD6 /* BlockBreakGlueNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockBreakGlueNode.swift; sourceTree = "<group>"; };
+		38C43AFD1E4FE3F000449B09 /* Row6BlockMtlDyn.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row6BlockMtlDyn.sks; sourceTree = "<group>"; };
 		38C44B451E39B193004B76B6 /* GravityNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GravityNode.swift; sourceTree = "<group>"; };
 		38C44B471E39BA6D004B76B6 /* GravityRef.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GravityRef.sks; sourceTree = "<group>"; };
 		38C50AEF1E36A83600B4EE2A /* GlueToolNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlueToolNode.swift; sourceTree = "<group>"; };
@@ -520,6 +524,7 @@
 				38D7381A1E4EE36300E79D10 /* Row3BlockBnc.sks */,
 				38BD09E81E401E2900AE6AF2 /* Row4BlockMtl.sks */,
 				3883C32E1E4F1A4600952740 /* Row4BlockMtlDyn.sks */,
+				38C43AFD1E4FE3F000449B09 /* Row6BlockMtlDyn.sks */,
 				38BD09EB1E401E2900AE6AF2 /* Row8BlockMtl.sks */,
 				3892F25F1E4EECD400EA68D9 /* Row8BlockMtlDyn.sks */,
 				3883C32C1E4F186D00952740 /* Row8BlockMtlPinnedFan.sks */,
@@ -621,6 +626,7 @@
 				3892F2671E4EEFFA00EA68D9 /* Level2_2.sks */,
 				3883C32A1E4F164200952740 /* Level2_3.sks */,
 				38FDE5D41E4F267500082BA4 /* Level2_4.sks */,
+				3835DA341E4FE8A900AD85F0 /* Level2_5.sks */,
 			);
 			path = Stage2;
 			sourceTree = "<group>";
@@ -710,6 +716,7 @@
 				383CA97C1E1DD5E600F8B998 /* GunRef.sks in Resources */,
 				38F7B1F11E3838ED00A62956 /* Inteface.sks in Resources */,
 				38E99E6D1E4AF9D600781E6C /* Level1_8.sks in Resources */,
+				38C43AFE1E4FE3F000449B09 /* Row6BlockMtlDyn.sks in Resources */,
 				38AE075A1E36221400D127D2 /* Lock.caf in Resources */,
 				38BD09EC1E401E2900AE6AF2 /* BlockBnc.sks in Resources */,
 				38D7381B1E4EE36300E79D10 /* Row3BlockBnc.sks in Resources */,
@@ -766,6 +773,7 @@
 				3804F12D1E39FAEB007099AD /* BombExplode.sks in Resources */,
 				383CA9831E1DD61100F8B998 /* LaunchScreen.storyboard in Resources */,
 				38E50CF11E39DB2F007437E7 /* BlockBrk.sks in Resources */,
+				3835DA351E4FE8A900AD85F0 /* Level2_5.sks in Resources */,
 				388514001E36EF440092F058 /* SpringTool.sks in Resources */,
 				38E6DA341E3C02E8004F8A79 /* Bounce1.caf in Resources */,
 				38721CD61E4E9F78008D9033 /* Row3BlockBreak.sks in Resources */,

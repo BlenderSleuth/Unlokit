@@ -24,24 +24,21 @@ class BlockMtlNode: BlockNode {
 		} else {
 			blockBnc = SKNode(fileNamed: "BlockBnc")?.children.first as! BlockBncNode
 		}
-		
+
 		blockBnc.removeFromParent()
 		blockBnc.position = position
 		blockBnc.zPosition = zPosition
 
-		self.parent?.addChild(blockBnc)
+		if let beam = beamNode {
+			blockBnc.position = beam.convert(position, from: self.parent!)
+			self.removeFromParent()
+			beam.addChild(blockBnc)
+			beam.setup(physicsWorld: scene.physicsWorld)
 
-		// If is dynamic
-		if self.physicsBody!.isDynamic {
-			// Get the joint from before
-			if let previousJoint = self.physicsBody?.joints[0] {
-				// Add the pin joint with the node from before
-
-				let otherBody = previousJoint.bodyA.node == self ? previousJoint.bodyB : previousJoint.bodyA
-				blockBnc.addPinJoint(with: otherBody, node: otherBody.node!, scene: scene)
-				// Delete physics body
-				otherBody.node?.physicsBody = nil
-			}
+			blockBnc.physicsBody?.isDynamic = true
+		} else {
+			self.parent?.addChild(blockBnc)
+			self.removeFromParent()
 		}
 
 		return blockBnc
