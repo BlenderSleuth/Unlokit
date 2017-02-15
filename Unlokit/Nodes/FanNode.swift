@@ -43,7 +43,7 @@ class FanNode: SKSpriteNode, Breakable {
 		dragField.strength = 0.01
 		dragField.categoryBitMask = Category.fanDragField
 		
-		emitter = self.childNode(withName: "emitter")?.children.first as! SKEmitterNode
+		emitter = childNode(withName: "emitter")!.children.first as! SKEmitterNode
 		
 		physicsBody = SKPhysicsBody(rectangleOf: frame.size, center: CGPoint(x: 0, y: frame.size.height / 2))
 
@@ -52,6 +52,8 @@ class FanNode: SKSpriteNode, Breakable {
 		physicsBody?.collisionBitMask = Category.all
 	}
 	func setup(level: GameScene, block: BlockGlueNode, side: Side) {
+		self.glueBlock = block
+		self.side = side
 		// If level has different properties
 		getDataFromParent()
 		// Setup other physics things
@@ -61,8 +63,7 @@ class FanNode: SKSpriteNode, Breakable {
 		// Setup particles and fields
 		setupParticles(scene: level)
 		setupFields(scene: level)
-		self.glueBlock = block
-		self.side = side
+
 		
 		// Check if fan needs field updates
 		isMoving = checkHasActions(node: self)
@@ -72,6 +73,8 @@ class FanNode: SKSpriteNode, Breakable {
 		
 		// Set strength to default value
 		strength = 60
+
+
 	}
 	
 	private func getDataFromParent() {
@@ -134,21 +137,19 @@ class FanNode: SKSpriteNode, Breakable {
 		run(SKAction.repeatForever(SKAction.animate(with: frames, timePerFrame: 1/15)), withKey: "animate")
 	}
 	private func setupParticles(scene: GameScene) {
-		// Set emitter target, doesn't work at the moment
+		// Get emitter from child, doesn't work from propertty
+		let emitter = childNode(withName: "emitter")!.children.first! as! SKEmitterNode
+		// Set emitter target
 		emitter.targetNode = scene
 		// Make particles go in the right direction
 		let rotation = rotationRelativeToSceneFor(node: self)
 		emitter.emissionAngle += rotation
 
-		// Make sure particles don't stand out
+		// Make sure particles don't stand out in darkness
 		if scene.isShadowed {
-			//SKKeyframeSequence(keyframeValues: [SKColor.black]
-			emitter.particleColor = .black
-			emitter.particleColorBlendFactor = 1.0
-			emitter.particleBlendMode = .add
 			emitter.particleColorSequence = nil
-
-			print(emitter.particleColorBlendFactor)
+			emitter.particleColor = UIColor(colorLiteralRed: 0.2, green: 0.2, blue: 0.2, alpha: 1)
+			emitter.particleColorBlendFactor = 1.0
 		}
 	}
 	
@@ -237,5 +238,7 @@ class FanNode: SKSpriteNode, Breakable {
 		
 		gravityField.region = fieldRegion
 		dragField.region = fieldRegion
+
+		emitter.particleRotation = rot
 	}
 }

@@ -18,8 +18,8 @@ class GameViewController: UIViewController, LevelController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// DEBUG if this is the initial view controller
-		let stage = 2
-		let level = 6
+		let stage = 1
+		let level = 3
 		
 		self.level = Stages.sharedInstance.stages[stage-1].levels[level-1]
 		startNewGame()

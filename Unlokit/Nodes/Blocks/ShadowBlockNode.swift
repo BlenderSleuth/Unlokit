@@ -12,6 +12,10 @@ class ShadowBlockNode: BlockMtlNode {
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 
+		physicsBody?.categoryBitMask = Category.blockShadow
+		physicsBody?.contactTestBitMask = Category.zero
+		physicsBody?.collisionBitMask = Category.all
+
 		lightingBitMask = Category.controllerLight
 		shadowCastBitMask = Category.controllerLight
 
