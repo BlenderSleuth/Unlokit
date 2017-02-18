@@ -21,28 +21,28 @@ struct Category {
 	
 	static let blockBreak: UInt32		= 0b1 << 6
 
-	static let blockShadow: UInt32		= 0b1 << 9
+	static let blockShadow: UInt32		= 0b1 << 7
 	
 	static let blocks: UInt32 = Category.blockMtl | Category.blockBnc | Category.blockGlue | Category.blockBreak
 	
 	// MARK: - Tools
-	static let springTool: UInt32		= 0b1 << 10
-	static let glueTool: UInt32			= 0b1 << 11
-	static let fanTool: UInt32			= 0b1 << 12
-	static let gravityTool: UInt32		= 0b1 << 13
-	static let bombTool: UInt32			= 0b1 << 14
+	static let springTool: UInt32		= 0b1 << 8
+	static let glueTool: UInt32			= 0b1 << 9
+	static let fanTool: UInt32			= 0b1 << 10
+	static let gravityTool: UInt32		= 0b1 << 11
+	static let bombTool: UInt32			= 0b1 << 12
 	static let tools: UInt32 = Category.springTool | Category.glueTool | Category.fanTool | Category.gravityTool | Category.bombTool
 	
 	// MARK: - Fields
-	static let fanGravityField: UInt32	= 0b1 << 15
-	static let fanDragField: UInt32		= 0b1 << 16
+	static let fanGravityField: UInt32	= 0b1 << 13
+	static let fanDragField: UInt32		= 0b1 << 14
 	static let fields: UInt32			= Category.fanGravityField | Category.fanDragField
 	
 	// MARK: - Other nodes
-	static let fan: UInt32				= 0b1 << 17
+	static let fan: UInt32				= 0b1 << 15
 
-	static let speed: UInt32			= 0b1 << 18
-	static let secretTeleport: UInt32	= 0b1 << 19
+	static let speed: UInt32			= 0b1 << 16
+	static let secretTeleport: UInt32	= 0b1 << 17
 
 	static let controllerLight: UInt32	= 0b1 << 0
 	static let toolLight: UInt32		= 0b1 << 0
