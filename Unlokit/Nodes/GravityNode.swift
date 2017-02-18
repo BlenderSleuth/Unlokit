@@ -19,14 +19,19 @@ class GravityNode: SKSpriteNode {
 		gravityWave.strokeColor = .black
 		gravityWave.lineWidth = 10
 		gravityWave.fillColor = .clear
+		gravityWave.alpha = 0
 		addChild(gravityWave)
 		
 		let group1 = SKAction.group([SKAction.scale(to: 1, duration: 0), SKAction.fadeOut(withDuration: 0)])
 		let group2 = SKAction.group([SKAction.fadeIn(withDuration: 0.5), SKAction.scale(to: 0.01, duration: 2)])
-		let sequence = SKAction.sequence([group1, group2])
-		let action = SKAction.repeatForever(sequence)
-		
-		gravityWave.run(action)
+		let sequence1 = SKAction.sequence([group1, group2])
+		let action = SKAction.repeatForever(sequence1)
+
+		let fadeIn = SKAction.fadeIn(withDuration: 0.4)
+
+		let sequence2 = SKAction.group([fadeIn, action])
+
+		gravityWave.run(sequence2)
 		
 		let fieldRegion = SKRegion(radius: Float(radius))
 		

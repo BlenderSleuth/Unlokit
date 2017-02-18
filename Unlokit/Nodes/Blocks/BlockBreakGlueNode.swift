@@ -12,7 +12,7 @@ class BlockBreakGlueNode: BlockGlueNode, Breakable {
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-		physicsBody?.categoryBitMask = Category.blockBreak | Category.blockGlue
+		physicsBody?.categoryBitMask = Category.blockGlue
 	}
 	
 	func shatter() {

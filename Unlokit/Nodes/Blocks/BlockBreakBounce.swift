@@ -12,7 +12,7 @@ class BlockBreakBncNode: BlockBncNode, Breakable {
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-		physicsBody?.categoryBitMask = Category.blockBreak | Category.blockBnc
+		physicsBody?.categoryBitMask = Category.blockBnc | Category.blockBreak
 	}
 	
 	func shatter() {

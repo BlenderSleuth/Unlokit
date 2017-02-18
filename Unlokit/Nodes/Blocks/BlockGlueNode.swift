@@ -11,7 +11,7 @@ import SpriteKit
 class BlockGlueNode: BlockNode {
 	
 	// Side that are connected
-	var connected = [Side : Bool]()
+	var connected: [Side : Bool] = [.up: false, .down: false, .left: false, .right: false]
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
@@ -46,32 +46,42 @@ class BlockGlueNode: BlockNode {
 			}
 			
 			if child.name == "fanPlaceholder" {
-				// Make sure connected side is nil
-				connected[side!] = nil
+				// Make sure connected side is false
+				connected[side!] = false
 				
 				// Get fan node from file
 				let fanNode = SKNode(fileNamed: "FanRef")?.children.first as! FanNode
 				fanNode.removeFromParent()
 
-				add(node: fanNode, to: side!)
-				
-				// Fan setup after it has been added
-				fanNode.setup(level: scene, block: self, side: side!)
-				
-				// Removes the placeholder
-				child.removeFromParent()
+				if add(node: fanNode, to: side!) {
+
+					// Fan setup after it has been added
+					fanNode.setup(level: scene, block: self, side: side!)
+
+					// Removes the placeholder
+					child.removeFromParent()
+				}
 			}
 		}
 	}
 	func remove(for side: Side) {
-		connected[side] = nil
+		connected[side] = false
 	}
-	
-	// Add a node, based on side
-	func add(node: SKSpriteNode, to side: Side) {
+
+	func getSideIfConnected(contact: SKPhysicsContact) -> Side? {
+		let side = super.getSide(contact: contact)
+		// Check if side is connected
+		if connected[side]! {
+			return nil
+		}
+		return side
+	}
+
+	// Add a node, based on side. Returns true if successful
+	func add(node: SKSpriteNode, to side: Side) -> Bool {
 		// Make sure there isn't already one on that side
-		guard connected[side] == nil else {
-			return
+		guard connected[side] == false else {
+			return false
 		}
 		
 		let position: CGPoint
@@ -103,12 +113,15 @@ class BlockGlueNode: BlockNode {
 			node.move(toParent: self)
 			node.run(SKAction.group([SKAction.move(to: position, duration: 0.1), SKAction.rotate(toAngle: zRotation, duration: 0.1)]))
 		}
+		return true
 	}
 	
-	func add(gravityNode: GravityNode) {
+	func add(gravityNode: GravityNode) -> Bool {
 		// Check there are no other nodes
-		guard connected.isEmpty else {
-			return
+		for (_, connected) in connected {
+			if connected {
+				return false
+			}
 		}
 		
 		// Precaution
@@ -121,5 +134,6 @@ class BlockGlueNode: BlockNode {
 		for side in Side.all {
 			connected[side] = true
 		}
+		return true
 	}
 }

@@ -20,7 +20,7 @@ class FanToolNode: ToolNode {
 
 
 		physicsBody?.categoryBitMask = Category.fanTool
-		physicsBody?.contactTestBitMask = Category.bounds | Category.blockMtl | Category.blockGlue
+		physicsBody?.contactTestBitMask = Category.bounds | Category.blockMtl | Category.blockBreak | Category.blockGlue
 		physicsBody?.collisionBitMask = Category.all ^ Category.speed // All except speed
 	}
 }
