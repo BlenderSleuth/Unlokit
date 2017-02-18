@@ -14,12 +14,15 @@ class GameViewController: UIViewController, LevelController {
 	var level: Level!
 	
 	var completed = false
+
+	var delegate: LevelSelectDelegate?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		navigationController?.isNavigationBarHidden = true
 		// DEBUG if this is the initial view controller
 		let stage = 1
-		let level = 3
+		let level = 11
 		
 		self.level = Stages.sharedInstance.stages[stage-1].levels[level-1]
 		startNewGame()
@@ -72,6 +75,8 @@ class GameViewController: UIViewController, LevelController {
 						skView.presentScene(scene, transition: transition)
 					}
 				}
+			} else {
+				fatalError("View is not SKView!!")
 			}
 		}
 	}
@@ -102,8 +107,12 @@ class GameViewController: UIViewController, LevelController {
 		let transition = CATransition()
 		transition.duration = 0.5
 		navigationController?.view.layer.add(transition, forKey: nil)
-		
-		performSegue(withIdentifier: "toLevelSelect", sender: nil)
+
+		navigationController?.popViewController(animated: false)
+		delegate?.completed(completed)
+
+		// Unwind segue
+		//performSegue(withIdentifier: "toLevelSelect", sender: nil)
 	}
 	
 	override var prefersStatusBarHidden: Bool {

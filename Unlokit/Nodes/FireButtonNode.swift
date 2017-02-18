@@ -11,7 +11,7 @@ import SpriteKit
 protocol CanBeFired {
 	func engage(_ controller: ControllerNode)
 	func disengage(_ controller: ControllerNode)
-	func prepareForFiring(_ controller: ControllerNode)
+	func prepareForFiring(_ scene: GameScene, controller: ControllerNode)
 	
 	func startTimer()
 }
@@ -66,14 +66,15 @@ class FireButtonNode: SKSpriteNode {
     }
     
 	private func fire(scene: GameScene) {
-		// Make sure object is not nil and is SKSpriteNode
+		// Make sure object is not nil and is a SKSpriteNode
 		guard let sprite = objectToFire as? SKSpriteNode else {
 			return
 		}
 		
 		// Shenanigans for using both protocol and type properties
 		// Prepare for firing
-		objectToFire?.prepareForFiring(controller) //objectToFire is of type 'CanBeFired', object is SKSpriteNode, both reference same object
+		objectToFire?.prepareForFiring(scene, controller: controller)
+		//objectToFire is of type 'CanBeFired', object is SKSpriteNode, both reference same object
 		
         // Speed of firing
         let speed: CGFloat = 50

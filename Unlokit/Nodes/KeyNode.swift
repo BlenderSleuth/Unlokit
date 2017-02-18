@@ -14,6 +14,8 @@ class KeyNode: SKSpriteNode, CanBeFired {
 	var isEngaged = false
 	var animating = false
 	private var isGreyed = false
+
+	private var timerStarted = false
 	
 	weak var levelController: LevelController!
 	
@@ -24,7 +26,6 @@ class KeyNode: SKSpriteNode, CanBeFired {
 
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-		
 		// Set position to start
 		startPosition = position
 		
@@ -55,7 +56,7 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		controller.isOccupied = false
 	}
 
-	func prepareForFiring(_ controller: ControllerNode) {
+	func prepareForFiring(_ scene: GameScene, controller: ControllerNode) {
 		// Sets up before firing
 		setupPhysics(shadowed: controller.isShadowed)
 		isEngaged = false
@@ -112,10 +113,15 @@ class KeyNode: SKSpriteNode, CanBeFired {
 	}
 	
 	func startTimer() {
-		let wait = SKAction.wait(forDuration: 3)
+		// If the timer has already started, don't start again
+		guard !timerStarted else {
+			return
+		}
+		timerStarted = true
+
+		let wait = SKAction.wait(forDuration: RCValues.sharedInstance.toolTime)
 		run(wait, withKey: "timer") {
 			weak var `self` =  self
-			
 			self?.smash()
 		}
 	}

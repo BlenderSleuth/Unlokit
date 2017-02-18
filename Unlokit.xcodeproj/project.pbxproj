@@ -51,6 +51,10 @@
 		385161361E348E6C0041995A /* ControllerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385161351E348E6C0041995A /* ControllerNode.swift */; };
 		38650F541E25F6A500401ABD /* FireButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38650F531E25F6A500401ABD /* FireButtonNode.swift */; };
 		38685B631E4FFEF100086314 /* Row5BlockMtlPinned.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38685B621E4FFEF100086314 /* Row5BlockMtlPinned.sks */; };
+		386EC6E31E57EBE4000B2A59 /* TitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386EC6E21E57EBE4000B2A59 /* TitleViewController.swift */; };
+		386EC6E51E57EC35000B2A59 /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386EC6E41E57EC35000B2A59 /* InstructionsViewController.swift */; };
+		386EC6E71E57ECAA000B2A59 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386EC6E61E57ECAA000B2A59 /* StoreViewController.swift */; };
+		386EC6E91E580209000B2A59 /* RCValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386EC6E81E580209000B2A59 /* RCValues.swift */; };
 		387105EC1E35844E002D010A /* LockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387105EB1E35844E002D010A /* LockNode.swift */; };
 		387105F31E359640002D010A /* SoundFX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387105F21E359640002D010A /* SoundFX.swift */; };
 		387105F51E359CA4002D010A /* ReplayButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387105F41E359CA4002D010A /* ReplayButtonNode.swift */; };
@@ -199,6 +203,10 @@
 		385161351E348E6C0041995A /* ControllerNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerNode.swift; sourceTree = "<group>"; };
 		38650F531E25F6A500401ABD /* FireButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireButtonNode.swift; sourceTree = "<group>"; };
 		38685B621E4FFEF100086314 /* Row5BlockMtlPinned.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row5BlockMtlPinned.sks; sourceTree = "<group>"; };
+		386EC6E21E57EBE4000B2A59 /* TitleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleViewController.swift; sourceTree = "<group>"; };
+		386EC6E41E57EC35000B2A59 /* InstructionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
+		386EC6E61E57ECAA000B2A59 /* StoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
+		386EC6E81E580209000B2A59 /* RCValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCValues.swift; sourceTree = "<group>"; };
 		387105EB1E35844E002D010A /* LockNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LockNode.swift; sourceTree = "<group>"; };
 		387105F21E359640002D010A /* SoundFX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundFX.swift; sourceTree = "<group>"; };
 		387105F41E359CA4002D010A /* ReplayButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplayButtonNode.swift; sourceTree = "<group>"; };
@@ -329,6 +337,7 @@
 			children = (
 				380B62D21E456120007304A3 /* Stage.swift */,
 				380B62D11E456120007304A3 /* Level.swift */,
+				386EC6E81E580209000B2A59 /* RCValues.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -480,8 +489,11 @@
 		38B08F591E40370E000A7232 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				383CA9771E1DD5E600F8B998 /* GameViewController.swift */,
+				386EC6E21E57EBE4000B2A59 /* TitleViewController.swift */,
+				386EC6E41E57EC35000B2A59 /* InstructionsViewController.swift */,
+				386EC6E61E57ECAA000B2A59 /* StoreViewController.swift */,
 				38B08F5A1E4037C4000A7232 /* LevelSelectViewController.swift */,
+				383CA9771E1DD5E600F8B998 /* GameViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -836,14 +848,17 @@
 				38C44B461E39B193004B76B6 /* GravityNode.swift in Sources */,
 				383CA97B1E1DD5E600F8B998 /* GameViewController.swift in Sources */,
 				38017A311E35DEE20051EEE0 /* BlockMtlNode.swift in Sources */,
+				386EC6E91E580209000B2A59 /* RCValues.swift in Sources */,
 				38AC34CA1E4118AD00FB9B50 /* BackButtonNode.swift in Sources */,
 				38E4B5B61E370A0A00C798C0 /* ToolIcon.swift in Sources */,
 				387105EC1E35844E002D010A /* LockNode.swift in Sources */,
 				3835DA391E4FEB1F00AD85F0 /* ShadowBlockNode.swift in Sources */,
 				38B08F601E4039AE000A7232 /* StageView.swift in Sources */,
 				38E4B5BA1E370AF500C798C0 /* GravityToolIcon.swift in Sources */,
+				386EC6E31E57EBE4000B2A59 /* TitleViewController.swift in Sources */,
 				383CA9641E1DD4F500F8B998 /* AppDelegate.swift in Sources */,
 				38E4B5B31E370A0A00C798C0 /* GlueToolIcon.swift in Sources */,
+				386EC6E71E57ECAA000B2A59 /* StoreViewController.swift in Sources */,
 				38BECD051E3F1E7E009BADD6 /* BlockBreakGlueNode.swift in Sources */,
 				38C50AF61E36A83600B4EE2A /* ToolNode.swift in Sources */,
 				38488F1D1E3603F100BCCFD6 /* GameScene.swift in Sources */,
@@ -863,6 +878,7 @@
 				38E6DA2F1E3BF2AA004F8A79 /* SecretTeleportNode.swift in Sources */,
 				380B62D31E456120007304A3 /* Level.swift in Sources */,
 				38E4B5B41E370A0A00C798C0 /* SpringToolIcon.swift in Sources */,
+				386EC6E51E57EC35000B2A59 /* InstructionsViewController.swift in Sources */,
 				38E4B5C51E37137C00C798C0 /* FanToolNode.swift in Sources */,
 				38D24A9F1E44959400323861 /* ProgressView.swift in Sources */,
 				383CA97E1E1DD5F100F8B998 /* Utils.swift in Sources */,

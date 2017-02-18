@@ -335,10 +335,11 @@ class GameScene: SKScene {
 			let point = CGPoint(x: size.width / 2, y: size.height / 2)
 			let move = SKAction.move(to: point, duration: 1)
 			move.timingMode = .easeInEaseOut
-			cameraNode.run(SKAction.sequence([SKAction.wait(forDuration: 2), move]), withKey: "cameraMove")
+			// Wait before camera moves down
+			cameraNode.run(SKAction.sequence([SKAction.wait(forDuration: RCValues.sharedInstance.cameraTime), move]), withKey: "cameraMove")
 		}
 		
-		// TO DO: lerp more
+		// TODO: lerp more
 		let cameraTarget = node.position
 		let targetPosition = CGPoint(x: cameraNode.position.x, y: cameraTarget.y - (scene!.view!.bounds.height * 0.4))
 		
@@ -530,7 +531,8 @@ class GameScene: SKScene {
 			moveCamera(with: node)
 		}
 		controller.updateAngle()
-		
+
+		// Iterate through the fans, update fields and particles
 		for fan in fans {
 			if fan.isMoving || fan.physicsBody!.isDynamic {
 				let rot = fan.rotationRelativeToSceneFor(node: fan)

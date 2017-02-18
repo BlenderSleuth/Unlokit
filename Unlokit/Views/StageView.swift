@@ -11,7 +11,7 @@ import UIKit
 class StageView: UIView {
 	let titleView: UIView
 	let levelScrollView: UIScrollView
-	
+
 	let progressView: ProgressView
 	
 	let stage: Stage
@@ -35,9 +35,16 @@ class StageView: UIView {
 		// Create scroll view to hold levels
 		let scrollViewFrame = CGRect(x: 0, y: frame.height * 0.25, width: frame.width, height: frame.height * 0.75)
 		levelScrollView = UIScrollView(frame: scrollViewFrame)
-		levelScrollView.backgroundColor = .black
 		levelScrollView.showsHorizontalScrollIndicator = false
-		
+
+		/*//TODO: gradient
+		let gradientView = UIView(frame: levelScrollView.bounds)
+		let scrollGradient = CAGradientLayer()
+		scrollGradient.colors = [UIColor.red.cgColor, UIColor.yellow.cgColor]
+		gradientView.layer.addSublayer(scrollGradient)
+		levelScrollView.addSubview(gradientView)
+		*/
+
 		// Space inbetween level views
 		let yPadding: CGFloat = 20
 		let xPadding: CGFloat = 50
@@ -74,11 +81,10 @@ class StageView: UIView {
 			
 			// Update xPos
 			xPos += width + xPadding
-			
-			
 		}
+
 		super.init(frame: frame)
-		
+
 		// Add views
 		addSubview(titleView)
 		addSubview(levelScrollView)

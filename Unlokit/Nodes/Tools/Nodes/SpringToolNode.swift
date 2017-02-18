@@ -15,7 +15,6 @@ class SpringToolNode: ToolNode {
 		
 		type = .spring
 	}
-
 	
 	override func setupPhysics(shadowed isShadowed: Bool) {
 		super.setupPhysics(shadowed: isShadowed)

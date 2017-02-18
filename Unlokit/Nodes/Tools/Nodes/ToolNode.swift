@@ -26,6 +26,8 @@ class ToolNode: SKSpriteNode, CanBeFired {
 	var isEngaged = false
 	var animating = false
 	var used = false
+
+	private var timerStarted = false
 	
 	var icon: ToolIcon!
 	
@@ -65,11 +67,15 @@ class ToolNode: SKSpriteNode, CanBeFired {
 		controller.isOccupied = false
 	}
 	
-	func prepareForFiring(_ controller: ControllerNode) {
+	func prepareForFiring(_ scene: GameScene, controller: ControllerNode) {
 		setupPhysics(shadowed: controller.isShadowed)
 		isEngaged = false
 		controller.isOccupied = false
 		removeAction(forKey: "rotate")
+
+		run(SKAction.wait(forDuration: 5)) {
+			self.smash(scene: scene)
+		}
 	}
 	func setupPhysics(shadowed isShadowed: Bool) {
 		physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
@@ -92,18 +98,25 @@ class ToolNode: SKSpriteNode, CanBeFired {
 
 	func smash(scene: GameScene) {
 		guard parent != nil else {
+			print("No parent")
 			return
 		}
 		
-		emitter.position = scene.convert(position, from: parent!)
-		scene.addChild(emitter)
-		scene.run(SoundFX.sharedInstance["smash"]!)
+		emitter.position = self.scene!.convert(position, from: parent!)
+		self.scene?.addChild(emitter)
+		self.scene?.run(SoundFX.sharedInstance["smash"]!)
 		
 		removeFromParent()
 	}
 	
 	func startTimer() {
-		let wait = SKAction.wait(forDuration: 3)
+		// If the timer has already started, don't start again
+		guard !timerStarted else {
+			return
+		}
+		timerStarted = true
+
+		let wait = SKAction.wait(forDuration: RCValues.sharedInstance.toolTime)
 		run(wait, withKey: "timer") {
 			weak var `self` =  self
 			

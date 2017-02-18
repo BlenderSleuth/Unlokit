@@ -20,8 +20,14 @@ protocol LevelViewDelegate: class {
 class LevelView: UIView, UIGestureRecognizerDelegate {
 	
 	let level: Level
-	
-	let imageView: UIImageView
+
+	// Removing this, using solid colour instead
+	//let imageView: UIImageView
+
+	// Colour constants
+	let availableColour = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+	let notAvailableColour = #colorLiteral(red: 0.3176470697, green: 0.07450980693, blue: 0.02745098062, alpha: 1)
+
 	// For darkinging the image view
 	let coverLayer = CALayer()
 	
@@ -38,16 +44,18 @@ class LevelView: UIView, UIGestureRecognizerDelegate {
 		label.textColor = .white
 		label.layer.zPosition = 10
 		
-		imageView = UIImageView(image: level.thumbnail)
-		imageView.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
-		coverLayer.frame = imageView.bounds;
-		coverLayer.backgroundColor = UIColor.black.cgColor
-		coverLayer.opacity = 0.0
-		imageView.layer.addSublayer(coverLayer)
+		//imageView = UIImageView(image: level.thumbnail)
+		//imageView.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
 		
 		super.init(frame: frame)
-		addSubview(imageView)
+		//addSubview(imageView)
 		addSubview(label)
+
+		backgroundColor = availableColour
+		coverLayer.frame = self.bounds
+		coverLayer.backgroundColor = UIColor.black.cgColor
+		coverLayer.opacity = 0.0
+		self.layer.addSublayer(coverLayer)
 		
 		if self.delegate.levelViews[level.stageNumber] == nil {
 			self.delegate.levelViews[level.stageNumber] = [self]
@@ -57,8 +65,8 @@ class LevelView: UIView, UIGestureRecognizerDelegate {
 		
 		// Check if level is available
 		if !level.available {
-			self.backgroundColor = #colorLiteral(red: 0.3176470697, green: 0.07450980693, blue: 0.02745098062, alpha: 1)
-			self.imageView.removeFromSuperview()
+			self.backgroundColor = notAvailableColour
+			//self.imageView.removeFromSuperview()
 		}
 		
 		self.layer.cornerRadius = 15
@@ -113,7 +121,8 @@ class LevelView: UIView, UIGestureRecognizerDelegate {
 	}
 	
 	func makeAvailable() {
-		addSubview(imageView)
+		//addSubview(imageView)
+		backgroundColor = availableColour
 		level.available = true
 	}
 	func reset() {

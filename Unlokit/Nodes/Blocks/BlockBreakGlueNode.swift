@@ -16,7 +16,7 @@ class BlockBreakGlueNode: BlockGlueNode, Breakable {
 	}
 	
 	func shatter() {
-		// TO DO: add particles and sound
+		// TODO: add particles and sound
 		removeFromParent()
 	}
 }

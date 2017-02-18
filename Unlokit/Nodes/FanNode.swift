@@ -137,7 +137,7 @@ class FanNode: SKSpriteNode, Breakable {
 		run(SKAction.repeatForever(SKAction.animate(with: frames, timePerFrame: 1/15)), withKey: "animate")
 	}
 	private func setupParticles(scene: GameScene) {
-		// Get emitter from child, doesn't work from propertty
+		// Get emitter from child, doesn't work from property
 		let emitter = childNode(withName: "emitter")!.children.first! as! SKEmitterNode
 		// Set emitter target
 		emitter.targetNode = scene
@@ -180,9 +180,9 @@ class FanNode: SKSpriteNode, Breakable {
 		fieldRect = CGRect(origin: fieldOrigin, size: fieldSize)
 		
 		// Calculate region rotation transform
-		let rot = rotation - (CGFloat(360).degreesToRadians() - rotation)
+		let fieldRotation = self.fieldRotation(rotation)
 		
-		var transform = CGAffineTransform(rotationAngle: rot)
+		var transform = CGAffineTransform(rotationAngle: fieldRotation)
 		let regionPath = CGPath(rect: fieldRect, transform: &transform)
 		fieldRegion = SKRegion(path: regionPath)
 		
@@ -193,7 +193,7 @@ class FanNode: SKSpriteNode, Breakable {
 	func shatter() {
 		glueBlock.remove(for: side)
 		
-		// TO DO: Add particles and sounds effects
+		// TODO: Add particles and sounds effects
 		if let level = scene as?  GameScene {
 			level.fans.remove(at: level.fans.index(of: self)!)
 		}
@@ -226,19 +226,26 @@ class FanNode: SKSpriteNode, Breakable {
 		}
 		return false
 	}
+
+	// Calculate the rotation so that the fields rotate correctly.
+	func fieldRotation(_ rotation: CGFloat) -> CGFloat {
+		return rotation - (CGFloat(360).degreesToRadians() - rotation)
+	}
 	
 	// Update the region rotations
 	func updateFields(rotation: CGFloat) {
 		// Calculate region rotation transform
-		let rot = rotation - (CGFloat(360).degreesToRadians() - rotation)
+		let fieldRotation = self.fieldRotation(rotation)
 		
-		var transform = CGAffineTransform(rotationAngle: rot)
+		var transform = CGAffineTransform(rotationAngle: fieldRotation)
 		let regionPath = CGPath(rect: fieldRect, transform: &transform)
 		fieldRegion = SKRegion(path: regionPath)
 		
 		gravityField.region = fieldRegion
 		dragField.region = fieldRegion
 
-		emitter.particleRotation = rot
+		// Get emitter from child, doesn't work from property; not the most efficient, but...
+		let emitter = childNode(withName: "emitter")?.children.first as! SKEmitterNode
+		emitter.emissionAngle = rotation + CGFloat(90).degreesToRadians()
 	}
 }

@@ -219,7 +219,7 @@ extension GameScene: SKPhysicsContactDelegate {
 			let speed = getNode(for: Category.speed, type: SpeedNode.self)
 			let tool = getOtherNode(for: speed, type: SKSpriteNode.self)
 			
-			// TO DO: Add particles
+			// TODO: Add particles
 			
 			// Make tool go higher
 			tool.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 20))

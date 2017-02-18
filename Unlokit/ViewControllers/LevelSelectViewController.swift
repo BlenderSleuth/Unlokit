@@ -8,11 +8,17 @@
 
 import UIKit
 
-class LevelSelectViewController: UIViewController, LevelViewDelegate {
+protocol LevelSelectDelegate: class {
+	func completed(_ completed: Bool)
+}
+
+class LevelSelectViewController: UIViewController, LevelViewDelegate, LevelSelectDelegate {
 
 	@IBOutlet weak var mainScrollView: UIScrollView!
-	
+
+	// Dict of stage views
 	var stageViews = [Int: StageView]()
+
 	// Level views based on stage
 	var levelViews = [Int: [LevelView]]()
 	
@@ -27,24 +33,22 @@ class LevelSelectViewController: UIViewController, LevelViewDelegate {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-		navigationController?.view.backgroundColor = .black
-		
 		setupScroll(frame: view.frame)
+		reset()
     }
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-		// Reset colours
-		for (_, stage) in levelViews {
-			for _/*levelView*/ in stage {
-				//levelView.reset()
-			}
-		}
-		
+		reset()
+	}
+
+	func reset() {
+		navigationController?.isNavigationBarHidden = false
+
 		// Iterate through stages
 		for (_, stageView) in stageViews {
 			// Save levels
 			stageView.stage.saveLevels()
-			
+
 			// If there it is back from completing, update levels
 			if backFromCompletion {
 				// Check if levelViews
@@ -54,7 +58,7 @@ class LevelSelectViewController: UIViewController, LevelViewDelegate {
 				}
 			}
 		}
-		
+
 		// reset current level view
 		nextLevelView = nil
 	}
@@ -103,6 +107,7 @@ class LevelSelectViewController: UIViewController, LevelViewDelegate {
 			navigationController?.pushViewController(gameViewController, animated: false)
 			
 			gameViewController.level = level
+			gameViewController.delegate = self
 			
 			// Reset
 			backFromCompletion = false
@@ -117,6 +122,14 @@ class LevelSelectViewController: UIViewController, LevelViewDelegate {
 			}
 		}
 	}
+
+	func completed(_ completed: Bool) {
+		if completed {
+			backFromCompletion = true
+			nextLevelView?.makeAvailable()
+		}
+	}
+
 	override var prefersStatusBarHidden: Bool {
 		return true
 	}
