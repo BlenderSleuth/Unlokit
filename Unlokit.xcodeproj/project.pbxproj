@@ -14,6 +14,7 @@
 		3804F12D1E39FAEB007099AD /* BombExplode.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3804F12C1E39FAEB007099AD /* BombExplode.sks */; };
 		380B62D31E456120007304A3 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380B62D11E456120007304A3 /* Level.swift */; };
 		380B62D41E456120007304A3 /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380B62D21E456120007304A3 /* Stage.swift */; };
+		380F026D1E5939F90003246E /* InstuctionPageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380F026C1E5939F90003246E /* InstuctionPageContentViewController.swift */; };
 		381D5C881E394C240084E56E /* Bounce.sks in Resources */ = {isa = PBXBuildFile; fileRef = 381D5C871E394C240084E56E /* Bounce.sks */; };
 		381D5C8A1E394E3C0084E56E /* BlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381D5C891E394E3C0084E56E /* BlockNode.swift */; };
 		381D5C8C1E39513D0084E56E /* FanParticles.sks in Resources */ = {isa = PBXBuildFile; fileRef = 381D5C8B1E39513D0084E56E /* FanParticles.sks */; };
@@ -164,6 +165,7 @@
 		3804F12C1E39FAEB007099AD /* BombExplode.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BombExplode.sks; sourceTree = "<group>"; };
 		380B62D11E456120007304A3 /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		380B62D21E456120007304A3 /* Stage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stage.swift; sourceTree = "<group>"; };
+		380F026C1E5939F90003246E /* InstuctionPageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstuctionPageContentViewController.swift; sourceTree = "<group>"; };
 		381D5C871E394C240084E56E /* Bounce.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Bounce.sks; sourceTree = "<group>"; };
 		381D5C891E394E3C0084E56E /* BlockNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockNode.swift; sourceTree = "<group>"; };
 		381D5C8B1E39513D0084E56E /* FanParticles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FanParticles.sks; sourceTree = "<group>"; };
@@ -491,6 +493,7 @@
 			children = (
 				386EC6E21E57EBE4000B2A59 /* TitleViewController.swift */,
 				386EC6E41E57EC35000B2A59 /* InstructionsViewController.swift */,
+				380F026C1E5939F90003246E /* InstuctionPageContentViewController.swift */,
 				386EC6E61E57ECAA000B2A59 /* StoreViewController.swift */,
 				38B08F5A1E4037C4000A7232 /* LevelSelectViewController.swift */,
 				383CA9771E1DD5E600F8B998 /* GameViewController.swift */,
@@ -700,7 +703,7 @@
 					383CA95F1E1DD4F500F8B998 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 23CKX9X8J9;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -848,6 +851,7 @@
 				38C44B461E39B193004B76B6 /* GravityNode.swift in Sources */,
 				383CA97B1E1DD5E600F8B998 /* GameViewController.swift in Sources */,
 				38017A311E35DEE20051EEE0 /* BlockMtlNode.swift in Sources */,
+				380F026D1E5939F90003246E /* InstuctionPageContentViewController.swift in Sources */,
 				386EC6E91E580209000B2A59 /* RCValues.swift in Sources */,
 				38AC34CA1E4118AD00FB9B50 /* BackButtonNode.swift in Sources */,
 				38E4B5B61E370A0A00C798C0 /* ToolIcon.swift in Sources */,
@@ -1007,12 +1011,16 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Carolyn Sutherland (275NR7AUAM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Carolyn Sutherland (275NR7AUAM)";
 				DEVELOPMENT_TEAM = 23CKX9X8J9;
 				INFOPLIST_FILE = Unlokit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.blendersleuth.Unlokit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.blendersleuthdev.Unlokit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7dda62bb-9390-474b-bcad-2f04d0bc5440";
+				PROVISIONING_PROFILE_SPECIFIER = "Unlokit Development Profile";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1023,12 +1031,16 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Carolyn Sutherland (23CKX9X8J9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Carolyn Sutherland (23CKX9X8J9)";
 				DEVELOPMENT_TEAM = 23CKX9X8J9;
 				INFOPLIST_FILE = Unlokit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.blendersleuth.Unlokit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.blendersleuthdev.Unlokit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "75e1f088-2fb8-46c9-8e7a-59a3f096f415";
+				PROVISIONING_PROFILE_SPECIFIER = "Unlokit Distribution Profile";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};

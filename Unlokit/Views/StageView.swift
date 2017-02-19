@@ -37,13 +37,13 @@ class StageView: UIView {
 		levelScrollView = UIScrollView(frame: scrollViewFrame)
 		levelScrollView.showsHorizontalScrollIndicator = false
 
-		/*//TODO: gradient
+		//TODO: gradient
 		let gradientView = UIView(frame: levelScrollView.bounds)
 		let scrollGradient = CAGradientLayer()
 		scrollGradient.colors = [UIColor.red.cgColor, UIColor.yellow.cgColor]
-		gradientView.layer.addSublayer(scrollGradient)
+		gradientView.layer.insertSublayer(scrollGradient, at: 0)
 		levelScrollView.addSubview(gradientView)
-		*/
+
 
 		// Space inbetween level views
 		let yPadding: CGFloat = 20

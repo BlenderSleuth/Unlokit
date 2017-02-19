@@ -21,10 +21,10 @@ class GameViewController: UIViewController, LevelController {
 		super.viewDidLoad()
 		navigationController?.isNavigationBarHidden = true
 		// DEBUG if this is the initial view controller
-		let stage = 1
-		let level = 9
+		//let stage = 1
+		//let level = 9
 		
-		self.level = Stages.sharedInstance.stages[stage-1].levels[level-1]
+		//self.level = Stages.sharedInstance.stages[stage-1].levels[level-1]
 		startNewGame()
 	}
 	
@@ -42,9 +42,9 @@ class GameViewController: UIViewController, LevelController {
 				skView.ignoresSiblingOrder = true
 				
 				// Set debug options
-				skView.showsFPS = true
-				skView.showsNodeCount = true
-				skView.showsDrawCount = true
+				//skView.showsFPS = true
+				//skView.showsNodeCount = true
+				//skView.showsDrawCount = true
 				//skView.showsPhysics = true
 				//skView.showsFields = true
 				
@@ -108,11 +108,8 @@ class GameViewController: UIViewController, LevelController {
 		transition.duration = 0.5
 		navigationController?.view.layer.add(transition, forKey: nil)
 
-		navigationController?.popViewController(animated: false)
+		let _ = navigationController?.popViewController(animated: false)
 		delegate?.completed(completed)
-
-		// Unwind segue
-		//performSegue(withIdentifier: "toLevelSelect", sender: nil)
 	}
 	
 	override var prefersStatusBarHidden: Bool {

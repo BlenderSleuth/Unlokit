@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12100" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IS7-zk-VYb">
     <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12072"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="neuropol x rg.ttf">
+            <string>NeuropolXRg-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Title View Controller-->
         <scene sceneID="22L-Fm-VFL">
@@ -22,32 +27,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TJd-kM-CGv">
-                                <rect key="frame" x="270" y="423" width="228" height="228"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TJd-kM-CGv">
+                                <rect key="frame" x="270" y="398" width="228" height="228"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="TJd-kM-CGv" secondAttribute="height" multiplier="1:1" id="WDt-Qt-qjC"/>
                                 </constraints>
-                                <state key="normal" title="GO"/>
+                                <fontDescription key="fontDescription" name="NeuropolXRg-Regular" family="Neuropol X" pointSize="22"/>
+                                <state key="normal" image="Play"/>
                                 <connections>
                                     <segue destination="UPt-8q-sBi" kind="show" id="dS5-Qj-0eZ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HSr-ZD-lVt">
-                                <rect key="frame" x="20" y="497" width="242" height="30"/>
-                                <state key="normal" title="Store"/>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HSr-ZD-lVt">
+                                <rect key="frame" x="20" y="492.5" width="242" height="39"/>
+                                <fontDescription key="fontDescription" name="NeuropolXRg-Regular" family="Neuropol X" pointSize="22"/>
                                 <connections>
                                     <segue destination="90l-Rb-BlB" kind="show" id="21f-7L-WUI"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kTR-qb-Wto">
-                                <rect key="frame" x="506" y="497" width="242" height="30"/>
+                                <rect key="frame" x="506" y="486.5" width="242" height="51"/>
+                                <fontDescription key="fontDescription" name="NeuropolXRg-Regular" family="Neuropol X" pointSize="32"/>
                                 <state key="normal" title="Instructions"/>
                                 <connections>
-                                    <segue destination="MUA-hz-gN1" kind="show" id="Y3y-YK-hmp"/>
+                                    <segue destination="JEG-DU-WdI" kind="show" id="R5P-VM-f5L"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="kTR-qb-Wto" firstAttribute="trailing" secondItem="D6t-1A-6H4" secondAttribute="trailingMargin" id="4X9-YU-KTb"/>
                             <constraint firstItem="kTR-qb-Wto" firstAttribute="leading" secondItem="TJd-kM-CGv" secondAttribute="trailing" constant="8" id="IEC-l2-39d"/>
@@ -57,7 +64,7 @@
                             <constraint firstItem="TJd-kM-CGv" firstAttribute="centerX" secondItem="D6t-1A-6H4" secondAttribute="centerX" id="bjM-dn-vaw"/>
                             <constraint firstItem="TJd-kM-CGv" firstAttribute="leading" secondItem="HSr-ZD-lVt" secondAttribute="trailing" constant="8" id="cS5-O9-yYg"/>
                             <constraint firstItem="HSr-ZD-lVt" firstAttribute="leading" secondItem="D6t-1A-6H4" secondAttribute="leadingMargin" id="ddP-OS-cr3"/>
-                            <constraint firstItem="TJd-kM-CGv" firstAttribute="centerY" secondItem="D6t-1A-6H4" secondAttribute="centerY" constant="25" id="qv1-2p-GiD"/>
+                            <constraint firstItem="TJd-kM-CGv" firstAttribute="centerY" secondItem="D6t-1A-6H4" secondAttribute="centerY" id="qv1-2p-GiD"/>
                             <constraint firstItem="HSr-ZD-lVt" firstAttribute="centerY" secondItem="D6t-1A-6H4" secondAttribute="centerY" id="y6w-s0-UdX"/>
                         </constraints>
                     </view>
@@ -68,12 +75,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XH4-jg-ApI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1751.3671875" y="137.5"/>
+            <point key="canvasLocation" x="-1746" y="138"/>
         </scene>
         <!--Instructions View Controller-->
         <scene sceneID="4Ph-eF-ciA">
             <objects>
-                <viewController title="Instructions View Controller" id="MUA-hz-gN1" customClass="InstructionsViewController" customModule="Unlokit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InstructionPageContentViewController" title="Instructions View Controller" id="MUA-hz-gN1" customClass="InstructionPageContentViewController" customModule="Unlokit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="A8L-MN-HIl"/>
                         <viewControllerLayoutGuide type="bottom" id="EFL-VB-RFF"/>
@@ -82,23 +89,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Uxz-UA-uZM">
-                                <rect key="frame" x="0.0" y="493.5" width="768" height="37"/>
-                            </pageControl>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ebY-sg-tCx">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Uxz-UA-uZM" firstAttribute="centerY" secondItem="N13-Qj-87C" secondAttribute="centerY" id="Dxg-i8-wob"/>
-                            <constraint firstAttribute="trailing" secondItem="Uxz-UA-uZM" secondAttribute="trailing" id="jaR-gF-ftq"/>
-                            <constraint firstItem="Uxz-UA-uZM" firstAttribute="leading" secondItem="N13-Qj-87C" secondAttribute="leading" id="rg1-zu-vkP"/>
+                            <constraint firstAttribute="trailing" secondItem="ebY-sg-tCx" secondAttribute="trailing" id="GUc-Kr-NeK"/>
+                            <constraint firstItem="EFL-VB-RFF" firstAttribute="top" secondItem="ebY-sg-tCx" secondAttribute="bottom" id="bTh-TM-p8u"/>
+                            <constraint firstItem="ebY-sg-tCx" firstAttribute="leading" secondItem="N13-Qj-87C" secondAttribute="leading" id="gtj-Ye-i2k"/>
+                            <constraint firstItem="ebY-sg-tCx" firstAttribute="top" secondItem="A8L-MN-HIl" secondAttribute="bottom" id="yYK-P2-ANd"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Instructions" id="6Vq-1O-ZAc"/>
                     <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="imageView" destination="ebY-sg-tCx" id="ome-Wy-160"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u7X-W5-MTf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-970.31249999999989" y="-564.0625"/>
+            <point key="canvasLocation" x="-255" y="-572"/>
         </scene>
         <!--Level Select-->
         <scene sceneID="J17-3F-0xe">
@@ -152,15 +163,17 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n6E-JE-rgr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-970" y="859"/>
+            <point key="canvasLocation" x="-970" y="851"/>
         </scene>
-        <!--Page View Controller-->
+        <!--Instructions-->
         <scene sceneID="mnf-Jx-gQV">
             <objects>
-                <pageViewController storyboardIdentifier="pageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="JEG-DU-WdI" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="InstructionsPageViewController" autoresizesArchivedViewToFullSize="NO" title="Instructions" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="JEG-DU-WdI" customClass="InstructionsPageViewController" customModule="Unlokit" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" title="Instructions" id="8m7-bC-rz1"/>
+                </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dcv-0Z-dyv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-224" y="-564"/>
+            <point key="canvasLocation" x="-970" y="-572"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -176,14 +189,10 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                     </view>
-                    <connections>
-                        <segue destination="nQL-W0-pVV" kind="unwind" identifier="toLevelSelect" animates="NO" unwindAction="unwindToListWithSender:" id="APR-Hu-PzK"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <exit id="nQL-W0-pVV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-224" y="138"/>
+            <point key="canvasLocation" x="-255" y="138"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="v62-hD-tuc">
@@ -196,7 +205,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.12390624729999999" green="0.12390624729999999" blue="0.12390624729999999" alpha="1" colorSpace="deviceRGB"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="NeuropolXRg-Regular" family="Neuropol X" pointSize="17"/>
+                            <fontDescription key="fontDescription" name="NeuropolXRg-Regular" family="Neuropol X" pointSize="31"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -206,7 +215,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zmk-uX-5em" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2468" y="138"/>
+            <point key="canvasLocation" x="-2488" y="138"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Play" width="256" height="256"/>
+    </resources>
 </document>

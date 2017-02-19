@@ -315,6 +315,15 @@ extension String {
 	}
 }
 
+//********* Array extension *****************************
+extension Array {
+	mutating func moveNext() {
+		let first = self[0]
+		self.remove(at: 0)
+		self.append(first)
+	}
+}
+
 //********* Plist Loading *****************************
 func getDefaultLevelsFromPlist(stage number: Int) -> [Level]{
 	// Get plist
