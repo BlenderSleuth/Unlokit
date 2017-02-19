@@ -47,7 +47,7 @@ extension GameScene: SKPhysicsContactDelegate {
 				collided(with: Category.blockBreak, and: Category.key) ||
 				collided(with: Category.bounds, and: Category.key) {
 			let key = getNode(for: Category.key, type: KeyNode.self)
-			key.smash()
+			key.smash(scene: self)
 		}
 		else if collided(with: Category.bounds, and: Category.tools) {
 			let bounds = getNode(for: Category.bounds, type: SKSpriteNode.self)
@@ -58,7 +58,6 @@ extension GameScene: SKPhysicsContactDelegate {
 		else if collided(with: Category.blockMtl | Category.blockBreak, and: Category.fanTool | Category.gravityTool) {
 			let tool = getNode(for: Category.tools, type: ToolNode.self)
 			tool.smash(scene: self)
-			print("smash")
 		}
 		// Secret level ********************
 		else if collided(with: Category.secretTeleport , and: Category.key) {
@@ -81,19 +80,20 @@ extension GameScene: SKPhysicsContactDelegate {
 			let block = getNode(for: Category.blockGlue, type: BlockGlueNode.self)
 
 			if let tool = getNodeIf(for: Category.tools, type: ToolNode.self) {
-				if tool.used {
-					return
-				}
-				tool.used = true
-
 				// This will get an optional side
 				if let side = block.getSideIfConnected(contact: contact) {
+					// Make sure it hasn't already been used
+					if tool.used {
+						return
+					}
+					tool.used = true
+
 					// Check for other tools
 					if let bombTool = tool as? BombToolNode {
 						if block.add(node: bombTool, to: side) {
 							bombTool.countDown(scene: self, at: contact.contactPoint, side: side)
 						} else {
-							bombTool.startTimer()
+							bombTool.startTimer(glueBlock: block, side: side)
 						}
 					} else if let fanTool = tool as? FanToolNode {
 						let fanNode = SKNode(fileNamed: "FanRef")?.children.first as! FanNode
@@ -115,11 +115,13 @@ extension GameScene: SKPhysicsContactDelegate {
 						}
 					} else {
 						let _ = block.add(node: tool, to: side)
+						tool.startTimer(glueBlock: block, side: side)
 					}
 				}
 			} else if let key = getNodeIf(for: Category.key, type: KeyNode.self) {
 				if let side = block.getSideIfConnected(contact: contact) {
 					let _ = block.add(node: key, to: side)
+					key.startTimer(glueBlock: block, side: side)
 				}
 			}
 		}
@@ -177,10 +179,6 @@ extension GameScene: SKPhysicsContactDelegate {
 		// This needs to be at the end so that bombs don't explode on normal bounce
 		else if collided(with: Category.blockBnc, and: Category.tools) {
 			let block = getNode(for: Category.blockBnc, type: BlockNode.self)
-
-			if getNodeIf(for: Category.bombTool, type: BombToolNode.self) != nil {
-				return
-			}
 
 			let canBeFired = getOtherNode(for: block, type: CanBeFired.self)
 			// Start timer to smash so that it's not stuck forever

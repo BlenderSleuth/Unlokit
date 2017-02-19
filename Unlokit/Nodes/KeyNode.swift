@@ -56,7 +56,7 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		controller.isOccupied = false
 	}
 
-	func prepareForFiring(_ scene: GameScene, controller: ControllerNode) {
+	func prepareForFiring(controller: ControllerNode) {
 		// Sets up before firing
 		setupPhysics(shadowed: controller.isShadowed)
 		isEngaged = false
@@ -90,7 +90,7 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		return prnt.convert(node.position, to: selprnt)
 	}
 	
-	func smash() {
+	func smash(scene: GameScene) {
 		// Check if key has already been smashed
 		guard parent != nil else {
 			return
@@ -100,16 +100,33 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		let sound = SoundFX.sharedInstance["smash"]!
 		let group = SKAction.group([wait, sound])
 		
-		scene?.run(group) {
+		emitter.isPaused = false
+		emitter.position = scene.convert(position, from: parent!)
+		scene.addChild(emitter)
+		
+		removeFromParent()
+
+		scene.run(group) {
 			// Reload scene
 			self.levelController.startNewGame()
 		}
-		
-		emitter.isPaused = false
-		emitter.position = scene!.convert(position, from: parent!)
-		scene?.addChild(emitter)
-		
-		removeFromParent()
+	}
+	func startTimer(glueBlock: BlockGlueNode, side: Side) {
+		// If the timer has already started, don't start again
+		guard !timerStarted else {
+			return
+		}
+		timerStarted = true
+
+		let wait = SKAction.wait(forDuration: RCValues.sharedInstance.toolTime)
+		run(wait, withKey: "timer") {
+			weak var `self` =  self
+
+			if let scene = self?.scene as? GameScene {
+				self?.smash(scene: scene)
+				glueBlock.remove(for: side)
+			}
+		}
 	}
 	
 	func startTimer() {
@@ -122,7 +139,9 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		let wait = SKAction.wait(forDuration: RCValues.sharedInstance.toolTime)
 		run(wait, withKey: "timer") {
 			weak var `self` =  self
-			self?.smash()
+			if let scene = self?.scene as? GameScene {
+				self?.smash(scene: scene)
+			}
 		}
 	}
 	

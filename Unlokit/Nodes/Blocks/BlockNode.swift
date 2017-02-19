@@ -13,8 +13,9 @@ enum Side {
 	case down
 	case left
 	case right
+	case centre
 	
-	static let all = [Side.up, Side.down, Side.left, Side.right]
+	static let all: [Side] = [.up, .down, .left, .right, .centre]
 	
 	var position: CGPoint {
 		switch self {
@@ -26,6 +27,8 @@ enum Side {
 			return CGPoint(x: -64, y: 0.0)
 		case .right:
 			return CGPoint(x: 64, y: 0.0)
+		case .centre:
+			return CGPoint.zero
 		}
 	}
 }
@@ -39,6 +42,7 @@ class BlockNode: SKSpriteNode {
 	var down: CGPoint!
 	var left: CGPoint!
 	var right: CGPoint!
+	var centre: CGPoint!
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
@@ -58,6 +62,7 @@ class BlockNode: SKSpriteNode {
 		down = CGPoint(x: frame.origin.x + halfWidth, y: frame.origin.y)
 		left = CGPoint(x: frame.origin.x, y: frame.origin.y + halfHeight)
 		right = CGPoint(x: frame.origin.x + frame.size.width, y: frame.origin.y + halfHeight)
+		centre = CGPoint.zero
 	}
 	
 	// Find side from contact
@@ -110,6 +115,8 @@ class BlockNode: SKSpriteNode {
 		case .right:
 			bounce = SKAction.sequence([SKAction.moveBy(x: 30, y: 0, duration: 0.1), SKAction.moveBy(x: -30, y: 0, duration: 0.1)])
 			bounce.timingMode = .easeInEaseOut
+		default:
+			return
 		}
 		run(bounce)
 		run(SoundFX.sharedInstance["block"]!)

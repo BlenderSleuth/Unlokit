@@ -9,14 +9,13 @@
 import SpriteKit
 
 class FanNode: SKSpriteNode, Breakable {
-	
 	// Children
 	var gravityField: SKFieldNode!
 	var dragField: SKFieldNode!
 	private var emitter: SKEmitterNode!
-	
-	var glueBlock: BlockGlueNode!
-	var side: Side!
+
+	var glueBlock: BlockGlueNode?
+	var side: Side?
 	
 	var fieldLength: CGFloat?
 	var fieldRect: CGRect!
@@ -191,7 +190,9 @@ class FanNode: SKSpriteNode, Breakable {
 	}
 	
 	func shatter() {
-		glueBlock.remove(for: side)
+		if let block = glueBlock, let side = side {
+			block.remove(for: side)
+		}
 		
 		// TODO: Add particles and sounds effects
 		if let level = scene as?  GameScene {

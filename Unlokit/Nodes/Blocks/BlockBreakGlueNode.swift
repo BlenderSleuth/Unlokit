@@ -9,14 +9,11 @@
 import SpriteKit
 
 class BlockBreakGlueNode: BlockGlueNode, Breakable {
+	var glueBlock: BlockGlueNode?
+	var side: Side?
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		physicsBody?.categoryBitMask = Category.blockGlue
-	}
-	
-	func shatter() {
-		// TODO: add particles and sound
-		removeFromParent()
 	}
 }

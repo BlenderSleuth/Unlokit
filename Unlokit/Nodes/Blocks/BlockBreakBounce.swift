@@ -9,6 +9,8 @@
 import SpriteKit
 
 class BlockBreakBncNode: BlockBncNode, Breakable {
+	var side: Side?
+	var glueBlock: BlockGlueNode?
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
@@ -16,7 +18,12 @@ class BlockBreakBncNode: BlockBncNode, Breakable {
 	}
 	
 	func shatter() {
-		// TODO: add particles and sound
+		// Remove from blocks 'connected' array
+		if let side = side, let block = glueBlock {
+			block.remove(for: side)
+		}
+
+		// TODO: Add particles and sound
 		removeFromParent()
 	}
 }

@@ -60,7 +60,7 @@ class BombToolNode: ToolNode {
 		self.position = point
 		
 		// Shatter all breakables in radius
-		scene.enumerateChildNodes(withName: "//breakable*") {node, _ in
+		scene.enumerateChildNodes(withName: "//*Breakable") {node, _ in
 			if let breakable = (node as? Breakable) {
 				let position = self.convert(node.position, from: node.parent!)
 				if region.contains(position) {

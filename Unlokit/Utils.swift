@@ -230,6 +230,56 @@ prefix func -(right: CGSize) -> CGSize {
 	return CGSize(width: -right.width, height: -right.height)
 }
 
+//********* CGRect Functions ***************************
+func + (left: CGRect, right: CGFloat) -> CGRect {
+	let origin = CGPoint(x: left.origin.x - right / 2, y: left.origin.y - right / 2)
+	let size = left.size + right
+	return CGRect(origin: origin, size: size)
+}
+func - (left: CGRect, right: CGFloat) -> CGRect {
+	let origin = CGPoint(x: left.origin.x + right / 2, y: left.origin.y + right / 2)
+	let size = left.size - right
+	return CGRect(origin: origin, size: size)
+}
+func * (left: CGRect, right: CGFloat) -> CGRect {
+	let size = left.size * right
+	let origin = CGPoint(x: left.origin.x - size.width/2, y: left.origin.y - size.height/2)
+
+	return CGRect(origin: origin, size: size)
+}
+func / (left: CGRect, right: CGFloat) -> CGRect {
+	let size = left.size / right
+	let origin = CGPoint(x: left.origin.x + size.width/2, y: left.origin.y + size.height/2)
+
+	return CGRect(origin: origin, size: size)
+}
+
+func += (left: inout CGRect, right: CGFloat) {
+	left.origin = CGPoint(x: left.origin.x - right / 2, y: left.origin.y - right / 2)
+	left.size += right
+}
+func -= (left: inout CGRect, right: CGFloat) {
+	left.origin = CGPoint(x: left.origin.x + right / 2, y: left.origin.y + right / 2)
+	left.size -= right
+}
+func *= (left: inout CGRect, right: CGFloat) {
+	left.size *= right
+	left.origin = CGPoint(x: left.origin.x - left.size.width/2, y: left.origin.y - left.size.height/2)
+}
+func /= (left: inout CGRect, right: CGFloat) {
+	left.size /= right
+	left.origin = CGPoint(x: left.origin.x + left.size.width/2, y: left.origin.y + left.size.height/2)
+}
+
+prefix func -(right: CGRect) -> CGRect {
+	return CGRect(origin: -right.origin, size: -right.size)
+}
+
+//********* CGAffine Function ****************************
+func += (left: inout CGAffineTransform, right: CGAffineTransform) {
+	left = left.concatenating(right)
+}
+
 //********* Other Global stuff ***************************
 private let version = UIDevice.current.systemVersion
 let ios9 = version[version.startIndex] == "9" ? true : false

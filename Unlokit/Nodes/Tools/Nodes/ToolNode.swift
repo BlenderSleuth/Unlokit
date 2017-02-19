@@ -31,16 +31,16 @@ class ToolNode: SKSpriteNode, CanBeFired {
 	
 	var icon: ToolIcon!
 	
-	var emitter: SKEmitterNode!
-	
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-		emitter = SKEmitterNode(fileNamed: "Smash")!
-		emitter.particleTexture = texture
     }
 	func remove() {
 		// For overriding to clean up
 		removeFromParent()
+	}
+	func removeFromBlock(scene: GameScene, glueBlock: BlockGlueNode, side: Side) {
+		glueBlock.remove(for: side)
+		smash(scene: scene)
 	}
 	
 	func engage(_ controller: ControllerNode) {
@@ -67,21 +67,17 @@ class ToolNode: SKSpriteNode, CanBeFired {
 		controller.isOccupied = false
 	}
 	
-	func prepareForFiring(_ scene: GameScene, controller: ControllerNode) {
+	func prepareForFiring(controller: ControllerNode) {
 		setupPhysics(shadowed: controller.isShadowed)
 		isEngaged = false
 		controller.isOccupied = false
 		removeAction(forKey: "rotate")
-
-		run(SKAction.wait(forDuration: 5)) {
-			self.smash(scene: scene)
-		}
 	}
 	func setupPhysics(shadowed isShadowed: Bool) {
 		physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
 		physicsBody?.isDynamic = true
 		physicsBody?.mass = 0.01
-		//physicsBody?.usesPreciseCollisionDetection = true
+		
 		// Override in subclasses
 		physicsBody?.categoryBitMask = Category.zero
 		physicsBody?.contactTestBitMask = Category.bounds
@@ -101,15 +97,32 @@ class ToolNode: SKSpriteNode, CanBeFired {
 			print("No parent")
 			return
 		}
-		
-		emitter.position = self.scene!.convert(position, from: parent!)
-		self.scene?.addChild(emitter)
-		self.scene?.run(SoundFX.sharedInstance["smash"]!)
+
+		let emitter = SKEmitterNode(fileNamed: "Smash")!
+		emitter.particleTexture = texture
+		emitter.position = scene.convert(position, from: parent!)
+		scene.addChild(emitter)
+		scene.run(SoundFX.sharedInstance["smash"]!)
 		
 		removeFromParent()
 	}
-	
 	func startTimer() {
+		// If the timer has already started, don't start again
+		guard !timerStarted else {
+			return
+		}
+		timerStarted = true
+
+		let wait = SKAction.wait(forDuration: RCValues.sharedInstance.toolTime)
+		run(wait, withKey: "timer") {
+			weak var `self` =  self
+
+			if let scene = self?.scene as? GameScene {
+				self?.smash(scene: scene)
+			}
+		}
+	}
+	func startTimer(glueBlock: BlockGlueNode, side: Side) {
 		// If the timer has already started, don't start again
 		guard !timerStarted else {
 			return
@@ -122,6 +135,7 @@ class ToolNode: SKSpriteNode, CanBeFired {
 			
 			if let scene = self?.scene as? GameScene {
 				self?.smash(scene: scene)
+				glueBlock.remove(for: side)
 			}
 		}
 	}

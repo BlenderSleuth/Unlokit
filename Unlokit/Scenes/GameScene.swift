@@ -138,6 +138,7 @@ class GameScene: SKScene {
 		// Check for shadow nodes
 		enumerateChildNodes(withName: "//blockShdo") { _, stop in
 			self.isShadowed = true
+			stop.pointee = true
 		}
 		if isShadowed {
 			controller.addLight()
@@ -282,7 +283,7 @@ class GameScene: SKScene {
 		// Edit blocks outside of enumeration to prevent crash
 		var glueBlocks = [BlockGlueNode]()
 		
-		enumerateChildNodes(withName: "//blockGlue") { node, _ in
+		enumerateChildNodes(withName: "//blockGlue*") { node, _ in
 			let block = node as! BlockGlueNode
 			glueBlocks.append(block)
 		}

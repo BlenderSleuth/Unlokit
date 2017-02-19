@@ -11,8 +11,10 @@ import SpriteKit
 protocol CanBeFired {
 	func engage(_ controller: ControllerNode)
 	func disengage(_ controller: ControllerNode)
-	func prepareForFiring(_ scene: GameScene, controller: ControllerNode)
-	
+	func prepareForFiring(controller: ControllerNode)
+
+	// To stop tools being stuck
+	func startTimer(glueBlock: BlockGlueNode, side: Side)
 	func startTimer()
 }
 
@@ -73,7 +75,7 @@ class FireButtonNode: SKSpriteNode {
 		
 		// Shenanigans for using both protocol and type properties
 		// Prepare for firing
-		objectToFire?.prepareForFiring(scene, controller: controller)
+		objectToFire?.prepareForFiring(controller: controller)
 		//objectToFire is of type 'CanBeFired', object is SKSpriteNode, both reference same object
 		
         // Speed of firing
