@@ -42,13 +42,6 @@ extension GameScene: SKPhysicsContactDelegate {
 
 			key.lock(lock)
 		}
-		// Smash conditions ****************
-		else if collided(with: Category.blockMtl, and: Category.key) ||
-				collided(with: Category.blockBreak, and: Category.key) ||
-				collided(with: Category.bounds, and: Category.key) {
-			let key = getNode(for: Category.key, type: KeyNode.self)
-			key.smash(scene: self)
-		}
 		else if collided(with: Category.bounds, and: Category.tools) {
 			let bounds = getNode(for: Category.bounds, type: SKSpriteNode.self)
 			let tool = getOtherNode(for: bounds, type: ToolNode.self)
@@ -177,7 +170,7 @@ extension GameScene: SKPhysicsContactDelegate {
 			tool.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 20))
 		}
 		// This needs to be at the end so that bombs don't explode on normal bounce
-		else if collided(with: Category.blockBnc, and: Category.tools) {
+		else if collided(with: Category.blockBnc, and: Category.tools | Category.key) {
 			let block = getNode(for: Category.blockBnc, type: BlockNode.self)
 
 			let canBeFired = getOtherNode(for: block, type: CanBeFired.self)
@@ -186,6 +179,12 @@ extension GameScene: SKPhysicsContactDelegate {
 
 			// Bounce animation
 			block.bounce(side: block.getSide(contact: contact))
+		} // Smash conditions ****************
+		else if collided(with: Category.blockMtl, and: Category.key) ||
+			collided(with: Category.blockBreak, and: Category.key) ||
+			collided(with: Category.bounds, and: Category.key) {
+			let key = getNode(for: Category.key, type: KeyNode.self)
+			key.smash(scene: self)
 		}
 	}
 }
