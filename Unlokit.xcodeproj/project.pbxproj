@@ -147,6 +147,8 @@
 		38E99E6C1E4AF9D600781E6C /* Level1_12.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38E99E621E4AF9D600781E6C /* Level1_12.sks */; };
 		38E99E6D1E4AF9D600781E6C /* Level1_8.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38E99E631E4AF9D600781E6C /* Level1_8.sks */; };
 		38E99E6E1E4AF9D600781E6C /* Level1_10.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38E99E641E4AF9D600781E6C /* Level1_10.sks */; };
+		38EA310C1E5D3C8C006E044A /* EndGame.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38EA310B1E5D3C8C006E044A /* EndGame.sks */; };
+		38EA310E1E5D40AC006E044A /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EA310D1E5D40AC006E044A /* ButtonNode.swift */; };
 		38F40FE21E3B120500A0A469 /* SpeedNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F40FE11E3B120500A0A469 /* SpeedNode.swift */; };
 		38F40FE41E3B12C500A0A469 /* SpeedRef.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38F40FE31E3B12C500A0A469 /* SpeedRef.sks */; };
 		38F40FEA1E3B28CE00A0A469 /* Row4BlockBreakGrav.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38F40FE91E3B28CE00A0A469 /* Row4BlockBreakGrav.sks */; };
@@ -300,6 +302,8 @@
 		38E99E621E4AF9D600781E6C /* Level1_12.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1_12.sks; sourceTree = "<group>"; };
 		38E99E631E4AF9D600781E6C /* Level1_8.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1_8.sks; sourceTree = "<group>"; };
 		38E99E641E4AF9D600781E6C /* Level1_10.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1_10.sks; sourceTree = "<group>"; };
+		38EA310B1E5D3C8C006E044A /* EndGame.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EndGame.sks; sourceTree = "<group>"; };
+		38EA310D1E5D40AC006E044A /* ButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
 		38F40FE11E3B120500A0A469 /* SpeedNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeedNode.swift; sourceTree = "<group>"; };
 		38F40FE31E3B12C500A0A469 /* SpeedRef.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SpeedRef.sks; sourceTree = "<group>"; };
 		38F40FE91E3B28CE00A0A469 /* Row4BlockBreakGrav.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row4BlockBreakGrav.sks; sourceTree = "<group>"; };
@@ -403,6 +407,7 @@
 			isa = PBXGroup;
 			children = (
 				38B08F691E408006000A7232 /* LoadingScreen.sks */,
+				38EA310B1E5D3C8C006E044A /* EndGame.sks */,
 				38F7B1F01E3838ED00A62956 /* Inteface.sks */,
 				383CA9781E1DD5E600F8B998 /* GunRef.sks */,
 				38F7B1E81E38243300A62956 /* ControllerRef.sks */,
@@ -475,6 +480,7 @@
 				384ACEF21E347FE2004C3E93 /* KeyNode.swift */,
 				385161351E348E6C0041995A /* ControllerNode.swift */,
 				387105EB1E35844E002D010A /* LockNode.swift */,
+				38EA310D1E5D40AC006E044A /* ButtonNode.swift */,
 				38650F531E25F6A500401ABD /* FireButtonNode.swift */,
 				387105F41E359CA4002D010A /* ReplayButtonNode.swift */,
 				38AC34C91E4118AD00FB9B50 /* BackButtonNode.swift */,
@@ -703,7 +709,7 @@
 					383CA95F1E1DD4F500F8B998 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 23CKX9X8J9;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -814,6 +820,7 @@
 				38E6DA351E3C02E8004F8A79 /* Bounce2.caf in Resources */,
 				383FE5771E4F22FA00FC9094 /* Canvas-Blu.sks in Resources */,
 				38BD09F21E401E2900AE6AF2 /* Row2BlockMtl.sks in Resources */,
+				38EA310C1E5D3C8C006E044A /* EndGame.sks in Resources */,
 				3804F12D1E39FAEB007099AD /* BombExplode.sks in Resources */,
 				383CA9831E1DD61100F8B998 /* LaunchScreen.storyboard in Resources */,
 				38E50CF11E39DB2F007437E7 /* BlockBrk.sks in Resources */,
@@ -853,6 +860,7 @@
 				38017A311E35DEE20051EEE0 /* BlockMtlNode.swift in Sources */,
 				380F026D1E5939F90003246E /* InstuctionPageContentViewController.swift in Sources */,
 				386EC6E91E580209000B2A59 /* RCValues.swift in Sources */,
+				38EA310E1E5D40AC006E044A /* ButtonNode.swift in Sources */,
 				38AC34CA1E4118AD00FB9B50 /* BackButtonNode.swift in Sources */,
 				38E4B5B61E370A0A00C798C0 /* ToolIcon.swift in Sources */,
 				387105EC1E35844E002D010A /* LockNode.swift in Sources */,
@@ -1012,15 +1020,15 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Carolyn Sutherland (275NR7AUAM)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Carolyn Sutherland (275NR7AUAM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 23CKX9X8J9;
 				INFOPLIST_FILE = Unlokit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.blendersleuthdev.Unlokit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7dda62bb-9390-474b-bcad-2f04d0bc5440";
-				PROVISIONING_PROFILE_SPECIFIER = "Unlokit Development Profile";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1032,15 +1040,15 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Carolyn Sutherland (23CKX9X8J9)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Carolyn Sutherland (23CKX9X8J9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 23CKX9X8J9;
 				INFOPLIST_FILE = Unlokit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.blendersleuthdev.Unlokit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "75e1f088-2fb8-46c9-8e7a-59a3f096f415";
-				PROVISIONING_PROFILE_SPECIFIER = "Unlokit Distribution Profile";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};

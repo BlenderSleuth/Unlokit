@@ -17,7 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
 
+        // Set windows colour
 		window?.backgroundColor = .black
+        
+        // Set the font for the bar button items globally
+        UIBarButtonItem.appearance()
+            .setTitleTextAttributes(
+                [NSFontAttributeName: UIFont(name: "NeuropolXRg-Regular", size: 16)!
+                ], for: .normal)
 
 		return true
 	}

@@ -39,6 +39,7 @@ class ReplayButtonNode: SKSpriteNode {
 	}
 	
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print(touches)
 		press()
 	}
 	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {

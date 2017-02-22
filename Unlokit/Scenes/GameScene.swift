@@ -94,6 +94,8 @@ class GameScene: SKScene {
     
     var canvasBounds: CGRect!
     
+    var isEnd = false
+    
     // Array of tools
 	var toolBox: SKNode!
 	var toolIcons = [ToolType: ToolIcon]()
@@ -457,15 +459,26 @@ class GameScene: SKScene {
 	}
 	
 	func endGame() {
-		if level.isSecret {
-			levelController.endSecret()
-		} else {
-			levelController.endGame()
-		}
+        let endGameNode = SKScene(fileNamed: "EndGame")!.childNode(withName: "endGame")!
+        endGameNode.removeFromParent()
+        isPaused = true
+        
+        isEnd = true
+        
+        addChild(endGameNode)
+		//if level.isSecret {
+		//	levelController.endSecret()
+		//} else {
+		//	levelController.endGame()
+		//}
 	}
 	
     // MARK: - Touch Events
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard !isEnd else {
+            return
+        }
+        
         for touch in touches {
 			
 			nodeToFollow = nil
@@ -488,6 +501,9 @@ class GameScene: SKScene {
         }
     }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard !isEnd else {
+            return
+        }
         for touch in touches {
             // Get location of touch in different coordinate systems
             let location = touch.location(in: self)
@@ -505,6 +521,9 @@ class GameScene: SKScene {
         }
     }
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard !isEnd else {
+            return
+        }
         for _ in touches {
 			
 			if let toolIcon = currentNode as? ToolIcon {
