@@ -51,12 +51,13 @@ class ToolNode: SKSpriteNode, CanBeFired, Breakable {
 		smash(scene: scene)
 	}
 	
-	func engage(_ controller: ControllerNode) {
+	func engage(_ controller: ControllerNode, completion: @escaping () -> ()) {
 		isEngaged = true
 		animating = true
 		controller.isOccupied = true
 		run(SKAction.move(to: controller.scenePosition, duration: 0.2)) {
 			self.animating = false
+			completion()
 		}
 		icon.number -= 1
 		

@@ -9,7 +9,7 @@
 import SpriteKit
 
 protocol CanBeFired {
-	func engage(_ controller: ControllerNode)
+	func engage(_ controller: ControllerNode, completion: @escaping () -> ())
 	func disengage(_ controller: ControllerNode)
 	func prepareForFiring(controller: ControllerNode)
 

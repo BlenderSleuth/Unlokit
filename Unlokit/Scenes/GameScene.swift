@@ -401,8 +401,9 @@ class GameScene: SKScene {
 			fireNode.objectToFire?.disengage(controller)
 		}
 		
-		key.engage(controller)
-		fireNode.objectToFire = key
+		key.engage(controller) {
+			self.fireNode.objectToFire = key
+		}
 	}
 	func unload(_ key: KeyNode) {
 		// If key is animating, don't do anything
@@ -433,7 +434,6 @@ class GameScene: SKScene {
 		
 		// Unarchive a tool from file
 		let newTool = SKNode(fileNamed: tool.type.rawValue)?.children.first as! ToolNode
-		//let newTool = toolNodesRef[tool.type]?.copy() as! ToolNode
 
 		// Remove tool from unarchived scene, add it to this one and engage
 		newTool.removeFromParent()
@@ -444,7 +444,9 @@ class GameScene: SKScene {
 			bomb.setupFuse(scene: self)
 		}
 		addChild(newTool)
-		newTool.engage(controller)
+		newTool.engage(controller) {
+			
+		}
 		
 		// Set object to fire to newTool
 		fireNode.objectToFire = newTool

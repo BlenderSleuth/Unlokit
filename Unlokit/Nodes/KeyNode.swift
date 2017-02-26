@@ -32,7 +32,7 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		emitter.isPaused = true
 	}
 	
-	func engage(_ controller: ControllerNode) {
+	func engage(_ controller: ControllerNode, completion: @escaping () -> ()) {
 		guard let position = getPosition(from: controller) else {
 			return
 		}
@@ -42,6 +42,7 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		animating = true
 		run(SKAction.move(to: position, duration: 0.2)) {
 			self.animating = false
+			completion()
 		}
 		run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(360).degreesToRadians(), duration: 3)), withKey: "rotate")
 	}
