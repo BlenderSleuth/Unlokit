@@ -21,10 +21,10 @@ class GameViewController: UIViewController, LevelController {
 		super.viewDidLoad()
 		navigationController?.isNavigationBarHidden = true
 		// DEBUG if this is the initial view controller
-		//let stage = 1
-		//let level = 1
+		let stage = 2
+		let level = 4
 		
-		//self.level = Stages.sharedInstance.stages[stage-1].levels[level-1]
+		self.level = Stages.sharedInstance.stages[stage-1].levels[level-1]
 		startNewGame()
 	}
 	
@@ -97,7 +97,7 @@ class GameViewController: UIViewController, LevelController {
 		level.completed = true
 		// Get next level
 		var nextLevelNumber = level.number + 1
-		var stageNumber = level.stageNumber
+		var stageNumber = level.stageNumber - 1
 
 		// Check if level exceeded stage number
 		if nextLevelNumber >= Stages.sharedInstance.stages[stageNumber].levels.count {
