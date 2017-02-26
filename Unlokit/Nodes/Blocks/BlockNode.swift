@@ -48,6 +48,15 @@ class BlockNode: SKSpriteNode {
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 
+		// Make all children had same properties
+		for child in children {
+			if let sprite = child as? SKSpriteNode {
+				sprite.lightingBitMask = Category.controllerLight  | Category.toolLight
+				sprite.shadowCastBitMask = Category.zero
+				sprite.shadowedBitMask = Category.controllerLight | Category.toolLight
+			}
+		}
+
 		lightingBitMask = Category.controllerLight  | Category.toolLight
 		shadowCastBitMask = Category.zero
 		shadowedBitMask = Category.controllerLight | Category.toolLight
