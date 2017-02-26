@@ -65,6 +65,8 @@
 		385161361E348E6C0041995A /* ControllerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385161351E348E6C0041995A /* ControllerNode.swift */; };
 		38650F541E25F6A500401ABD /* FireButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38650F531E25F6A500401ABD /* FireButtonNode.swift */; };
 		386590E21E62CC4700823EE1 /* BlockGlu4Fan.sks in Resources */ = {isa = PBXBuildFile; fileRef = 386590E11E62CC4700823EE1 /* BlockGlu4Fan.sks */; };
+		386590E41E62D43000823EE1 /* Level2_8.sks in Resources */ = {isa = PBXBuildFile; fileRef = 386590E31E62D43000823EE1 /* Level2_8.sks */; };
+		386590E61E62D63000823EE1 /* Row8BlockMtlPinnedLeft.sks in Resources */ = {isa = PBXBuildFile; fileRef = 386590E51E62D63000823EE1 /* Row8BlockMtlPinnedLeft.sks */; };
 		386EC6E31E57EBE4000B2A59 /* TitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386EC6E21E57EBE4000B2A59 /* TitleViewController.swift */; };
 		386EC6E51E57EC35000B2A59 /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386EC6E41E57EC35000B2A59 /* InstructionsViewController.swift */; };
 		386EC6E71E57ECAA000B2A59 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386EC6E61E57ECAA000B2A59 /* StoreViewController.swift */; };
@@ -223,6 +225,8 @@
 		385161351E348E6C0041995A /* ControllerNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerNode.swift; sourceTree = "<group>"; };
 		38650F531E25F6A500401ABD /* FireButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireButtonNode.swift; sourceTree = "<group>"; };
 		386590E11E62CC4700823EE1 /* BlockGlu4Fan.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockGlu4Fan.sks; sourceTree = "<group>"; };
+		386590E31E62D43000823EE1 /* Level2_8.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2_8.sks; sourceTree = "<group>"; };
+		386590E51E62D63000823EE1 /* Row8BlockMtlPinnedLeft.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row8BlockMtlPinnedLeft.sks; sourceTree = "<group>"; };
 		386EC6E21E57EBE4000B2A59 /* TitleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleViewController.swift; sourceTree = "<group>"; };
 		386EC6E41E57EC35000B2A59 /* InstructionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
 		386EC6E61E57ECAA000B2A59 /* StoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
@@ -364,6 +368,7 @@
 				381CB8151E626FD90024D592 /* Row8BlockMtlDyn.sks */,
 				381CB8131E626FD90024D592 /* Row5BlockMtlPinned.sks */,
 				381CB8161E626FD90024D592 /* Row8BlockMtlPinned.sks */,
+				386590E51E62D63000823EE1 /* Row8BlockMtlPinnedLeft.sks */,
 				381CB8171E626FD90024D592 /* Row8BlockMtlPinnedFan.sks */,
 			);
 			path = Dynamic;
@@ -713,6 +718,7 @@
 				3835DA341E4FE8A900AD85F0 /* Level2_5.sks */,
 				3835DA421E4FF81000AD85F0 /* Level2_6.sks */,
 				38DE349D1E62666800854616 /* Level2_7.sks */,
+				386590E31E62D43000823EE1 /* Level2_8.sks */,
 			);
 			path = Stage2;
 			sourceTree = "<group>";
@@ -802,6 +808,7 @@
 				381CB83A1E62772E0024D592 /* Row4BlockShdo.sks in Resources */,
 				38E6DA2D1E3BF26F004F8A79 /* SecretTeleport.sks in Resources */,
 				381CB8341E62701B0024D592 /* Row4Fan.sks in Resources */,
+				386590E41E62D43000823EE1 /* Level2_8.sks in Resources */,
 				384F44A11E4B02EB005F6FF7 /* Row4BlockBreakGlu.sks in Resources */,
 				383CA97C1E1DD5E600F8B998 /* GunRef.sks in Resources */,
 				386590E21E62CC4700823EE1 /* BlockGlu4Fan.sks in Resources */,
@@ -864,6 +871,7 @@
 				38D738191E4EDA6E00E79D10 /* SecretTeleportParticles.sks in Resources */,
 				382835A81E4AFCC7006FA602 /* Level1_9.sks in Resources */,
 				38E6DA351E3C02E8004F8A79 /* Bounce2.caf in Resources */,
+				386590E61E62D63000823EE1 /* Row8BlockMtlPinnedLeft.sks in Resources */,
 				383FE5771E4F22FA00FC9094 /* Canvas-Blu.sks in Resources */,
 				38BD09F21E401E2900AE6AF2 /* Row2BlockMtl.sks in Resources */,
 				38EA310C1E5D3C8C006E044A /* EndGame.sks in Resources */,

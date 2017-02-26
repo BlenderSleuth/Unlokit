@@ -22,7 +22,7 @@ class GameViewController: UIViewController, LevelController {
 		navigationController?.isNavigationBarHidden = true
 		// DEBUG if this is the initial view controller
 		let stage = 2
-		let level = 7
+		let level = 8
 		
 		self.level = Stages.sharedInstance.stages[stage-1].levels[level-1]
 		startNewGame()
