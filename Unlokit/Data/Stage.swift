@@ -61,7 +61,7 @@ class Stage {
 	
 	func loadLevels() {
 		// Check if first file is present
-		if FileManager.default.fileExists(atPath: levelFileURL.appendingPathExtension("\(1):\(1)").path) {
+		if FileManager.default.fileExists(atPath: levelFileURL.appendingPathExtension("1:1").path) {
 			var isNil = false
 			var levelNumber = 1
 			
@@ -77,6 +77,17 @@ class Stage {
 					levelNumber += 1
 				} catch {
 					isNil = true
+
+					// Check for any new levels in plist
+					let newLevels = getDefaultLevelsFromPlist(stage: number)
+					if levelNumber < newLevels.count {
+						print("New levels")
+
+						let array = newLevels.suffix(from: levelNumber-1)
+						for level in array {
+							levels.append(level)
+						}
+					}
 				}
 			}
 		} else {
@@ -99,5 +110,3 @@ class Stage {
 		}
 	}
 }
-
-

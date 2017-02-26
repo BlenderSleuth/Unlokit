@@ -12,8 +12,6 @@ import SpriteKit
 class GameViewController: UIViewController, LevelController {
 	
 	var level: Level!
-	
-	var completed = false
 
 	var delegate: LevelSelectDelegate?
 
@@ -88,7 +86,6 @@ class GameViewController: UIViewController, LevelController {
 	
 	func endGame() {
 		level.completed = true
-		completed = true
 		returnToLevelSelect()
 	}
 	func endSecret() {
