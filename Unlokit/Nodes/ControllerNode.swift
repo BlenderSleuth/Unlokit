@@ -19,10 +19,6 @@ class ControllerNode: SKSpriteNode {
 	
 	private var angleLabel: SKLabelNode!
 	
-	required init?(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)
-	}
-	
 	func setupRegion(scene: SKScene) {
 		scenePosition = scene.convert(position, from: self)
 		let sceneOrigin = CGPoint(x: scenePosition.x - frame.width / 2, y: scenePosition.y - frame.height / 2)
@@ -44,12 +40,21 @@ class ControllerNode: SKSpriteNode {
 		angleLabel.zPosition = ZPosition.interface
 		
 		// Show region with SKShapenode
-		let regionRectDebug = regionRect
-		let debugPath = CGPath(ellipseIn: regionRectDebug, transform: nil)
-		let debugNode = SKShapeNode(path: debugPath)
-		debugNode.strokeColor = .blue
-		debugNode.lineWidth = 5
-		scene.addChild(debugNode)
+		let regionRectCircle = regionRect
+		let circlePath = CGPath(ellipseIn: regionRectCircle, transform: nil)
+		let circleNode = SKShapeNode(path: circlePath)
+		circleNode.strokeColor = .blue
+		circleNode.lineWidth = 5
+		scene.addChild(circleNode)
+
+		setupConstraints()
+	}
+
+	private func setupConstraints() {
+		let range = SKRange(lowerLimit: CGFloat(-90).degreesToRadians(), upperLimit: CGFloat(90).degreesToRadians())
+		let constraint = SKConstraint.zRotation(range)
+
+		constraints = [constraint]
 	}
 
 	func addLight() {
@@ -61,7 +66,7 @@ class ControllerNode: SKSpriteNode {
 	}
 
 	func updateAngle() {
-		let angle = Int(zRotation.radiansToDegrees() + 0.5) + 90
-		angleLabel.text = "\(angle)"
+		let angle = Int(zRotation.radiansToDegrees()) + 90
+		angleLabel.text = "\(angle)°"
 	}
 }

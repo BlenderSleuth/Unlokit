@@ -317,14 +317,14 @@ class GameScene: SKScene {
         // Maths to figure out how much rotation to add to controller
         let rot = atan2(p3.y - p1.y, p3.x - p1.x) - atan2(p2.y - p1.y, p2.x - p1.x)
 		
-        // Rotate controller, clamp zRotation
-        let newRot = CGFloat(Int(controller.zRotation + rot + 0.5))
-		
-		// Bit of room for label to display correctly
-        if !(newRot <= CGFloat(-91).degreesToRadians() || newRot >= CGFloat(90).degreesToRadians()) {
-			// Round rotation
-            controller.zRotation += rot
-        }
+		// This prevents the controller from switch to the otherside, constraint does the rest
+        let newRot = controller.zRotation + rot
+		if newRot <= CGFloat(-95).degreesToRadians() || newRot >= CGFloat(95).degreesToRadians() {
+			return
+		}
+
+		// Rotate controller
+		controller.zRotation += rot
     }
     func moveCamera(to location: CGPoint) {
 		camera?.removeAction(forKey: "cameraMove")
@@ -559,7 +559,6 @@ class GameScene: SKScene {
 		if let node = nodeToFollow {
 			moveCamera(with: node)
 		}
-		controller.updateAngle()
 
 		// Iterate through the fans, update fields and particles
 		for fan in fans {
@@ -568,5 +567,8 @@ class GameScene: SKScene {
 				fan.updateFields(rotation: rot)
 			}
 		}
+	}
+	override func didApplyConstraints() {
+		controller.updateAngle()
 	}
 }
