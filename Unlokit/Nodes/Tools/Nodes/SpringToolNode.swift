@@ -21,7 +21,7 @@ class SpringToolNode: ToolNode {
 
 		physicsBody?.restitution = 0.5
 		physicsBody?.categoryBitMask = Category.springTool
-		physicsBody?.contactTestBitMask = Category.bounds | Category.blockMtl | Category.blockGlue | Category.blockBreak
-		physicsBody?.collisionBitMask = Category.all ^ Category.speed // All except speed
+		physicsBody?.contactTestBitMask = Category.bounds | Category.blockMtl |
+										  Category.blockBnc | Category.blockGlue | Category.blockBreak
 	}
 }

@@ -16,20 +16,22 @@ class GameViewController: UIViewController, LevelController {
 	var completed = false
 
 	var delegate: LevelSelectDelegate?
+
+	var currentLevelView: LevelView?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		navigationController?.isNavigationBarHidden = true
 		// DEBUG if this is the initial view controller
 		//let stage = 1
-		//let level = 9
+		//let level = 1
 		
 		//self.level = Stages.sharedInstance.stages[stage-1].levels[level-1]
 		startNewGame()
 	}
 	
 	func startNewGame(levelname: String) {
-		// Put all this on seperate thread or loading
+		// Put this all on seperate thread or loading
 		DispatchQueue.global(qos: .userInitiated).async {
 			// Transistion
 			let transition = SKTransition.crossFade(withDuration: 0.5)
@@ -92,6 +94,33 @@ class GameViewController: UIViewController, LevelController {
 	func endSecret() {
 		startNewGame()
 	}
+
+	func toNextLevel() {
+		// Reference back to array, so it works here
+		level.completed = true
+		// Get next level
+		var nextLevelNumber = level.number + 1
+		var stageNumber = level.stageNumber
+
+		// Check if level exceeded stage number
+		if nextLevelNumber >= Stages.sharedInstance.stages[stageNumber].levels.count {
+			nextLevelNumber = 1
+			stageNumber += 1
+		}
+
+		level = Stages.sharedInstance.stages[stageNumber-1].levels[nextLevelNumber-1]
+		currentLevelView = delegate?.levelViews[stageNumber]?[level.number-1]
+
+		if let view = currentLevelView {
+			delegate?.setNextLevelView(from: view)
+		} else {
+			fatalError("No Level view in Game View Controller")
+		}
+
+		currentLevelView?.makeAvailable()
+		
+		startNewGame()
+	}
 	
 	// Clean up
 	override func viewDidDisappear(_ animated: Bool) {
@@ -109,7 +138,7 @@ class GameViewController: UIViewController, LevelController {
 		navigationController?.view.layer.add(transition, forKey: nil)
 
 		let _ = navigationController?.popViewController(animated: false)
-		delegate?.completed(completed)
+		delegate?.complete()
 	}
 	
 	override var prefersStatusBarHidden: Bool {

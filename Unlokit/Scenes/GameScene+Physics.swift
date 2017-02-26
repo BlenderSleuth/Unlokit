@@ -48,15 +48,6 @@ extension GameScene: SKPhysicsContactDelegate {
 
 			tool.smash(scene: self)
 		}
-		else if collided(with: Category.blockMtl | Category.blockBreak, and: Category.fanTool | Category.gravityTool) {
-			let tool = getNode(for: Category.tools, type: ToolNode.self)
-			tool.smash(scene: self)
-		}
-		// Secret level ********************
-		else if collided(with: Category.secretTeleport , and: Category.key) {
-			levelController.startNewGame(levelname: "Level\(level.stageNumber)_S")
-			levelController.level.isSecret = true
-		}
 		// Blow up conditions **************
 		else if collided(with: Category.blockBreak | Category.fan, and: Category.bombTool) {
 			let bombTool = getNode(for: Category.bombTool, type: BombToolNode.self)
@@ -67,6 +58,25 @@ extension GameScene: SKPhysicsContactDelegate {
 			bombTool.used = true
 
 			bombTool.explode(scene: self, at: contact.contactPoint)
+		}
+		else if collided(with: Category.blockBnc, and: Category.tools | Category.key) {
+			let block = getNode(for: Category.blockBnc, type: BlockNode.self)
+
+			let canBeFired = getOtherNode(for: block, type: CanBeFired.self)
+			// Start timer to smash so that it's not stuck forever
+			canBeFired.startTimer()
+
+			// Bounce animation
+			block.bounce(side: block.getSide(contact: contact))
+		}
+		else if collided(with: Category.blockMtl | Category.blockBreak, and: Category.fanTool | Category.gravityTool) {
+			let tool = getNode(for: Category.tools, type: ToolNode.self)
+			tool.smash(scene: self)
+		}
+		// Secret level ********************
+		else if collided(with: Category.secretTeleport , and: Category.key) {
+			levelController.startNewGame(levelname: "Level\(level.stageNumber)_S")
+			levelController.level.isSecret = true
 		}
 		// Stick to a glue block
 		else if collided(with: Category.blockGlue, and: Category.tools | Category.key) {
@@ -118,25 +128,6 @@ extension GameScene: SKPhysicsContactDelegate {
 				}
 			}
 		}
-		else if collided(with: Category.blockMtl | Category.blockBreak, and: Category.glueTool) {
-			let glue = getNode(for: Category.glueTool, type: GlueToolNode.self)
-			let block = getOtherNode(for: glue, type: BlockMtlNode.self)
-
-			if glue.used {
-				return
-			}
-			glue.used = true
-
-			let blockGlue = block.glueVersion(scene: self)
-			block.parent?.addChild(blockGlue)
-
-			block.removeFromParent()
-			glue.removeFromParent()
-
-			let side = blockGlue.getSide(contact: contact)
-			blockGlue.bounce(side: side)
-			
-		}
 		// Create spring block *************
 		else if collided(with: Category.blockMtl | Category.blockBreak, and: Category.springTool) {
 			let spring = getNode(for: Category.springTool, type: SpringToolNode.self)
@@ -159,30 +150,43 @@ extension GameScene: SKPhysicsContactDelegate {
 				block.bounce(side: block.getSide(contact: contact))
 			}
 		}
+		else if collided(with: Category.blockMtl | Category.blockBreak, and: Category.glueTool) {
+			let glue = getNode(for: Category.glueTool, type: GlueToolNode.self)
+			let block = getOtherNode(for: glue, type: BlockMtlNode.self)
+
+			if glue.used {
+				return
+			}
+			glue.used = true
+
+			let blockGlue = block.glueVersion(scene: self)
+			block.parent?.addChild(blockGlue)
+
+			block.removeFromParent()
+			glue.removeFromParent()
+
+			let side = blockGlue.getSide(contact: contact)
+			blockGlue.bounce(side: side)
+			
+		}
+		else if collided(with: Category.bombTool, and: Category.tools) {
+			let bomb = getNode(for: Category.bombTool, type: BombToolNode.self)
+			bomb.explode(scene: self)
+		}
 		// Speed node collision ************
 		else if collided(with: Category.speed, and: Category.tools | Category.key) {
 			let speed = getNode(for: Category.speed, type: SpeedNode.self)
 			let tool = getOtherNode(for: speed, type: SKSpriteNode.self)
 
-			// TODO: Add particles
+			// TODO: Add particles and sound
 
 			// Make tool go higher
 			tool.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 20))
 		}
-		// This needs to be at the end so that bombs don't explode on normal bounce
-		else if collided(with: Category.blockBnc, and: Category.tools | Category.key) {
-			let block = getNode(for: Category.blockBnc, type: BlockNode.self)
-
-			let canBeFired = getOtherNode(for: block, type: CanBeFired.self)
-			// Start timer to smash so that it's not stuck forever
-			canBeFired.startTimer()
-
-			// Bounce animation
-			block.bounce(side: block.getSide(contact: contact))
-		} // Smash conditions ****************
+		// Smash conditions ****************
 		else if collided(with: Category.blockMtl, and: Category.key) ||
-			collided(with: Category.blockBreak, and: Category.key) ||
-			collided(with: Category.bounds, and: Category.key) {
+				collided(with: Category.blockBreak, and: Category.key) ||
+				collided(with: Category.bounds, and: Category.key) {
 			let key = getNode(for: Category.key, type: KeyNode.self)
 			key.smash(scene: self)
 		}

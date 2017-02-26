@@ -12,7 +12,6 @@ class BlockMtlNode: BlockNode {
 
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-		
 		physicsBody?.categoryBitMask = Category.blockMtl
 	}
 	// Create version of self that has kind of bncNode

@@ -19,7 +19,7 @@ class GravityToolNode: ToolNode {
 		super.setupPhysics(shadowed: isShadowed)
 
 		physicsBody?.categoryBitMask = Category.gravityTool
-		physicsBody?.contactTestBitMask = Category.bounds | Category.blockMtl | Category.blockGlue
-		physicsBody?.collisionBitMask = Category.all ^ Category.speed // All except speed
+		physicsBody?.contactTestBitMask = Category.bounds | Category.blockMtl |
+										  Category.blockBnc | Category.blockGlue | Category.blockBreak
 	}
 }

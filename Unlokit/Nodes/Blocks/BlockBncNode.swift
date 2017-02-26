@@ -14,9 +14,9 @@ class BlockBncNode: BlockNode {
 		super.init(coder: aDecoder)
 		
 		physicsBody?.restitution = 0.8
-		
+
 		physicsBody?.categoryBitMask = Category.blockBnc
-		physicsBody?.contactTestBitMask = Category.tools | Category.key | Category.lock
+		physicsBody?.contactTestBitMask = Category.zero
 	}
 	
 	override func bounce(side: Side) {

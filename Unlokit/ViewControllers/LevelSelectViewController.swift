@@ -9,7 +9,11 @@
 import UIKit
 
 protocol LevelSelectDelegate: class {
-	func completed(_ completed: Bool)
+	func complete()
+	func setNextLevelView(from levelView: LevelView)
+
+	var currentLevelView: LevelView? { get set }
+	var levelViews: [Int: [LevelView]] { get }
 }
 
 class LevelSelectViewController: UIViewController, LevelViewDelegate, LevelSelectDelegate {
@@ -59,7 +63,7 @@ class LevelSelectViewController: UIViewController, LevelViewDelegate, LevelSelec
 			}
 		}
 
-		// reset current level view
+		// Reset current level view
 		nextLevelView = nil
 	}
 	
@@ -77,9 +81,6 @@ class LevelSelectViewController: UIViewController, LevelViewDelegate, LevelSelec
 		// To find the y position of each stage view
 		var yPos: CGFloat = 0
 		
-		// Local variable, cleaner
-		
-		
 		for stage in Stages.sharedInstance.stages {
 			let stageView = StageView(frame: CGRect(origin: CGPoint(x: 0, y: yPos), size: size), stage: stage, delegate: self)
 			mainScrollView.addSubview(stageView)
@@ -93,7 +94,7 @@ class LevelSelectViewController: UIViewController, LevelViewDelegate, LevelSelec
 	func setNextLevelView(from levelView: LevelView) {
 		// Find next level view and make it avaible
 		let number = levelView.level.number
-		// Zero indexing of array means that returning the number
+		// Zero indexing of array means that the number is correct
 		nextLevelView = levelViews[levelView.level.stageNumber]?[number]
 	}
 	
@@ -113,21 +114,10 @@ class LevelSelectViewController: UIViewController, LevelViewDelegate, LevelSelec
 			backFromCompletion = false
 		}
 	}
-	
-	@IBAction func unwindToList(sender: UIStoryboardSegue) {		
-		if let gameVC = sender.source as? GameViewController {
-			if gameVC.completed {
-				backFromCompletion = true
-				nextLevelView?.makeAvailable()
-			}
-		}
-	}
 
-	func completed(_ completed: Bool) {
-		if completed {
-			backFromCompletion = true
-			nextLevelView?.makeAvailable()
-		}
+	func complete() {
+		backFromCompletion = true
+		nextLevelView?.makeAvailable()
 	}
 
 	override var prefersStatusBarHidden: Bool {

@@ -20,11 +20,9 @@ protocol CanBeFired {
 
 class FireButtonNode: SKSpriteNode {
 	
-	//MARK: Variable
-	// Initialised as implicitly-unwrapped optionals for file archive compatability
-    var label: SKLabelNode!
-    var redCircle: SKShapeNode!
-    var blueCircle: SKShapeNode!
+	//MARK: Variables
+	let nonPressedtexture = SKTexture(image: #imageLiteral(resourceName: "FireButton"))
+	let pressedTexture = SKTexture(image: #imageLiteral(resourceName: "FireButtonPressed"))
     
     var pressed = false
 	var objectToFire: CanBeFired?
@@ -36,35 +34,19 @@ class FireButtonNode: SKSpriteNode {
     // Used for initialising from file
     required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-		redCircle = SKShapeNode(circleOfRadius: size.width / 2)
-		redCircle.fillColor = .red
-		redCircle.strokeColor = .red
-		redCircle.alpha = 0.8
-		
-		blueCircle = SKShapeNode(circleOfRadius: size.width / 2)
-		blueCircle.fillColor = .blue
-		blueCircle.strokeColor = .blue
-		blueCircle.isHidden = true
-		
-		label = SKLabelNode(text: "Fire")
-		label.position = CGPoint(x: 0, y: -30)
-		label.fontName = "NeuropolXRg-Regular"
-		label.fontSize = 84
-		label.zPosition = ZPosition.interface
 		
 		self.position = position
-		
-		addChild(redCircle)
-		addChild(blueCircle)
-		addChild(label)
 		
 		isUserInteractionEnabled = true
     }
 	
     private func press() {
         pressed = !pressed
-        redCircle.isHidden = pressed
-        blueCircle.isHidden = !pressed
+		if pressed {
+			texture = pressedTexture
+		} else {
+			texture = nonPressedtexture
+		}
     }
     
 	private func fire(scene: GameScene) {
@@ -111,8 +93,10 @@ class FireButtonNode: SKSpriteNode {
 	}
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         press()
-		if let scn = scene as? GameScene {
-			fire(scene: scn)
+		// Check if touch is in button
+		let location = touches.first!.location(in: parent!)
+		if frame.contains(location), let scene = scene as? GameScene {
+			fire(scene: scene)
 		}
     }
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {

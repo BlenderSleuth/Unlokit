@@ -36,6 +36,7 @@ enum Side {
 class BlockNode: SKSpriteNode {
 
 	var beamNode: BeamBlockNode?
+	var beamJoints: [SKPhysicsJoint]?
 
 	// For calculating the side that was contacted
 	var up: CGPoint!
@@ -51,6 +52,7 @@ class BlockNode: SKSpriteNode {
 		shadowCastBitMask = Category.zero
 		shadowedBitMask = Category.controllerLight | Category.toolLight
 
+		physicsBody?.categoryBitMask = Category.blockBeam
 		physicsBody?.contactTestBitMask = Category.zero
 		physicsBody?.collisionBitMask = Category.all
 

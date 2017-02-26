@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IS7-zk-VYb">
-    <device id="ipad9_7" orientation="portrait">
+    <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -24,11 +24,11 @@
                         <viewControllerLayoutGuide type="bottom" id="ufR-IP-bfb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="D6t-1A-6H4">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TJd-kM-CGv">
-                                <rect key="frame" x="270" y="398" width="228" height="228"/>
+                                <rect key="frame" x="270" y="142" width="484" height="484"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="TJd-kM-CGv" secondAttribute="height" multiplier="1:1" id="WDt-Qt-qjC"/>
                                 </constraints>
@@ -39,14 +39,14 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HSr-ZD-lVt">
-                                <rect key="frame" x="20" y="492.5" width="242" height="39"/>
+                                <rect key="frame" x="20" y="364.5" width="242" height="39"/>
                                 <fontDescription key="fontDescription" name="NeuropolXRg-Regular" family="Neuropol X" pointSize="22"/>
                                 <connections>
                                     <segue destination="90l-Rb-BlB" kind="show" id="21f-7L-WUI"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kTR-qb-Wto">
-                                <rect key="frame" x="506" y="486.5" width="242" height="51"/>
+                                <rect key="frame" x="762" y="358.5" width="242" height="51"/>
                                 <fontDescription key="fontDescription" name="NeuropolXRg-Regular" family="Neuropol X" pointSize="32"/>
                                 <state key="normal" title="Instructions"/>
                                 <connections>
@@ -86,11 +86,11 @@
                         <viewControllerLayoutGuide type="bottom" id="EFL-VB-RFF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="N13-Qj-87C">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ebY-sg-tCx">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -120,11 +120,11 @@
                         <viewControllerLayoutGuide type="bottom" id="2aQ-lh-DJL"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="i8w-nn-eHs">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YHO-i5-b1e">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </scrollView>
                         </subviews>
@@ -154,7 +154,7 @@
                         <viewControllerLayoutGuide type="bottom" id="6PR-h0-5dN"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="0gM-kr-ESG">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -184,7 +184,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="SKView">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>

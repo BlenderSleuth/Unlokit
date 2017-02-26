@@ -12,6 +12,9 @@ class FanNode: SKSpriteNode, Breakable {
 	// Children
 	var gravityField: SKFieldNode!
 	var dragField: SKFieldNode!
+
+	var backGravityField: SKFieldNode?
+
 	private var emitter: SKEmitterNode!
 
 	var glueBlock: BlockGlueNode?
@@ -62,7 +65,6 @@ class FanNode: SKSpriteNode, Breakable {
 		// Setup particles and fields
 		setupParticles(scene: level)
 		setupFields(scene: level)
-
 		
 		// Check if fan needs field updates
 		isMoving = checkHasActions(node: self)
@@ -72,8 +74,6 @@ class FanNode: SKSpriteNode, Breakable {
 		
 		// Set strength to default value
 		strength = 60
-
-
 	}
 	
 	private func getDataFromParent() {
@@ -187,6 +187,28 @@ class FanNode: SKSpriteNode, Breakable {
 		
 		gravityField.region = fieldRegion
 		dragField.region = fieldRegion
+
+		// TODO
+		//if isMoving {
+			//print("moving")
+			//createBackField(scene: scene)
+		//}
+	}
+
+	func createBackField(scene: SKScene) {
+		let rotation = rotationRelativeToSceneFor(node: self)
+		let fieldRotation = self.fieldRotation(rotation)
+		backGravityField = SKFieldNode.linearGravityField(withVector: vector_float3(0,-1,0))
+		backGravityField?.categoryBitMask = Category.fields
+
+		// Set the back field region
+		var transform = CGAffineTransform(rotationAngle: fieldRotation)
+		let backFieldRect = CGRect(origin: -fieldRect.origin, size: -self.size)
+		let backRegionPath = CGPath(rect: backFieldRect, transform: &transform)
+		let backFieldRegion = SKRegion(path: backRegionPath)
+
+		backGravityField?.region = backFieldRegion
+		addChild(backGravityField!)
 	}
 	
 	func shatter() {
@@ -199,18 +221,6 @@ class FanNode: SKSpriteNode, Breakable {
 			level.fans.remove(at: level.fans.index(of: self)!)
 		}
 		removeFromParent()
-	}
-	func rotationRelativeToSceneFor(node: SKNode) -> CGFloat {
-		var nodeRotation = CGFloat(0)
-		var tempNode: SKNode? = node
-		
-		// Loop through parents until scene or nil
-		while !(tempNode is SKScene) && (tempNode != nil){
-			nodeRotation += tempNode!.zRotation
-			tempNode = tempNode!.parent
-		}
-		
-		return nodeRotation
 	}
 	
 	// Check for actions other than animate
@@ -244,6 +254,13 @@ class FanNode: SKSpriteNode, Breakable {
 		
 		gravityField.region = fieldRegion
 		dragField.region = fieldRegion
+
+		// Set the back field region
+		let backFieldRect = CGRect(origin: fieldRect.origin, size: -self.size)
+		let backRegionPath = CGPath(rect: backFieldRect, transform: &transform)
+		let backFieldRegion = SKRegion(path: backRegionPath)
+
+		backGravityField?.region = backFieldRegion
 
 		// Get emitter from child, doesn't work from property; not the most efficient, but...
 		let emitter = childNode(withName: "emitter")?.children.first as! SKEmitterNode

@@ -357,6 +357,19 @@ func getDefaultLevelsFromPlist(stage number: Int) -> [Level]{
 	
 	return levelArray
 }
+//********* SpriteKit functions *****************************
+func rotationRelativeToSceneFor(node: SKNode) -> CGFloat {
+	var nodeRotation = CGFloat(0)
+	var tempNode: SKNode? = node
+
+	// Loop through parents until scene or nil
+	while !(tempNode is SKScene) && (tempNode != nil){
+		nodeRotation += tempNode!.zRotation
+		tempNode = tempNode!.parent
+	}
+
+	return nodeRotation
+}
 
 
 

@@ -8,19 +8,16 @@
 
 import SpriteKit
 
-class LevelButtonNode: SKSpriteNode {
-    var pressedButton: SKTexture!
-    var nonPressedButton: SKTexture!
-    
+class LevelSelectButtonNode: SKSpriteNode {
+	let nonPressedButton = SKTexture(image: #imageLiteral(resourceName: "LevelButton"))
+	let pressedButton = SKTexture(image: #imageLiteral(resourceName: "LevelButtonPressed"))
+
     var pressed = false
+
+	var delegate: LevelController?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
-        pressedButton = SKTexture(imageNamed: "LevelButtonPressed")
-        nonPressedButton = texture!
-        
-        self.position = position
         
         isUserInteractionEnabled = true
     }
@@ -35,38 +32,31 @@ class LevelButtonNode: SKSpriteNode {
         
     }
     func toLevelSelect() {
-        
-    }
-    func toNextLevel() {
-        
+        delegate?.endGame()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         press()
     }
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in touches {
-            let location = touch.location(in: self)
-            if frame.contains(location) {
-                
-            }
-        }
-    }
+	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+		press()
+		let location = touches.first!.location(in: parent!)
+		if frame.contains(location) {
+			toLevelSelect()
+		}
+	}
 }
 
 class NextLevelButtonNode: SKSpriteNode {
-    var pressedButton: SKTexture!
-    var nonPressedButton: SKTexture!
+	let nonPressedButton = SKTexture(image: #imageLiteral(resourceName: "NextButton"))
+    let pressedButton = SKTexture(image: #imageLiteral(resourceName: "NextButtonPressed"))
     
     var pressed = false
+
+	var delegate: LevelController?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
-        pressedButton = SKTexture(imageNamed: "LevelButtonPressed")
-        nonPressedButton = texture!
-        
-        self.position = position
         
         isUserInteractionEnabled = true
     }
@@ -80,22 +70,18 @@ class NextLevelButtonNode: SKSpriteNode {
         }
         
     }
-    func toLevelSelect() {
-        
-    }
     func toNextLevel() {
-        
+        delegate?.toNextLevel()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         press()
     }
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in touches {
-            let location = touch.location(in: self)
-            if frame.contains(location) {
-                
-            }
-        }
-    }
+		press()
+		let location = touches.first!.location(in: parent!)
+		if frame.contains(location) {
+			toNextLevel()
+		}
+	}
 }

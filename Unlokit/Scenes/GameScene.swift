@@ -22,27 +22,29 @@ struct Category {
 	static let blockBreak: UInt32		= 0b1 << 6
 
 	static let blockShadow: UInt32		= 0b1 << 7
+
+	static let blockBeam: UInt32		= 0b1 << 8
 	
 	static let blocks: UInt32 = Category.blockMtl | Category.blockBnc | Category.blockGlue | Category.blockBreak
 	
 	// MARK: - Tools
-	static let springTool: UInt32		= 0b1 << 8
-	static let glueTool: UInt32			= 0b1 << 9
-	static let fanTool: UInt32			= 0b1 << 10
-	static let gravityTool: UInt32		= 0b1 << 11
-	static let bombTool: UInt32			= 0b1 << 12
+	static let springTool: UInt32		= 0b1 << 9
+	static let glueTool: UInt32			= 0b1 << 10
+	static let fanTool: UInt32			= 0b1 << 11
+	static let gravityTool: UInt32		= 0b1 << 12
+	static let bombTool: UInt32			= 0b1 << 13
 	static let tools: UInt32 = Category.springTool | Category.glueTool | Category.fanTool | Category.gravityTool | Category.bombTool
 	
 	// MARK: - Fields
-	static let fanGravityField: UInt32	= 0b1 << 13
-	static let fanDragField: UInt32		= 0b1 << 14
+	static let fanGravityField: UInt32	= 0b1 << 14
+	static let fanDragField: UInt32		= 0b1 << 15
 	static let fields: UInt32			= Category.fanGravityField | Category.fanDragField
 	
 	// MARK: - Other nodes
-	static let fan: UInt32				= 0b1 << 15
+	static let fan: UInt32				= 0b1 << 16
 
-	static let speed: UInt32			= 0b1 << 16
-	static let secretTeleport: UInt32	= 0b1 << 17
+	static let speed: UInt32			= 0b1 << 17
+	static let secretTeleport: UInt32	= 0b1 << 18
 
 	static let controllerLight: UInt32	= 0b1 << 0
 	static let toolLight: UInt32		= 0b1 << 0
@@ -75,6 +77,7 @@ protocol LevelController: class {
 	func endGame()
 	func endSecret()
 	func returnToLevelSelect()
+	func toNextLevel()
 }
 
 class GameScene: SKScene {
@@ -459,20 +462,26 @@ class GameScene: SKScene {
 	}
 	
 	func endGame() {
-        let endGameNode = SKScene(fileNamed: "EndGame")!.childNode(withName: "endGame")!
-        endGameNode.removeFromParent()
-        isPaused = true
-        
-        isEnd = true
-        
-        addChild(endGameNode)
-		//if level.isSecret {
-		//	levelController.endSecret()
-		//} else {
-		//	levelController.endGame()
-		//}
+		if level.isSecret {
+			levelController.endSecret()
+		} else {
+			let endGameNode = SKScene(fileNamed: "EndGame")!.childNode(withName: "endGame")!
+			endGameNode.removeFromParent()
+			endGameNode.alpha = 0
+
+			addChild(endGameNode)
+
+			isEnd = true
+
+			(endGameNode.childNode(withName: "levelButton") as! LevelSelectButtonNode).delegate = levelController
+			(endGameNode.childNode(withName: "nextButton") as! NextLevelButtonNode).delegate = levelController
+
+			endGameNode.run(SKAction.fadeIn(withDuration: 0.5)) {
+				self.isPaused = true
+			}
+		}
 	}
-	
+
     // MARK: - Touch Events
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard !isEnd else {
@@ -555,7 +564,7 @@ class GameScene: SKScene {
 		// Iterate through the fans, update fields and particles
 		for fan in fans {
 			if fan.isMoving || fan.physicsBody!.isDynamic {
-				let rot = fan.rotationRelativeToSceneFor(node: fan)
+				let rot = rotationRelativeToSceneFor(node: fan)
 				fan.updateFields(rotation: rot)
 			}
 		}

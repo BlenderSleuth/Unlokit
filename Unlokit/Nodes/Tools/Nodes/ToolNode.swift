@@ -19,13 +19,16 @@ enum ToolType: String {
 }
 
 // Only use this for subclassing...
-class ToolNode: SKSpriteNode, CanBeFired {
+class ToolNode: SKSpriteNode, CanBeFired, Breakable {
     
     var type: ToolType!
 	
 	var isEngaged = false
 	var animating = false
 	var used = false
+
+	var glueBlock: BlockGlueNode?
+	var side: Side?
 
 	private var timerStarted = false
 	
@@ -34,6 +37,11 @@ class ToolNode: SKSpriteNode, CanBeFired {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+	func shatter() {
+		if let scene = scene as? GameScene {
+			smash(scene: scene)
+		}
+	}
 	func remove() {
 		// For overriding to clean up
 		removeFromParent()
@@ -81,7 +89,7 @@ class ToolNode: SKSpriteNode, CanBeFired {
 		// Override in subclasses
 		physicsBody?.categoryBitMask = Category.zero
 		physicsBody?.contactTestBitMask = Category.bounds
-		physicsBody?.collisionBitMask = Category.all
+		physicsBody?.collisionBitMask = Category.all ^ Category.speed // All except speed
 		physicsBody?.fieldBitMask = Category.fields
 
 		if isShadowed {
@@ -94,7 +102,6 @@ class ToolNode: SKSpriteNode, CanBeFired {
 
 	func smash(scene: GameScene) {
 		guard parent != nil else {
-			print("No parent")
 			return
 		}
 

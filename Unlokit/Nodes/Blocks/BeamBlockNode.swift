@@ -14,13 +14,13 @@ class BeamBlockNode: BlockNode {
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 
-		physicsBody?.categoryBitMask = Category.zero
+		physicsBody?.categoryBitMask = Category.blockBeam
 		physicsBody?.contactTestBitMask = Category.zero
-		physicsBody?.collisionBitMask = Category.all// ^ Category.blocks
+		physicsBody?.collisionBitMask = Category.all
 	}
 
 	func setup(scene: GameScene) {
-
+		// Create array of blocks
 		var blocks = [BlockNode]()
 		for child in children {
 			if let ref = child as? SKReferenceNode {
@@ -40,7 +40,9 @@ class BeamBlockNode: BlockNode {
 		for block in blocks {
 			// Remove existing joints
 			if !block.physicsBody!.joints.isEmpty, let joint = block.physicsBody?.joints[0] {
-				scene.physicsWorld.remove(joint)
+				if !(block is BlockGlueNode) {
+					scene.physicsWorld.remove(joint)
+				}
 			}
 
 			if block.physicsBody!.pinned {
@@ -49,6 +51,7 @@ class BeamBlockNode: BlockNode {
 
 			block.physicsBody?.isDynamic = true
 			block.beamNode = self
+			block.zRotation = rotationRelativeToSceneFor(node: block)
 
 			if lastBlock == nil {
 				lastBlock = block

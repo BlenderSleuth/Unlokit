@@ -18,9 +18,8 @@ class FanToolNode: ToolNode {
 	override func setupPhysics(shadowed isShadowed: Bool) {
 		super.setupPhysics(shadowed: isShadowed)
 
-
 		physicsBody?.categoryBitMask = Category.fanTool
-		physicsBody?.contactTestBitMask = Category.bounds | Category.blockMtl | Category.blockBreak | Category.blockGlue
-		physicsBody?.collisionBitMask = Category.all ^ Category.speed // All except speed
+		physicsBody?.contactTestBitMask = Category.bounds | Category.blockMtl |
+										  Category.blockBnc | Category.blockGlue | Category.blockBreak
 	}
 }

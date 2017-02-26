@@ -23,11 +23,11 @@ class BombToolNode: ToolNode {
 	
 	override func setupPhysics(shadowed isShadowed: Bool) {
 		super.setupPhysics(shadowed: isShadowed)
-
 		
 		physicsBody?.categoryBitMask = Category.bombTool
-		physicsBody?.contactTestBitMask = Category.bounds | Category.blockMtl | Category.blockGlue | Category.blockBreak
-		physicsBody?.collisionBitMask = Category.all ^ Category.speed // All except speed
+		physicsBody?.contactTestBitMask = Category.bounds | Category.blockMtl |
+										  Category.blockBnc | Category.blockGlue |
+										  Category.blockBreak | Category.tools
 	}
 	func setupFuse(scene: SKScene) {
 		fuse = childNode(withName: "fuse")?.children.first as! SKEmitterNode
@@ -77,23 +77,23 @@ class BombToolNode: ToolNode {
 		scene.addChild(explode)
 		removeFromParent()
 	}
+	func explode(scene: SKScene) {
+		guard let parent = parent else {
+			return
+		}
+		position = scene.convert(self.position, from: parent)
+		explode(scene: scene, at: position)
+	}
 	func countDown(scene: SKScene, at point: CGPoint, side: Side) {
 		var countDown = 3
-		
-		let position: CGPoint
-		if let block = self.parent as? BlockGlueNode {
-			position = scene.convert(side.position, from: block)
-		} else {
-			position = point
-		}
 		
 		let label = SKLabelNode(text: "\(countDown)")
 		label.fontName = "NeuropolXRg-Regular"
 		label.fontSize = 64
 		label.verticalAlignmentMode = .center
 		label.zPosition = 100
-		label.position = position
-		scene.addChild(label)
+		//label.position = position
+		addChild(label)
 		
 		let wait = SKAction.wait(forDuration: 1)
 		let block = SKAction.run {
@@ -109,6 +109,14 @@ class BombToolNode: ToolNode {
 			if let glueBlock = self.parent as? BlockGlueNode {
 				glueBlock.remove(for: side)
 			}
+
+			let position: CGPoint
+			if let block = self.parent as? BlockGlueNode {
+				position = scene.convert(side.position, from: block)
+			} else {
+				position = point
+			}
+
 			self.move(toParent: scene)
 			self.explode(scene: scene, at: position)
 		}

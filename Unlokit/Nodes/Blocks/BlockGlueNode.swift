@@ -16,6 +16,11 @@ class BlockGlueNode: BlockNode {
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		physicsBody?.categoryBitMask = Category.blockGlue
+		physicsBody?.collisionBitMask = Category.all ^ Category.tools
+
+		if physicsBody!.isDynamic {
+			physicsBody?.fieldBitMask = Category.fields
+		}
 	}
 	
 	func checkConnected(scene: GameScene) {
@@ -54,7 +59,6 @@ class BlockGlueNode: BlockNode {
 				fanNode.removeFromParent()
 
 				if add(node: fanNode, to: side) {
-
 					// Fan setup after it has been added
 					fanNode.setup(level: scene, block: self, side: side)
 
@@ -150,16 +154,36 @@ class BlockGlueNode: BlockNode {
 		
 		connected[side] = true
 		
-		node.physicsBody?.isDynamic = false
-		
 		if node.parent == nil {
 			node.position = position
 			node.zRotation = zRotation
 			addChild(node)
 		} else {
 			node.move(toParent: self)
-			node.run(SKAction.group([SKAction.move(to: position, duration: 0.1), SKAction.rotate(toAngle: zRotation, duration: 0.1)]))
+			node.run(SKAction.move(to: position, duration: 0.1)) {
+
+				// Check if the physics body is dynamic
+				if self.physicsBody!.isDynamic {
+					if let body1 = node.physicsBody,
+						let body2 = self.physicsBody,
+						let scene = self.scene,
+						let parent = node.parent {
+
+						node.physicsBody?.contactTestBitMask ^= Category.blockGlue
+
+						let anchor = scene.convert(node.position, from: parent)
+						let joint = SKPhysicsJointPin.joint(withBodyA: body1, bodyB: body2, anchor: anchor)
+						scene.physicsWorld.add(joint)
+					}
+					
+				} else {
+					node.physicsBody?.isDynamic = false
+				}
+			}
 		}
+
+
+
 		return true
 	}
 	
