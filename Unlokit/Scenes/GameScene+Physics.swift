@@ -163,11 +163,11 @@ extension GameScene: SKPhysicsContactDelegate {
 			block.parent?.addChild(blockGlue)
 
 			block.removeFromParent()
-			glue.removeFromParent()
+			glue.remove()
 
 			let side = blockGlue.getSide(contact: contact)
 			blockGlue.bounce(side: side)
-			
+			blockGlue.checkConnected(scene: self)
 		}
 		else if collided(with: Category.bombTool, and: Category.tools) {
 			let bomb = getNode(for: Category.bombTool, type: BombToolNode.self)

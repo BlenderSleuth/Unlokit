@@ -1,0 +1,47 @@
+//
+//  BallSpawnerNode.swift
+//  Unlokit
+//
+//  Created by Ben Sutherland on 5/3/17.
+//  Copyright © 2017 blendersleuthdev. All rights reserved.
+//
+
+import SpriteKit
+protocol NodeSetup {
+	func setup(scene: GameScene)
+}
+
+class BallSpawnerNode: SKSpriteNode, NodeSetup {
+	func setup(scene: GameScene) {
+		var data: NSDictionary?
+
+		// Find user data from parents
+		var tempNode: SKNode = self
+		while !(tempNode is SKScene) {
+			if let userData = tempNode.userData {
+				data = userData
+			}
+			tempNode = tempNode.parent!
+		}
+
+		// Set instance properties
+		if let number = data?["number"] as? Int {
+			// Iterate
+			for index in 1...number {
+				// Create ball
+				let ball = SKSpriteNode(imageNamed: "Ball")
+				ball.size = CGSize(width: 32, height: 32)
+				ball.physicsBody = SKPhysicsBody(circleOfRadius: 16)
+				ball.physicsBody?.categoryBitMask = Category.ball
+				ball.physicsBody?.collisionBitMask = Category.all
+				ball.physicsBody?.mass = 0.3
+				ball.position = scene.convert(CGPoint.zero, from: self)
+				ball.alpha = 0
+				delay(0.4 * Double(index)) {
+					ball.run(SKAction.fadeIn(withDuration: 0.5))
+					scene.addChild(ball)
+				}
+			}
+		}
+	}
+}

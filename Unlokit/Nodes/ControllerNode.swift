@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class ControllerNode: SKSpriteNode {
+class ControllerNode: SKSpriteNode, NodeSetup {
 	var region: SKRegion!
 	
 	var isOccupied = false
@@ -18,8 +18,13 @@ class ControllerNode: SKSpriteNode {
 	var isShadowed = false
 	
 	private var angleLabel: SKLabelNode!
+
+	func setup(scene: GameScene) {
+		setupRegion(scene: scene)
+		setupConstraints()
+	}
 	
-	func setupRegion(scene: SKScene) {
+	private func setupRegion(scene: SKScene) {
 		scenePosition = scene.convert(position, from: self)
 		let sceneOrigin = CGPoint(x: scenePosition.x - frame.width / 2, y: scenePosition.y - frame.height / 2)
 		
@@ -46,8 +51,6 @@ class ControllerNode: SKSpriteNode {
 		circleNode.strokeColor = .blue
 		circleNode.lineWidth = 5
 		scene.addChild(circleNode)
-
-		setupConstraints()
 	}
 
 	private func setupConstraints() {

@@ -210,11 +210,11 @@
 			<key>BombTool</key>
 			<integer>15</integer>
 			<key>GlueTool</key>
-			<integer>5</integer>
+			<integer>10</integer>
 			<key>FanTool</key>
-			<integer>5</integer>
+			<integer>7</integer>
 			<key>GravityTool</key>
-			<integer>5</integer>
+			<integer>2</integer>
 		</dict>
 		<key>Level10</key>
 		<dict>

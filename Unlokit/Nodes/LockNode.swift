@@ -19,7 +19,7 @@ class LockNode: SKSpriteNode {
 		physicsBody?.density = 0.01
 		physicsBody?.categoryBitMask = Category.lock
 		physicsBody?.contactTestBitMask = Category.zero
-		physicsBody?.collisionBitMask = Category.blocks | Category.balls | Category.bounds
+		physicsBody?.collisionBitMask = Category.blocks | Category.ball | Category.bounds
 		getDataFromParent()
 
 	}

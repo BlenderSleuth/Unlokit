@@ -45,7 +45,7 @@ struct Category {
 
 	static let speed: UInt32			= 0b1 << 17
 	static let secretTeleport: UInt32	= 0b1 << 18
-	static let balls: UInt32			= 0b1 << 19
+	static let ball: UInt32			= 0b1 << 19
 
 	static let controllerLight: UInt32	= 0b1 << 0
 	static let toolLight: UInt32		= 0b1 << 0
@@ -139,7 +139,6 @@ class GameScene: SKScene {
 	func setupNodes(delegate: LevelController) {
 		// Bind controller to local variable
 		controller = childNode(withName: "//controller") as! ControllerNode
-		controller.setupRegion(scene: self) // Pass in scene for controller to use
 
 		// Check for shadow nodes
 		enumerateChildNodes(withName: "//blockShdo") { _, stop in
@@ -190,6 +189,17 @@ class GameScene: SKScene {
 		// Bind lock to local variable
 		lock = childNode(withName: "//lock") as! LockNode
 		lock.setupPhysics()
+
+		// Go through the nodes of the scene to run their setup method
+		var nodesToSetup = [NodeSetup]()
+		enumerateChildNodes(withName: "//*") { node, _ in
+			if let nodeToSetup = node as? NodeSetup {
+				nodesToSetup.append(nodeToSetup)
+			}
+		}
+		for node in nodesToSetup {
+			node.setup(scene: self)
+		}
 	}
 	func setupCamera() {
 		//Get correct aspect ratio for device
