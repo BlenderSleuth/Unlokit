@@ -48,6 +48,8 @@ class FanNode: SKSpriteNode, Breakable {
 		emitter = childNode(withName: "emitter")!.children.first as! SKEmitterNode
 		
 		physicsBody = SKPhysicsBody(rectangleOf: frame.size, center: CGPoint(x: 0, y: frame.size.height / 2))
+		// Has to weigh something, but very small amount
+		physicsBody?.mass = 0.001
 
 		physicsBody?.categoryBitMask = Category.fan
 		physicsBody?.contactTestBitMask = Category.bombTool

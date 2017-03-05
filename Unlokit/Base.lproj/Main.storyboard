@@ -200,7 +200,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IS7-zk-VYb" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedStatusBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="WCf-La-B8q">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="WCf-La-B8q">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.12390624729999999" green="0.12390624729999999" blue="0.12390624729999999" alpha="1" colorSpace="deviceRGB"/>

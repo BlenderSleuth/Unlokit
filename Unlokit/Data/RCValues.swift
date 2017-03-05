@@ -12,7 +12,7 @@ class RCValues {
 	static let sharedInstance = RCValues()
 
 	let cameraTime: TimeInterval = 1.5
-	let toolTime: TimeInterval = 6
+	let toolTime: TimeInterval = 7
 
 	private init() {
 		loadDefaultValues()

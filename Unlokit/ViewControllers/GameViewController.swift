@@ -45,7 +45,7 @@ class GameViewController: UIViewController, LevelController {
 				//skView.showsFPS = true
 				//skView.showsNodeCount = true
 				//skView.showsDrawCount = true
-				//skView.showsPhysics = true
+				skView.showsPhysics = true
 				//skView.showsFields = true
 				
 				if let scene = GameScene(fileNamed: levelname) {

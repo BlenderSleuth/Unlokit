@@ -16,8 +16,28 @@ class LockNode: SKSpriteNode {
 	func setupPhysics() {
 		physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
 		physicsBody?.isDynamic = false
+		physicsBody?.density = 0.01
 		physicsBody?.categoryBitMask = Category.lock
 		physicsBody?.contactTestBitMask = Category.zero
-		physicsBody?.collisionBitMask = Category.zero
+		physicsBody?.collisionBitMask = Category.blocks | Category.balls | Category.bounds
+		getDataFromParent()
+
+	}
+	private func getDataFromParent() {
+		var data: NSDictionary?
+
+		// Find user data from parents
+		var tempNode: SKNode = self
+		while !(tempNode is SKScene) {
+			if let userData = tempNode.userData {
+				data = userData
+			}
+			tempNode = tempNode.parent!
+		}
+
+		// Set instance properties
+		if let dynamic = data?["dynamic"] as? Bool {
+			physicsBody?.isDynamic = dynamic
+		}
 	}
 }

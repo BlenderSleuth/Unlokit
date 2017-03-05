@@ -22,6 +22,7 @@ class BeamBlockNode: BlockNode {
 	func setup(scene: GameScene) {
 		// Create array of blocks
 		var blocks = [BlockNode]()
+
 		for child in children {
 			if let ref = child as? SKReferenceNode {
 				if let block = ref.children.first?.children.first as? BlockNode {
@@ -31,10 +32,8 @@ class BeamBlockNode: BlockNode {
 				blocks.append(block)
 			}
 		}
-		// Sort block by x position
-		blocks.sort {
-			$0.convert($0.position, to: scene).x > $1.convert($1.position, to: scene).x
-		}
+		// Blocks are sorted by their position in the children array
+		// blocks.sort {}
 
 		var lastBlock: BlockNode?
 		for block in blocks {

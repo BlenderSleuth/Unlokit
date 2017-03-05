@@ -38,6 +38,8 @@
 		381D5C8A1E394E3C0084E56E /* BlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381D5C891E394E3C0084E56E /* BlockNode.swift */; };
 		381D5C8C1E39513D0084E56E /* FanParticles.sks in Resources */ = {isa = PBXBuildFile; fileRef = 381D5C8B1E39513D0084E56E /* FanParticles.sks */; };
 		382369041E3B0D3800EFC307 /* Row8BlockBreak.sks in Resources */ = {isa = PBXBuildFile; fileRef = 382369031E3B0D3800EFC307 /* Row8BlockBreak.sks */; };
+		382436911E6A4B23005E3EE0 /* Level2_8.sks in Resources */ = {isa = PBXBuildFile; fileRef = 382436901E6A4B23005E3EE0 /* Level2_8.sks */; };
+		382436951E6A6ED7005E3EE0 /* Row11BlockBucketPinned.sks in Resources */ = {isa = PBXBuildFile; fileRef = 382436941E6A6ED7005E3EE0 /* Row11BlockBucketPinned.sks */; };
 		382559321E4EBE86006EA05C /* Level1_S.sks in Resources */ = {isa = PBXBuildFile; fileRef = 382559311E4EBE86006EA05C /* Level1_S.sks */; };
 		382835A61E4AFCBE006FA602 /* Level2_1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 382835A51E4AFCBE006FA602 /* Level2_1.sks */; };
 		382835A81E4AFCC7006FA602 /* Level1_9.sks in Resources */ = {isa = PBXBuildFile; fileRef = 382835A71E4AFCC7006FA602 /* Level1_9.sks */; };
@@ -65,7 +67,7 @@
 		385161361E348E6C0041995A /* ControllerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385161351E348E6C0041995A /* ControllerNode.swift */; };
 		38650F541E25F6A500401ABD /* FireButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38650F531E25F6A500401ABD /* FireButtonNode.swift */; };
 		386590E21E62CC4700823EE1 /* BlockGlu4Fan.sks in Resources */ = {isa = PBXBuildFile; fileRef = 386590E11E62CC4700823EE1 /* BlockGlu4Fan.sks */; };
-		386590E41E62D43000823EE1 /* Level2_8.sks in Resources */ = {isa = PBXBuildFile; fileRef = 386590E31E62D43000823EE1 /* Level2_8.sks */; };
+		386590E41E62D43000823EE1 /* Level2_S.sks in Resources */ = {isa = PBXBuildFile; fileRef = 386590E31E62D43000823EE1 /* Level2_S.sks */; };
 		386590E61E62D63000823EE1 /* Row8BlockMtlPinnedLeft.sks in Resources */ = {isa = PBXBuildFile; fileRef = 386590E51E62D63000823EE1 /* Row8BlockMtlPinnedLeft.sks */; };
 		386EC6E31E57EBE4000B2A59 /* TitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386EC6E21E57EBE4000B2A59 /* TitleViewController.swift */; };
 		386EC6E51E57EC35000B2A59 /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386EC6E41E57EC35000B2A59 /* InstructionsViewController.swift */; };
@@ -80,6 +82,7 @@
 		388514021E36EFA20092F058 /* ToolBox.sks in Resources */ = {isa = PBXBuildFile; fileRef = 388514011E36EFA20092F058 /* ToolBox.sks */; };
 		3892F2641E4EEF5400EA68D9 /* BlockBrkDyn.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3892F2631E4EEF5400EA68D9 /* BlockBrkDyn.sks */; };
 		3892F2681E4EEFFA00EA68D9 /* Level2_2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3892F2671E4EEFFA00EA68D9 /* Level2_2.sks */; };
+		389953431E6A75240073BC51 /* Balls.sks in Resources */ = {isa = PBXBuildFile; fileRef = 389953421E6A75240073BC51 /* Balls.sks */; };
 		38A6D9371E4EAD0000068113 /* Level1_11.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38A6D9361E4EAD0000068113 /* Level1_11.sks */; };
 		38AC34CA1E4118AD00FB9B50 /* BackButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AC34C91E4118AD00FB9B50 /* BackButtonNode.swift */; };
 		38AE075A1E36221400D127D2 /* Lock.caf in Resources */ = {isa = PBXBuildFile; fileRef = 38AE07591E361DDC00D127D2 /* Lock.caf */; };
@@ -112,6 +115,7 @@
 		38C7F1521E62B0A4009E786C /* Row3BlockBnc.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38C7F14F1E62B0A4009E786C /* Row3BlockBnc.sks */; };
 		38C7F1531E62B0A4009E786C /* Row4BlockBnc.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38C7F1501E62B0A4009E786C /* Row4BlockBnc.sks */; };
 		38C7F1551E62CB36009E786C /* Block5Grav.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38C7F1541E62CB36009E786C /* Block5Grav.sks */; };
+		38C972631E6BC2D600A0899D /* BlockBrkGlu1Fan.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38C972621E6BC2D600A0899D /* BlockBrkGlu1Fan.sks */; };
 		38CE1BFB1E3841A200B646DB /* Explosion.caf in Resources */ = {isa = PBXBuildFile; fileRef = 38CE1BFA1E3841A200B646DB /* Explosion.caf */; };
 		38CE1C101E38599B00B646DB /* Background-Prpl.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38CE1C0E1E38599B00B646DB /* Background-Prpl.sks */; };
 		38CE1C111E38599B00B646DB /* Canvas-Prpl.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38CE1C0F1E38599B00B646DB /* Canvas-Prpl.sks */; };
@@ -196,6 +200,8 @@
 		381D5C891E394E3C0084E56E /* BlockNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockNode.swift; sourceTree = "<group>"; };
 		381D5C8B1E39513D0084E56E /* FanParticles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FanParticles.sks; sourceTree = "<group>"; };
 		382369031E3B0D3800EFC307 /* Row8BlockBreak.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row8BlockBreak.sks; sourceTree = "<group>"; };
+		382436901E6A4B23005E3EE0 /* Level2_8.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2_8.sks; sourceTree = "<group>"; };
+		382436941E6A6ED7005E3EE0 /* Row11BlockBucketPinned.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row11BlockBucketPinned.sks; sourceTree = "<group>"; };
 		382559311E4EBE86006EA05C /* Level1_S.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1_S.sks; sourceTree = "<group>"; };
 		382835A51E4AFCBE006FA602 /* Level2_1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2_1.sks; sourceTree = "<group>"; };
 		382835A71E4AFCC7006FA602 /* Level1_9.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1_9.sks; sourceTree = "<group>"; };
@@ -225,7 +231,7 @@
 		385161351E348E6C0041995A /* ControllerNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerNode.swift; sourceTree = "<group>"; };
 		38650F531E25F6A500401ABD /* FireButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireButtonNode.swift; sourceTree = "<group>"; };
 		386590E11E62CC4700823EE1 /* BlockGlu4Fan.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockGlu4Fan.sks; sourceTree = "<group>"; };
-		386590E31E62D43000823EE1 /* Level2_8.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2_8.sks; sourceTree = "<group>"; };
+		386590E31E62D43000823EE1 /* Level2_S.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2_S.sks; sourceTree = "<group>"; };
 		386590E51E62D63000823EE1 /* Row8BlockMtlPinnedLeft.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row8BlockMtlPinnedLeft.sks; sourceTree = "<group>"; };
 		386EC6E21E57EBE4000B2A59 /* TitleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleViewController.swift; sourceTree = "<group>"; };
 		386EC6E41E57EC35000B2A59 /* InstructionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
@@ -240,6 +246,7 @@
 		388514011E36EFA20092F058 /* ToolBox.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ToolBox.sks; sourceTree = "<group>"; };
 		3892F2631E4EEF5400EA68D9 /* BlockBrkDyn.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockBrkDyn.sks; sourceTree = "<group>"; };
 		3892F2671E4EEFFA00EA68D9 /* Level2_2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2_2.sks; sourceTree = "<group>"; };
+		389953421E6A75240073BC51 /* Balls.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Balls.sks; sourceTree = "<group>"; };
 		38A6D9361E4EAD0000068113 /* Level1_11.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1_11.sks; sourceTree = "<group>"; };
 		38AC34C91E4118AD00FB9B50 /* BackButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackButtonNode.swift; sourceTree = "<group>"; };
 		38AE07551E36199500D127D2 /* Bounce1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bounce1.caf; sourceTree = "<group>"; };
@@ -276,6 +283,7 @@
 		38C7F14F1E62B0A4009E786C /* Row3BlockBnc.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row3BlockBnc.sks; sourceTree = "<group>"; };
 		38C7F1501E62B0A4009E786C /* Row4BlockBnc.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row4BlockBnc.sks; sourceTree = "<group>"; };
 		38C7F1541E62CB36009E786C /* Block5Grav.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Block5Grav.sks; sourceTree = "<group>"; };
+		38C972621E6BC2D600A0899D /* BlockBrkGlu1Fan.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockBrkGlu1Fan.sks; sourceTree = "<group>"; };
 		38CE1BFA1E3841A200B646DB /* Explosion.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Explosion.caf; sourceTree = "<group>"; };
 		38CE1C0E1E38599B00B646DB /* Background-Prpl.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Background-Prpl.sks"; sourceTree = "<group>"; };
 		38CE1C0F1E38599B00B646DB /* Canvas-Prpl.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Canvas-Prpl.sks"; sourceTree = "<group>"; };
@@ -361,6 +369,7 @@
 		381CB8111E626FB50024D592 /* Dynamic */ = {
 			isa = PBXGroup;
 			children = (
+				389953421E6A75240073BC51 /* Balls.sks */,
 				381CB81E1E626FF00024D592 /* BlockMtlDyn.sks */,
 				381CB81F1E626FF00024D592 /* BlockPin.sks */,
 				381CB8121E626FD90024D592 /* Row4BlockMtlDyn.sks */,
@@ -370,6 +379,7 @@
 				381CB8161E626FD90024D592 /* Row8BlockMtlPinned.sks */,
 				386590E51E62D63000823EE1 /* Row8BlockMtlPinnedLeft.sks */,
 				381CB8171E626FD90024D592 /* Row8BlockMtlPinnedFan.sks */,
+				382436941E6A6ED7005E3EE0 /* Row11BlockBucketPinned.sks */,
 			);
 			path = Dynamic;
 			sourceTree = "<group>";
@@ -622,6 +632,7 @@
 				38E50CF01E39DB2F007437E7 /* BlockBrk.sks */,
 				3892F2631E4EEF5400EA68D9 /* BlockBrkDyn.sks */,
 				38BECCFE1E3F1D02009BADD6 /* BlockBrkGlu.sks */,
+				38C972621E6BC2D600A0899D /* BlockBrkGlu1Fan.sks */,
 				384F449E1E4B01B3005F6FF7 /* BlockBrkGluGrav.sks */,
 				38BECD001E3F1D2B009BADD6 /* BlockBrkBnc.sks */,
 				38E50CF41E39E2AE007437E7 /* Row4BlockBreak.sks */,
@@ -718,7 +729,8 @@
 				3835DA341E4FE8A900AD85F0 /* Level2_5.sks */,
 				3835DA421E4FF81000AD85F0 /* Level2_6.sks */,
 				38DE349D1E62666800854616 /* Level2_7.sks */,
-				386590E31E62D43000823EE1 /* Level2_8.sks */,
+				386590E31E62D43000823EE1 /* Level2_S.sks */,
+				382436901E6A4B23005E3EE0 /* Level2_8.sks */,
 			);
 			path = Stage2;
 			sourceTree = "<group>";
@@ -799,6 +811,8 @@
 				381CB82C1E62701B0024D592 /* BlockGlu.sks in Resources */,
 				38DE349E1E62666800854616 /* Level2_7.sks in Resources */,
 				3835DA3F1E4FED1D00AD85F0 /* Row8BlocShdo.sks in Resources */,
+				389953431E6A75240073BC51 /* Balls.sks in Resources */,
+				382436951E6A6ED7005E3EE0 /* Row11BlockBucketPinned.sks in Resources */,
 				381CB81D1E626FD90024D592 /* Row8BlockMtlPinnedFan.sks in Resources */,
 				38C7F1511E62B0A4009E786C /* BlockBnc.sks in Resources */,
 				38B737B41E3959FE004B6B95 /* FanTextures.sks in Resources */,
@@ -807,8 +821,9 @@
 				382369041E3B0D3800EFC307 /* Row8BlockBreak.sks in Resources */,
 				381CB83A1E62772E0024D592 /* Row4BlockShdo.sks in Resources */,
 				38E6DA2D1E3BF26F004F8A79 /* SecretTeleport.sks in Resources */,
+				382436911E6A4B23005E3EE0 /* Level2_8.sks in Resources */,
 				381CB8341E62701B0024D592 /* Row4Fan.sks in Resources */,
-				386590E41E62D43000823EE1 /* Level2_8.sks in Resources */,
+				386590E41E62D43000823EE1 /* Level2_S.sks in Resources */,
 				384F44A11E4B02EB005F6FF7 /* Row4BlockBreakGlu.sks in Resources */,
 				383CA97C1E1DD5E600F8B998 /* GunRef.sks in Resources */,
 				386590E21E62CC4700823EE1 /* BlockGlu4Fan.sks in Resources */,
@@ -830,6 +845,7 @@
 				38E6DA361E3C02E8004F8A79 /* Bounce3.caf in Resources */,
 				382835A61E4AFCBE006FA602 /* Level2_1.sks in Resources */,
 				38F7B1EF1E38348600A62956 /* LockRef.sks in Resources */,
+				38C972631E6BC2D600A0899D /* BlockBrkGlu1Fan.sks in Resources */,
 				38C7F1521E62B0A4009E786C /* Row3BlockBnc.sks in Resources */,
 				38E99E661E4AF9D600781E6C /* Level1_2.sks in Resources */,
 				38C44B481E39BA6D004B76B6 /* GravityRef.sks in Resources */,
@@ -1101,7 +1117,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.blendersleuthdev.Unlokit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "75e1f088-2fb8-46c9-8e7a-59a3f096f415";
+				PROVISIONING_PROFILE = "63197cae-f5d3-4c3e-a33b-8d81b42bb49c";
 				PROVISIONING_PROFILE_SPECIFIER = "Unlokit Distribution Profile";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

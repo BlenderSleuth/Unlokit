@@ -35,6 +35,7 @@ enum Side {
 
 class BlockNode: SKSpriteNode {
 
+	// If this block is in a beam block
 	var beamNode: BeamBlockNode?
 	var beamJoints: [SKPhysicsJoint]?
 
@@ -78,8 +79,11 @@ class BlockNode: SKSpriteNode {
 	
 	// Find side from contact
 	func getSide(contact: SKPhysicsContact) -> Side {
+		guard let scene = scene else {
+			return .centre
+		}
 		// Get point in block coordinates
-		let point = convert(contact.contactPoint, from: scene!)
+		let point = convert(contact.contactPoint, from: scene)
 		
 		let upDistance = getDistance(p1: point, p2: up)
 		let downDistance = getDistance(p1: point, p2: down)

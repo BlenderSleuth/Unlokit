@@ -45,6 +45,7 @@ struct Category {
 
 	static let speed: UInt32			= 0b1 << 17
 	static let secretTeleport: UInt32	= 0b1 << 18
+	static let balls: UInt32			= 0b1 << 19
 
 	static let controllerLight: UInt32	= 0b1 << 0
 	static let toolLight: UInt32		= 0b1 << 0
@@ -475,8 +476,18 @@ class GameScene: SKScene {
 
 			isEnd = true
 
-			(endGameNode.childNode(withName: "levelButton") as! LevelSelectButtonNode).delegate = levelController
-			(endGameNode.childNode(withName: "nextButton") as! NextLevelButtonNode).delegate = levelController
+			let levelButton = endGameNode.childNode(withName: "levelButton") as! LevelSelectButtonNode
+			let nextButton = endGameNode.childNode(withName: "nextButton") as! NextLevelButtonNode
+
+			levelButton.delegate = levelController
+			nextButton.delegate = levelController
+
+			if iPhone {
+				levelButton.position.y += 350
+				nextButton.position.y += 350
+				endGameNode.position.y += 150
+			}
+
 
 			endGameNode.run(SKAction.fadeIn(withDuration: 0.5)) {
 				self.isPaused = true
