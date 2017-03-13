@@ -58,13 +58,13 @@ class BlockNode: SKSpriteNode {
 			}
 		}
 
-		lightingBitMask = Category.controllerLight  | Category.toolLight
+		lightingBitMask = Category.controllerLight | Category.toolLight
 		shadowCastBitMask = Category.zero
 		shadowedBitMask = Category.controllerLight | Category.toolLight
 
 		physicsBody?.categoryBitMask = Category.blockBeam
 		physicsBody?.contactTestBitMask = Category.zero
-		physicsBody?.collisionBitMask = Category.all
+		physicsBody?.collisionBitMask = Category.all ^ Category.lock
 
 		// Get coordinates of sides of block
 		let halfWidth = frame.width / 2

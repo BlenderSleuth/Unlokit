@@ -38,19 +38,19 @@ class BeamBlockNode: BlockNode {
 		var lastBlock: BlockNode?
 		for block in blocks {
 			// Remove existing joints
+			/*
 			if !block.physicsBody!.joints.isEmpty, let joint = block.physicsBody?.joints[0] {
 				if !(block is BlockGlueNode) {
 					scene.physicsWorld.remove(joint)
 				}
 			}
-
+			*/
 			if block.physicsBody!.pinned {
 				pinnedBlock = block
 			}
 
 			block.physicsBody?.isDynamic = true
 			block.beamNode = self
-			block.zRotation = rotationRelativeToSceneFor(node: block)
 
 			if lastBlock == nil {
 				lastBlock = block

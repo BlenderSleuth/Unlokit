@@ -219,15 +219,15 @@
 		<key>Level10</key>
 		<dict>
 			<key>SpringTool</key>
-			<integer>20</integer>
+			<integer>8</integer>
 			<key>BombTool</key>
-			<integer>10</integer>
+			<integer>5</integer>
 			<key>GlueTool</key>
-			<integer>10</integer>
+			<integer>15</integer>
 			<key>FanTool</key>
-			<integer>10</integer>
+			<integer>15</integer>
 			<key>GravityTool</key>
-			<integer>3</integer>
+			<integer>4</integer>
 		</dict>
 		<key>Level11</key>
 		<dict>

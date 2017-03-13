@@ -26,6 +26,7 @@ class BallSpawnerNode: SKSpriteNode, NodeSetup {
 
 		// Set instance properties
 		if let number = data?["number"] as? Int {
+			let increment = 100 / CGFloat(number)
 			// Iterate
 			for index in 1...number {
 				// Create ball
@@ -35,12 +36,15 @@ class BallSpawnerNode: SKSpriteNode, NodeSetup {
 				ball.physicsBody?.categoryBitMask = Category.ball
 				ball.physicsBody?.collisionBitMask = Category.all
 				ball.physicsBody?.mass = 0.3
-				ball.position = scene.convert(CGPoint.zero, from: self)
+
+				ball.position = scene.convert(CGPoint(x: increment * CGFloat(index), y:10), from: self)
+
 				ball.alpha = 0
-				delay(0.4 * Double(index)) {
-					ball.run(SKAction.fadeIn(withDuration: 0.5))
-					scene.addChild(ball)
-				}
+
+				let wait = SKAction.wait(forDuration: 0.25 *  TimeInterval(index), withRange: 1)
+				let add = SKAction.run { scene.addChild(ball)}
+				let fade = SKAction.run { ball.run(SKAction.fadeIn(withDuration: 0.5)) }
+				scene.run(SKAction.sequence([wait, add, fade]))
 			}
 		}
 	}

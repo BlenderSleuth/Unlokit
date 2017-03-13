@@ -21,7 +21,6 @@ class LockNode: SKSpriteNode {
 		physicsBody?.contactTestBitMask = Category.zero
 		physicsBody?.collisionBitMask = Category.blocks | Category.ball | Category.bounds
 		getDataFromParent()
-
 	}
 	private func getDataFromParent() {
 		var data: NSDictionary?
@@ -38,6 +37,27 @@ class LockNode: SKSpriteNode {
 		// Set instance properties
 		if let dynamic = data?["dynamic"] as? Bool {
 			physicsBody?.isDynamic = dynamic
+		}
+		if let attached = data?["attached"] as? Bool {
+			if attached {
+				physicsBody?.collisionBitMask = Category.ball | Category.bounds
+
+				var block: BlockNode?
+
+				// Find block
+				var tempNode: SKNode = self
+				while !(tempNode is SKScene) {
+					if let blockNode = tempNode as? BlockNode {
+						block = blockNode
+						break
+					}
+					tempNode = tempNode.parent!
+				}
+				if let blockPhysicsBody = block?.physicsBody, let scene = scene {
+					let pin = SKPhysicsJointFixed.joint(withBodyA: blockPhysicsBody, bodyB: self.physicsBody!, anchor: scene.convert(CGPoint.zero, from: self))
+					scene.physicsWorld.add(pin)
+				}
+			}
 		}
 	}
 }
