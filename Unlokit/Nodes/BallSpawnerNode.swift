@@ -13,6 +13,23 @@ protocol NodeSetup {
 
 class BallSpawnerNode: SKSpriteNode, NodeSetup {
 	func setup(scene: GameScene) {
+		self.color = .orange
+
+
+		if let parent = self.parent as? SKSpriteNode, let parentPhysicsBody = parent.physicsBody {
+			physicsBody = SKPhysicsBody(circleOfRadius: 0.1)
+			physicsBody?.categoryBitMask = Category.zero
+			physicsBody?.collisionBitMask = Category.zero
+			physicsBody?.contactTestBitMask = Category.zero
+
+			let joint = SKPhysicsJointFixed.joint(withBodyA: physicsBody!,
+			                                      bodyB: parentPhysicsBody,
+			                                      anchor: scene.convert(CGPoint.zero, from: self))
+
+			scene.physicsWorld.add(joint)
+		}
+
+
 		var data: NSDictionary?
 
 		// Find user data from parents

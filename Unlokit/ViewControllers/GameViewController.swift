@@ -21,10 +21,10 @@ class GameViewController: UIViewController, LevelController {
 		super.viewDidLoad()
 		navigationController?.isNavigationBarHidden = true
 		// DEBUG if this is the initial view controller
-		let stage = 2
-		let level = 10
+		//let stage = 2
+		//let level = 11
 		
-		self.level = Stages.sharedInstance.stages[stage-1].levels[level-1]
+		//self.level = Stages.sharedInstance.stages[stage-1].levels[level-1]
 		startNewGame()
 	}
 	
@@ -42,10 +42,10 @@ class GameViewController: UIViewController, LevelController {
 				skView.ignoresSiblingOrder = true
 				
 				// Set debug options
-				skView.showsFPS = true
-				skView.showsNodeCount = true
-				skView.showsDrawCount = true
-				skView.showsPhysics = true
+				//skView.showsFPS = true
+				//skView.showsNodeCount = true
+				//skView.showsDrawCount = true
+				//skView.showsPhysics = true
 				//skView.showsFields = true
 				
 				if let scene = GameScene(fileNamed: levelname) {
