@@ -8,6 +8,8 @@
 
 import SpriteKit
 
+let enableAllLevels = true
+
 class Stages {
 	static let sharedInstance = Stages()
 	
@@ -71,6 +73,11 @@ class Stage {
 				do {
 					let levelData = try Data(contentsOf: fileURL)
 					let level = NSKeyedUnarchiver.unarchiveObject(with: levelData) as! Level
+
+					// DEBUG
+					if enableAllLevels {
+						level.available = true
+					}
 					
 					levels.append(level)
 					

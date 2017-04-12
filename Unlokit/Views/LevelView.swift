@@ -73,8 +73,8 @@ class LevelView: UIView, UIGestureRecognizerDelegate {
 		self.layer.masksToBounds = true
 		
 		let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
-		longPressGesture.minimumPressDuration = 0.001
-		longPressGesture.allowableMovement = 5
+		longPressGesture.minimumPressDuration = 0.01
+		longPressGesture.allowableMovement = 10
 		longPressGesture.cancelsTouchesInView = false
 		longPressGesture.delegate = self
 		addGestureRecognizer(longPressGesture)

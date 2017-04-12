@@ -29,9 +29,9 @@ class GameViewController: UIViewController, LevelController {
 	}
 	
 	func startNewGame(levelname: String) {
-		// Put this all on seperate thread or loading
+		// Put this all on seperate thread for loading
 		DispatchQueue.global(qos: .userInitiated).async {
-			// Transistion
+			// Transition
 			let transition = SKTransition.crossFade(withDuration: 0.5)
 			
 			// Check for skView,             load scene from file

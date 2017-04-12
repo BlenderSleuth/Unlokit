@@ -12,7 +12,7 @@
 import SpriteKit
 
 //********* Degree Functions ***************************
-let π = CGFloat(M_PI)
+let π = CGFloat.pi
 
 extension CGFloat {
     func degreesToRadians() -> CGFloat {

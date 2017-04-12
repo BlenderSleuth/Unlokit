@@ -536,7 +536,7 @@
 		38488EFC1E3603E600BCCFD6 /* Levels */ = {
 			isa = PBXGroup;
 			children = (
-				38B08F681E405AE2000A7232 /* Stage 1 */,
+				38B08F681E405AE2000A7232 /* Stage1 */,
 				38E99E6F1E4AFA5B00781E6C /* Stage2 */,
 			);
 			path = Levels;
@@ -635,7 +635,7 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		38B08F681E405AE2000A7232 /* Stage 1 */ = {
+		38B08F681E405AE2000A7232 /* Stage1 */ = {
 			isa = PBXGroup;
 			children = (
 				38E99E5B1E4AF9D600781E6C /* Level1_1.sks */,
@@ -652,7 +652,6 @@
 				38A6D9361E4EAD0000068113 /* Level1_11.sks */,
 				38E99E621E4AF9D600781E6C /* Level1_12.sks */,
 			);
-			name = "Stage 1";
 			path = Stage1;
 			sourceTree = "<group>";
 		};
