@@ -16,7 +16,7 @@ class ShadowBlockNode: BlockMtlNode {
 		physicsBody?.contactTestBitMask = Category.zero
 		physicsBody?.collisionBitMask = Category.all
 
-		lightingBitMask = Category.controllerLight
+		lightingBitMask = Category.controllerLight | Category.lockLight
 		shadowCastBitMask = Category.controllerLight
 
 	}

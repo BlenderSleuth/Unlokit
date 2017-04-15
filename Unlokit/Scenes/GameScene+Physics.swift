@@ -174,6 +174,7 @@ extension GameScene: SKPhysicsContactDelegate {
 			bomb.explode(scene: self)
 		}
 		// Speed node collision ************
+		/* Not Needed anymore
 		else if collided(with: Category.speed, and: Category.tools | Category.key) {
 			let speed = getNode(for: Category.speed, type: SpeedNode.self)
 			let tool = getOtherNode(for: speed, type: SKSpriteNode.self)
@@ -183,6 +184,7 @@ extension GameScene: SKPhysicsContactDelegate {
 			// Make tool go higher
 			tool.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 20))
 		}
+		*/
 		// Smash conditions ****************
 		else if collided(with: Category.blockMtl, and: Category.key) ||
 				collided(with: Category.blockBreak, and: Category.key) ||

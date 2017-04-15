@@ -25,6 +25,7 @@ class GameViewController: UIViewController, LevelController {
 		//let level = 11
 		
 		//self.level = Stages.sharedInstance.stages[stage-1].levels[level-1]
+		//startNewGame(levelname: "Level2_8")
 		startNewGame()
 	}
 	
@@ -42,7 +43,7 @@ class GameViewController: UIViewController, LevelController {
 				skView.ignoresSiblingOrder = true
 				
 				// Set debug options
-				//skView.showsFPS = true
+				skView.showsFPS = true
 				//skView.showsNodeCount = true
 				//skView.showsDrawCount = true
 				//skView.showsPhysics = true
@@ -81,6 +82,7 @@ class GameViewController: UIViewController, LevelController {
 		}
 	}
 	func startNewGame() {
+		// Reload current level
 		startNewGame(levelname: "Level\(self.level.stageNumber)_\(self.level.number)")
 	}
 	
@@ -89,6 +91,19 @@ class GameViewController: UIViewController, LevelController {
 		returnToLevelSelect()
 	}
 	func endSecret() {
+		// Achievement reporting
+		let achievement: Achievement
+		switch level.stageNumber {
+		case 1:
+			achievement = .stage1Secret
+		case 2:
+			achievement = .stage2Secret
+		default:
+			achievement = .stage1Secret
+		}
+		
+		report(achievement: achievement)
+		
 		startNewGame()
 	}
 

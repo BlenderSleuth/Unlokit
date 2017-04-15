@@ -45,12 +45,13 @@ struct Category {
 
 	static let speed: UInt32			= 0b1 << 17
 	static let secretTeleport: UInt32	= 0b1 << 18
-	static let ball: UInt32			= 0b1 << 19
+	static let ball: UInt32				= 0b1 << 19
 
 	static let controllerLight: UInt32	= 0b1 << 0
-	static let toolLight: UInt32		= 0b1 << 0
+	static let toolLight: UInt32		= 0b1 << 1
+	static let lockLight: UInt32		= 0b1 << 2
 
-	static let all: UInt32 = UInt32.max
+	static let all: UInt32				= UInt32.max
 }
 
 struct ZPosition {
@@ -90,7 +91,7 @@ class GameScene: SKScene {
     var controller: ControllerNode!
     
     var fireNode: FireButtonNode!
-	var replayNode: ReplayButtonNode!
+	var replayButton: ReplayButtonNode!
 	var backButton: BackButtonNode!
 	var canon: SKSpriteNode!
     var cameraNode: SKCameraNode!
@@ -145,9 +146,6 @@ class GameScene: SKScene {
 			self.isShadowed = true
 			stop.pointee = true
 		}
-		if isShadowed {
-			controller.addLight()
-		}
 
 		canon = controller.childNode(withName: "//canon") as! SKSpriteNode
 		
@@ -175,8 +173,9 @@ class GameScene: SKScene {
 		fireNode = cameraNode.childNode(withName: "//fireButton") as! FireButtonNode
 		fireNode.controller = controller
 		fireNode.canon = childNode(withName: "//canon") as! SKSpriteNode
-		replayNode = cameraNode.childNode(withName: "//replayButton") as! ReplayButtonNode
-		replayNode.levelController = delegate
+		//Replay button
+		replayButton = cameraNode.childNode(withName: "//replayButton") as! ReplayButtonNode
+		replayButton.levelController = delegate
 		
 		backButton = childNode(withName: "//backButton") as! BackButtonNode
 		backButton.delegate = delegate
@@ -188,7 +187,6 @@ class GameScene: SKScene {
 		
 		// Bind lock to local variable
 		lock = childNode(withName: "//lock") as! LockNode
-		lock.setupPhysics()
 
 		// Go through the nodes of the scene to run their setup method
 		var nodesToSetup = [NodeSetup]()
@@ -199,6 +197,11 @@ class GameScene: SKScene {
 		}
 		for node in nodesToSetup {
 			node.setup(scene: self)
+		}
+		
+		if isShadowed {
+			controller.addLight()
+			lock.addLight()
 		}
 	}
 	func setupCamera() {
@@ -251,7 +254,7 @@ class GameScene: SKScene {
 		// Set interface nodes in case of iphone
 		if iPhone {
 			fireNode.position.y  += 250
-			replayNode.position.y -= 250
+			replayButton.position.y -= 250
 			backButton.position.y -= 250
 		}
 		
@@ -401,7 +404,6 @@ class GameScene: SKScene {
 		}
 		return false
 	}
-	
 	// MARK: - Loading into gun
 	func load(_ key: KeyNode) {
 		// If key is animating, don't do anything
@@ -481,6 +483,8 @@ class GameScene: SKScene {
 			let endGameNode = SKScene(fileNamed: "EndGame")!.childNode(withName: "endGame")!
 			endGameNode.removeFromParent()
 			endGameNode.alpha = 0
+			endGameNode.position = cameraNode.position
+			print(endGameNode)
 
 			addChild(endGameNode)
 
@@ -499,9 +503,7 @@ class GameScene: SKScene {
 			}
 
 
-			endGameNode.run(SKAction.fadeIn(withDuration: 0.5)) {
-				self.isPaused = true
-			}
+			endGameNode.run(SKAction.fadeIn(withDuration: 0.5)) { self.isPaused = true }
 		}
 	}
 

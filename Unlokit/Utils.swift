@@ -6,8 +6,8 @@
 //  Copyright © 2016 Ben Sutherland. All rights reserved.
 //
 
-//File to contain all the help methods that I need for my projects
-//Sort of like a dump file when I need something global
+// File to contain all the help methods that I need for my projects
+// Sort of like a dump file when I need something with a public scope
 
 import SpriteKit
 
@@ -280,14 +280,13 @@ func += (left: inout CGAffineTransform, right: CGAffineTransform) {
 	left = left.concatenating(right)
 }
 
-//********* Other Global stuff ***************************
+//********* Other Public stuff ***************************
 private let version = UIDevice.current.systemVersion
 let ios9 = version[version.startIndex] == "9" ? true : false
 let iPhone = UIDevice.current.model == "iPhone"
 
 //********* SKNode extension *****************************
-extension SKNode
-{
+extension SKNode {
 	/** 
 	Adds an action to the list of actions executed by the node.
 	- parameters:
@@ -357,6 +356,7 @@ func getDefaultLevelsFromPlist(stage number: Int) -> [Level]{
 	
 	return levelArray
 }
+
 //********* SpriteKit functions *****************************
 func rotationRelativeToSceneFor(node: SKNode) -> CGFloat {
 	var nodeRotation = CGFloat(0)
@@ -370,9 +370,21 @@ func rotationRelativeToSceneFor(node: SKNode) -> CGFloat {
 
 	return nodeRotation
 }
-func delay(_ delay: Double, closure: @escaping ()->()) {
+func delay(_ delay: Double, block: @escaping ()->()) {
 	DispatchQueue.main.asyncAfter(
-		deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
+		deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: block)
+}
+
+//********* Other Random Things ************************
+func hasAppAlreadyLaunchedOnce() -> Bool{
+	let defaults = UserDefaults.standard
+	
+	if defaults.string(forKey: "hasAppAlreadyLaunchedOnce") != nil {
+		return true
+	} else {
+		defaults.set(true, forKey: "hasAppAlreadyLaunchedOnce")
+		return false
+	}
 }
 
 

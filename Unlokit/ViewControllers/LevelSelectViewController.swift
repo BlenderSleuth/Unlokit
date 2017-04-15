@@ -93,9 +93,24 @@ class LevelSelectViewController: UIViewController, LevelViewDelegate, LevelSelec
 	
 	func setNextLevelView(from levelView: LevelView) {
 		// Find next level view and make it avaible
-		let number = levelView.level.number
-		// Zero indexing of array means that the number is correct
-		nextLevelView = levelViews[levelView.level.stageNumber]?[number]
+		let number = levelView.level.number - 1
+		
+		// Check levels and stages
+		if levelViews[levelView.level.stageNumber]!.endIndex == number + 1 {
+			// Get max stage by key of dictionary
+			let maxStage = levelViews.max { a, b in a.key < b.key }?.key
+			// Last level of last stage, stay the same
+			if levelView.level.stageNumber == maxStage {
+				print("last level, setting next level to current")
+				nextLevelView = levelViews[levelView.level.stageNumber]?[number]
+			} else {
+				// First level of next stage
+				nextLevelView = levelViews[levelView.level.stageNumber + 1]?[0]
+			}
+		} else {
+			// Next level in current stage
+			nextLevelView = levelViews[levelView.level.stageNumber ]?[number + 1]
+		}
 	}
 	
 	func present(level: Level) {

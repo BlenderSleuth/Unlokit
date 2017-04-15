@@ -94,9 +94,10 @@ class ToolNode: SKSpriteNode, CanBeFired, Breakable {
 		physicsBody?.fieldBitMask = Category.fields
 
 		if isShadowed {
+			lightingBitMask = Category.toolLight | Category.controllerLight
 			let light = SKLightNode()
 			light.categoryBitMask = Category.toolLight
-			light.falloff = 0.6
+			light.falloff = 2
 			addChild(light)
 		}
 	}

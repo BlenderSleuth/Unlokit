@@ -79,7 +79,7 @@ class FireButtonNode: SKSpriteNode {
 		//SKTAudio.sharedInstance().playSoundEffect(filename: "Explosion.caf")
 		
 		let recoilAction = SKAction.sequence([SKAction.moveBy(x: 0, y: -70, duration: 0.03), SKAction.moveBy(x: 0, y: 70, duration: 0.2)])
-		canon.run(recoilAction)// Make canon recoil
+		canon.run(recoilAction) // Make canon recoil
 		objectToFire = nil
 		
 		// So camera can follow the sprite

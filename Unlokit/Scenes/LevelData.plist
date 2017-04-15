@@ -91,17 +91,6 @@
 			<key>FanTool</key>
 			<integer>10</integer>
 		</dict>
-		<key>Level12</key>
-		<dict>
-			<key>SpringTool</key>
-			<integer>15</integer>
-			<key>BombTool</key>
-			<integer>10</integer>
-			<key>GlueTool</key>
-			<integer>10</integer>
-			<key>FanTool</key>
-			<integer>10</integer>
-		</dict>
 	</dict>
 	<key>Stage2</key>
 	<dict>
@@ -230,19 +219,6 @@
 			<integer>4</integer>
 		</dict>
 		<key>Level11</key>
-		<dict>
-			<key>SpringTool</key>
-			<integer>7</integer>
-			<key>BombTool</key>
-			<integer>3</integer>
-			<key>GlueTool</key>
-			<integer>10</integer>
-			<key>FanTool</key>
-			<integer>5</integer>
-			<key>GravityTool</key>
-			<integer>4</integer>
-		</dict>
-		<key>Level12</key>
 		<dict>
 			<key>SpringTool</key>
 			<integer>15</integer>

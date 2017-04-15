@@ -8,12 +8,14 @@
 
 import SpriteKit
 
-class LockNode: SKSpriteNode {
+class LockNode: SKSpriteNode, NodeSetup {
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
 	
-	func setupPhysics() {
+	func setup(scene: GameScene) {
+		lightingBitMask = Category.controllerLight | Category.toolLight | Category.lockLight
+		
 		physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
 		physicsBody?.isDynamic = false
 		physicsBody?.density = 0.01
@@ -21,6 +23,12 @@ class LockNode: SKSpriteNode {
 		physicsBody?.contactTestBitMask = Category.zero
 		physicsBody?.collisionBitMask = Category.blocks | Category.ball | Category.bounds
 		getDataFromParent()
+	}
+	func addLight() {
+		let light = SKLightNode()
+		light.falloff = 4
+		light.categoryBitMask = Category.lockLight
+		addChild(light)
 	}
 	private func getDataFromParent() {
 		var data: NSDictionary?

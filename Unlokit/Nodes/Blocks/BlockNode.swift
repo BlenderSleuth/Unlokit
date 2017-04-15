@@ -52,15 +52,15 @@ class BlockNode: SKSpriteNode {
 		// Make all children had same properties
 		for child in children {
 			if let sprite = child as? SKSpriteNode {
-				sprite.lightingBitMask = Category.controllerLight  | Category.toolLight
+				sprite.lightingBitMask = Category.controllerLight  | Category.toolLight | Category.lockLight
 				sprite.shadowCastBitMask = Category.zero
-				sprite.shadowedBitMask = Category.controllerLight | Category.toolLight
+				sprite.shadowedBitMask = Category.controllerLight | Category.toolLight | Category.lockLight
 			}
 		}
 
-		lightingBitMask = Category.controllerLight | Category.toolLight
+		lightingBitMask = Category.controllerLight | Category.toolLight | Category.lockLight
 		shadowCastBitMask = Category.zero
-		shadowedBitMask = Category.controllerLight | Category.toolLight
+		shadowedBitMask = Category.controllerLight | Category.toolLight | Category.lockLight
 
 		physicsBody?.categoryBitMask = Category.blockBeam
 		physicsBody?.contactTestBitMask = Category.zero

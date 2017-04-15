@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IS7-zk-VYb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IS7-zk-VYb">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -53,6 +53,19 @@
                                     <segue destination="JEG-DU-WdI" kind="show" id="R5P-VM-f5L"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mbV-5f-qnf">
+                                <rect key="frame" x="20" y="359" width="258" height="51"/>
+                                <fontDescription key="fontDescription" name="NeuropolXRg-Regular" family="Neuropol X" pointSize="32"/>
+                                <state key="normal" title="Game Center"/>
+                                <connections>
+                                    <action selector="gameCenterButton:" destination="MaF-Yw-LHC" eventType="touchUpInside" id="zF5-ss-2CG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCb-RR-jQO">
+                                <rect key="frame" x="20" y="52" width="59" height="59"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="gamecenter"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -60,13 +73,20 @@
                             <constraint firstItem="kTR-qb-Wto" firstAttribute="leading" secondItem="TJd-kM-CGv" secondAttribute="trailing" constant="8" id="IEC-l2-39d"/>
                             <constraint firstAttribute="trailingMargin" secondItem="TJd-kM-CGv" secondAttribute="trailing" constant="250" id="NNw-Rl-tU9"/>
                             <constraint firstItem="TJd-kM-CGv" firstAttribute="leading" secondItem="D6t-1A-6H4" secondAttribute="leadingMargin" constant="250" id="QcR-mV-sx0"/>
+                            <constraint firstItem="mbV-5f-qnf" firstAttribute="centerY" secondItem="D6t-1A-6H4" secondAttribute="centerY" id="Y0M-gD-80r"/>
                             <constraint firstItem="kTR-qb-Wto" firstAttribute="centerY" secondItem="D6t-1A-6H4" secondAttribute="centerY" id="Z19-CG-iVX"/>
                             <constraint firstItem="TJd-kM-CGv" firstAttribute="centerX" secondItem="D6t-1A-6H4" secondAttribute="centerX" id="bjM-dn-vaw"/>
                             <constraint firstItem="TJd-kM-CGv" firstAttribute="leading" secondItem="HSr-ZD-lVt" secondAttribute="trailing" constant="8" id="cS5-O9-yYg"/>
                             <constraint firstItem="HSr-ZD-lVt" firstAttribute="leading" secondItem="D6t-1A-6H4" secondAttribute="leadingMargin" id="ddP-OS-cr3"/>
                             <constraint firstItem="TJd-kM-CGv" firstAttribute="centerY" secondItem="D6t-1A-6H4" secondAttribute="centerY" id="qv1-2p-GiD"/>
+                            <constraint firstItem="mbV-5f-qnf" firstAttribute="leading" secondItem="D6t-1A-6H4" secondAttribute="leadingMargin" id="xkB-gN-Htf"/>
                             <constraint firstItem="HSr-ZD-lVt" firstAttribute="centerY" secondItem="D6t-1A-6H4" secondAttribute="centerY" id="y6w-s0-UdX"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="BCb-RR-jQO"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Unlokit" id="4Zd-90-9hB">
                         <barButtonItem key="backBarButtonItem" title="Home" id="B2R-aJ-vbP"/>
@@ -75,7 +95,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XH4-jg-ApI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1746" y="138"/>
+            <point key="canvasLocation" x="-1746.09375" y="137.5"/>
         </scene>
         <!--Instructions View Controller-->
         <scene sceneID="4Ph-eF-ciA">
@@ -200,7 +220,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IS7-zk-VYb" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedStatusBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="WCf-La-B8q">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="WCf-La-B8q">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.12390624729999999" green="0.12390624729999999" blue="0.12390624729999999" alpha="1" colorSpace="deviceRGB"/>
@@ -220,5 +240,6 @@
     </scenes>
     <resources>
         <image name="Play" width="256" height="256"/>
+        <image name="gamecenter" width="256" height="256"/>
     </resources>
 </document>
