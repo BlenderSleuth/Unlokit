@@ -27,26 +27,40 @@ class TitleViewController: UIViewController, GKGameCenterControllerDelegate {
 		if isAppFirstLaunch() {
 			authenticatePlayer()
 		}
+		
+		// TODO: Music
 		//SoundFX.sharedInstance.playBackgroundMusic(filename: "")
     }
 	
 	func authenticatePlayer() {
 		let localPlayer = GKLocalPlayer()
-		
 		localPlayer.authenticateHandler = { viewController, error in
 			if let vc = viewController {
 				self.present(vc, animated: true, completion: nil)
 			}
+			if error != nil {
+				self.noGameCenter()
+			}
 		}
+	}
+	
+	func noGameCenter() {
+		// Tell user to log into game center
+		let alert = UIAlertController(title: "Game Center", message: "Please enable game center", preferredStyle: .alert)
+		let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { _ in alert.dismiss(animated: true, completion: nil) }
+		
+		alert.addAction(ok)
+		self.present(alert, animated: true, completion: nil)
 	}
 
 	@IBAction func gameCenterButton(_ sender: UIButton) {
 		if GKLocalPlayer.localPlayer().isAuthenticated {
+			print(GKLocalPlayer.localPlayer().isAuthenticated)
 			let gc = GKGameCenterViewController()
 			gc.gameCenterDelegate = self
 			present(gc, animated: true, completion: nil)
 		} else {
-			authenticatePlayer()
+			noGameCenter()
 		}
 	}
 	func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
