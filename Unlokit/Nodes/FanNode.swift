@@ -20,6 +20,8 @@ class FanNode: SKSpriteNode, Breakable {
 	var glueBlock: BlockGlueNode?
 	var side: Side?
 	
+	var particleTexture: SKTexture?
+	
 	var fieldLength: CGFloat?
 	var fieldRect: CGRect!
 	var fieldRegion: SKRegion!
@@ -189,12 +191,6 @@ class FanNode: SKSpriteNode, Breakable {
 		
 		gravityField.region = fieldRegion
 		dragField.region = fieldRegion
-
-		// TODO
-		//if isMoving {
-			//print("moving")
-			//createBackField(scene: scene)
-		//}
 	}
 
 	func createBackField(scene: SKScene) {
@@ -211,18 +207,6 @@ class FanNode: SKSpriteNode, Breakable {
 
 		backGravityField?.region = backFieldRegion
 		addChild(backGravityField!)
-	}
-	
-	func shatter() {
-		if let block = glueBlock, let side = side {
-			block.remove(for: side)
-		}
-		
-		// TODO: Add particles and sounds effects
-		if let level = scene as?  GameScene {
-			level.fans.remove(at: level.fans.index(of: self)!)
-		}
-		removeFromParent()
 	}
 	
 	// Check for actions other than animate

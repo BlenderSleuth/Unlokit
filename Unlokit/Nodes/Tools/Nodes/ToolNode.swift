@@ -29,6 +29,8 @@ class ToolNode: SKSpriteNode, CanBeFired, Breakable {
 
 	var glueBlock: BlockGlueNode?
 	var side: Side?
+	
+	var particleTexture: SKTexture?
 
 	private var timerStarted = false
 	
@@ -37,10 +39,8 @@ class ToolNode: SKSpriteNode, CanBeFired, Breakable {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-	func shatter() {
-		if let scene = scene as? GameScene {
-			smash(scene: scene)
-		}
+	func shatter(scene: GameScene) {
+		smash(scene: scene)
 	}
 	func remove() {
 		// For overriding to clean up

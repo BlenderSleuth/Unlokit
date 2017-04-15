@@ -64,13 +64,12 @@ class BombToolNode: ToolNode {
 			if let breakable = (node as? Breakable) {
 				let position = self.convert(node.position, from: node.parent!)
 				if region.contains(position) {
-					breakable.shatter()
+					breakable.shatter(scene: scene)
 				}
 			}
 		}
-		
-		let sound = SoundFX.sharedInstance["explosion"]!
-		scene.run(sound)
+		// Play sound
+		scene.run(SoundFX.sharedInstance["explosion"]!)
 		
 		let explode = SKEmitterNode(fileNamed: "BombExplode")!
 		explode.position = scene.convert(position, from: self.parent!)

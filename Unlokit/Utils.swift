@@ -376,13 +376,14 @@ func delay(_ delay: Double, block: @escaping ()->()) {
 }
 
 //********* Other Random Things ************************
-func hasAppAlreadyLaunchedOnce() -> Bool{
+func isAppFirstLaunch() -> Bool{
 	let defaults = UserDefaults.standard
+	let key = "hasAppAlreadyLaunchedOnce"
 	
-	if defaults.string(forKey: "hasAppAlreadyLaunchedOnce") != nil {
+	if defaults.string(forKey: key) != nil {
 		return true
 	} else {
-		defaults.set(true, forKey: "hasAppAlreadyLaunchedOnce")
+		defaults.set(true, forKey: key)
 		return false
 	}
 }

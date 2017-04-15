@@ -86,7 +86,7 @@ class GameViewController: UIViewController, LevelController {
 		startNewGame(levelname: "Level\(self.level.stageNumber)_\(self.level.number)")
 	}
 	
-	func endGame() {
+	func finishedLevel() {
 		level.completed = true
 		returnToLevelSelect()
 	}
@@ -108,14 +108,13 @@ class GameViewController: UIViewController, LevelController {
 	}
 
 	func toNextLevel() {
-		// Reference back to array, so it works here
 		level.completed = true
 		// Get next level
 		var nextLevelNumber = level.number + 1
 		var stageNumber = level.stageNumber
 
 		// Check if level exceeded stage number
-		if nextLevelNumber >= Stages.sharedInstance.stages[stageNumber - 1].levels.count {
+		if nextLevelNumber > Stages.sharedInstance.stages[stageNumber - 1].levels.count {
 			nextLevelNumber = 1
 			stageNumber += 1
 		}
@@ -125,13 +124,24 @@ class GameViewController: UIViewController, LevelController {
 
 		if let view = currentLevelView {
 			delegate?.setNextLevelView(from: view)
-		} else {
-			//fatalError("No Level view in Game View Controller")
+			print("foo")
+			delegate?.completed(true)
 		}
 
 		currentLevelView?.makeAvailable()
 		
 		startNewGame()
+	}
+	
+	// For use with back button and finished screen
+	func returnToLevelSelect() {
+		// Animate with cross dissolve
+		let transition = CATransition()
+		transition.duration = 0.5
+		navigationController?.view.layer.add(transition, forKey: nil)
+		
+		let _ = navigationController?.popViewController(animated: false)
+		delegate?.completed(level.completed)
 	}
 	
 	// Clean up
@@ -141,16 +151,6 @@ class GameViewController: UIViewController, LevelController {
 			skView.scene?.removeFromParent()
 			skView.presentScene(nil)
 		}
-	}
-	
-	func returnToLevelSelect() {
-		// Animate with cross dissolve
-		let transition = CATransition()
-		transition.duration = 0.5
-		navigationController?.view.layer.add(transition, forKey: nil)
-
-		let _ = navigationController?.popViewController(animated: false)
-		delegate?.complete()
 	}
 	
 	override var prefersStatusBarHidden: Bool {

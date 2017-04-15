@@ -24,10 +24,10 @@ class TitleViewController: UIViewController, GKGameCenterControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-		if hasAppAlreadyLaunchedOnce() {
+		if isAppFirstLaunch() {
 			authenticatePlayer()
 		}
-		SoundFX.sharedInstance.playBackgroundMusic(filename: "")
+		//SoundFX.sharedInstance.playBackgroundMusic(filename: "")
     }
 	
 	func authenticatePlayer() {

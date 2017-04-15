@@ -39,6 +39,8 @@
 		381D5C8A1E394E3C0084E56E /* BlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381D5C891E394E3C0084E56E /* BlockNode.swift */; };
 		381D5C8C1E39513D0084E56E /* FanParticles.sks in Resources */ = {isa = PBXBuildFile; fileRef = 381D5C8B1E39513D0084E56E /* FanParticles.sks */; };
 		3820E00F1EA1B73500AC2556 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3820E00E1EA1B73500AC2556 /* GameKit.framework */; };
+		3820E0151EA1EA9100AC2556 /* BlockShatter.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3820E0141EA1E86500AC2556 /* BlockShatter.caf */; };
+		3820E0171EA1EC3E00AC2556 /* Shatter.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3820E0161EA1EC3E00AC2556 /* Shatter.sks */; };
 		3823225E1E765BFD009F512C /* BallSquareDyn.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3823225D1E765BFD009F512C /* BallSquareDyn.sks */; };
 		382369041E3B0D3800EFC307 /* Row8BlockBreak.sks in Resources */ = {isa = PBXBuildFile; fileRef = 382369031E3B0D3800EFC307 /* Row8BlockBreak.sks */; };
 		382436911E6A4B23005E3EE0 /* Level2_8.sks in Resources */ = {isa = PBXBuildFile; fileRef = 382436901E6A4B23005E3EE0 /* Level2_8.sks */; };
@@ -172,8 +174,8 @@
 		38E99E6C1E4AF9D600781E6C /* Level1_11.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38E99E621E4AF9D600781E6C /* Level1_11.sks */; };
 		38E99E6D1E4AF9D600781E6C /* Level1_8.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38E99E631E4AF9D600781E6C /* Level1_8.sks */; };
 		38E99E6E1E4AF9D600781E6C /* Level1_10.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38E99E641E4AF9D600781E6C /* Level1_10.sks */; };
-		38EA310C1E5D3C8C006E044A /* EndGame.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38EA310B1E5D3C8C006E044A /* EndGame.sks */; };
-		38EA310E1E5D40AC006E044A /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EA310D1E5D40AC006E044A /* ButtonNode.swift */; };
+		38EA310C1E5D3C8C006E044A /* FinishedLevel.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38EA310B1E5D3C8C006E044A /* FinishedLevel.sks */; };
+		38EA310E1E5D40AC006E044A /* FinishedButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EA310D1E5D40AC006E044A /* FinishedButtonNode.swift */; };
 		38F40FE21E3B120500A0A469 /* SpeedNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F40FE11E3B120500A0A469 /* SpeedNode.swift */; };
 		38F40FE41E3B12C500A0A469 /* SpeedRef.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38F40FE31E3B12C500A0A469 /* SpeedRef.sks */; };
 		38F40FEA1E3B28CE00A0A469 /* Row4BlockBreakGrav.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38F40FE91E3B28CE00A0A469 /* Row4BlockBreakGrav.sks */; };
@@ -217,6 +219,10 @@
 		381D5C891E394E3C0084E56E /* BlockNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockNode.swift; sourceTree = "<group>"; };
 		381D5C8B1E39513D0084E56E /* FanParticles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FanParticles.sks; sourceTree = "<group>"; };
 		3820E00E1EA1B73500AC2556 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		3820E0101EA1D1E600AC2556 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		3820E0121EA1D1F000AC2556 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3820E0141EA1E86500AC2556 /* BlockShatter.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BlockShatter.caf; sourceTree = "<group>"; };
+		3820E0161EA1EC3E00AC2556 /* Shatter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Shatter.sks; sourceTree = "<group>"; };
 		3823225D1E765BFD009F512C /* BallSquareDyn.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BallSquareDyn.sks; sourceTree = "<group>"; };
 		382369031E3B0D3800EFC307 /* Row8BlockBreak.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row8BlockBreak.sks; sourceTree = "<group>"; };
 		382436901E6A4B23005E3EE0 /* Level2_8.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2_8.sks; sourceTree = "<group>"; };
@@ -352,8 +358,8 @@
 		38E99E621E4AF9D600781E6C /* Level1_11.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1_11.sks; sourceTree = "<group>"; };
 		38E99E631E4AF9D600781E6C /* Level1_8.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1_8.sks; sourceTree = "<group>"; };
 		38E99E641E4AF9D600781E6C /* Level1_10.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1_10.sks; sourceTree = "<group>"; };
-		38EA310B1E5D3C8C006E044A /* EndGame.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EndGame.sks; sourceTree = "<group>"; };
-		38EA310D1E5D40AC006E044A /* ButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
+		38EA310B1E5D3C8C006E044A /* FinishedLevel.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FinishedLevel.sks; sourceTree = "<group>"; };
+		38EA310D1E5D40AC006E044A /* FinishedButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishedButtonNode.swift; sourceTree = "<group>"; };
 		38F40FE11E3B120500A0A469 /* SpeedNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeedNode.swift; sourceTree = "<group>"; };
 		38F40FE31E3B12C500A0A469 /* SpeedRef.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SpeedRef.sks; sourceTree = "<group>"; };
 		38F40FE91E3B28CE00A0A469 /* Row4BlockBreakGrav.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row4BlockBreakGrav.sks; sourceTree = "<group>"; };
@@ -385,6 +391,7 @@
 				38E50CEE1E39D926007437E7 /* BombFuse.sks */,
 				3804F12C1E39FAEB007099AD /* BombExplode.sks */,
 				38D738181E4EDA6E00E79D10 /* SecretTeleportParticles.sks */,
+				3820E0161EA1EC3E00AC2556 /* Shatter.sks */,
 			);
 			path = Emitters;
 			sourceTree = "<group>";
@@ -459,6 +466,8 @@
 		3820E00D1EA1B73500AC2556 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3820E0121EA1D1F000AC2556 /* Foundation.framework */,
+				3820E0101EA1D1E600AC2556 /* SpriteKit.framework */,
 				3820E00E1EA1B73500AC2556 /* GameKit.framework */,
 			);
 			name = Frameworks;
@@ -524,7 +533,7 @@
 			isa = PBXGroup;
 			children = (
 				38B08F691E408006000A7232 /* LoadingScreen.sks */,
-				38EA310B1E5D3C8C006E044A /* EndGame.sks */,
+				38EA310B1E5D3C8C006E044A /* FinishedLevel.sks */,
 				38F7B1F01E3838ED00A62956 /* Inteface.sks */,
 				383CA9781E1DD5E600F8B998 /* GunRef.sks */,
 				38F7B1E81E38243300A62956 /* ControllerRef.sks */,
@@ -554,14 +563,15 @@
 			isa = PBXGroup;
 			children = (
 				38395CBA1E3DB7020014E5E3 /* background.mp3 */,
+				38AE07591E361DDC00D127D2 /* Lock.caf */,
+				38017A321E35DFD00051EEE0 /* Smash.caf */,
 				38CE1BFA1E3841A200B646DB /* Explosion.caf */,
+				38E6DA381E3C0A06004F8A79 /* Block.caf */,
+				3820E0141EA1E86500AC2556 /* BlockShatter.caf */,
 				38AE07551E36199500D127D2 /* Bounce1.caf */,
 				38AE07561E36199500D127D2 /* Bounce2.caf */,
 				38AE07571E36199500D127D2 /* Bounce3.caf */,
 				38AE07581E36199500D127D2 /* Bounce4.caf */,
-				38AE07591E361DDC00D127D2 /* Lock.caf */,
-				38017A321E35DFD00051EEE0 /* Smash.caf */,
-				38E6DA381E3C0A06004F8A79 /* Block.caf */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -597,7 +607,7 @@
 				384ACEF21E347FE2004C3E93 /* KeyNode.swift */,
 				387105EB1E35844E002D010A /* LockNode.swift */,
 				385161351E348E6C0041995A /* ControllerNode.swift */,
-				38EA310D1E5D40AC006E044A /* ButtonNode.swift */,
+				38EA310D1E5D40AC006E044A /* FinishedButtonNode.swift */,
 				38650F531E25F6A500401ABD /* FireButtonNode.swift */,
 				387105F41E359CA4002D010A /* ReplayButtonNode.swift */,
 				38AC34C91E4118AD00FB9B50 /* BackButtonNode.swift */,
@@ -925,6 +935,7 @@
 				381CB81C1E626FD90024D592 /* Row8BlockMtlPinned.sks in Resources */,
 				38F40FEA1E3B28CE00A0A469 /* Row4BlockBreakGrav.sks in Resources */,
 				38F40FE41E3B12C500A0A469 /* SpeedRef.sks in Resources */,
+				3820E0171EA1EC3E00AC2556 /* Shatter.sks in Resources */,
 				38E99E671E4AF9D600781E6C /* Level1_3.sks in Resources */,
 				38BD09F11E401E2900AE6AF2 /* Row2BlockFan.sks in Resources */,
 				3823225E1E765BFD009F512C /* BallSquareDyn.sks in Resources */,
@@ -963,13 +974,14 @@
 				38A6F0191E6C09CF0070A7F5 /* Row11BlockPinned.sks in Resources */,
 				38A6F0171E6BF3650070A7F5 /* 1BucketPinned.sks in Resources */,
 				38BD09F21E401E2900AE6AF2 /* Row2BlockMtl.sks in Resources */,
-				38EA310C1E5D3C8C006E044A /* EndGame.sks in Resources */,
+				38EA310C1E5D3C8C006E044A /* FinishedLevel.sks in Resources */,
 				3804F12D1E39FAEB007099AD /* BombExplode.sks in Resources */,
 				383CA9831E1DD61100F8B998 /* LaunchScreen.storyboard in Resources */,
 				38E50CF11E39DB2F007437E7 /* BlockBrk.sks in Resources */,
 				3835DA351E4FE8A900AD85F0 /* Level2_5.sks in Resources */,
 				388514001E36EF440092F058 /* SpringTool.sks in Resources */,
 				38E6DA341E3C02E8004F8A79 /* Bounce1.caf in Resources */,
+				3820E0151EA1EA9100AC2556 /* BlockShatter.caf in Resources */,
 				383D7E0E1E6C1F0900A7C5E7 /* Cross8BlockMtl.sks in Resources */,
 				38721CD61E4E9F78008D9033 /* Row3BlockBreak.sks in Resources */,
 				38BD09F41E401E2900AE6AF2 /* Row4BlockMtl.sks in Resources */,
@@ -1004,7 +1016,7 @@
 				380F026D1E5939F90003246E /* InstuctionPageContentViewController.swift in Sources */,
 				386EC6E91E580209000B2A59 /* RCValues.swift in Sources */,
 				38A6F01B1E6C0DDB0070A7F5 /* BallSpawnerNode.swift in Sources */,
-				38EA310E1E5D40AC006E044A /* ButtonNode.swift in Sources */,
+				38EA310E1E5D40AC006E044A /* FinishedButtonNode.swift in Sources */,
 				38AC34CA1E4118AD00FB9B50 /* BackButtonNode.swift in Sources */,
 				38E4B5B61E370A0A00C798C0 /* ToolIcon.swift in Sources */,
 				387105EC1E35844E002D010A /* LockNode.swift in Sources */,
@@ -1163,7 +1175,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Carolyn Sutherland (275NR7AUAM)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 23CKX9X8J9;
@@ -1175,7 +1186,7 @@
 				PROVISIONING_PROFILE = "4b1a8f98-8397-4698-b07d-53cc203e2d33";
 				PROVISIONING_PROFILE_SPECIFIER = "Unlokit Development Profile";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -1184,7 +1195,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Carolyn Sutherland (23CKX9X8J9)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 23CKX9X8J9;
@@ -1196,7 +1206,7 @@
 				PROVISIONING_PROFILE = "63197cae-f5d3-4c3e-a33b-8d81b42bb49c";
 				PROVISIONING_PROFILE_SPECIFIER = "Unlokit Distribution Profile";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};

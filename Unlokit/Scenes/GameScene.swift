@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+
 struct Category {
 	static let zero: UInt32				= 0b0
 	
@@ -76,7 +77,7 @@ protocol LevelController: class {
 	
 	func startNewGame(levelname: String)
 	func startNewGame()
-	func endGame()
+	func finishedLevel()
 	func endSecret()
 	func returnToLevelSelect()
 	func toNextLevel()
@@ -99,7 +100,7 @@ class GameScene: SKScene {
     
     var canvasBounds: CGRect!
     
-    var isEnd = false
+    var isFinished = false
     
     // Array of tools
 	var toolBox: SKNode!
@@ -476,40 +477,45 @@ class GameScene: SKScene {
 		}
 	}
 	
-	func endGame() {
+	func finishedLevel() {
 		if level.isSecret {
 			levelController.endSecret()
 		} else {
-			let endGameNode = SKScene(fileNamed: "EndGame")!.childNode(withName: "endGame")!
-			endGameNode.removeFromParent()
-			endGameNode.alpha = 0
-			endGameNode.position = cameraNode.position
-			print(endGameNode)
+			// Finished screen
+			let finishedLevelNode = SKScene(fileNamed: "FinishedLevel")!.childNode(withName: "finishedLevel") as! SKSpriteNode
+			finishedLevelNode.removeFromParent()
+			finishedLevelNode.alpha = 0
+			// Center of camera
+			finishedLevelNode.position = CGPoint(x: cameraNode.frame.size.width / 2, y: cameraNode.frame.size.height / 2)
+			cameraNode.addChild(finishedLevelNode)
 
-			addChild(endGameNode)
+			isFinished = true
 
-			isEnd = true
-
-			let levelButton = endGameNode.childNode(withName: "levelButton") as! LevelSelectButtonNode
-			let nextButton = endGameNode.childNode(withName: "nextButton") as! NextLevelButtonNode
-
+			let levelButton = finishedLevelNode.childNode(withName: "levelButton") as! LevelSelectButtonNode
+			let nextButton = finishedLevelNode.childNode(withName: "nextButton") as! NextLevelButtonNode
+			
+			// If this is the last level of the last stage
+			if level.number == Stages.sharedInstance.stages[level.stageNumber - 1].levels.count &&
+				level.stageNumber == Stages.sharedInstance.stages.count {
+				nextButton.isHidden = true // Hide next level button
+			}
+			
 			levelButton.delegate = levelController
 			nextButton.delegate = levelController
 
 			if iPhone {
 				levelButton.position.y += 350
 				nextButton.position.y += 350
-				endGameNode.position.y += 150
+				finishedLevelNode.position.y += 150
 			}
 
-
-			endGameNode.run(SKAction.fadeIn(withDuration: 0.5)) { self.isPaused = true }
+			finishedLevelNode.run(SKAction.fadeIn(withDuration: 0.5)) { self.isPaused = true }
 		}
 	}
 
     // MARK: - Touch Events
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard !isEnd else {
+        guard !isFinished else {
             return
         }
         
@@ -535,7 +541,7 @@ class GameScene: SKScene {
         }
     }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard !isEnd else {
+        guard !isFinished else {
             return
         }
         for touch in touches {
@@ -555,7 +561,7 @@ class GameScene: SKScene {
         }
     }
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard !isEnd else {
+        guard !isFinished else {
             return
         }
         for _ in touches {
@@ -583,6 +589,13 @@ class GameScene: SKScene {
 	override func update(_ currentTime: TimeInterval) {
 		if let node = nodeToFollow {
 			moveCamera(with: node)
+		}
+		if noKey {
+			// Debug, key is invincable
+			//key.physicsBody?.categoryBitMask = 0
+			key.physicsBody?.collisionBitMask = 0
+			key.physicsBody?.contactTestBitMask = Category.lock
+			key.physicsBody?.fieldBitMask = 0
 		}
 
 		// Iterate through the fans, update fields and particles

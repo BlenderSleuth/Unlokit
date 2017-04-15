@@ -9,7 +9,7 @@
 import UIKit
 
 protocol LevelSelectDelegate: class {
-	func complete()
+	func completed(_ completed: Bool)
 	func setNextLevelView(from levelView: LevelView)
 
 	var currentLevelView: LevelView? { get set }
@@ -130,9 +130,11 @@ class LevelSelectViewController: UIViewController, LevelViewDelegate, LevelSelec
 		}
 	}
 
-	func complete() {
-		backFromCompletion = true
-		nextLevelView?.makeAvailable()
+	func completed(_ completed: Bool) {
+		backFromCompletion = completed
+		if completed {
+			nextLevelView?.makeAvailable()
+		}
 	}
 
 	override var prefersStatusBarHidden: Bool {

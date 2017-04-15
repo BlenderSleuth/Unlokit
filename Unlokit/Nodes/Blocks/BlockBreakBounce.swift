@@ -12,18 +12,10 @@ class BlockBreakBncNode: BlockBncNode, Breakable {
 	var side: Side?
 	var glueBlock: BlockGlueNode?
 	
+	var particleTexture: SKTexture?
+	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		physicsBody?.categoryBitMask = Category.blockBnc | Category.blockBreak
-	}
-	
-	func shatter() {
-		// Remove from blocks 'connected' array
-		if let side = side, let block = glueBlock {
-			block.remove(for: side)
-		}
-
-		// TODO: Add particles and sound
-		removeFromParent()
 	}
 }

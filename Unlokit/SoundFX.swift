@@ -26,6 +26,7 @@ class SoundFX {
 		let smash = SKAction.playSoundFileNamed("Smash.caf", waitForCompletion: false)
 		let explosion = SKAction.playSoundFileNamed("Explosion.caf", waitForCompletion: false)
 		let block = SKAction.playSoundFileNamed("Block.caf", waitForCompletion: false)
+		let blockShatter = SKAction.playSoundFileNamed("BlockShatter.caf", waitForCompletion: false)
 		
 		let bounce1 = SKAction.playSoundFileNamed("Bounce1.caf", waitForCompletion: false)
 		let bounce2 = SKAction.playSoundFileNamed("Bounce2.caf", waitForCompletion: false)
@@ -35,12 +36,13 @@ class SoundFX {
 		// Dictionary for sounds to be preloaded
 		soundActions = ["lock":lock,
 		                "smash":smash,
+		                "block": block,
+		                "blockShatter": blockShatter,
 		                "explosion":explosion,
 		                "bounce1": bounce1,
 		                "bounce2": bounce2,
 		                "bounce3": bounce3,
-		                "bounce4": bounce4,
-						"block": block]
+		                "bounce4": bounce4]
 		
 		print("loaded sounds")
 	}

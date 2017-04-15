@@ -8,6 +8,7 @@
 
 import SpriteKit
 
+let noKey = true
 //Separate file for physics contact, its gonna get heavy...
 extension GameScene: SKPhysicsContactDelegate {
 	func didBegin(_ contact: SKPhysicsContact) {
@@ -179,12 +180,13 @@ extension GameScene: SKPhysicsContactDelegate {
 			let speed = getNode(for: Category.speed, type: SpeedNode.self)
 			let tool = getOtherNode(for: speed, type: SKSpriteNode.self)
 
-			// TODO: Add particles and sound
+			//Add particles and sound
 
 			// Make tool go higher
 			tool.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 20))
 		}
 		*/
+			
 		// Smash conditions ****************
 		else if collided(with: Category.blockMtl, and: Category.key) ||
 				collided(with: Category.blockBreak, and: Category.key) ||

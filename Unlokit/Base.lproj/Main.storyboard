@@ -27,7 +27,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TJd-kM-CGv">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TJd-kM-CGv" userLabel="Play">
                                 <rect key="frame" x="270" y="142" width="484" height="484"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="TJd-kM-CGv" secondAttribute="height" multiplier="1:1" id="WDt-Qt-qjC"/>
@@ -38,53 +38,64 @@
                                     <segue destination="UPt-8q-sBi" kind="show" id="dS5-Qj-0eZ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HSr-ZD-lVt">
-                                <rect key="frame" x="20" y="364.5" width="242" height="39"/>
-                                <fontDescription key="fontDescription" name="NeuropolXRg-Regular" family="Neuropol X" pointSize="22"/>
-                                <connections>
-                                    <segue destination="90l-Rb-BlB" kind="show" id="21f-7L-WUI"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kTR-qb-Wto">
-                                <rect key="frame" x="762" y="358.5" width="242" height="51"/>
+                                <rect key="frame" x="704" y="358.5" width="300" height="51"/>
                                 <fontDescription key="fontDescription" name="NeuropolXRg-Regular" family="Neuropol X" pointSize="32"/>
                                 <state key="normal" title="Instructions"/>
+                                <variation key="heightClass=compact">
+                                    <fontDescription key="fontDescription" name="NeuropolXRg-Regular" family="Neuropol X" pointSize="24"/>
+                                </variation>
                                 <connections>
                                     <segue destination="JEG-DU-WdI" kind="show" id="R5P-VM-f5L"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mbV-5f-qnf">
-                                <rect key="frame" x="20" y="359" width="258" height="51"/>
+                                <rect key="frame" x="20" y="358.5" width="300" height="51"/>
                                 <fontDescription key="fontDescription" name="NeuropolXRg-Regular" family="Neuropol X" pointSize="32"/>
                                 <state key="normal" title="Game Center"/>
+                                <variation key="heightClass=compact">
+                                    <fontDescription key="fontDescription" name="NeuropolXRg-Regular" family="Neuropol X" pointSize="24"/>
+                                </variation>
                                 <connections>
                                     <action selector="gameCenterButton:" destination="MaF-Yw-LHC" eventType="touchUpInside" id="zF5-ss-2CG"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCb-RR-jQO">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCb-RR-jQO" userLabel="GC Icon">
                                 <rect key="frame" x="20" y="52" width="59" height="59"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="gamecenter"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b4k-ua-k6j">
+                                <rect key="frame" x="391" y="634" width="242" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="NeuropolXRg-Regular" family="Neuropol X" pointSize="32"/>
+                                <state key="normal" title="STORE"/>
+                                <connections>
+                                    <segue destination="90l-Rb-BlB" kind="show" id="QMy-1R-iKR"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="kTR-qb-Wto" firstAttribute="trailing" secondItem="D6t-1A-6H4" secondAttribute="trailingMargin" id="4X9-YU-KTb"/>
-                            <constraint firstItem="kTR-qb-Wto" firstAttribute="leading" secondItem="TJd-kM-CGv" secondAttribute="trailing" constant="8" id="IEC-l2-39d"/>
+                            <constraint firstItem="kTR-qb-Wto" firstAttribute="leading" secondItem="TJd-kM-CGv" secondAttribute="trailing" id="IEC-l2-39d">
+                                <variation key="heightClass=regular-widthClass=regular" constant="-50"/>
+                            </constraint>
                             <constraint firstAttribute="trailingMargin" secondItem="TJd-kM-CGv" secondAttribute="trailing" constant="250" id="NNw-Rl-tU9"/>
                             <constraint firstItem="TJd-kM-CGv" firstAttribute="leading" secondItem="D6t-1A-6H4" secondAttribute="leadingMargin" constant="250" id="QcR-mV-sx0"/>
                             <constraint firstItem="mbV-5f-qnf" firstAttribute="centerY" secondItem="D6t-1A-6H4" secondAttribute="centerY" id="Y0M-gD-80r"/>
                             <constraint firstItem="kTR-qb-Wto" firstAttribute="centerY" secondItem="D6t-1A-6H4" secondAttribute="centerY" id="Z19-CG-iVX"/>
                             <constraint firstItem="TJd-kM-CGv" firstAttribute="centerX" secondItem="D6t-1A-6H4" secondAttribute="centerX" id="bjM-dn-vaw"/>
-                            <constraint firstItem="TJd-kM-CGv" firstAttribute="leading" secondItem="HSr-ZD-lVt" secondAttribute="trailing" constant="8" id="cS5-O9-yYg"/>
-                            <constraint firstItem="HSr-ZD-lVt" firstAttribute="leading" secondItem="D6t-1A-6H4" secondAttribute="leadingMargin" id="ddP-OS-cr3"/>
                             <constraint firstItem="TJd-kM-CGv" firstAttribute="centerY" secondItem="D6t-1A-6H4" secondAttribute="centerY" id="qv1-2p-GiD"/>
                             <constraint firstItem="mbV-5f-qnf" firstAttribute="leading" secondItem="D6t-1A-6H4" secondAttribute="leadingMargin" id="xkB-gN-Htf"/>
-                            <constraint firstItem="HSr-ZD-lVt" firstAttribute="centerY" secondItem="D6t-1A-6H4" secondAttribute="centerY" id="y6w-s0-UdX"/>
+                            <constraint firstItem="TJd-kM-CGv" firstAttribute="leading" secondItem="mbV-5f-qnf" secondAttribute="trailing" id="xzt-hl-TRk">
+                                <variation key="heightClass=regular-widthClass=regular" constant="-50"/>
+                            </constraint>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="BCb-RR-jQO"/>
+                                <exclude reference="b4k-ua-k6j"/>
                             </mask>
                         </variation>
                     </view>
@@ -176,14 +187,14 @@
                     <view key="view" contentMode="scaleToFill" id="0gM-kr-ESG">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Store" id="qex-ig-56F"/>
                     <nil key="simulatedStatusBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n6E-JE-rgr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-970" y="851"/>
+            <point key="canvasLocation" x="-965" y="907"/>
         </scene>
         <!--Instructions-->
         <scene sceneID="mnf-Jx-gQV">
@@ -220,7 +231,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IS7-zk-VYb" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedStatusBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="WCf-La-B8q">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="WCf-La-B8q">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.12390624729999999" green="0.12390624729999999" blue="0.12390624729999999" alpha="1" colorSpace="deviceRGB"/>

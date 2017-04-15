@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-let enableAllLevels = true
+let enableAllLevels = false
 
 class Stages {
 	static let sharedInstance = Stages()

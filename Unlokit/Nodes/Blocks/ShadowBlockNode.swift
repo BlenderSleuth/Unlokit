@@ -18,6 +18,5 @@ class ShadowBlockNode: BlockMtlNode {
 
 		lightingBitMask = Category.controllerLight | Category.lockLight
 		shadowCastBitMask = Category.controllerLight
-
 	}
 }

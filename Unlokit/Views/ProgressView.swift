@@ -104,13 +104,14 @@ class ProgressView: UIView {
 	func update(levelViews: [LevelView]) {
 		// Reset
 		xPos = scrollInsetWidth + padding / 2
-		
 		// Iterate through levels
 		for levelView in levelViews {
 			// Add levels until it reaches a completed one
 			if addLevel(levelView) {
 				animateToNextLevel(x: xPos, levelView: levelView)
-				return
+			} else if levelView.level.number == levelViews.count {
+				// If it is the last one and there is at least one available, animate to the end.
+				animateToNextLevel(x: xPos + scrollInsetWidth, levelView: levelView)
 			}
 		}
 	}

@@ -12,6 +12,8 @@ class BlockBreakGlueNode: BlockGlueNode, Breakable {
 	var glueBlock: BlockGlueNode?
 	var side: Side?
 	
+	var particleTexture: SKTexture?
+	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		physicsBody?.categoryBitMask = Category.blockGlue

@@ -32,7 +32,7 @@ class LevelSelectButtonNode: SKSpriteNode {
         
     }
     func toLevelSelect() {
-        delegate?.endGame()
+        delegate?.finishedLevel()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

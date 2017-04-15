@@ -9,27 +9,47 @@
 import SpriteKit
 
 protocol Breakable {
-	func shatter()
+	func shatter(scene: SKScene)
 	var glueBlock: BlockGlueNode? { get set }
 	var side: Side? { get set }
 
+	var particleTexture: SKTexture? { get }
+	
+	// From SKSpriteNode
+	var parent: SKNode? { get }
+	var position: CGPoint { get }
+	
 	func removeFromParent()
 }
 extension Breakable {
-	func shatter() {
+	func shatter(scene: SKScene) {
 		// Remove from blocks 'connected' array
 		if let side = side, let block = glueBlock {
 			block.remove(for: side)
 		}
-
+		
+		
+		if let parent = parent {
+			let emitter = SKEmitterNode(fileNamed: "Shatter")!
+			// If there is a custom texture, use it
+			if let texture = particleTexture {
+				emitter.particleTexture = texture
+			}
+			emitter.position = position
+			parent.addChild(emitter)
+		}
+		
+		
+		scene.run(SoundFX.sharedInstance["blockShatter"]!)
 		removeFromParent()
 	}
 }
 
 class BlockBreakNode: BlockMtlNode, Breakable {
-
 	var side: Side?
 	var glueBlock: BlockGlueNode?
+	
+	var particleTexture: SKTexture?
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
