@@ -58,7 +58,7 @@ struct Category {
 struct ZPosition {
 	static let background: CGFloat					    = -10
 	
-	static let canonTower_controller: CGFloat			=  10
+	static let cannonTower_controller: CGFloat			=  10
 	
 	static let levelBlocks: CGFloat						=  20
 	
@@ -66,7 +66,7 @@ struct ZPosition {
 	
 	static let toolIcons_particles: CGFloat				=  40
 	
-	static let canon: CGFloat							=  50
+	static let cannon: CGFloat							=  50
 	
 	static let interface: CGFloat						=  100
 }
@@ -77,6 +77,7 @@ protocol LevelController: class {
 	
 	func startNewGame(levelname: String)
 	func startNewGame()
+	func saveLevels()
 	func finishedLevel()
 	func endSecret()
 	func returnToLevelSelect()
@@ -94,10 +95,10 @@ class GameScene: SKScene {
     var fireNode: FireButtonNode!
 	var replayButton: ReplayButtonNode!
 	var backButton: BackButtonNode!
-	var canon: SKSpriteNode!
+	var cannon: SKSpriteNode!
     var cameraNode: SKCameraNode!
     var bounds: SKSpriteNode!
-    
+	
     var canvasBounds: CGRect!
     
     var isFinished = false
@@ -148,7 +149,7 @@ class GameScene: SKScene {
 			stop.pointee = true
 		}
 
-		canon = controller.childNode(withName: "//canon") as! SKSpriteNode
+		cannon = controller.childNode(withName: "//cannon") as! SKSpriteNode
 		
 		// Get canvas bounds in scene coordinates
 		let canvas = childNode(withName: "//canvas")!
@@ -173,7 +174,7 @@ class GameScene: SKScene {
 		// Bind fire node to local variable
 		fireNode = cameraNode.childNode(withName: "//fireButton") as! FireButtonNode
 		fireNode.controller = controller
-		fireNode.canon = childNode(withName: "//canon") as! SKSpriteNode
+		fireNode.cannon = childNode(withName: "//cannon") as! SKSpriteNode
 		//Replay button
 		replayButton = cameraNode.childNode(withName: "//replayButton") as! ReplayButtonNode
 		replayButton.levelController = delegate
@@ -349,7 +350,11 @@ class GameScene: SKScene {
         // Add to camera node position
         cameraNode.position += vector
     }
+	var isJustFired = false
 	func moveCamera(with node: SKSpriteNode) {
+		guard !isJustFired else {
+			return
+		}
 		// Check if the node is gone
 		if node.parent == nil {
 			nodeToFollow = nil
@@ -360,13 +365,14 @@ class GameScene: SKScene {
 			cameraNode.run(SKAction.sequence([SKAction.wait(forDuration: RCValues.sharedInstance.cameraTime), move]), withKey: "cameraMove")
 		}
 		
-		// TODO: lerp more
 		let cameraTarget = node.position
-		let targetPosition = CGPoint(x: cameraNode.position.x, y: cameraTarget.y - (scene!.view!.bounds.height * 0.4))
+		let camConstant: CGFloat = 0.4 // Idk what this does, it just works
+		let targetPosition = CGPoint(x: cameraNode.position.x, y: cameraTarget.y - (view!.bounds.height * camConstant))
 		
 		let diff = targetPosition - cameraNode.position
 		
-		let lerpValue: CGFloat = 0.2
+		// Trial and error
+		let lerpValue = CGFloat(RCValues.sharedInstance.cameraLerp)
 		let lerpDiff = diff * lerpValue
 		let newPosition = cameraNode.position + lerpDiff
 		
@@ -388,7 +394,7 @@ class GameScene: SKScene {
 			return node
 		} else if node is KeyNode {
 			return key
-		} else if node == canon {
+		} else if node == cannon {
 			return node
 		}
 		
@@ -418,6 +424,7 @@ class GameScene: SKScene {
 		key.engage(controller) {
 			self.fireNode.objectToFire = key
 		}
+		nodeToFollow = nil
 	}
 	func unload(_ key: KeyNode) {
 		// If key is animating, don't do anything
@@ -446,7 +453,7 @@ class GameScene: SKScene {
 			fireNode.objectToFire?.disengage(controller)
 		}
 		
-		// Unarchive a tool from file
+		// Unarchive a brand new tool from file
 		let newTool = SKNode(fileNamed: tool.type.rawValue)?.children.first as! ToolNode
 
 		// Remove tool from unarchived scene, add it to this one and engage
@@ -464,7 +471,7 @@ class GameScene: SKScene {
 		
 		// Set object to fire to newTool
 		fireNode.objectToFire = newTool
-		
+		nodeToFollow = nil
 	}
 	func unLoad(tool: ToolNode, to icon: ToolIcon) {
 		guard !tool.animating else {
@@ -481,6 +488,8 @@ class GameScene: SKScene {
 		if level.isSecret {
 			levelController.endSecret()
 		} else {
+			levelController.saveLevels()
+			
 			// Finished screen
 			let finishedLevelNode = SKScene(fileNamed: "FinishedLevel")!.childNode(withName: "finishedLevel") as! SKSpriteNode
 			finishedLevelNode.removeFromParent()
@@ -569,7 +578,7 @@ class GameScene: SKScene {
 			if let toolIcon = currentNode as? ToolIcon {
 				load(icon: toolIcon)
 				toolIcon.greyOut()
-			} else if canon == currentNode {
+			} else if cannon == currentNode {
 				// Check currently load object, unload
 				if let toolNode = fireNode.objectToFire as? ToolNode {
 					unLoad(tool: toolNode, to: toolIcons[toolNode.type]!)
@@ -590,9 +599,8 @@ class GameScene: SKScene {
 		if let node = nodeToFollow {
 			moveCamera(with: node)
 		}
-		if noKey {
+		if cheat {
 			// Debug, key is invincable
-			//key.physicsBody?.categoryBitMask = 0
 			key.physicsBody?.collisionBitMask = 0
 			key.physicsBody?.contactTestBitMask = Category.lock
 			key.physicsBody?.fieldBitMask = 0

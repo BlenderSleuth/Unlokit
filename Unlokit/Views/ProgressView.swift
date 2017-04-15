@@ -68,7 +68,7 @@ class ProgressView: UIView {
 		return true
 	}
 	
-	func animateToNextLevel(x: CGFloat, levelView: LevelView) {
+	func animateToNextLevel(x: CGFloat, levelView: LevelView, end: Bool = false) {
 		// Get delta position to move by
 		let deltaX = x - frame.width
 		
@@ -97,7 +97,9 @@ class ProgressView: UIView {
 		UIView.animate(withDuration: 1.5) {
 			self.frame.size.width += deltaX
 			self.circle.center.x += deltaX
-			self.levelScrollView.contentOffset.x += contentOffset
+			if !end {
+				self.levelScrollView.contentOffset.x += contentOffset
+			}
 		}
 	}
 	
@@ -111,7 +113,7 @@ class ProgressView: UIView {
 				animateToNextLevel(x: xPos, levelView: levelView)
 			} else if levelView.level.number == levelViews.count {
 				// If it is the last one and there is at least one available, animate to the end.
-				animateToNextLevel(x: xPos + scrollInsetWidth, levelView: levelView)
+				animateToNextLevel(x: xPos + scrollInsetWidth, levelView: levelView, end: true)
 			}
 		}
 	}

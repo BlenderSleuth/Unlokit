@@ -27,6 +27,7 @@ class SoundFX {
 		let explosion = SKAction.playSoundFileNamed("Explosion.caf", waitForCompletion: false)
 		let block = SKAction.playSoundFileNamed("Block.caf", waitForCompletion: false)
 		let blockShatter = SKAction.playSoundFileNamed("BlockShatter.caf", waitForCompletion: false)
+		let cannon = SKAction.playSoundFileNamed("Cannon", waitForCompletion: false)
 		
 		let bounce1 = SKAction.playSoundFileNamed("Bounce1.caf", waitForCompletion: false)
 		let bounce2 = SKAction.playSoundFileNamed("Bounce2.caf", waitForCompletion: false)
@@ -38,7 +39,8 @@ class SoundFX {
 		                "smash":smash,
 		                "block": block,
 		                "blockShatter": blockShatter,
-		                "explosion":explosion,
+		                "explosion": explosion,
+		                "cannon": cannon,
 		                "bounce1": bounce1,
 		                "bounce2": bounce2,
 		                "bounce3": bounce3,

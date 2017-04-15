@@ -8,8 +8,8 @@
 
 import SpriteKit
 
-let noKey = true
-//Separate file for physics contact, its gonna get heavy...
+let cheat = true
+// Separate file for physics contact, its gonna get heavy...
 extension GameScene: SKPhysicsContactDelegate {
 	func didBegin(_ contact: SKPhysicsContact) {
 		// Find collision

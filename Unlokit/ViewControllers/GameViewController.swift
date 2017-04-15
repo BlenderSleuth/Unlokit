@@ -106,9 +106,15 @@ class GameViewController: UIViewController, LevelController {
 		
 		startNewGame()
 	}
+	
+	func saveLevels() {
+		delegate?.saveLevels()
+	}
 
 	func toNextLevel() {
+		// Because of reference we can set this in here
 		level.completed = true
+		
 		// Get next level
 		var nextLevelNumber = level.number + 1
 		var stageNumber = level.stageNumber
@@ -119,13 +125,12 @@ class GameViewController: UIViewController, LevelController {
 			stageNumber += 1
 		}
 
+		// Setup new level views
 		level = Stages.sharedInstance.stages[stageNumber - 1].levels[nextLevelNumber-1]
 		currentLevelView = delegate?.levelViews[stageNumber]?[level.number-1]
 
 		if let view = currentLevelView {
 			delegate?.setNextLevelView(from: view)
-			print("foo")
-			delegate?.completed(true)
 		}
 
 		currentLevelView?.makeAvailable()
@@ -141,7 +146,9 @@ class GameViewController: UIViewController, LevelController {
 		navigationController?.view.layer.add(transition, forKey: nil)
 		
 		let _ = navigationController?.popViewController(animated: false)
-		delegate?.completed(level.completed)
+		if level.completed {
+			delegate?.completeLevel()
+		}
 	}
 	
 	// Clean up

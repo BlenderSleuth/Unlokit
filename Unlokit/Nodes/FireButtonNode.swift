@@ -29,7 +29,7 @@ class FireButtonNode: SKSpriteNode {
 	
 	// Must be initalised from scene
 	var controller: ControllerNode!
-	var canon: SKSpriteNode!
+	var cannon: SKSpriteNode!
 	
     // Used for initialising from file
     required init?(coder aDecoder: NSCoder) {
@@ -74,13 +74,19 @@ class FireButtonNode: SKSpriteNode {
 		
 		// Apply impulse based on angle
         sprite.physicsBody?.applyImpulse(CGVector(dx: dx, dy: dy))
-		//sprite.physicsBody?.applyAngularImpulse(0.5) // Spin sprite as it fires
 		
-		//SKTAudio.sharedInstance().playSoundEffect(filename: "Explosion.caf")
+		cannon.run(SoundFX.sharedInstance["cannon"]!)
 		
 		let recoilAction = SKAction.sequence([SKAction.moveBy(x: 0, y: -70, duration: 0.03), SKAction.moveBy(x: 0, y: 70, duration: 0.2)])
-		canon.run(recoilAction) // Make canon recoil
+		cannon.run(recoilAction) // Make cannon recoil
 		objectToFire = nil
+		
+		// To prevent camera jerk
+		scene.isJustFired = true
+		run(SKAction.sequence([
+			SKAction.wait(forDuration: RCValues.sharedInstance.cameraWait),
+			SKAction.run { scene.isJustFired = false }
+			]))
 		
 		// So camera can follow the sprite
 		scene.nodeToFollow = sprite

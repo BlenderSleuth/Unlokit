@@ -9,7 +9,8 @@
 import UIKit
 
 protocol LevelSelectDelegate: class {
-	func completed(_ completed: Bool)
+	func completeLevel()
+	func saveLevels()
 	func setNextLevelView(from levelView: LevelView)
 
 	var currentLevelView: LevelView? { get set }
@@ -32,17 +33,19 @@ class LevelSelectViewController: UIViewController, LevelViewDelegate, LevelSelec
 	var currentLevelView: LevelView?
 	var nextLevelView: LevelView?
 	
-	// Start off true for when the game starts
-	var backFromCompletion = true
-	
+	var notLoaded = true
     override func viewDidLoad() {
         super.viewDidLoad()
 		setupScroll(frame: view.frame)
 		reset()
+		notLoaded = false
     }
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-		reset()
+		if notLoaded {
+			reset()
+		}
+		notLoaded = true
 	}
 
 	func reset() {
@@ -52,19 +55,22 @@ class LevelSelectViewController: UIViewController, LevelViewDelegate, LevelSelec
 		for (_, stageView) in stageViews {
 			// Save levels
 			stageView.stage.saveLevels()
-
-			// If there it is back from completing, update levels
-			if backFromCompletion {
-				// Check if levelViews
-				if let levelViews = levelViews[stageView.stage.number] {
-					// Update progress view with stage
-					stageView.progressView.update(levelViews: levelViews)
-				}
+			
+			// Check if there is a levelView
+			if let levelViews = levelViews[stageView.stage.number] {
+				// Update progress view with stage
+				stageView.progressView.update(levelViews: levelViews)
 			}
 		}
 
 		// Reset current level view
 		nextLevelView = nil
+	}
+	func saveLevels() {
+		for (_, stageView) in stageViews {
+			// Save levels
+			stageView.stage.saveLevels()
+		}
 	}
 	
 	func setupScroll(frame: CGRect) {
@@ -124,17 +130,11 @@ class LevelSelectViewController: UIViewController, LevelViewDelegate, LevelSelec
 			
 			gameViewController.level = level
 			gameViewController.delegate = self
-			
-			// Reset
-			backFromCompletion = false
 		}
 	}
 
-	func completed(_ completed: Bool) {
-		backFromCompletion = completed
-		if completed {
-			nextLevelView?.makeAvailable()
-		}
+	func completeLevel() {
+		nextLevelView?.makeAvailable()
 	}
 
 	override var prefersStatusBarHidden: Bool {

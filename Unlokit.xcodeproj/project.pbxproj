@@ -86,6 +86,7 @@
 		387105F31E359640002D010A /* SoundFX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387105F21E359640002D010A /* SoundFX.swift */; };
 		387105F51E359CA4002D010A /* ReplayButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387105F41E359CA4002D010A /* ReplayButtonNode.swift */; };
 		38721CD61E4E9F78008D9033 /* Row3BlockBreak.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38721CD51E4E9F78008D9033 /* Row3BlockBreak.sks */; };
+		387F5DA51EA1F9B4007B3248 /* Cannon.caf in Resources */ = {isa = PBXBuildFile; fileRef = 387F5DA41EA1F918007B3248 /* Cannon.caf */; };
 		3883C32B1E4F164200952740 /* Level2_3.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3883C32A1E4F164200952740 /* Level2_3.sks */; };
 		388514001E36EF440092F058 /* SpringTool.sks in Resources */ = {isa = PBXBuildFile; fileRef = 388513FF1E36EF440092F058 /* SpringTool.sks */; };
 		388514021E36EFA20092F058 /* ToolBox.sks in Resources */ = {isa = PBXBuildFile; fileRef = 388514011E36EFA20092F058 /* ToolBox.sks */; };
@@ -270,6 +271,7 @@
 		387105F21E359640002D010A /* SoundFX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundFX.swift; sourceTree = "<group>"; };
 		387105F41E359CA4002D010A /* ReplayButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplayButtonNode.swift; sourceTree = "<group>"; };
 		38721CD51E4E9F78008D9033 /* Row3BlockBreak.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row3BlockBreak.sks; sourceTree = "<group>"; };
+		387F5DA41EA1F918007B3248 /* Cannon.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cannon.caf; sourceTree = "<group>"; };
 		3883C32A1E4F164200952740 /* Level2_3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2_3.sks; sourceTree = "<group>"; };
 		388513FF1E36EF440092F058 /* SpringTool.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SpringTool.sks; sourceTree = "<group>"; };
 		388514011E36EFA20092F058 /* ToolBox.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ToolBox.sks; sourceTree = "<group>"; };
@@ -568,6 +570,7 @@
 				38CE1BFA1E3841A200B646DB /* Explosion.caf */,
 				38E6DA381E3C0A06004F8A79 /* Block.caf */,
 				3820E0141EA1E86500AC2556 /* BlockShatter.caf */,
+				387F5DA41EA1F918007B3248 /* Cannon.caf */,
 				38AE07551E36199500D127D2 /* Bounce1.caf */,
 				38AE07561E36199500D127D2 /* Bounce2.caf */,
 				38AE07571E36199500D127D2 /* Bounce3.caf */,
@@ -875,6 +878,7 @@
 				3883C32B1E4F164200952740 /* Level2_3.sks in Resources */,
 				38A6F01D1E6C1D000070A7F5 /* Level2_10.sks in Resources */,
 				38CE1BFB1E3841A200B646DB /* Explosion.caf in Resources */,
+				387F5DA51EA1F9B4007B3248 /* Cannon.caf in Resources */,
 				38E99E6C1E4AF9D600781E6C /* Level1_11.sks in Resources */,
 				38E4B5C01E37106700C798C0 /* GlueTool.sks in Resources */,
 				38FDE5D51E4F267500082BA4 /* Level2_4.sks in Resources */,

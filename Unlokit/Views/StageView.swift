@@ -37,7 +37,7 @@ class StageView: UIView {
 		levelScrollView = UIScrollView(frame: scrollViewFrame)
 		levelScrollView.showsHorizontalScrollIndicator = false
 
-		//TODO: gradient stuff
+		// TODO: gradient stuff
 		//let gradientView = UIView(frame: levelScrollView.bounds)
 		//let scrollGradient = CAGradientLayer()
 		//scrollGradient.colors = [UIColor.red.cgColor, UIColor.yellow.cgColor]
