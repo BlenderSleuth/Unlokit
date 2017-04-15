@@ -39,7 +39,7 @@ class TitleViewController: UIViewController, GKGameCenterControllerDelegate {
 				self.present(vc, animated: true, completion: nil)
 			}
 			if error != nil {
-				self.noGameCenter()
+				//self.noGameCenter()
 			}
 		}
 	}
@@ -55,7 +55,6 @@ class TitleViewController: UIViewController, GKGameCenterControllerDelegate {
 
 	@IBAction func gameCenterButton(_ sender: UIButton) {
 		if GKLocalPlayer.localPlayer().isAuthenticated {
-			print(GKLocalPlayer.localPlayer().isAuthenticated)
 			let gc = GKGameCenterViewController()
 			gc.gameCenterDelegate = self
 			present(gc, animated: true, completion: nil)

@@ -8,7 +8,8 @@
 
 import SpriteKit
 
-let cheat = true
+let cheat = false
+
 // Separate file for physics contact, its gonna get heavy...
 extension GameScene: SKPhysicsContactDelegate {
 	func didBegin(_ contact: SKPhysicsContact) {

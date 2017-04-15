@@ -71,53 +71,15 @@ class LevelView: UIView, UIGestureRecognizerDelegate {
 		
 		self.layer.cornerRadius = 15
 		self.layer.masksToBounds = true
-		
-		let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
-		longPressGesture.minimumPressDuration = 0.01
-		longPressGesture.allowableMovement = 10
-		longPressGesture.cancelsTouchesInView = false
-		longPressGesture.delegate = self
-		addGestureRecognizer(longPressGesture)
 	}
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
 	// Make sure scroll view gets gestures as well
-	func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+	func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+	                       shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
 		return true
-	}
-	func handleLongPress(_ sender: UIGestureRecognizer) {
-		guard level.available else {
-			return
-		}
-		
-		switch (sender.state) {
-		case .began: // Object pressed
-			coverLayer.opacity = 0.7
-		case .changed:
-			// Reset sender
-			sender.isEnabled = false
-			sender.isEnabled = true
-		case .ended: // Object released
-			coverLayer.opacity = 0
-			
-			let convertedPosition = convert(sender.location(in: self), to: superview!)
-			
-			if self.frame.contains(convertedPosition) {
-				delegate.currentLevelView = self
-				delegate.setNextLevelView(from: self)
-				
-				delegate.present(level: level)
-			}
-			
-		case .failed, .cancelled:
-			coverLayer.opacity = 0
-			
-			
-		default: // Unknown tap
-			print(sender.state.rawValue);
-		}
 	}
 	
 	func makeAvailable() {
@@ -131,6 +93,38 @@ class LevelView: UIView, UIGestureRecognizerDelegate {
 			layer.borderColor = UIColor.green.cgColor
 		} else if level.available {
 			layer.borderColor = UIColor.orange.cgColor
+		}
+	}
+	
+	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		super.touchesBegan(touches, with: event)
+		guard level.available else {
+			return
+		}
+		coverLayer.opacity = 0.7
+	}
+	override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+		super.touchesMoved(touches, with: event)
+		guard level.available else {
+			return
+		}
+		coverLayer.opacity = 0
+	}
+	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+		super.touchesEnded(touches, with: event)
+		guard level.available else {
+			return
+		}
+		
+		coverLayer.opacity = 0
+		
+		let convertedPosition = convert(touches.first!.location(in: self), to: superview!)
+		
+		if self.frame.contains(convertedPosition) {
+			delegate.currentLevelView = self
+			delegate.setNextLevelView(from: self)
+			
+			delegate.present(level: level)
 		}
 	}
 }

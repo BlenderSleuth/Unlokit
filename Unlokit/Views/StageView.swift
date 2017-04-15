@@ -44,7 +44,6 @@ class StageView: UIView {
 		//gradientView.layer.insertSublayer(scrollGradient, at: 0)
 		//levelScrollView.addSubview(gradientView)
 
-
 		// Space inbetween level views
 		let yPadding: CGFloat = 20
 		let xPadding: CGFloat = 50
