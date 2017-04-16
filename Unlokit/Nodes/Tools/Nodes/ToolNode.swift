@@ -27,7 +27,7 @@ class ToolNode: SKSpriteNode, CanBeFired, Breakable {
 	var animating = false
 	var used = false
 
-	var glueBlock: BlockGlueNode?
+	var glueBlock: GlueBlockNode?
 	var side: Side?
 	
 	var particleTexture: SKTexture?
@@ -46,7 +46,7 @@ class ToolNode: SKSpriteNode, CanBeFired, Breakable {
 		// For overriding to clean up
 		removeFromParent()
 	}
-	func removeFromBlock(scene: GameScene, glueBlock: BlockGlueNode, side: Side) {
+	func removeFromBlock(scene: GameScene, glueBlock: GlueBlockNode, side: Side) {
 		glueBlock.remove(for: side)
 		smash(scene: scene)
 	}
@@ -131,7 +131,7 @@ class ToolNode: SKSpriteNode, CanBeFired, Breakable {
 			}
 		}
 	}
-	func startTimer(glueBlock: BlockGlueNode, side: Side) {
+	func startTimer(glueBlock: GlueBlockNode, side: Side) {
 		// If the timer has already started, don't start again
 		guard !timerStarted else {
 			return

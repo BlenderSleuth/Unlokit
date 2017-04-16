@@ -1,5 +1,5 @@
 //
-//  BlockBncNode.swift
+//  BncBlockNode.swift
 //  Unlokit
 //
 //  Created by Ben Sutherland on 23/1/17.
@@ -8,14 +8,14 @@
 
 import SpriteKit
 
-class BlockBncNode: BlockNode {
+class BncBlockNode: BlockNode {
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		
 		physicsBody?.restitution = 0.8
 
-		physicsBody?.categoryBitMask = Category.blockBnc
+		physicsBody?.categoryBitMask = Category.bncBlock
 		physicsBody?.contactTestBitMask = Category.zero
 	}
 	

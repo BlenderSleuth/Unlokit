@@ -112,7 +112,7 @@ class KeyNode: SKSpriteNode, CanBeFired {
 			self.levelController.startNewGame()
 		}
 	}
-	func startTimer(glueBlock: BlockGlueNode, side: Side) {
+	func startTimer(glueBlock: GlueBlockNode, side: Side) {
 		// If the timer has already started, don't start again
 		guard !timerStarted else {
 			return

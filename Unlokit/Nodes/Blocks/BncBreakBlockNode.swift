@@ -1,5 +1,5 @@
 //
-//  BlockBreakBncNode.swift
+//  BncBreakBlockNode.swift
 //  Unlokit
 //
 //  Created by Ben Sutherland on 28/1/17.
@@ -8,14 +8,14 @@
 
 import SpriteKit
 
-class BlockBreakBncNode: BlockBncNode, Breakable {
+class BncBreakBlockNode: BncBlockNode, Breakable {
 	var side: Side?
-	var glueBlock: BlockGlueNode?
+	var glueBlock: GlueBlockNode?
 	
 	var particleTexture: SKTexture?
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-		physicsBody?.categoryBitMask = Category.blockBnc | Category.blockBreak
+		physicsBody?.categoryBitMask = Category.bncBlock | Category.breakBlock
 	}
 }

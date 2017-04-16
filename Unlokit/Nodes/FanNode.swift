@@ -17,7 +17,7 @@ class FanNode: SKSpriteNode, Breakable {
 
 	private var emitter: SKEmitterNode!
 
-	var glueBlock: BlockGlueNode?
+	var glueBlock: GlueBlockNode?
 	var side: Side?
 	
 	var particleTexture: SKTexture?
@@ -57,7 +57,7 @@ class FanNode: SKSpriteNode, Breakable {
 		physicsBody?.contactTestBitMask = Category.bombTool
 		physicsBody?.collisionBitMask = Category.all
 	}
-	func setup(level: GameScene, block: BlockGlueNode, side: Side) {
+	func setup(level: GameScene, block: GlueBlockNode, side: Side) {
 		self.glueBlock = block
 		self.side = side
 		// If level has different properties

@@ -19,7 +19,7 @@ class GlueToolNode: ToolNode {
 		super.setupPhysics(shadowed: isShadowed)
 
 		physicsBody?.categoryBitMask = Category.glueTool
-		physicsBody?.contactTestBitMask = Category.bounds | Category.blockMtl |
-										  Category.blockBnc | Category.blockGlue | Category.blockBreak
+		physicsBody?.contactTestBitMask = Category.bounds | Category.mtlBlock |
+										  Category.bncBlock | Category.gluBlock | Category.breakBlock
 	}
 }

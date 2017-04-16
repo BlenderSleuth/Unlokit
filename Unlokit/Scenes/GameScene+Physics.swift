@@ -8,31 +8,33 @@
 
 import SpriteKit
 
-let cheat = false
-
+#if DEBUG
+	let cheat = false
+#endif
+	
 // Separate file for physics contact, its gonna get heavy...
 extension GameScene: SKPhysicsContactDelegate {
 	func didBegin(_ contact: SKPhysicsContact) {
 		// Find collision
 		let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
 
-		// Determine if collided between multiple category bit masks
+		//* Determine if collided between multiple category bit masks
 		func collided(with firstCategory: UInt32, and secondCategory: UInt32) -> Bool {
 			return (firstCategory & collision != 0) && (secondCategory & collision != 0)
 		}
-		// Return the node from a category and type
+		//* Return the node from a category and type
 		func getNode<T: Any>(for category: UInt32, type: T.Type) -> T {
 			return (contact.bodyA.categoryBitMask & category != 0 ? contact.bodyA.node : contact.bodyB.node) as! T
 		}
-		// Return the node from a category and type optional
+		//* Return the node from a category and type optional
 		func getNodeIf<T: Any>(for category: UInt32, type: T.Type) -> T? {
 			return (contact.bodyA.categoryBitMask & category != 0 ? contact.bodyA.node : contact.bodyB.node) as? T
 		}
-		// Finds other node based on physics contact
+		//* Finds other node based on physics contact
 		func getOtherNode<T: Any>(for node: SKNode, type: T.Type) -> T {
 			return (contact.bodyB.node == node ? contact.bodyA.node : contact.bodyB.node) as! T
 		}
-		// Finds other node based on physics contact optional
+		//* Finds other node based on physics contact optional
 		func getOtherNodeIf<T: Any>(for node: SKNode, type: T.Type) -> T? {
 			return (contact.bodyB.node == node ? contact.bodyA.node : contact.bodyB.node) as? T
 		}
@@ -51,7 +53,7 @@ extension GameScene: SKPhysicsContactDelegate {
 			tool.smash(scene: self)
 		}
 		// Blow up conditions **************
-		else if collided(with: Category.blockBreak | Category.fan, and: Category.bombTool) {
+		else if collided(with: Category.breakBlock | Category.fan, and: Category.bombTool) {
 			let bombTool = getNode(for: Category.bombTool, type: BombToolNode.self)
 
 			if bombTool.used {
@@ -61,8 +63,8 @@ extension GameScene: SKPhysicsContactDelegate {
 
 			bombTool.explode(scene: self, at: contact.contactPoint)
 		}
-		else if collided(with: Category.blockBnc, and: Category.tools | Category.key) {
-			let block = getNode(for: Category.blockBnc, type: BlockNode.self)
+		else if collided(with: Category.bncBlock, and: Category.tools | Category.key) {
+			let block = getNode(for: Category.bncBlock, type: BlockNode.self)
 
 			let canBeFired = getOtherNode(for: block, type: CanBeFired.self)
 			// Start timer to smash so that it's not stuck forever
@@ -71,7 +73,7 @@ extension GameScene: SKPhysicsContactDelegate {
 			// Bounce animation
 			block.bounce(side: block.getSide(contact: contact))
 		}
-		else if collided(with: Category.blockMtl | Category.blockBreak, and: Category.fanTool | Category.gravityTool) {
+		else if collided(with: Category.mtlBlock | Category.breakBlock, and: Category.fanTool | Category.gravityTool) {
 			let tool = getNode(for: Category.tools, type: ToolNode.self)
 			tool.smash(scene: self)
 		}
@@ -81,8 +83,8 @@ extension GameScene: SKPhysicsContactDelegate {
 			levelController.level.isSecret = true
 		}
 		// Stick to a glue block
-		else if collided(with: Category.blockGlue, and: Category.tools | Category.key) {
-			let block = getNode(for: Category.blockGlue, type: BlockGlueNode.self)
+		else if collided(with: Category.gluBlock, and: Category.tools | Category.key) {
+			let block = getNode(for: Category.gluBlock, type: GlueBlockNode.self)
 
 			if let tool = getNodeIf(for: Category.tools, type: ToolNode.self) {
 				// This will get an optional side
@@ -131,45 +133,45 @@ extension GameScene: SKPhysicsContactDelegate {
 			}
 		}
 		// Create spring block *************
-		else if collided(with: Category.blockMtl | Category.blockBreak, and: Category.springTool) {
+		else if collided(with: Category.mtlBlock | Category.breakBlock, and: Category.springTool) {
 			let spring = getNode(for: Category.springTool, type: SpringToolNode.self)
-			if let block = getOtherNodeIf(for: spring, type: BlockMtlNode.self) {
+			if let block = getOtherNodeIf(for: spring, type: MtlBlockNode.self) {
 				if spring.used {
 					return
 				}
 				spring.used = true
 
-				let blockBnc = block.bncVersion(scene: self)
-				block.parent?.addChild(blockBnc)
+				let bncBlock = block.bncVersion(scene: self)
+				block.parent?.addChild(bncBlock)
 
 				block.removeFromParent()
 				spring.removeFromParent()
 
-				let side = blockBnc.getSide(contact: contact)
-				blockBnc.bounce(side: side)
+				let side = bncBlock.getSide(contact: contact)
+				bncBlock.bounce(side: side)
 			} else {
-				let block = getOtherNode(for: spring, type: BlockBncNode.self)
+				let block = getOtherNode(for: spring, type: BncBlockNode.self)
 				block.bounce(side: block.getSide(contact: contact))
 			}
 		}
-		else if collided(with: Category.blockMtl | Category.blockBreak, and: Category.glueTool) {
+		else if collided(with: Category.mtlBlock | Category.breakBlock, and: Category.glueTool) {
 			let glue = getNode(for: Category.glueTool, type: GlueToolNode.self)
-			let block = getOtherNode(for: glue, type: BlockMtlNode.self)
+			let block = getOtherNode(for: glue, type: MtlBlockNode.self)
 
 			if glue.used {
 				return
 			}
 			glue.used = true
 
-			let blockGlue = block.glueVersion(scene: self)
-			block.parent?.addChild(blockGlue)
+			let gluBlock = block.glueVersion(scene: self)
+			block.parent?.addChild(gluBlock)
 
 			block.removeFromParent()
 			glue.remove()
 
-			let side = blockGlue.getSide(contact: contact)
-			blockGlue.bounce(side: side)
-			blockGlue.checkConnected(scene: self)
+			let side = gluBlock.getSide(contact: contact)
+			gluBlock.bounce(side: side)
+			gluBlock.checkConnected(scene: self)
 		}
 		else if collided(with: Category.bombTool, and: Category.tools) {
 			let bomb = getNode(for: Category.bombTool, type: BombToolNode.self)
@@ -189,8 +191,8 @@ extension GameScene: SKPhysicsContactDelegate {
 		*/
 			
 		// Smash conditions ****************
-		else if collided(with: Category.blockMtl, and: Category.key) ||
-				collided(with: Category.blockBreak, and: Category.key) ||
+		else if collided(with: Category.mtlBlock, and: Category.key) ||
+				collided(with: Category.breakBlock, and: Category.key) ||
 				collided(with: Category.bounds, and: Category.key) {
 			let key = getNode(for: Category.key, type: KeyNode.self)
 			key.smash(scene: self)

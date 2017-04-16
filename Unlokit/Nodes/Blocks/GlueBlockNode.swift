@@ -1,5 +1,5 @@
 //
-//  BlockGlueNode.swift
+//  GlueBlockNode.swift
 //  Unlokit
 //
 //  Created by Ben Sutherland on 25/1/17.
@@ -8,14 +8,14 @@
 
 import SpriteKit
 
-class BlockGlueNode: BlockNode {
+class GlueBlockNode: BlockNode {
 	
 	// Side that are connected
 	var connected: [Side : Bool] = [.up: false, .down: false, .left: false, .right: false, .centre: false]
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-		physicsBody?.categoryBitMask = Category.blockGlue
+		physicsBody?.categoryBitMask = Category.gluBlock
 		physicsBody?.collisionBitMask = Category.all ^ Category.tools
 
 		if physicsBody!.isDynamic {
@@ -87,7 +87,7 @@ class BlockGlueNode: BlockNode {
 		let pathRight = CGPath(rect: rect, transform: &transform)
 		let regionRight = SKRegion(path: pathRight)
 
-		scene.enumerateChildNodes(withName: "//*block*") { child, _ in
+		scene.enumerateChildNodes(withName: "//*Block") { child, _ in
 			if child is SKSpriteNode {
 				let position = self.parent!.convert(child.position, from: child.parent!)
 
@@ -169,7 +169,7 @@ class BlockGlueNode: BlockNode {
 						let scene = self.scene,
 						let parent = node.parent {
 
-						node.physicsBody?.contactTestBitMask ^= Category.blockGlue
+						node.physicsBody?.contactTestBitMask ^= Category.gluBlock
 
 						let anchor = scene.convert(node.position, from: parent)
 						let joint = SKPhysicsJointPin.joint(withBodyA: body1, bodyB: body2, anchor: anchor)

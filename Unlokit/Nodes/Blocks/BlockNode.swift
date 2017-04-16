@@ -62,7 +62,7 @@ class BlockNode: SKSpriteNode {
 		shadowCastBitMask = Category.zero
 		shadowedBitMask = Category.controllerLight | Category.toolLight | Category.lockLight
 
-		physicsBody?.categoryBitMask = Category.blockBeam
+		physicsBody?.categoryBitMask = Category.beamBlock
 		physicsBody?.contactTestBitMask = Category.zero
 		physicsBody?.collisionBitMask = Category.all ^ Category.lock
 

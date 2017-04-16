@@ -45,8 +45,6 @@ class SoundFX {
 		                "bounce2": bounce2,
 		                "bounce3": bounce3,
 		                "bounce4": bounce4]
-		
-		print("loaded sounds")
 	}
 	
 	func playBackgroundMusic(filename: String) {

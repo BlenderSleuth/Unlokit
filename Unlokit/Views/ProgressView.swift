@@ -47,14 +47,14 @@ class ProgressView: UIView {
 		backgroundColor = .orange
 	}
 	
-	/** Returns true if completed, false if not. */
+	/** Returns true if isCompleted, false if not. */
 	func addLevel(_ levelView: LevelView) -> Bool {
 		// Check if level is available
 		if levelView.level.available {
 			levelView.layer.borderWidth = 5
 			
-			// If not completed, highlight in green
-			if !levelView.level.completed {
+			// If not isCompleted, highlight in green
+			if !levelView.level.isCompleted {
 				levelView.layer.borderColor = UIColor.green.cgColor
 				return true
 			} else {
@@ -108,7 +108,7 @@ class ProgressView: UIView {
 		xPos = scrollInsetWidth + padding / 2
 		// Iterate through levels
 		for levelView in levelViews {
-			// Add levels until it reaches a completed one
+			// Add levels until it reaches a isCompleted one
 			if addLevel(levelView) {
 				animateToNextLevel(x: xPos, levelView: levelView)
 			} else if levelView.level.number == levelViews.count {

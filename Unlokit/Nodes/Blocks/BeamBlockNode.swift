@@ -14,7 +14,7 @@ class BeamBlockNode: BlockNode {
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 
-		physicsBody?.categoryBitMask = Category.blockBeam
+		physicsBody?.categoryBitMask = Category.beamBlock
 		physicsBody?.contactTestBitMask = Category.zero
 		physicsBody?.collisionBitMask = Category.all
 	}
@@ -40,7 +40,7 @@ class BeamBlockNode: BlockNode {
 			// Remove existing joints
 			/*
 			if !block.physicsBody!.joints.isEmpty, let joint = block.physicsBody?.joints[0] {
-				if !(block is BlockGlueNode) {
+				if !(block is GlueBlockNode) {
 					scene.physicsWorld.remove(joint)
 				}
 			}

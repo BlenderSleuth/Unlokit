@@ -16,17 +16,17 @@ struct Category {
 	static let bounds: UInt32			= 0b1 << 2
 	
 	// MARK: - Blocks
-	static let blockMtl: UInt32			= 0b1 << 3
-	static let blockBnc: UInt32			= 0b1 << 4
-	static let blockGlue: UInt32		= 0b1 << 5
+	static let mtlBlock: UInt32			= 0b1 << 3
+	static let bncBlock: UInt32			= 0b1 << 4
+	static let gluBlock: UInt32			= 0b1 << 5
 	
-	static let blockBreak: UInt32		= 0b1 << 6
+	static let breakBlock: UInt32		= 0b1 << 6
 
-	static let blockShadow: UInt32		= 0b1 << 7
+	static let shadowBlock: UInt32		= 0b1 << 7
 
-	static let blockBeam: UInt32		= 0b1 << 8
+	static let beamBlock: UInt32		= 0b1 << 8
 	
-	static let blocks: UInt32 = Category.blockMtl | Category.blockBnc | Category.blockGlue | Category.blockBreak
+	static let blocks: UInt32 = Category.mtlBlock | Category.bncBlock | Category.gluBlock | Category.breakBlock
 	
 	// MARK: - Tools
 	static let springTool: UInt32		= 0b1 << 9
@@ -48,6 +48,7 @@ struct Category {
 	static let secretTeleport: UInt32	= 0b1 << 18
 	static let ball: UInt32				= 0b1 << 19
 
+	// MARK: - Lights
 	static let controllerLight: UInt32	= 0b1 << 0
 	static let toolLight: UInt32		= 0b1 << 1
 	static let lockLight: UInt32		= 0b1 << 2
@@ -144,7 +145,7 @@ class GameScene: SKScene {
 		controller = childNode(withName: "//controller") as! ControllerNode
 
 		// Check for shadow nodes
-		enumerateChildNodes(withName: "//blockShdo") { _, stop in
+		enumerateChildNodes(withName: "//shdoBlock") { _, stop in
 			self.isShadowed = true
 			stop.pointee = true
 		}
@@ -296,16 +297,15 @@ class GameScene: SKScene {
 	}
 	func setupTextures() {
 		fanFrames = SKTextureAtlas(named: "FanFrames")
-		fanFrames.preload {
-			print("loaded textures")
-		}
+		fanFrames.preload { print("loaded textures") }
 	}
 	func setupBlocks() {
 		// Edit blocks outside of enumeration to prevent crash
-		var glueBlocks = [BlockGlueNode]()
+		var glueBlocks = [GlueBlockNode]()
 		
-		enumerateChildNodes(withName: "//blockGlue*") { node, _ in
-			let block = node as! BlockGlueNode
+		// Find all glue blocks, breakableGlueBlock and glueBlock
+		enumerateChildNodes(withName: "//*lueBlock") { node, _ in
+			let block = node as! GlueBlockNode
 			glueBlocks.append(block)
 		}
 		for block in glueBlocks {
@@ -599,13 +599,15 @@ class GameScene: SKScene {
 		if let node = nodeToFollow {
 			moveCamera(with: node)
 		}
-		if cheat {
-			// Debug, key is invincable
-			key.physicsBody?.collisionBitMask = 0
-			key.physicsBody?.contactTestBitMask = Category.lock
-			key.physicsBody?.fieldBitMask = 0
-		}
-
+		#if DEBUG
+			if cheat {
+				// Debug, key is invincable
+				key.physicsBody?.collisionBitMask = 0
+				key.physicsBody?.contactTestBitMask = Category.lock
+				key.physicsBody?.fieldBitMask = 0
+			}
+		#endif
+		
 		// Iterate through the fans, update fields and particles
 		for fan in fans {
 			if fan.isMoving || fan.physicsBody!.isDynamic {

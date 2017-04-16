@@ -20,12 +20,15 @@ class GameViewController: UIViewController, LevelController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		navigationController?.isNavigationBarHidden = true
-		// DEBUG if this is the initial view controller
-		//let stage = 2
-		//let level = 11
 		
-		//self.level = Stages.sharedInstance.stages[stage-1].levels[level-1]
-		//startNewGame(levelname: "Level2_8")
+		#if DEBUG
+			// DEBUG if this is the initial view controller
+			//let stage = 2
+			//let level = 11
+			
+			//self.level = Stages.sharedInstance.stages[stage-1].levels[level-1]
+			//startNewGame(levelname: "Level2_S")
+		#endif
 		startNewGame()
 	}
 	
@@ -42,12 +45,14 @@ class GameViewController: UIViewController, LevelController {
 				
 				skView.ignoresSiblingOrder = true
 				
-				// Set debug options
-				skView.showsFPS = true
-				//skView.showsNodeCount = true
-				//skView.showsDrawCount = true
-				//skView.showsPhysics = true
-				//skView.showsFields = true
+				#if DEBUG
+					// Set debug options
+					skView.showsFPS = true
+					skView.showsNodeCount = true
+					skView.showsDrawCount = true
+					//skView.showsPhysics = true
+					//skView.showsFields = true
+				#endif
 				
 				if let scene = GameScene(fileNamed: levelname) {
 					//weak var weakScene: GameScene! = scene
@@ -87,7 +92,7 @@ class GameViewController: UIViewController, LevelController {
 	}
 	
 	func finishedLevel() {
-		level.completed = true
+		level.isCompleted = true
 		returnToLevelSelect()
 	}
 	func endSecret() {
@@ -113,7 +118,7 @@ class GameViewController: UIViewController, LevelController {
 
 	func toNextLevel() {
 		// Because of reference we can set this in here
-		level.completed = true
+		level.isCompleted = true
 		
 		// Get next level
 		var nextLevelNumber = level.number + 1
@@ -146,7 +151,7 @@ class GameViewController: UIViewController, LevelController {
 		navigationController?.view.layer.add(transition, forKey: nil)
 		
 		let _ = navigationController?.popViewController(animated: false)
-		if level.completed {
+		if level.isCompleted {
 			delegate?.completeLevel()
 		}
 	}

@@ -1,5 +1,5 @@
 //
-//  BlockBreakNode.swift
+//  BreakBlockNode.swift
 //  Unlokit
 //
 //  Created by Ben Sutherland on 25/1/17.
@@ -10,7 +10,7 @@ import SpriteKit
 
 protocol Breakable {
 	func shatter(scene: SKScene)
-	var glueBlock: BlockGlueNode? { get set }
+	var glueBlock: GlueBlockNode? { get set }
 	var side: Side? { get set }
 
 	var particleTexture: SKTexture? { get }
@@ -45,14 +45,14 @@ extension Breakable {
 	}
 }
 
-class BlockBreakNode: BlockMtlNode, Breakable {
+class BreakBlockNode: MtlBlockNode, Breakable {
 	var side: Side?
-	var glueBlock: BlockGlueNode?
+	var glueBlock: GlueBlockNode?
 	
 	var particleTexture: SKTexture?
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-		physicsBody?.categoryBitMask = Category.blockBreak
+		physicsBody?.categoryBitMask = Category.breakBlock
 	}
 }

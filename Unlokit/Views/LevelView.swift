@@ -88,8 +88,8 @@ class LevelView: UIView, UIGestureRecognizerDelegate {
 		level.available = true
 	}
 	func reset() {
-		// Check if level is completed or not
-		if level.completed {
+		// Check if level is isCompleted or not
+		if level.isCompleted {
 			layer.borderColor = UIColor.green.cgColor
 		} else if level.available {
 			layer.borderColor = UIColor.orange.cgColor

@@ -8,7 +8,9 @@
 
 import SpriteKit
 
-let enableAllLevels = false
+#if DEBUG
+	let enableAllLevels = false
+#endif
 
 class Stages {
 	static let sharedInstance = Stages()
@@ -74,10 +76,11 @@ class Stage {
 					let levelData = try Data(contentsOf: fileURL)
 					let level = NSKeyedUnarchiver.unarchiveObject(with: levelData) as! Level
 
-					// DEBUG
-					if enableAllLevels {
-						level.available = true
-					}
+					#if DEBUG
+						if enableAllLevels {
+							level.available = true
+						}
+					#endif
 					
 					levels.append(level)
 					
@@ -88,8 +91,6 @@ class Stage {
 					// Check for any new levels in plist
 					let newLevels = getDefaultLevelsFromPlist(stage: number)
 					if levelNumber < newLevels.count {
-						print("New levels")
-
 						let array = newLevels.suffix(from: levelNumber-1)
 						for level in array {
 							levels.append(level)
@@ -98,7 +99,6 @@ class Stage {
 				}
 			}
 		} else {
-			print("loaded from plist")
 			levels = getDefaultLevelsFromPlist(stage: number)
 		}
 	}

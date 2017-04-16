@@ -25,9 +25,9 @@ class BombToolNode: ToolNode {
 		super.setupPhysics(shadowed: isShadowed)
 		
 		physicsBody?.categoryBitMask = Category.bombTool
-		physicsBody?.contactTestBitMask = Category.bounds | Category.blockMtl |
-										  Category.blockBnc | Category.blockGlue |
-										  Category.blockBreak | Category.tools
+		physicsBody?.contactTestBitMask = Category.bounds | Category.mtlBlock |
+										  Category.bncBlock | Category.gluBlock |
+										  Category.breakBlock | Category.tools
 	}
 	func setupFuse(scene: SKScene) {
 		fuse = childNode(withName: "fuse")?.children.first as! SKEmitterNode
@@ -60,7 +60,7 @@ class BombToolNode: ToolNode {
 		self.position = point
 		
 		// Shatter all breakables in radius
-		scene.enumerateChildNodes(withName: "//*Breakable") {node, _ in
+		scene.enumerateChildNodes(withName: "//breakable*") { node, _ in
 			if let breakable = (node as? Breakable) {
 				let position = self.convert(node.position, from: node.parent!)
 				if region.contains(position) {
@@ -105,12 +105,12 @@ class BombToolNode: ToolNode {
 		
 		run(repeatAction) {
 			label.removeFromParent()
-			if let glueBlock = self.parent as? BlockGlueNode {
+			if let glueBlock = self.parent as? GlueBlockNode {
 				glueBlock.remove(for: side)
 			}
 
 			let position: CGPoint
-			if let block = self.parent as? BlockGlueNode {
+			if let block = self.parent as? GlueBlockNode {
 				position = scene.convert(side.position, from: block)
 			} else {
 				position = point

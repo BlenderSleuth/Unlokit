@@ -14,7 +14,7 @@ protocol CanBeFired {
 	func prepareForFiring(controller: ControllerNode)
 
 	// To stop tools being stuck
-	func startTimer(glueBlock: BlockGlueNode, side: Side)
+	func startTimer(glueBlock: GlueBlockNode, side: Side)
 	func startTimer()
 }
 

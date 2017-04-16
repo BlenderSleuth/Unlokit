@@ -8,11 +8,11 @@
 
 import SpriteKit
 
-class ShadowBlockNode: BlockMtlNode {
+class ShadowBlockNode: MtlBlockNode {
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 
-		physicsBody?.categoryBitMask = Category.blockShadow
+		physicsBody?.categoryBitMask = Category.shadowBlock
 		physicsBody?.contactTestBitMask = Category.zero
 		physicsBody?.collisionBitMask = Category.all
 

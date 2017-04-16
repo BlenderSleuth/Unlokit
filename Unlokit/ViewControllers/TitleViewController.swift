@@ -13,9 +13,10 @@ enum Achievement: String {
 	case stage1Secret = "stage1_secret"
 	case stage2Secret = "stage2_secret"
 }
-func report(achievement: Achievement) {
+func report(achievement: Achievement, percentComplete: Double = 100) {
 	if GKLocalPlayer.localPlayer().isAuthenticated {
 		let achievement = GKAchievement(identifier: achievement.rawValue)
+		achievement.percentComplete = percentComplete
 		GKAchievement.report([achievement], withCompletionHandler: nil)
 	}
 }

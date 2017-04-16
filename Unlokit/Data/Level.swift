@@ -17,14 +17,14 @@ class Level: NSObject, NSCoding {
 	var stageNumber: Int
 	
 	var available: Bool
-	var completed: Bool
+	var isCompleted: Bool
 	var isSecret: Bool
 	
-	init(number: Int, stageNumber: Int, imageName: String, available: Bool, completed: Bool = false) {
+	init(number: Int, stageNumber: Int, imageName: String, available: Bool, isCompleted: Bool = false) {
 		self.number = number
 		self.imageName = imageName
 		self.available = available
-		self.completed = completed
+		self.isCompleted = isCompleted
 		self.stageNumber = stageNumber
 		thumbnail = UIImage(named: imageName)
 		
@@ -38,10 +38,10 @@ class Level: NSObject, NSCoding {
 		let stageNumber = aDecoder.decodeInteger(forKey: "stageNumber")
 		let imageName = aDecoder.decodeObject(forKey: "imageName") as! String
 		let available = aDecoder.decodeBool(forKey: "available")
-		let completed = aDecoder.decodeBool(forKey: "completed")
+		let isCompleted = aDecoder.decodeBool(forKey: "isCompleted")
 		
 		// Initialise with decoded properties
-		self.init(number: number, stageNumber: stageNumber, imageName: imageName, available: available, completed: completed)
+		self.init(number: number, stageNumber: stageNumber, imageName: imageName, available: available, isCompleted: isCompleted)
 	}
 	
 	func encode(with aCoder: NSCoder) {
@@ -50,6 +50,6 @@ class Level: NSObject, NSCoding {
 		aCoder.encode(stageNumber, forKey: "stageNumber")
 		aCoder.encode(imageName, forKey: "imageName")
 		aCoder.encode(available, forKey: "available")
-		aCoder.encode(completed, forKey: "completed")
+		aCoder.encode(isCompleted, forKey: "isCompleted")
 	}
 }
