@@ -19,7 +19,8 @@ class BeamBlockNode: BlockNode {
 		physicsBody?.collisionBitMask = Category.all
 	}
 
-	func setup(scene: GameScene) {
+	override func setup(scene: GameScene) {
+		super.setup(scene: scene)
 		// Create array of blocks
 		var blocks = [BlockNode]()
 

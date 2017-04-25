@@ -13,6 +13,7 @@ class GlueBreakBlockNode: GlueBlockNode, Breakable {
 	var side: Side?
 	
 	var particleTexture: SKTexture?
+	var particleColour: SKColor?
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)

@@ -45,26 +45,31 @@ class LockNode: SKSpriteNode, NodeSetup {
 		// Set instance properties
 		if let dynamic = data?["dynamic"] as? Bool {
 			physicsBody?.isDynamic = dynamic
+			if dynamic, let gravity = data?["gravity"] as? Bool {
+				physicsBody?.affectedByGravity = gravity
+				if !gravity {
+					// To set gravity later
+					physicsBody?.contactTestBitMask = Category.tools | Category.ball
+				}
+			}
 		}
-		if let attached = data?["attached"] as? Bool {
-			if attached {
-				physicsBody?.collisionBitMask = Category.ball | Category.bounds
-
-				var block: BlockNode?
-
-				// Find block
-				var tempNode: SKNode = self
-				while !(tempNode is SKScene) {
-					if let blockNode = tempNode as? BlockNode {
-						block = blockNode
-						break
-					}
-					tempNode = tempNode.parent!
+		if let attached = data?["attached"] as? Bool, attached {
+			physicsBody?.collisionBitMask = Category.ball | Category.bounds
+			
+			var block: BlockNode?
+			
+			// Find block
+			var tempNode: SKNode = self
+			while !(tempNode is SKScene) {
+				if let blockNode = tempNode as? BlockNode {
+					block = blockNode
+					break
 				}
-				if let blockPhysicsBody = block?.physicsBody, let scene = scene {
-					let pin = SKPhysicsJointFixed.joint(withBodyA: blockPhysicsBody, bodyB: self.physicsBody!, anchor: scene.convert(CGPoint.zero, from: self))
-					scene.physicsWorld.add(pin)
-				}
+				tempNode = tempNode.parent!
+			}
+			if let blockPhysicsBody = block?.physicsBody, let scene = scene {
+				let pin = SKPhysicsJointFixed.joint(withBodyA: blockPhysicsBody, bodyB: self.physicsBody!, anchor: scene.convert(CGPoint.zero, from: self))
+				scene.physicsWorld.add(pin)
 			}
 		}
 	}

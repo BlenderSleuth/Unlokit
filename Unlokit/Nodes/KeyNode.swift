@@ -8,7 +8,12 @@
 
 import SpriteKit
 
-class KeyNode: SKSpriteNode, CanBeFired {
+class KeyNode: SKSpriteNode, CanBeFired, Breakable {
+	var glueBlock: GlueBlockNode?
+	var side: Side?
+	
+	var particleTexture: SKTexture?
+	var particleColour: SKColor?
 	
 	// Status flags
 	var isEngaged = false
@@ -91,6 +96,9 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		return prnt.convert(node.position, to: selprnt)
 	}
 	
+	func shatter(scene: GameScene) {
+		smash(scene: scene)
+	}
 	func smash(scene: GameScene) {
 		// Check if key has already been smashed
 		guard parent != nil else {
@@ -112,46 +120,28 @@ class KeyNode: SKSpriteNode, CanBeFired {
 			self.levelController.startNewGame()
 		}
 	}
-	func startTimer(glueBlock: GlueBlockNode, side: Side) {
-		// If the timer has already started, don't start again
-		guard !timerStarted else {
-			return
-		}
-		timerStarted = true
-
-		let wait = SKAction.wait(forDuration: RCValues.sharedInstance.toolTime)
-		run(wait, withKey: "timer") {
-			weak var `self` =  self
-
-			if let scene = self?.scene as? GameScene {
-				self?.smash(scene: scene)
-				glueBlock.remove(for: side)
-			}
-		}
-	}
 	
+	// Key doesn't have a timer, so these functions are stubs
+	func startTimer(glueBlock: GlueBlockNode, side: Side) {
+		//Stub
+	}
 	func startTimer() {
-		// If the timer has already started, don't start again
-		guard !timerStarted else {
-			return
-		}
-		timerStarted = true
-
-		let wait = SKAction.wait(forDuration: RCValues.sharedInstance.toolTime)
-		run(wait, withKey: "timer") {
-			weak var `self` =  self
-			if let scene = self?.scene as? GameScene {
-				self?.smash(scene: scene)
-			}
-		}
+		//Stub
 	}
 	
 	func lock(_ lock: LockNode) {
+		if let scene = scene{
+			self.move(toParent: scene)
+		} else {
+			return
+		}
+		
 		guard let position = getPosition(from: lock) else {
 			return
 		}
 		
-		physicsBody = nil
+		physicsBody?.isDynamic = false
+		lock.physicsBody?.isDynamic = false
 		
 		// Move and rotate to lock position
 		let move = SKAction.move(to: position, duration: 0.2)
@@ -160,6 +150,7 @@ class KeyNode: SKSpriteNode, CanBeFired {
 		
 		run(group) {
 			self.removeAllActions()
+			
 			self.run(SoundFX.sharedInstance["lock"]!)
 			
 			self.run(SKAction.wait(forDuration: 1)) {

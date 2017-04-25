@@ -26,7 +26,8 @@ struct Category {
 
 	static let beamBlock: UInt32		= 0b1 << 8
 	
-	static let blocks: UInt32 = Category.mtlBlock | Category.bncBlock | Category.gluBlock | Category.breakBlock
+	static let blocks: UInt32 = Category.mtlBlock | Category.bncBlock | Category.gluBlock |
+		Category.breakBlock | Category.shadowBlock | Category.beamBlock
 	
 	// MARK: - Tools
 	static let springTool: UInt32		= 0b1 << 9
@@ -52,6 +53,7 @@ struct Category {
 	static let controllerLight: UInt32	= 0b1 << 0
 	static let toolLight: UInt32		= 0b1 << 1
 	static let lockLight: UInt32		= 0b1 << 2
+	static let blockLight: UInt32		= 0b1 << 3
 
 	static let all: UInt32				= UInt32.max
 }
@@ -59,7 +61,11 @@ struct Category {
 struct ZPosition {
 	static let background: CGFloat					    = -10
 	
-	static let cannonTower_controller: CGFloat			=  10
+	static let cannonTower: CGFloat						= 5
+	
+	static let balls: CGFloat							= 7
+	
+	static let controller: CGFloat						=  10
 	
 	static let levelBlocks: CGFloat						=  20
 	
@@ -126,6 +132,7 @@ class GameScene: SKScene {
 	
 	// For camera following
 	var nodeToFollow: SKSpriteNode?
+	var isJustFired = false
 	
 	// Preloading textures
 	var fanFrames: SKTextureAtlas!
@@ -146,8 +153,12 @@ class GameScene: SKScene {
 
 		// Check for shadow nodes
 		enumerateChildNodes(withName: "//shdoBlock") { _, stop in
-			self.isShadowed = true
-			stop.pointee = true
+			#if DEBUG
+				self.isShadowed = true
+			#else
+				self.isShadowed = true
+			#endif
+			stop.initialize(to: true)
 		}
 
 		cannon = controller.childNode(withName: "//cannon") as! SKSpriteNode
@@ -190,22 +201,6 @@ class GameScene: SKScene {
 		
 		// Bind lock to local variable
 		lock = childNode(withName: "//lock") as! LockNode
-
-		// Go through the nodes of the scene to run their setup method
-		var nodesToSetup = [NodeSetup]()
-		enumerateChildNodes(withName: "//*") { node, _ in
-			if let nodeToSetup = node as? NodeSetup {
-				nodesToSetup.append(nodeToSetup)
-			}
-		}
-		for node in nodesToSetup {
-			node.setup(scene: self)
-		}
-		
-		if isShadowed {
-			controller.addLight()
-			lock.addLight()
-		}
 	}
 	func setupCamera() {
 		//Get correct aspect ratio for device
@@ -279,7 +274,7 @@ class GameScene: SKScene {
 		let stageDict = NSDictionary(contentsOfFile: plist) as! [String: [String: [String: Int]]]
 		let levelDict = stageDict["Stage\(level.stageNumber)"]!
 		
-		if let level = levelDict["Level\(level.number)"] {
+		func setupTools(_ level: [String: Int]) {
 			// Iterate through all tool icons
 			for (type, tool) in toolIcons {
 				// Check if value is present
@@ -291,41 +286,46 @@ class GameScene: SKScene {
 					tool.colorBlendFactor = 0.9
 					tool.number = 0
 				}
-				
 			}
+		}
+		
+		if self.level.isSecret, let level = levelDict["LevelS"] {
+			setupTools(level)
+		} else if let level = levelDict["Level\(level.number)"] {
+			setupTools(level)
 		}
 	}
 	func setupTextures() {
 		fanFrames = SKTextureAtlas(named: "FanFrames")
-		fanFrames.preload { print("loaded textures") }
+		fanFrames.preload {
+			#if DEBUG
+				print("loaded textures")
+			#endif
+		}
 	}
 	func setupBlocks() {
-		// Edit blocks outside of enumeration to prevent crash
-		var glueBlocks = [GlueBlockNode]()
-		
-		// Find all glue blocks, breakableGlueBlock and glueBlock
-		enumerateChildNodes(withName: "//*lueBlock") { node, _ in
-			let block = node as! GlueBlockNode
-			glueBlocks.append(block)
-		}
-		for block in glueBlocks {
-			block.checkConnected(scene: self)
-		}
-
-		var beamBlocks = [BeamBlockNode]()
-
-		enumerateChildNodes(withName: "//beamBlock") { node, _ in
-			if let block = node as? BeamBlockNode {
-				beamBlocks.append(block)
+		// Go through the nodes of the scene to run their setup method
+		var nodesToSetup = [NodeSetup]()
+		enumerateChildNodes(withName: "//*") { node, _ in
+			if let nodeToSetup = node as? NodeSetup {
+				nodesToSetup.append(nodeToSetup)
 			}
 		}
-		for block in beamBlocks {
-			block.setup(scene: self)
+		for node in nodesToSetup {
+			node.setup(scene: self)
+		}
+		
+		if isShadowed {
+			controller.addLight()
+			lock.addLight()
 		}
 	}
 	
 	// MARK: - Moving nodes
     func moveController(_ location: CGPoint) {
+		// Stop camera from moving
+		nodeToFollow = nil
+		
         let p1 = controller.scenePosition! // Controller position in scene coordinates
         let p2 = lastTouchPoint
         let p3 = location
@@ -350,7 +350,6 @@ class GameScene: SKScene {
         // Add to camera node position
         cameraNode.position += vector
     }
-	var isJustFired = false
 	func moveCamera(with node: SKSpriteNode) {
 		guard !isJustFired else {
 			return

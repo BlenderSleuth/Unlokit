@@ -49,17 +49,18 @@ class BallSpawnerNode: SKSpriteNode, NodeSetup {
 				// Create ball
 				let ball = SKSpriteNode(imageNamed: "Ball")
 				ball.size = CGSize(width: 32, height: 32)
+				ball.zPosition = ZPosition.balls
 				ball.physicsBody = SKPhysicsBody(circleOfRadius: 16)
 				ball.physicsBody?.categoryBitMask = Category.ball
 				ball.physicsBody?.collisionBitMask = Category.all
 				ball.physicsBody?.mass = 0.3
 
-				ball.position = scene.convert(CGPoint(x: increment * CGFloat(index), y:10), from: self)
+				ball.position = scene.convert(CGPoint(x: increment * CGFloat(index), y: 10), from: self)
 
 				ball.alpha = 0
 
 				let wait = SKAction.wait(forDuration: 0.25 *  TimeInterval(index), withRange: 1)
-				let add = SKAction.run { scene.addChild(ball)}
+				let add = SKAction.run { scene.addChild(ball) }
 				let fade = SKAction.run { ball.run(SKAction.fadeIn(withDuration: 0.5)) }
 				scene.run(SKAction.sequence([wait, add, fade]))
 			}

@@ -24,12 +24,14 @@ class GameViewController: UIViewController, LevelController {
 		#if DEBUG
 			// DEBUG if this is the initial view controller
 			//let stage = 2
-			//let level = 11
+			//let level = 10
 			
 			//self.level = Stages.sharedInstance.stages[stage-1].levels[level-1]
 			//startNewGame(levelname: "Level2_S")
+			startNewGame()
+		#else
+			startNewGame()
 		#endif
-		startNewGame()
 	}
 	
 	func startNewGame(levelname: String) {
@@ -47,9 +49,9 @@ class GameViewController: UIViewController, LevelController {
 				
 				#if DEBUG
 					// Set debug options
-					skView.showsFPS = true
-					skView.showsNodeCount = true
-					skView.showsDrawCount = true
+					//skView.showsFPS = true
+					//skView.showsNodeCount = true
+					//skView.showsDrawCount = true
 					//skView.showsPhysics = true
 					//skView.showsFields = true
 				#endif
@@ -93,6 +95,7 @@ class GameViewController: UIViewController, LevelController {
 	
 	func finishedLevel() {
 		level.isCompleted = true
+		level.isSecret = false
 		returnToLevelSelect()
 	}
 	func endSecret() {
@@ -109,6 +112,7 @@ class GameViewController: UIViewController, LevelController {
 		
 		report(achievement: achievement)
 		
+		level.isSecret = false
 		startNewGame()
 	}
 	
@@ -132,13 +136,15 @@ class GameViewController: UIViewController, LevelController {
 
 		// Setup new level views
 		level = Stages.sharedInstance.stages[stageNumber - 1].levels[nextLevelNumber-1]
-		currentLevelView = delegate?.levelViews[stageNumber]?[level.number-1]
+		currentLevelView = delegate?.levelViews[stageNumber]?[level.number - 1]
 
 		if let view = currentLevelView {
 			delegate?.setNextLevelView(from: view)
 		}
 
 		currentLevelView?.makeAvailable()
+		
+		saveLevels()
 		
 		startNewGame()
 	}

@@ -10,8 +10,14 @@ import SpriteKit
 
 class GlueBlockNode: BlockNode {
 	
+	weak var gameScene: GameScene!
+	
 	// Side that are connected
 	var connected: [Side : Bool] = [.up: false, .down: false, .left: false, .right: false, .centre: false]
+	
+	#if DEBUG
+		var circles = [SKShapeNode]()
+	#endif
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
@@ -23,8 +29,13 @@ class GlueBlockNode: BlockNode {
 		}
 	}
 	
-	func checkConnected(scene: GameScene) {
-
+	override func setup(scene: GameScene) {
+		super.setup(scene: scene)
+		gameScene = scene
+		checkConnected(gameScene: scene)
+	}
+	
+	func checkConnected(gameScene: GameScene) {
 		for child in children {
 			// Modify connected array to include pre-added nodes
 			let side: Side
@@ -60,7 +71,7 @@ class GlueBlockNode: BlockNode {
 
 				if add(node: fanNode, to: side) {
 					// Fan setup after it has been added
-					fanNode.setup(level: scene, block: self, side: side)
+					fanNode.setup(scene: gameScene, block: self, side: side)
 
 					// Removes the placeholder
 					child.removeFromParent()
@@ -87,7 +98,7 @@ class GlueBlockNode: BlockNode {
 		let pathRight = CGPath(rect: rect, transform: &transform)
 		let regionRight = SKRegion(path: pathRight)
 
-		scene.enumerateChildNodes(withName: "//*Block") { child, _ in
+		gameScene.enumerateChildNodes(withName: "//*Block") { child, _ in
 			if child is SKSpriteNode {
 				let position = self.parent!.convert(child.position, from: child.parent!)
 
@@ -110,12 +121,32 @@ class GlueBlockNode: BlockNode {
 				}
 			}
 		}
+		//debugConnected()
 	}
 	
 	func remove(for side: Side) {
 		connected[side] = false
+		//debugConnected()
 	}
-
+	#if DEBUG
+	func debugConnected() {
+		for circle in circles {
+			circle.removeFromParent()
+		}
+		for (connect, yes) in connected {
+			if yes {
+				let circle = SKShapeNode(circleOfRadius: 10)
+				circle.fillColor = .blue
+				circle.strokeColor = .blue
+				circle.position = connect.position
+				circle.zPosition = 100
+				circles.append(circle)
+				addChild(circle)
+			}
+		}
+	}
+	#endif
+	
 	func getSideIfConnected(contact: SKPhysicsContact) -> Side? {
 		let side = super.getSide(contact: contact)
 		// Check if side is connected
@@ -181,9 +212,14 @@ class GlueBlockNode: BlockNode {
 				}
 			}
 		}
-
-
-
+		
+		if var breakable = node as? Breakable {
+			breakable.glueBlock = self
+			breakable.side = side
+		}
+		
+		//debugConnected()
+		
 		return true
 	}
 	
@@ -200,6 +236,8 @@ class GlueBlockNode: BlockNode {
 		addChild(gravityNode)
 
 		connected[.centre] = true
+		
+		//debugConnected()
 
 		return true
 	}

@@ -33,7 +33,7 @@ enum Side {
 	}
 }
 
-class BlockNode: SKSpriteNode {
+class BlockNode: SKSpriteNode, NodeSetup {
 
 	// If this block is in a beam block
 	var beamNode: BeamBlockNode?
@@ -49,22 +49,12 @@ class BlockNode: SKSpriteNode {
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 
-		// Make all children had same properties
-		for child in children {
-			if let sprite = child as? SKSpriteNode {
-				sprite.lightingBitMask = Category.controllerLight  | Category.toolLight | Category.lockLight
-				sprite.shadowCastBitMask = Category.zero
-				sprite.shadowedBitMask = Category.controllerLight | Category.toolLight | Category.lockLight
-			}
-		}
-
-		lightingBitMask = Category.controllerLight | Category.toolLight | Category.lockLight
-		shadowCastBitMask = Category.zero
-		shadowedBitMask = Category.controllerLight | Category.toolLight | Category.lockLight
-
+		// Physics
 		physicsBody?.categoryBitMask = Category.beamBlock
 		physicsBody?.contactTestBitMask = Category.zero
-		physicsBody?.collisionBitMask = Category.all ^ Category.lock
+		physicsBody?.collisionBitMask = Category.all
+		//physicsBody?.fieldBitMask = Category.fields
+		//physicsBody?.mass = 10
 
 		// Get coordinates of sides of block
 		let halfWidth = frame.width / 2
@@ -75,6 +65,47 @@ class BlockNode: SKSpriteNode {
 		left = CGPoint(x: frame.origin.x, y: frame.origin.y + halfHeight)
 		right = CGPoint(x: frame.origin.x + frame.size.width, y: frame.origin.y + halfHeight)
 		centre = CGPoint.zero
+	}
+	
+	func setup(scene: GameScene) {
+		// Make all children had same properties
+		for child in children {
+			if let sprite = child as? SKSpriteNode {
+				sprite.lightingBitMask = Category.all
+				sprite.shadowCastBitMask = Category.zero
+				sprite.shadowedBitMask = Category.controllerLight | Category.toolLight | Category.lockLight
+			}
+		}
+		
+		//Lighting properties
+		lightingBitMask = Category.all
+		shadowCastBitMask = Category.zero
+		shadowedBitMask = Category.controllerLight | Category.toolLight | Category.lockLight
+		
+		getDataFromParent()
+	}
+	
+	private func getDataFromParent() {
+		var data: NSDictionary?
+		
+		// Find user data from parents
+		var tempNode: SKNode = self
+		while !(tempNode is SKScene) {
+			if let userData = tempNode.userData {
+				data = userData
+			}
+			tempNode = tempNode.parent!
+		}
+		
+		if let addLight = data?["light"] as? Bool, addLight {
+			let light = SKLightNode()
+			light.falloff = 3
+			light.categoryBitMask = Category.blockLight
+			addChild(light)
+			
+			let emitter = SKEmitterNode(fileNamed: "LightBlock")!
+			addChild(emitter)
+		}
 	}
 	
 	// Find side from contact
@@ -137,7 +168,7 @@ class BlockNode: SKSpriteNode {
 		run(SoundFX.sharedInstance["block"]!)
 	}
 
-	func addPinJoint(with body: SKPhysicsBody, node: SKNode, scene: SKScene) {
+	func addPinJoint(with body: SKPhysicsBody, node: SKNode, scene: GameScene) {
 		let anchor = scene.convert(node.position, from: node.parent!)
 		let jointPin = SKPhysicsJointPin.joint(withBodyA: self.physicsBody!, bodyB: body, anchor: anchor)
 

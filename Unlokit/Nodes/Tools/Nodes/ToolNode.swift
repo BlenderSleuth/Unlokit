@@ -20,7 +20,6 @@ enum ToolType: String {
 
 // Only use this for subclassing...
 class ToolNode: SKSpriteNode, CanBeFired, Breakable {
-    
     var type: ToolType!
 	
 	var isEngaged = false
@@ -31,6 +30,7 @@ class ToolNode: SKSpriteNode, CanBeFired, Breakable {
 	var side: Side?
 	
 	var particleTexture: SKTexture?
+	var particleColour: SKColor?
 
 	private var timerStarted = false
 	
@@ -116,10 +116,11 @@ class ToolNode: SKSpriteNode, CanBeFired, Breakable {
 		removeFromParent()
 	}
 	func startTimer() {
-		// If the timer has already started, don't start again
-		guard !timerStarted else {
+		// If the timer has already started, dont start a new one
+		if timerStarted {
 			return
 		}
+		
 		timerStarted = true
 
 		let wait = SKAction.wait(forDuration: RCValues.sharedInstance.toolTime)
@@ -132,19 +133,19 @@ class ToolNode: SKSpriteNode, CanBeFired, Breakable {
 		}
 	}
 	func startTimer(glueBlock: GlueBlockNode, side: Side) {
-		// If the timer has already started, don't start again
-		guard !timerStarted else {
-			return
+		// If the timer has already started, remove it
+		if timerStarted {
+			removeAction(forKey: "timer")
+		} else {
+			timerStarted = true
 		}
-		timerStarted = true
 
 		let wait = SKAction.wait(forDuration: RCValues.sharedInstance.toolTime)
 		run(wait, withKey: "timer") {
-			weak var `self` =  self
+			weak var `self` = self
 			
 			if let scene = self?.scene as? GameScene {
-				self?.smash(scene: scene)
-				glueBlock.remove(for: side)
+				self?.removeFromBlock(scene: scene, glueBlock: glueBlock, side: side)
 			}
 		}
 	}

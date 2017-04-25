@@ -14,6 +14,7 @@ class MtlBlockNode: BlockNode {
 		super.init(coder: aDecoder)
 		physicsBody?.categoryBitMask = Category.mtlBlock
 	}
+	
 	// Create version of self that has kind of bncNode
 	func bncVersion(scene: GameScene) -> BncBlockNode {
 		// Check if self is breakable

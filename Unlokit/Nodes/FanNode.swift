@@ -21,6 +21,7 @@ class FanNode: SKSpriteNode, Breakable {
 	var side: Side?
 	
 	var particleTexture: SKTexture?
+	var particleColour: SKColor? = .green
 	
 	var fieldLength: CGFloat?
 	var fieldRect: CGRect!
@@ -57,24 +58,30 @@ class FanNode: SKSpriteNode, Breakable {
 		physicsBody?.contactTestBitMask = Category.bombTool
 		physicsBody?.collisionBitMask = Category.all
 	}
-	func setup(level: GameScene, block: GlueBlockNode, side: Side) {
+	func setup(scene: GameScene, block: GlueBlockNode, side: Side) {
 		self.glueBlock = block
 		self.side = side
+		
+		// Lighting properties
+		lightingBitMask = Category.all
+		shadowCastBitMask = Category.zero
+		shadowedBitMask = Category.controllerLight | Category.toolLight | Category.lockLight
+		
 		// If level has different properties
 		getDataFromParent()
 		// Setup other physics things
-		setupPhysics(scene: level)
+		setupPhysics(scene: scene)
 		// Animate fan with frames
-		animate(framesAtlas: level.fanFrames)
+		animate(framesAtlas: scene.fanFrames)
 		// Setup particles and fields
-		setupParticles(scene: level)
-		setupFields(scene: level)
+		setupParticles(scene: scene)
+		setupFields(scene: scene)
 		
 		// Check if fan needs field updates
 		isMoving = checkHasActions(node: self)
 		
 		// Append to fan array
-		level.fans.append(self)
+		scene.fans.append(self)
 		
 		// Set strength to default value
 		strength = 60
@@ -100,7 +107,7 @@ class FanNode: SKSpriteNode, Breakable {
 			self.strength = CGFloat(strength)
 		}
 	}
-	private func setupPhysics(scene: SKScene) {
+	private func setupPhysics(scene: GameScene) {
 		// Check if fan should be dynamic
 		let dynamic: Bool
 		if let parentPhysics = self.parent?.physicsBody {
@@ -158,7 +165,7 @@ class FanNode: SKSpriteNode, Breakable {
 	
 	// Set emitter velocity based on strength of fan
 	private func setParticleVelocity(strength: CGFloat) {
-		let rotation = rotationRelativeToSceneFor(node: self)  + CGFloat(-90).degreesToRadians()
+		let rotation = rotationRelativeToSceneFor(node: self) + CGFloat(-90).degreesToRadians()
 		
 		// Find vector for angle
 		let dx = cos(rotation) * strength
@@ -167,7 +174,7 @@ class FanNode: SKSpriteNode, Breakable {
 		emitter.xAcceleration = -dx
 		emitter.yAcceleration = -dy
 	}
-	private func setupFields(scene: SKScene) {
+	private func setupFields(scene: GameScene) {
 		let rotation = rotationRelativeToSceneFor(node: self)
 		
 		// Check if custom user properties
@@ -193,7 +200,7 @@ class FanNode: SKSpriteNode, Breakable {
 		dragField.region = fieldRegion
 	}
 
-	func createBackField(scene: SKScene) {
+	func createBackField(scene: GameScene) {
 		let rotation = rotationRelativeToSceneFor(node: self)
 		let fieldRotation = self.fieldRotation(rotation)
 		backGravityField = SKFieldNode.linearGravityField(withVector: vector_float3(0,-1,0))

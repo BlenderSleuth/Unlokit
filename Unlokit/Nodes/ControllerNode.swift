@@ -24,7 +24,7 @@ class ControllerNode: SKSpriteNode, NodeSetup {
 		setupConstraints()
 	}
 	
-	private func setupRegion(scene: SKScene) {
+	private func setupRegion(scene: GameScene) {
 		scenePosition = scene.convert(position, from: self)
 		let sceneOrigin = CGPoint(x: scenePosition.x - frame.width / 2, y: scenePosition.y - frame.height / 2)
 		
@@ -62,8 +62,9 @@ class ControllerNode: SKSpriteNode, NodeSetup {
 
 	func addLight() {
 		let light = SKLightNode()
-		light.categoryBitMask = Category.all
-		self.addChild(light)
+		light.falloff = 1.2
+		light.categoryBitMask = Category.controllerLight
+		addChild(light)
 
 		isShadowed = true
 	}

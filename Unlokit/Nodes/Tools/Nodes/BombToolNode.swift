@@ -13,6 +13,8 @@ class BombToolNode: ToolNode {
 	var fuse: SKEmitterNode!
 	var explode = SKEmitterNode(fileNamed: "BombExplode")!
 	
+	var exploded = false
+	
 	var radius: CGFloat = 200
 	
     required init?(coder aDecoder: NSCoder) {
@@ -29,7 +31,7 @@ class BombToolNode: ToolNode {
 										  Category.bncBlock | Category.gluBlock |
 										  Category.breakBlock | Category.tools
 	}
-	func setupFuse(scene: SKScene) {
+	func setupFuse(scene: GameScene) {
 		fuse = childNode(withName: "fuse")?.children.first as! SKEmitterNode
 		fuse.targetNode = scene
 	}
@@ -48,11 +50,14 @@ class BombToolNode: ToolNode {
 		
 		super.remove()
 	}
-	func explode(scene: SKScene, at point: CGPoint) {
+	func explode(scene: GameScene, at point: CGPoint) {
 		// Check if this is the first explosion
-		if parent == nil {
+		if parent == nil || exploded {
 			return
 		}
+		
+		exploded = true
+		
 		let regionRect = CGRect(origin: CGPoint(x: -radius, y: -radius), size: CGSize(width: radius * 2, height: radius * 2))
 		let regionPath = CGPath(ellipseIn: regionRect, transform: nil)
 		let region = SKRegion(path: regionPath)
@@ -61,6 +66,10 @@ class BombToolNode: ToolNode {
 		
 		// Shatter all breakables in radius
 		scene.enumerateChildNodes(withName: "//breakable*") { node, _ in
+			// Protect self
+			guard node != self else {
+				return
+			}
 			if let breakable = (node as? Breakable) {
 				let position = self.convert(node.position, from: node.parent!)
 				if region.contains(position) {
@@ -76,14 +85,14 @@ class BombToolNode: ToolNode {
 		scene.addChild(explode)
 		removeFromParent()
 	}
-	func explode(scene: SKScene) {
+	func explode(scene: GameScene) {
 		guard let parent = parent else {
 			return
 		}
 		position = scene.convert(self.position, from: parent)
 		explode(scene: scene, at: position)
 	}
-	func countDown(scene: SKScene, at point: CGPoint, side: Side) {
+	func countDown(scene: GameScene, at point: CGPoint, side: Side) {
 		var countDown = 3
 		
 		let label = SKLabelNode(text: "\(countDown)")
