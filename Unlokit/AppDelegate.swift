@@ -23,8 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Set the font for the bar button items globally
         UIBarButtonItem.appearance()
             .setTitleTextAttributes(
-                [NSFontAttributeName: UIFont(name: "NeuropolXRg-Regular", size: 16)!
-                ], for: .normal)
+                [NSFontAttributeName: UIFont(name: "NeuropolXRg-Regular", size: 16)!],
+                for: .normal)
 
 		return true
 	}
@@ -49,8 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func applicationWillTerminate(_ application: UIApplication) {
 		// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+		UserDefaults.standard.synchronize()
 	}
-
-
 }
 

@@ -324,30 +324,31 @@ extension Array {
 }
 
 //********* Plist Loading *****************************
-func getDefaultLevelsFromPlist(stage number: Int) -> [Level]{
+func getDefaultLevelsFromPlist(stage stageNumber: Int) -> [Level]{
 	// Get plist
 	let plist = Bundle.main.path(forResource: "LevelData", ofType: "plist")!
 	let stageDict = NSDictionary(contentsOfFile: plist) as! [String: [String: Any]]
-	let levelDict = stageDict["Stage\(number)"]!
+	let levelDict = stageDict["Stage\(stageNumber)"]!
 	
 	var levelArray = [Level]()
 	
 	// Iterate through levels in plist
 	for (levelNumberStr, levelDict) in levelDict {
-		let levelNumber = levelNumberStr.numbers() ?? 0
-		
-		// Mark first level as available
-		let available: Bool
-		if number == 1 && levelNumber == 1 {
-			available = true
-		} else {
-			available = false
+		if let levelNumber = levelNumberStr.numbers() {
+			
+			// Mark first level as available
+			let available: Bool
+			if stageNumber == 1 && levelNumber == 1 {
+				available = true
+			} else {
+				available = false
+			}
+			
+			let imageName = ((levelDict as? [String: Any])?["imageName"] as? String) ?? "Thumbnail"
+			
+			let level = Level(number: levelNumber, stageNumber: stageNumber, imageName: imageName, available: available)
+			levelArray.append(level)
 		}
-		
-		let imageName = ((levelDict as? [String: Any])?["imageName"] as? String) ?? "Thumbnail"
-		
-		let level = Level(number: levelNumber, stageNumber: number, imageName: imageName, available: available)
-		levelArray.append(level)
 	}
 	// Sort array to be in the correct order
 	levelArray.sort {
