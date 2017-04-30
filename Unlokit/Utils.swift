@@ -97,6 +97,12 @@ prefix func -(right: CGPoint) -> CGPoint {
 	return CGPoint(x: -right.x, y: -right.y)
 }
 
+func distance(between point1: CGPoint, and point2: CGPoint) -> CGFloat {
+	let d1 = (point1.x - point2.x)
+	let d2 = (point1.y - point2.y)
+	return CGFloat(sqrt(d1 * d1 + d2 * d2))
+}
+
 //********* CGVector Functions ***************************
 func + (left: CGVector, right: CGVector) -> CGVector {
 	return CGVector(dx: left.dx + right.dx, dy: left.dy + right.dy)

@@ -134,6 +134,7 @@ class GameScene: SKScene {
 	// For camera following
 	var nodeToFollow: SKSpriteNode?
 	var isJustFired = false
+	let camMoveKey = "cameraMove"
 	
 	// Preloading textures
 	var fanFrames: SKTextureAtlas!
@@ -320,6 +321,22 @@ class GameScene: SKScene {
 			lock.addLight()
 		}
 	}
+	// This is run after the setup methods
+	override func didMove(to view: SKView) {
+		// Move camera through scene
+		let camSpeed: CGFloat = 500 // Pixels per second (roughly)
+		// Get two points
+		let point1 = cameraNode.parent!.convert(lock.position, from: lock.parent!)
+		let point2 = cameraNode.position
+		// Distance between two points
+		let d = distance(between: point1, and: point2)
+		// Calculate time for camera to move
+		let time = TimeInterval(d / camSpeed)
+		let move = SKAction.move(to: point2, duration: time)
+		move.timingMode = .easeInEaseOut
+		cameraNode.position = point1
+		cameraNode.run(move, withKey: camMoveKey)
+	}
 	
 	// MARK: - Moving nodes
     func moveController(_ location: CGPoint) {
@@ -343,7 +360,7 @@ class GameScene: SKScene {
 		controller.zRotation += rot
     }
     func moveCamera(to location: CGPoint) {
-		camera?.removeAction(forKey: "cameraMove")
+		camera?.removeAction(forKey: camMoveKey)
         // Get the delta vector
         let vector = lastTouchCam - location
         
@@ -532,7 +549,7 @@ class GameScene: SKScene {
         }
         
         for touch in touches {
-			
+			cameraNode.removeAction(forKey: camMoveKey)
 			nodeToFollow = nil
 			
             // Get location of touch in different coordinate systems
