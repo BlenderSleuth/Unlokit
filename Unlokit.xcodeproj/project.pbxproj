@@ -1259,7 +1259,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.blendersleuthdev.Unlokit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "63197cae-f5d3-4c3e-a33b-8d81b42bb49c";
+				PROVISIONING_PROFILE = "eccbc447-e9c2-47c4-9723-b309c4934d6f";
 				PROVISIONING_PROFILE_SPECIFIER = "Unlokit Distribution Profile";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

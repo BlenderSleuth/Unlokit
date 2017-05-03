@@ -64,6 +64,8 @@ class BombToolNode: ToolNode {
 		
 		self.position = point
 		
+		var breakables = [Breakable]()
+		
 		// Shatter all breakables in radius
 		scene.enumerateChildNodes(withName: "//breakable*") { node, _ in
 			// Protect self
@@ -73,10 +75,16 @@ class BombToolNode: ToolNode {
 			if let breakable = (node as? Breakable) {
 				let position = self.convert(node.position, from: node.parent!)
 				if region.contains(position) {
-					breakable.shatter(scene: scene)
+					breakables.append(breakable)
 				}
 			}
 		}
+		
+		// Shatter objects outside of loop
+		for breakable in breakables {
+			breakable.shatter(scene: scene)
+		}
+		
 		// Play sound
 		scene.run(SoundFX.sharedInstance["explosion"]!)
 		
