@@ -24,8 +24,6 @@ class KeyNode: SKSpriteNode, CanBeFired, Breakable {
 	
 	weak var levelController: LevelController!
 	
-	let emitter = SKEmitterNode(fileNamed: "Smash")!
-	
 	// Initial key position, to return to
 	var startPosition: CGPoint!
 
@@ -33,8 +31,6 @@ class KeyNode: SKSpriteNode, CanBeFired, Breakable {
 		super.init(coder: aDecoder)
 		// Set position to start
 		startPosition = position
-		
-		emitter.isPaused = true
 	}
 	
 	func engage(_ controller: ControllerNode, completion: @escaping () -> ()) {
@@ -109,6 +105,7 @@ class KeyNode: SKSpriteNode, CanBeFired, Breakable {
 		let sound = SoundFX.sharedInstance["smash"]!
 		let group = SKAction.group([wait, sound])
 		
+		let emitter = SKEmitterNode(fileNamed: "Smash")!
 		emitter.isPaused = false
 		emitter.position = scene.convert(position, from: parent!)
 		scene.addChild(emitter)

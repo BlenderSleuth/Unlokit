@@ -204,63 +204,6 @@ class GameScene: SKScene {
 		// Bind lock to local variable
 		lock = childNode(withName: "//lock") as! LockNode
 	}
-	func setupCamera() {
-		let minAspectRatio: CGFloat = 4.0 / 3.0
-		
-		//Get correct aspect ratio for device
-		let aspectRatio: CGFloat
-		if iPhone {
-			aspectRatio = 16.0 / 9.0
-		} else {
-			aspectRatio = minAspectRatio
-		}
-		
-		//Get height of camera
-		let cameraHeight = (size.width / aspectRatio)
-		
-		margin = (size.width / minAspectRatio) - cameraHeight
-		
-		// Create a range for the camera to be in
-		let rangeX: SKRange
-		let rangeY: SKRange
-		
-		// iOS 9 has a bug in which camera position is altered... compensation for now
-		if ios9 {
-			let scale = view!.bounds.size.width / self.size.width
-			let scaledHeight = self.size.height * scale
-			let scaledOverlap = scaledHeight - view!.bounds.size.height
-			let overlapAmount = scaledOverlap / scale
-			
-			// Set position of camera
-			camera?.position = CGPoint(x: self.size.width / 2, y: bounds.frame.minY + cameraHeight / 2 - overlapAmount / 2)
-			
-			// Create range of points in which the camera can go, based on the bounds and size of the screen
-			rangeX = SKRange(lowerLimit: bounds.frame.minX + size.width / 2,
-			                 upperLimit: bounds.frame.maxX - size.width / 2)
-			rangeY = SKRange(lowerLimit: bounds.frame.minY + cameraHeight / 2 - overlapAmount / 2,
-			                 upperLimit: bounds.frame.maxY - cameraHeight / 2 - overlapAmount / 2)
-		} else {
-			// Set position of camera
-			camera?.position = CGPoint(x: self.size.width / 2, y:  cameraHeight / 2)
-			
-			// Create range of points in which the camera can go, based on the bounds and size of the screen
-			rangeX = SKRange(lowerLimit: bounds.frame.minX + size.width / 2,
-			                 upperLimit: bounds.frame.maxX - size.width / 2)
-			rangeY = SKRange(lowerLimit: bounds.frame.minY + cameraHeight / 2,
-			                 upperLimit: bounds.frame.maxY - cameraHeight / 2)
-		}
-		
-		// Set interface nodes in case of iphone
-		if iPhone {
-			fireNode.position.y  += 250
-			replayButton.position.y -= 250
-			backButton.position.y -= 250
-		}
-		
-		// Set camera constraints
-		let cameraConstraint = SKConstraint.positionX(rangeX, y: rangeY)
-		cameraNode.constraints = [cameraConstraint]
-	}
 	func setupTools() {
 		// Create array of tool icons to use later
 		enumerateChildNodes(withName: "toolBox//*[Tool]") {node, _ in
@@ -323,6 +266,8 @@ class GameScene: SKScene {
 	}
 	// This is run after the setup methods
 	override func didMove(to view: SKView) {
+		setupCamera(view: view)
+		
 		// Move camera through scene
 		let camSpeed: CGFloat = 500 // Pixels per second (roughly)
 		// Get two points
@@ -336,6 +281,63 @@ class GameScene: SKScene {
 		move.timingMode = .easeInEaseOut
 		cameraNode.position = point1
 		cameraNode.run(move, withKey: camMoveKey)
+	}
+	func setupCamera(view: SKView) {
+		let minAspectRatio: CGFloat = 4.0 / 3.0
+		
+		//Get correct aspect ratio for device
+		let aspectRatio: CGFloat
+		if iPhone {
+			aspectRatio = 16.0 / 9.0
+		} else {
+			aspectRatio = minAspectRatio
+		}
+		
+		//Get height of camera
+		let cameraHeight = (size.width / aspectRatio)
+		
+		margin = (size.width / minAspectRatio) - cameraHeight
+		
+		// Create a range for the camera to be in
+		let rangeX: SKRange
+		let rangeY: SKRange
+		
+		// iOS 9 has a bug in which camera position is altered... compensation for now
+		if ios9 {
+			let scale = view.bounds.size.width / self.size.width
+			let scaledHeight = self.size.height * scale
+			let scaledOverlap = scaledHeight - view.bounds.size.height
+			let overlapAmount = scaledOverlap / scale
+			
+			// Set position of camera
+			camera?.position = CGPoint(x: self.size.width / 2, y: bounds.frame.minY + cameraHeight / 2 - overlapAmount / 2)
+			
+			// Create range of points in which the camera can go, based on the bounds and size of the screen
+			rangeX = SKRange(lowerLimit: bounds.frame.minX + size.width / 2,
+			                 upperLimit: bounds.frame.maxX - size.width / 2)
+			rangeY = SKRange(lowerLimit: bounds.frame.minY + cameraHeight / 2 - overlapAmount / 2,
+			                 upperLimit: bounds.frame.maxY - cameraHeight / 2 - overlapAmount / 2)
+		} else {
+			// Set position of camera
+			camera?.position = CGPoint(x: self.size.width / 2, y:  cameraHeight / 2)
+			
+			// Create range of points in which the camera can go, based on the bounds and size of the screen
+			rangeX = SKRange(lowerLimit: bounds.frame.minX + size.width / 2,
+			                 upperLimit: bounds.frame.maxX - size.width / 2)
+			rangeY = SKRange(lowerLimit: bounds.frame.minY + cameraHeight / 2,
+			                 upperLimit: bounds.frame.maxY - cameraHeight / 2)
+		}
+		
+		// Set interface nodes in case of iphone
+		if iPhone {
+			fireNode.position.y  += 250
+			replayButton.position.y -= 250
+			backButton.position.y -= 250
+		}
+		
+		// Set camera constraints
+		let cameraConstraint = SKConstraint.positionX(rangeX, y: rangeY)
+		cameraNode.constraints = [cameraConstraint]
 	}
 	
 	// MARK: - Moving nodes

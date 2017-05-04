@@ -62,7 +62,6 @@ class GameViewController: UIViewController, LevelController {
 					scene.level = self.level
 					
 					scene.setupNodes(delegate: self)
-					scene.setupCamera()
 					scene.setupTools()
 					scene.setupTextures()
 					scene.setupBlocks()
