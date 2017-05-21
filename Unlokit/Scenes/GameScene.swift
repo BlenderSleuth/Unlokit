@@ -82,7 +82,7 @@ struct ZPosition {
 protocol LevelController: class {
 	var level: Level! { get set }
 	
-	func startNewGame(levelname: String)
+    func startNewGame(levelname: String)
 	func startNewGame()
 	func saveLevels()
 	func finishedLevel()
@@ -330,9 +330,14 @@ class GameScene: SKScene {
 		
 		// Set interface nodes in case of iphone
 		if iPhone {
-			fireNode.position.y  += 250
-			replayButton.position.y -= 250
-			backButton.position.y -= 250
+            if ios9 {
+                fireNode.position.y += 500
+                replayButton.position.y += 100
+            } else {
+                fireNode.position.y += 250
+                replayButton.position.y -= 250
+                backButton.position.y -= 250
+            }
 		}
 		
 		// Set camera constraints
@@ -502,6 +507,35 @@ class GameScene: SKScene {
 		}
 	}
 	
+    func die() {
+        let amplitudeX: UInt32 = 10
+        let amplitudeY: UInt32 = 6
+        
+        let numberOfShakes = 6
+        var actions = [SKAction]()
+        
+        for _ in 1...numberOfShakes {
+            let moveX = CGFloat(arc4random_uniform(amplitudeX) - amplitudeX/2)
+            let moveY = CGFloat(arc4random_uniform(amplitudeY) - amplitudeY/2)
+            
+            let shakeAction = SKAction.move(by: CGVector(dx: moveX, dy: moveY), duration: 0.02)
+            shakeAction.timingMode = .easeOut
+            actions.append(shakeAction)
+            actions.append(shakeAction.reversed())
+        }
+        
+        let colorise = SKAction.colorize(with: .red, colorBlendFactor: 1, duration: 1)
+        colorise.timingMode = .easeInEaseOut
+        
+        let coloriseRev = SKAction.colorize(with: .red, colorBlendFactor: 0, duration: 1)
+        colorise.timingMode = .easeInEaseOut
+        
+        let coloriseSeq = SKAction.sequence([colorise, coloriseRev])
+        let sequence = SKAction.sequence(actions)
+        
+        let group = SKAction.group([coloriseSeq, sequence])
+        cameraNode.run(group)
+    }
 	func finishedLevel() {
 		if level.isSecret {
 			levelController.endSecret()

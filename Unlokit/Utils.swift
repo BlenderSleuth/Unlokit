@@ -288,7 +288,7 @@ func += (left: inout CGAffineTransform, right: CGAffineTransform) {
 
 //********* Other Public stuff ***************************
 private let version = UIDevice.current.systemVersion
-let ios9 = version[version.startIndex] == "9" ? true : false
+let ios9 = version[version.startIndex] == "9"
 let iPhone = UIDevice.current.model == "iPhone"
 
 //********* SKNode extension *****************************
@@ -383,19 +383,80 @@ func delay(_ delay: Double, block: @escaping ()->()) {
 }
 
 //********* Other Random Things ************************
-func isAppFirstLaunch() -> Bool{
+private func getIsAppFirstLaunch() -> Bool {
 	let defaults = UserDefaults.standard
 	let key = "hasAppAlreadyLaunchedOnce"
 	
-	if defaults.string(forKey: key) != nil {
-		return true
+	if defaults.bool(forKey: key) {
+		return false
 	} else {
 		defaults.set(true, forKey: key)
-		return false
+        print("First launch")
+		return true
 	}
 }
 
+// Run once when initialised
+public let isAppFirstLaunch = getIsAppFirstLaunch()
 
+func invertTexture(_ texture: SKTexture) -> SKTexture? {
+    let width = Int(texture.size().width)
+    let height = Int(texture.size().height)
+    let cgImage = texture.cgImage()
+    if let cfData = cgImage.dataProvider,
+        let mutableData = CFDataCreateMutableCopy(nil, 0, cfData.data),
+        let mutablePtr = CFDataGetMutableBytePtr(mutableData) {
+        
+        for x in 0..<width {
+            for y in 0..<height {
+                let pixelAddress = x * 4 + y * width * 4
+                
+                // Check alpha bit
+                let alphaAddress = pixelAddress + 3
+                
+                let currentColour = mutablePtr.advanced(by: alphaAddress).pointee
+                
+                // Invert alpha
+                mutablePtr.advanced(by: alphaAddress).pointee = 255 - currentColour
+            }
+        }
+        
+        return SKTexture(data: mutableData as Data, size: texture.size())
+    }
+    return nil
+}
 
-
+func generateTextureWithHole(size: CGSize,
+                             radius: CGFloat,
+                             position: CGPoint,
+                             backgroundColour: UIColor = .black) -> SKTexture {
+    
+    UIGraphicsBeginImageContext(size)
+    let context = UIGraphicsGetCurrentContext()!
+    
+    let circleRect = CGRect(x: position.x - radius,
+                            y: position.y - radius,
+                            width: radius * 2,
+                            height: radius * 2)
+    
+    // Background Colour
+    backgroundColour.withAlphaComponent(0.1).setFill()
+    context.fill(CGRect(origin: CGPoint.zero, size: size))
+    
+    // Ellipse
+    UIColor.black.setFill()
+    context.fillEllipse(in: circleRect)
+    
+    let image = UIGraphicsGetImageFromCurrentImageContext()!
+    UIGraphicsEndImageContext()
+    
+    let texture = SKTexture(image: image)
+    
+    //let filter = CIFilter(name: "CIGaussianBlue", withInputParameters: ["inputImage":texture.cgImage()])!
+    //let blurTexture = texture.applying(filter)
+    
+    //let invertedTexture = invertTexture(blurTexture)!
+    
+    return texture
+}
 

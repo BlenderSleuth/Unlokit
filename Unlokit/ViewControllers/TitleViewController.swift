@@ -25,9 +25,7 @@ class TitleViewController: UIViewController, GKGameCenterControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-		if isAppFirstLaunch() {
-			authenticatePlayer()
-		}
+        authenticatePlayer()
 		
 		// TODO: Music
 		//SoundFX.sharedInstance.playBackgroundMusic(filename: "")
@@ -39,16 +37,21 @@ class TitleViewController: UIViewController, GKGameCenterControllerDelegate {
 			if let vc = viewController {
 				self.present(vc, animated: true, completion: nil)
 			}
-			if error != nil {
-				//self.noGameCenter()
+			if let description = error?.localizedDescription, isAppFirstLaunch {
+                self.noGameCenter(error: description)
 			}
 		}
 	}
 	
-	func noGameCenter() {
+    func noGameCenter(error: String) {
 		// Tell user to log into game center
-		let alert = UIAlertController(title: "Game Center", message: "Please enable game center", preferredStyle: .alert)
-		let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { _ in alert.dismiss(animated: true, completion: nil) }
+		let alert = UIAlertController(title: "Game Center",
+		                              message: "Error with Game Centre: \(error)",
+                                        preferredStyle: .alert)
+        
+		let ok = UIAlertAction(title: "OK",
+		                       style: UIAlertActionStyle.default) { _ in alert.dismiss(animated: true,
+		                                                                               completion: nil) }
 		
 		alert.addAction(ok)
 		self.present(alert, animated: true, completion: nil)
@@ -60,7 +63,7 @@ class TitleViewController: UIViewController, GKGameCenterControllerDelegate {
 			gc.gameCenterDelegate = self
 			present(gc, animated: true, completion: nil)
 		} else {
-			noGameCenter()
+            noGameCenter(error: "Player is not authenticated")
 		}
 	}
 	func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {

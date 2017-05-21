@@ -10,6 +10,8 @@ import UIKit
 import SpriteKit
 
 class GameViewController: UIViewController, LevelController {
+    
+    private var tutorial = false
 	
 	var level: Level!
 
@@ -20,21 +22,33 @@ class GameViewController: UIViewController, LevelController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		navigationController?.isNavigationBarHidden = true
-		
-		#if DEBUG
-			// DEBUG if this is the initial view controller
-			//let stage = 2
-			//let level = 10
-			
-			//self.level = Stages.sharedInstance.stages[stage-1].levels[level-1]
-			//startNewGame(levelname: "Level2_S")
-			startNewGame()
-		#else
-			startNewGame()
-		#endif
-	}
+        
+        if isAppFirstLaunch {
+            // For first time
+            startTutorial()
+        } else {
+            
+            #if DEBUG
+                // DEBUG if this is the initial view controller
+                //let stage = 2
+                //let level = 10
+                
+                //self.level = Stages.sharedInstance.stages[stage-1].levels[level-1]
+                //startNewGame(levelname: "Level2_S")
+                startNewGame()
+            #else
+                startNewGame()
+            #endif
+        }
+    }
+    
+    func startTutorial() {
+        tutorial = true
+        level = Stages.sharedInstance.stages[0].levels[0]
+        startNewGame()
+    }
 	
-	func startNewGame(levelname: String) {
+    func startNewGame(levelname: String) {
 		// Put this all on seperate thread for loading
 		DispatchQueue.global(qos: .userInitiated).async {
 			// Transition
@@ -55,9 +69,17 @@ class GameViewController: UIViewController, LevelController {
 					//skView.showsPhysics = true
 					//skView.showsFields = true
 				#endif
+                let fileName: String
+                // To Fix
+                if true {
+                    fileName = "LevelTutorial"
+                } else {
+                    fileName = levelname
+                }
 				
-				if let scene = GameScene(fileNamed: levelname) {
-					//weak var weakScene: GameScene! = scene
+				if let scene = GameScene(fileNamed: fileName) {
+                    print(type(of: scene))
+                    
 					scene.levelController = self
 					scene.level = self.level
 					
@@ -87,9 +109,9 @@ class GameViewController: UIViewController, LevelController {
 			}
 		}
 	}
-	func startNewGame() {
+    func startNewGame() {
 		// Reload current level
-		startNewGame(levelname: "Level\(self.level.stageNumber)_\(self.level.number)")
+        startNewGame(levelname: "Level\(self.level.stageNumber)_\(self.level.number)")
 	}
 	
 	func finishedLevel() {

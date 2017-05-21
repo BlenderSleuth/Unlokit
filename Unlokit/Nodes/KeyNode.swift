@@ -111,6 +111,9 @@ class KeyNode: SKSpriteNode, CanBeFired, Breakable {
 		scene.addChild(emitter)
 		
 		removeFromParent()
+        
+        // Shake and colorise scene
+        scene.die()
 
 		scene.run(group) {
 			// Reload scene
