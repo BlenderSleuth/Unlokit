@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import GameplayKit
 
 struct Category {
 	static let zero: UInt32				= 0b0
@@ -150,6 +151,9 @@ class GameScene: SKScene {
 	}
 	
 	func setupNodes(delegate: LevelController) {
+		// Set default for all scenes
+		backgroundColor = .black
+		
 		// Bind controller to local variable
 		controller = childNode(withName: "//controller") as! ControllerNode
 
@@ -346,6 +350,7 @@ class GameScene: SKScene {
 	}
 	
 	// MARK: - Moving nodes
+	var currentRot: CGFloat = 0
     func moveController(_ location: CGPoint) {
 		// Stop camera from moving
 		nodeToFollow = nil
@@ -357,14 +362,20 @@ class GameScene: SKScene {
         // Maths to figure out how much rotation to add to controller
         let rot = atan2(p3.y - p1.y, p3.x - p1.x) - atan2(p2.y - p1.y, p2.x - p1.x)
 		
-		// This prevents the controller from switch to the otherside, constraint does the rest
-        let newRot = controller.zRotation + rot
-		if newRot <= CGFloat(-95).degreesToRadians() || newRot >= CGFloat(95).degreesToRadians() {
-			return
+		// Make sure that the rotation is an integr
+		currentRot += rot.radiansToDegrees()
+		if currentRot >= 1 || currentRot <= -1 {
+			let newRot = controller.angle + Int(currentRot)
+			
+			// Clamp the controller to range
+			if newRot > 180 {
+				controller.angle = 180
+			} else if newRot >= 0 {
+				// Move controller
+				controller.angle += Int(currentRot)
+			}
+			currentRot = 0
 		}
-
-		// Rotate controller
-		controller.zRotation += rot
     }
     func moveCamera(to location: CGPoint) {
 		camera?.removeAction(forKey: camMoveKey)
@@ -508,33 +519,43 @@ class GameScene: SKScene {
 	}
 	
     func die() {
-        let amplitudeX: UInt32 = 10
-        let amplitudeY: UInt32 = 6
+		self.run(soundFX["rumble"]!)
+		
+        let amplitudeX: CGFloat = 60
+        let amplitudeY: CGFloat = 100
         
         let numberOfShakes = 6
-        var actions = [SKAction]()
+        var moveActions = [SKAction]()
         
         for _ in 1...numberOfShakes {
-            let moveX = CGFloat(arc4random_uniform(amplitudeX) - amplitudeX/2)
-            let moveY = CGFloat(arc4random_uniform(amplitudeY) - amplitudeY/2)
+            let moveX = (CGFloat(arc4random_uniform(UInt32(amplitudeX))) - amplitudeX) / 2
+            let moveY = (CGFloat(arc4random_uniform(UInt32(amplitudeY))) - amplitudeY) / 2
             
-            let shakeAction = SKAction.move(by: CGVector(dx: moveX, dy: moveY), duration: 0.02)
+            let shakeAction = SKAction.move(by: CGVector(dx: CGFloat(moveX), dy: CGFloat(moveY)), duration: 0.02)
             shakeAction.timingMode = .easeOut
-            actions.append(shakeAction)
-            actions.append(shakeAction.reversed())
+            moveActions.append(shakeAction)
+            moveActions.append(shakeAction.reversed())
         }
         
-        let colorise = SKAction.colorize(with: .red, colorBlendFactor: 1, duration: 1)
+        let colorise = SKAction.colorize(with: .red, colorBlendFactor: 1, duration: 0.3)
         colorise.timingMode = .easeInEaseOut
         
-        let coloriseRev = SKAction.colorize(with: .red, colorBlendFactor: 0, duration: 1)
+        let decolorise = SKAction.colorize(withColorBlendFactor: 0, duration: 0.3)
         colorise.timingMode = .easeInEaseOut
         
-        let coloriseSeq = SKAction.sequence([colorise, coloriseRev])
-        let sequence = SKAction.sequence(actions)
+        let coloriseSeq = SKAction.sequence([colorise, decolorise])
+        let moveSeq = SKAction.sequence(moveActions)
         
-        let group = SKAction.group([coloriseSeq, sequence])
-        cameraNode.run(group)
+        let group = SKAction.group([coloriseSeq, moveSeq])
+		
+		cameraNode.run(moveSeq)
+		
+		enumerateChildNodes(withName: "//background") { background, _ in
+			background.run(group)
+		}
+		enumerateChildNodes(withName: "//canvas") { canvas, _ in
+			canvas.run(group)
+		}
     }
 	func finishedLevel() {
 		if level.isSecret {
@@ -547,10 +568,17 @@ class GameScene: SKScene {
 			finishedLevelNode.removeFromParent()
 			finishedLevelNode.alpha = 0
 			
-
-			// Center of camera, accomadates iPhone aspect ratio
-			finishedLevelNode.position = CGPoint(x: cameraNode.frame.size.width / 2,
-			                                     y: cameraNode.frame.size.height / 2 - margin / 2)
+			let finishedLevelNodePosition: CGPoint
+			if ios9 {
+				finishedLevelNodePosition = CGPoint(x: cameraNode.frame.size.width / 2,
+													y: cameraNode.frame.size.height / 2 / 2)
+			} else {
+				// Center of camera, accomadates iPhone aspect ratio
+				finishedLevelNodePosition = CGPoint(x: cameraNode.frame.size.width / 2,
+													y: cameraNode.frame.size.height / 2 - margin / 2)
+			}
+			
+			finishedLevelNode.position = finishedLevelNodePosition
 			
 			cameraNode.addChild(finishedLevelNode)
 
@@ -671,8 +699,5 @@ class GameScene: SKScene {
 				fan.updateFields(rotation: rot)
 			}
 		}
-	}
-	override func didApplyConstraints() {
-		controller.updateAngle()
 	}
 }

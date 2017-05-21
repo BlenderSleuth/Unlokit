@@ -17,11 +17,19 @@ class ControllerNode: SKSpriteNode, NodeSetup {
 
 	var isShadowed = false
 	
+	var angle: Int = 90 {
+		didSet {
+			// Rotate controller
+			zRotation = CGFloat(angle).degreesToRadians() - CGFloat(90).degreesToRadians()
+			// Update angle
+			angleLabel.text = "\(angle)°"
+		}
+	}
+	
 	private var angleLabel: SKLabelNode!
 
 	func setup(scene: GameScene) {
 		setupRegion(scene: scene)
-		setupConstraints()
 	}
 	
 	private func setupRegion(scene: GameScene) {
@@ -53,13 +61,6 @@ class ControllerNode: SKSpriteNode, NodeSetup {
 		scene.addChild(circleNode)
 	}
 
-	private func setupConstraints() {
-		let range = SKRange(lowerLimit: CGFloat(-90).degreesToRadians(), upperLimit: CGFloat(90).degreesToRadians())
-		let constraint = SKConstraint.zRotation(range)
-
-		constraints = [constraint]
-	}
-
 	func addLight() {
 		let light = SKLightNode()
 		light.falloff = 1.2
@@ -67,10 +68,5 @@ class ControllerNode: SKSpriteNode, NodeSetup {
 		addChild(light)
 
 		isShadowed = true
-	}
-
-	func updateAngle() {
-		let angle = Int(zRotation.radiansToDegrees()) + 90
-		angleLabel.text = "\(angle)°"
 	}
 }

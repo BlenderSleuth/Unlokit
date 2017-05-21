@@ -23,10 +23,10 @@ class GameViewController: UIViewController, LevelController {
 		super.viewDidLoad()
 		navigationController?.isNavigationBarHidden = true
         
-        if isAppFirstLaunch {
+        //if isAppFirstLaunch {
             // For first time
-            startTutorial()
-        } else {
+            //startTutorial()
+        //} else {
             
             #if DEBUG
                 // DEBUG if this is the initial view controller
@@ -34,12 +34,12 @@ class GameViewController: UIViewController, LevelController {
                 //let level = 10
                 
                 //self.level = Stages.sharedInstance.stages[stage-1].levels[level-1]
-                //startNewGame(levelname: "Level2_S")
+                //startNewGame(levelname: "Level1_S")
                 startNewGame()
             #else
                 startNewGame()
             #endif
-        }
+        //}
     }
     
     func startTutorial() {
@@ -69,6 +69,9 @@ class GameViewController: UIViewController, LevelController {
 					//skView.showsPhysics = true
 					//skView.showsFields = true
 				#endif
+				
+				// For tutorial scene
+				/*
                 let fileName: String
                 // To Fix
                 if true {
@@ -76,10 +79,9 @@ class GameViewController: UIViewController, LevelController {
                 } else {
                     fileName = levelname
                 }
+				*/
 				
-				if let scene = GameScene(fileNamed: fileName) {
-                    print(type(of: scene))
-                    
+				if let scene = GameScene(fileNamed: levelname) {
 					scene.levelController = self
 					scene.level = self.level
 					

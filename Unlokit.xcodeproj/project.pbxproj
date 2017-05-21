@@ -95,6 +95,7 @@
 		387105F31E359640002D010A /* SoundFX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387105F21E359640002D010A /* SoundFX.swift */; };
 		387105F51E359CA4002D010A /* ReplayButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387105F41E359CA4002D010A /* ReplayButtonNode.swift */; };
 		38721CD61E4E9F78008D9033 /* Row3BlockBreak.sks in Resources */ = {isa = PBXBuildFile; fileRef = 38721CD51E4E9F78008D9033 /* Row3BlockBreak.sks */; };
+		387391B61ED1A82D002ACD3C /* Rumble.caf in Resources */ = {isa = PBXBuildFile; fileRef = 387391B51ED1A829002ACD3C /* Rumble.caf */; };
 		387D17D51EA487CC00F1CE9A /* BallSquare2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 387D17D41EA487CC00F1CE9A /* BallSquare2.sks */; };
 		387F5DA51EA1F9B4007B3248 /* Cannon.caf in Resources */ = {isa = PBXBuildFile; fileRef = 387F5DA41EA1F918007B3248 /* Cannon.caf */; };
 		3881DCFE1EAED0F300784B99 /* Row6BlockMtl.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3881DCFD1EAED0F300784B99 /* Row6BlockMtl.sks */; };
@@ -294,6 +295,7 @@
 		387105F21E359640002D010A /* SoundFX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundFX.swift; sourceTree = "<group>"; };
 		387105F41E359CA4002D010A /* ReplayButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplayButtonNode.swift; sourceTree = "<group>"; };
 		38721CD51E4E9F78008D9033 /* Row3BlockBreak.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row3BlockBreak.sks; sourceTree = "<group>"; };
+		387391B51ED1A829002ACD3C /* Rumble.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Rumble.caf; sourceTree = "<group>"; };
 		387D17D41EA487CC00F1CE9A /* BallSquare2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BallSquare2.sks; sourceTree = "<group>"; };
 		387F5DA41EA1F918007B3248 /* Cannon.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cannon.caf; sourceTree = "<group>"; };
 		3881DCFD1EAED0F300784B99 /* Row6BlockMtl.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Row6BlockMtl.sks; sourceTree = "<group>"; };
@@ -607,6 +609,7 @@
 				38CE1BFA1E3841A200B646DB /* Explosion.caf */,
 				38E6DA381E3C0A06004F8A79 /* Block.caf */,
 				3820E0141EA1E86500AC2556 /* BlockShatter.caf */,
+				387391B51ED1A829002ACD3C /* Rumble.caf */,
 				387F5DA41EA1F918007B3248 /* Cannon.caf */,
 				38AE07551E36199500D127D2 /* Bounce1.caf */,
 				38AE07561E36199500D127D2 /* Bounce2.caf */,
@@ -967,6 +970,7 @@
 				382989CC1EAE13C400C89A05 /* BlockGlu4FanCage.sks in Resources */,
 				38E6DA371E3C02E8004F8A79 /* Bounce4.caf in Resources */,
 				387D17D51EA487CC00F1CE9A /* BallSquare2.sks in Resources */,
+				387391B61ED1A82D002ACD3C /* Rumble.caf in Resources */,
 				381CB8211E626FF00024D592 /* BlockPin.sks in Resources */,
 				381CB81B1E626FD90024D592 /* Row8BlockMtlDyn.sks in Resources */,
 				382655CC1EA44F2200F2C113 /* Row8BlockMtlPinnedFanDown.sks in Resources */,

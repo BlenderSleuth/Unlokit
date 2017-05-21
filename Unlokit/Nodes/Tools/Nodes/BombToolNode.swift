@@ -84,7 +84,6 @@ class BombToolNode: ToolNode {
 		for breakable in breakables {
 			breakable.shatter(scene: scene)
 		}
-		
 		// Play sound
 		scene.run(SoundFX.sharedInstance["explosion"]!)
 		
