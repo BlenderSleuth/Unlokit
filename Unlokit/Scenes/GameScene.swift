@@ -268,6 +268,7 @@ class GameScene: SKScene {
 			lock.addLight()
 		}
 	}
+	
 	// This is run after the setup methods
 	override func didMove(to view: SKView) {
 		setupCamera(view: view)
@@ -292,7 +293,11 @@ class GameScene: SKScene {
 		//Get correct aspect ratio for device
 		let aspectRatio: CGFloat
 		if iPhone {
-			aspectRatio = 16.0 / 9.0
+			if iPhone4s {
+				aspectRatio = 3.0 / 2.0
+			} else {
+				aspectRatio = 16.0 / 9.0
+			}
 		} else {
 			aspectRatio = minAspectRatio
 		}
@@ -335,8 +340,12 @@ class GameScene: SKScene {
 		// Set interface nodes in case of iphone
 		if iPhone {
             if ios9 {
-                fireNode.position.y += 500
-                replayButton.position.y += 100
+				if iPhone4s {
+					replayButton.position.y += 100
+				} else {
+					replayButton.position.y += 100
+					fireNode.position.y += 500
+				}
             } else {
                 fireNode.position.y += 250
                 replayButton.position.y -= 250

@@ -63,7 +63,7 @@ class GameViewController: UIViewController, LevelController {
 				
 				#if DEBUG
 					// Set debug options
-					//skView.showsFPS = true
+					skView.showsFPS = true
 					//skView.showsNodeCount = true
 					//skView.showsDrawCount = true
 					//skView.showsPhysics = true

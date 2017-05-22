@@ -9,7 +9,7 @@
 import SpriteKit
 
 #if DEBUG
-	let enableAllLevels = false
+	let enableAllLevels = true
 #endif
 
 class Stages {

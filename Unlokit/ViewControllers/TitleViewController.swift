@@ -25,19 +25,18 @@ class TitleViewController: UIViewController, GKGameCenterControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        authenticatePlayer()
+        authenticatePlayer(showVc: isAppFirstLaunch)
 		
 		// TODO: Music
 		//SoundFX.sharedInstance.playBackgroundMusic(filename: "")
     }
 	
-	func authenticatePlayer() {
-		let localPlayer = GKLocalPlayer()
+	func authenticatePlayer(showVc: Bool) {
+		let localPlayer = GKLocalPlayer.localPlayer()
 		localPlayer.authenticateHandler = { viewController, error in
-			if let vc = viewController {
+			if let vc = viewController, showVc {
 				self.present(vc, animated: true, completion: nil)
-			}
-			if let description = error?.localizedDescription, isAppFirstLaunch {
+			} else if let description = error?.localizedDescription, showVc {
                 self.noGameCenter(error: description)
 			}
 		}
@@ -63,7 +62,8 @@ class TitleViewController: UIViewController, GKGameCenterControllerDelegate {
 			gc.gameCenterDelegate = self
 			present(gc, animated: true, completion: nil)
 		} else {
-            noGameCenter(error: "Player is not authenticated")
+			authenticatePlayer(showVc: true)
+            //noGameCenter(error: "Player is not authenticated")
 		}
 	}
 	func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {

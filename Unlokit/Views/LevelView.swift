@@ -38,12 +38,18 @@ class LevelView: UIView, UIGestureRecognizerDelegate {
 		self.delegate = delegate
 		
 		let label = UILabel(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
+		let fontSize: CGFloat
 		if iPhone {
-			label.font = UIFont(name: "NeuropolXRg-Regular", size: 48)
+			if iPhone4s {
+				fontSize = 32
+			} else {
+				fontSize = 48
+			}
 		} else {
-			label.font = UIFont(name: "NeuropolXRg-Regular", size: 64)
+			fontSize = 64
 		}
 		
+		label.font = UIFont(name: "NeuropolXRg-Regular", size: fontSize)
 		label.textAlignment = .center
 		label.text = "\(level.number)"
 		label.textColor = .white

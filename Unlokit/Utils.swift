@@ -291,6 +291,23 @@ private let version = UIDevice.current.systemVersion
 let ios9 = version[version.startIndex] == "9"
 let iPhone = UIDevice.current.model == "iPhone"
 
+// To check for the pesky 3:2 aspect ratio
+private func checkForiPhone4s() -> Bool {
+	// I don't actually know what this does, but it works
+	var systemInfo = utsname()
+	uname(&systemInfo)
+	let modelCode = withUnsafePointer(to: &systemInfo.machine) {
+		$0.withMemoryRebound(to: CChar.self, capacity: 1) {
+			ptr in String.init(validatingUTF8: ptr)
+		}
+	}
+	
+	// Check for iphone 4s
+	return modelCode == "iPhone4,1"
+}
+
+let iPhone4s = checkForiPhone4s()
+
 //********* SKNode extension *****************************
 extension SKNode {
 	/** 
