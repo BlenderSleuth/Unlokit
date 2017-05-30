@@ -317,7 +317,7 @@ extension SKNode {
 		- withKey : A unique key used to identify the action.
 		- block : A completion block called when the action completes.
 	*/
-	func run(_ action: SKAction, withKey: String, completion block:@escaping ((Void) -> Void)) {
+	func run(_ action: SKAction, withKey: String, completion block: @escaping ((Void) -> Void)) {
 			let completionAction = SKAction.run(block)
 			let compositeAction = SKAction.sequence([action, completionAction])
 			run(compositeAction, withKey: withKey)
@@ -399,23 +399,37 @@ func delay(_ delay: Double, block: @escaping ()->()) {
 		deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: block)
 }
 
-//********* Other Random Things ************************
-private func getIsAppFirstLaunch() -> Bool {
+//********* User Defaults functions ************************
+enum CheckKey: String {
+	case isAppFirstLaunch = "hasAppAlreadyLaunchedOnce"
+	case isGameFirstLaunch = "hasGameAlreadyLaunchedOnce"
+}
+
+private func checkValueFor(key: CheckKey, reset: Bool = false) -> Bool {
 	let defaults = UserDefaults.standard
-	let key = "hasAppAlreadyLaunchedOnce"
+	let key = key.rawValue
 	
 	if defaults.bool(forKey: key) {
 		return false
 	} else {
-		defaults.set(true, forKey: key)
-        print("First launch")
+		if reset {
+			defaults.set(true, forKey: key)
+		}
 		return true
 	}
 }
+func setValueFor(key: CheckKey) {
+	let defaults = UserDefaults.standard
+	let key = key.rawValue
+	
+	defaults.set(true, forKey: key)
+}
 
 // Run once when initialised
-public let isAppFirstLaunch = getIsAppFirstLaunch()
+public let isAppFirstLaunch = checkValueFor(key: .isAppFirstLaunch, reset: true)
+public let isGameFirstLaunch = checkValueFor(key: .isGameFirstLaunch)
 
+//********* Texture functions for tutorial ************************
 func invertTexture(_ texture: SKTexture) -> SKTexture? {
     let width = Int(texture.size().width)
     let height = Int(texture.size().height)
@@ -472,8 +486,8 @@ func generateTextureWithHole(size: CGSize,
     //let filter = CIFilter(name: "CIGaussianBlue", withInputParameters: ["inputImage":texture.cgImage()])!
     //let blurTexture = texture.applying(filter)
     
-    //let invertedTexture = invertTexture(blurTexture)!
+    let invertedTexture = invertTexture(texture)!
     
-    return texture
+    return invertedTexture
 }
 

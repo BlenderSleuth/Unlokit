@@ -271,6 +271,9 @@ class GameScene: SKScene {
 	
 	// This is run after the setup methods
 	override func didMove(to view: SKView) {
+		// Set the defaults value, for the tutorial scene
+		//setValueFor(key: .isGameFirstLaunch)
+		
 		setupCamera(view: view)
 		
 		// Move camera through scene

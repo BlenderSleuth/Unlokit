@@ -170,3 +170,19 @@ class KeyNode: SKSpriteNode, CanBeFired, Breakable {
 		isGreyed = !isGreyed
 	}
 }
+
+class KeyTutorialNode: KeyNode {
+	required init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+	}
+	
+	override func engage(_ controller: ControllerNode, completion: @escaping () -> ()) {
+		super.engage(controller, completion: completion)
+		
+		if let scene = scene as? TutorialScene {
+			scene.goNext(to: controller, text: "")
+		} else {
+			fatalError("Tutorial not initiated")
+		}
+	}
+}

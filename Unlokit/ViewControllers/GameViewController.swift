@@ -71,15 +71,16 @@ class GameViewController: UIViewController, LevelController {
 				#endif
 				
 				// For tutorial scene
-				/*
-                let fileName: String
+				
+                //let fileName: String
+				
                 // To Fix
-                if true {
-                    fileName = "LevelTutorial"
-                } else {
-                    fileName = levelname
-                }
-				*/
+                //if isGameFirstLaunch {
+					//print("tutorial")
+                    //fileName = "LevelTutorial"
+                //} else {
+                    //fileName = levelname
+                //}
 				
 				if let scene = GameScene(fileNamed: levelname) {
 					scene.levelController = self
