@@ -35,7 +35,7 @@ class BackButtonNode: SKSpriteNode {
 		
 		label = SKLabelNode(text: "Back")
 		label.position = CGPoint(x: 40, y: -40)
-		label.fontName = "NeuropolXRg-Regular"
+		label.fontName = neuropolFont
 		label.fontSize = 26
 		label.zPosition = 10
 		

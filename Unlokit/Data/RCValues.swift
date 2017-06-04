@@ -7,10 +7,13 @@
 //
 
 import Foundation
+import CoreGraphics
 
 class RCValues {
 	static let sharedInstance = RCValues()
 
+	let initialKeyScale: CGFloat = 1.5
+	let initialToolScale: CGFloat = 1.3
 	let cameraTime: TimeInterval = 1.5
 	let toolTime: TimeInterval = 7
 	let cameraWait: TimeInterval = 0.3

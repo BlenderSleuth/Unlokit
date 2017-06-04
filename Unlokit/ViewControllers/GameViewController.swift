@@ -10,8 +10,6 @@ import UIKit
 import SpriteKit
 
 class GameViewController: UIViewController, LevelController {
-    
-    private var tutorial = false
 	
 	var level: Level!
 
@@ -22,30 +20,19 @@ class GameViewController: UIViewController, LevelController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		navigationController?.isNavigationBarHidden = true
-        
-        //if isAppFirstLaunch {
-            // For first time
-            //startTutorial()
-        //} else {
             
-            #if DEBUG
-                // DEBUG if this is the initial view controller
-                //let stage = 2
-                //let level = 10
-                
-                //self.level = Stages.sharedInstance.stages[stage-1].levels[level-1]
-                //startNewGame(levelname: "Level1_S")
-                startNewGame()
-            #else
-                startNewGame()
-            #endif
-        //}
-    }
-    
-    func startTutorial() {
-        tutorial = true
-        level = Stages.sharedInstance.stages[0].levels[0]
-        startNewGame()
+		#if DEBUG
+			// DEBUG if this is the initial view controller
+			//let stage = 2
+			//let level = 10
+			
+			//self.level = Stages.sharedInstance.stages[stage-1].levels[level-1]
+			//startNewGame(levelname: "Level1_S")
+			//startTutorial()
+			startNewGame()
+		#else
+			startNewGame()
+		#endif
     }
 	
     func startNewGame(levelname: String) {
@@ -70,19 +57,18 @@ class GameViewController: UIViewController, LevelController {
 					//skView.showsFields = true
 				#endif
 				
-				// For tutorial scene
+				// For tutorial scen
+                let fileName: String
 				
-                //let fileName: String
+                // If this is the tutorial, run it
+                if self.level.isTutorial {
+                    fileName = "LevelTutorial"
+					doneTutorial = true
+                } else {
+                    fileName = levelname
+                }
 				
-                // To Fix
-                //if isGameFirstLaunch {
-					//print("tutorial")
-                    //fileName = "LevelTutorial"
-                //} else {
-                    //fileName = levelname
-                //}
-				
-				if let scene = GameScene(fileNamed: levelname) {
+				if let scene = GameScene(fileNamed: fileName) {
 					scene.levelController = self
 					scene.level = self.level
 					

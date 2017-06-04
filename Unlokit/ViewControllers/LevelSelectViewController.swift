@@ -16,13 +16,18 @@ protocol LevelSelectDelegate: class {
 	var currentLevelView: LevelView? { get set }
 	var levelViews: [Int: [LevelView]] { get }
 }
+// This is so that you only do the tutorial once
+var doneTutorial = false
 
 class LevelSelectViewController: UIViewController, LevelViewDelegate, LevelSelectDelegate {
 
 	@IBOutlet weak var mainScrollView: UIScrollView!
-
+	
 	// Dict of stage views
 	var stageViews = [Int: StageView]()
+	
+	// Set this to true to run the tutorial
+	var doTutorial = false
 
 	// Level views based on stage
 	var levelViews = [Int: [LevelView]]()
@@ -30,16 +35,40 @@ class LevelSelectViewController: UIViewController, LevelViewDelegate, LevelSelec
 	var stages = [Int: Stage]()
 	var levels = [Level]()
 	
+	// So that we can tell which level views to make available
 	var currentLevelView: LevelView?
 	var nextLevelView: LevelView?
 	
+	// Whether to reset the scroll views or not
 	var notLoaded = true
+	
     override func viewDidLoad() {
         super.viewDidLoad()
-		setupScroll(frame: view.frame)
-		reset()
-		notLoaded = false
+		// Run the tutorial if it is the first time or specified
+		if (isFirstGameLaunch && !doneTutorial) || doTutorial {
+			// Hide navigation bar
+			navigationController?.navigationBar.isHidden = true
+			
+			// Present the tutorial
+			present(level: Stages.sharedInstance.tutorial)
+			// First game launch is over.
+			setValueFor(key: .isFirstGameLaunch)
+		} else {
+			setupScroll(frame: view.frame)
+			reset()
+			
+			notLoaded = false
+		}
     }
+	override func viewDidDisappear(_ animated: Bool) {
+		if doTutorial {
+			// Put the naviagtion bar back
+			navigationController?.navigationBar.isHidden = false
+			// Run this after the tutorial loaded
+			setupScroll(frame: view.frame)
+			doTutorial = false
+		}
+	}
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		if notLoaded {

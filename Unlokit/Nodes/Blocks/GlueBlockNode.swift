@@ -58,7 +58,7 @@ class GlueBlockNode: BlockNode {
 				side = .centre
 			default:
 				print("Couldn't find side at \(child.position)")
-				return
+				continue
 			}
 			
 			if child.name == "fanPlaceholder" && side != .centre {

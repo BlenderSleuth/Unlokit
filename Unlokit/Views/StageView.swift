@@ -29,7 +29,7 @@ class StageView: UIView {
 		// Create title label for stage
 		let titleLabel = UILabel(frame: CGRect(x: 40, y: 0, width: frame.width, height: frame.height / 4))
 		titleLabel.text = stage.name
-		titleLabel.font = UIFont(name: "NeuropolXRg-Regular", size: 32)
+		titleLabel.font = UIFont(name: neuropolFont, size: 32)
 		titleView.addSubview(titleLabel)
 		
 		// Create scroll view to hold levels

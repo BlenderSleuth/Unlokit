@@ -237,7 +237,10 @@ class GameScene: SKScene {
 			}
 		}
 		
+		// Different names
 		if self.level.isSecret, let level = levelDict["LevelS"] {
+			setupTools(level)
+		} else if self.level.isTutorial, let level = levelDict["LevelTut"] {
 			setupTools(level)
 		} else if let level = levelDict["Level\(level.number)"] {
 			setupTools(level)
@@ -272,7 +275,7 @@ class GameScene: SKScene {
 	// This is run after the setup methods
 	override func didMove(to view: SKView) {
 		// Set the defaults value, for the tutorial scene
-		//setValueFor(key: .isGameFirstLaunch)
+		//setValueFor(key: .isFirstGameLaunch)
 		
 		setupCamera(view: view)
 		

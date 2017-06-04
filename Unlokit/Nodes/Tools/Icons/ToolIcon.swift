@@ -47,6 +47,9 @@ class ToolIcon: SKSpriteNode {
 			enabled = true
 		}
 		
+		// Make the tool icon bigger
+		setScale(RCValues.sharedInstance.initialToolScale)
+		
 		// Set label
 		label = childNode(withName: "label") as! SKLabelNode
     }

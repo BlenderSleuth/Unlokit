@@ -11,7 +11,7 @@ import SpriteKit
 
 class InstructionsPageViewController: UIPageViewController {
 
-	let imageNames = ["Welcome", "TheController", "TheKey", "Blocks", "Tools", "OtherObjects"]
+	let imageNames = ["", "Welcome", "TheController", "TheKey", "Blocks", "Tools", "OtherObjects", ""]
 
 	var currentIndex = 0
 
@@ -49,9 +49,13 @@ class InstructionsPageViewController: UIPageViewController {
 		}
 
 		let vc = storyboard?.instantiateViewController(withIdentifier: "InstructionPageContentViewController") as! InstructionPageContentViewController
-		vc.imageFile = imageNames[index]
+		if imageNames[index] == "" {
+			// Black imagename means it is tutorial
+			vc.tutorial = true
+		} else {
+			vc.imageFile = imageNames[index]
+		}
 		vc.pageIndex = index
-
 		return vc
 	}
 

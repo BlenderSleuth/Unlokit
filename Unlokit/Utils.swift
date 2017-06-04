@@ -305,8 +305,9 @@ private func checkForiPhone4s() -> Bool {
 	// Check for iphone 4s
 	return modelCode == "iPhone4,1"
 }
-
 let iPhone4s = checkForiPhone4s()
+
+let neuropolFont = "NeuropolXRg-Regular"
 
 //********* SKNode extension *****************************
 extension SKNode {
@@ -324,7 +325,7 @@ extension SKNode {
 	}
 	
 	func actionForKeyIsRunning(key: String) -> Bool {
-		return self.action(forKey: key) != nil ? true : false
+		return self.action(forKey: key) != nil
 	}
 }
 
@@ -356,20 +357,19 @@ func getDefaultLevelsFromPlist(stage stageNumber: Int) -> [Level]{
 	var levelArray = [Level]()
 	
 	// Iterate through levels in plist
-	for (levelNumberStr, levelDict) in levelDict {
+	for (levelNumberStr, _) in levelDict {
 		if let levelNumber = levelNumberStr.numbers() {
 			
 			// Mark first level as available
 			let available: Bool
 			if stageNumber == 1 && levelNumber == 1 {
-				available = true
+				//available = true
+				available = false
 			} else {
 				available = false
 			}
 			
-			let imageName = ((levelDict as? [String: Any])?["imageName"] as? String) ?? "Thumbnail"
-			
-			let level = Level(number: levelNumber, stageNumber: stageNumber, imageName: imageName, available: available)
+			let level = Level(number: levelNumber, stageNumber: stageNumber, available: available)
 			levelArray.append(level)
 		}
 	}
@@ -401,8 +401,8 @@ func delay(_ delay: Double, block: @escaping ()->()) {
 
 //********* User Defaults functions ************************
 enum CheckKey: String {
-	case isAppFirstLaunch = "hasAppAlreadyLaunchedOnce"
-	case isGameFirstLaunch = "hasGameAlreadyLaunchedOnce"
+	case isFirstAppLaunch = "hasAppAlreadyLaunchedOnce"
+	case isFirstGameLaunch = "hasGameAlreadyLaunchedOnce"
 }
 
 private func checkValueFor(key: CheckKey, reset: Bool = false) -> Bool {
@@ -426,8 +426,8 @@ func setValueFor(key: CheckKey) {
 }
 
 // Run once when initialised
-public let isAppFirstLaunch = checkValueFor(key: .isAppFirstLaunch, reset: true)
-public let isGameFirstLaunch = checkValueFor(key: .isGameFirstLaunch)
+public let isFirstAppLaunch = checkValueFor(key: .isFirstAppLaunch, reset: true)
+public let isFirstGameLaunch = checkValueFor(key: .isFirstGameLaunch)
 
 //********* Texture functions for tutorial ************************
 func invertTexture(_ texture: SKTexture) -> SKTexture? {

@@ -14,12 +14,51 @@ class InstructionPageContentViewController: UIViewController {
 
 	var pageIndex = 0
 	var imageFile: String!
+	var tutorial = false
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
-		imageView.image = UIImage(named: imageFile)
+		if tutorial {
+			// Remove the image view
+			imageView.removeFromSuperview()
+			// Ceate tutorial button
+			let buttonSize = CGSize(width: view.frame.width/3, height: view.frame.width/3)
+			let button = UIButton(frame: CGRect(origin: CGPoint(x: view.frame.width/2 - buttonSize.width/2,
+			                                                    y: view.frame.height/2 - buttonSize.width/2),
+			                                    size: buttonSize))
+			
+			button.setBackgroundImage(#imageLiteral(resourceName: "Play"), for: .normal)
+			button.addTarget(self, action: #selector(runTutorial), for: .touchUpInside)
+			button.adjustsImageWhenHighlighted = true
+			view.addSubview(button)
+			
+			// Add a label
+			let labelSize = CGSize(width: view.frame.width, height: view.frame.width/3)
+			let label = UILabel(frame: CGRect(origin: CGPoint(x: view.frame.width/2 - buttonSize.width/2,
+			                                                  y: view.frame.height/2 - buttonSize.width - 15),
+			                                  size: labelSize))
+			if iPhone {
+				label.font = UIFont(name: neuropolFont, size: 38)
+			} else {
+				label.font = UIFont(name: neuropolFont, size: 64)
+			}
+			
+			label.textColor = .white
+			label.text = "TUTORIAL"
+			view.addSubview(label)
+		} else {
+			imageView.image = UIImage(named: imageFile)
+		}
 	}
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+	}
+	
+	func runTutorial() {
+		navigationController?.viewControllers[0].performSegue(withIdentifier: "goToLevelSelect", sender: self)
+	}
+	
 	override var prefersStatusBarHidden: Bool {
 		return true
 	}

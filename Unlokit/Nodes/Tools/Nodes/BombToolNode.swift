@@ -103,7 +103,7 @@ class BombToolNode: ToolNode {
 		var countDown = 3
 		
 		let label = SKLabelNode(text: "\(countDown)")
-		label.fontName = "NeuropolXRg-Regular"
+		label.fontName = neuropolFont
 		label.fontSize = 64
 		label.verticalAlignmentMode = .center
 		label.zPosition = 100

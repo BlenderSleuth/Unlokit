@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Set the font for the bar button items globally
         UIBarButtonItem.appearance()
             .setTitleTextAttributes(
-                [NSFontAttributeName: UIFont(name: "NeuropolXRg-Regular", size: 16)!],
+                [NSFontAttributeName: UIFont(name: neuropolFont, size: 16)!],
                 for: .normal)
 
 		return true

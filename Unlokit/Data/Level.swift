@@ -11,22 +11,20 @@ import UIKit
 class Level: NSObject, NSCoding {
 	let number: Int
 	
-	private let imageName: String
-	var thumbnail: UIImage?
-	
 	var stageNumber: Int
 	
 	var available: Bool
 	var isCompleted: Bool
 	var isSecret: Bool
 	
-	init(number: Int, stageNumber: Int, imageName: String, available: Bool, isCompleted: Bool = false) {
+	var isTutorial: Bool
+	
+	init(number: Int, stageNumber: Int, available: Bool, isCompleted: Bool = false, isTutorial: Bool = false) {
 		self.number = number
-		self.imageName = imageName
 		self.available = available
 		self.isCompleted = isCompleted
 		self.stageNumber = stageNumber
-		thumbnail = UIImage(named: imageName)
+		self.isTutorial = isTutorial
 		
 		// Not to be encoded
 		self.isSecret = false
@@ -36,19 +34,17 @@ class Level: NSObject, NSCoding {
 		// Decode properties
 		let number = aDecoder.decodeInteger(forKey: "number")
 		let stageNumber = aDecoder.decodeInteger(forKey: "stageNumber")
-		let imageName = aDecoder.decodeObject(forKey: "imageName") as! String
 		let available = aDecoder.decodeBool(forKey: "available")
 		let isCompleted = aDecoder.decodeBool(forKey: "isCompleted")
 		
 		// Initialise with decoded properties
-		self.init(number: number, stageNumber: stageNumber, imageName: imageName, available: available, isCompleted: isCompleted)
+		self.init(number: number, stageNumber: stageNumber, available: available, isCompleted: isCompleted)
 	}
 	
 	func encode(with aCoder: NSCoder) {
 		// Encode properties
 		aCoder.encode(number, forKey: "number")
 		aCoder.encode(stageNumber, forKey: "stageNumber")
-		aCoder.encode(imageName, forKey: "imageName")
 		aCoder.encode(available, forKey: "available")
 		aCoder.encode(isCompleted, forKey: "isCompleted")
 	}

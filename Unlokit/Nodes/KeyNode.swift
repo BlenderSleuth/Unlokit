@@ -31,6 +31,9 @@ class KeyNode: SKSpriteNode, CanBeFired, Breakable {
 		super.init(coder: aDecoder)
 		// Set position to start
 		startPosition = position
+		
+		// Make the key initially bigger
+		setScale(RCValues.sharedInstance.initialKeyScale)
 	}
 	
 	func engage(_ controller: ControllerNode, completion: @escaping () -> ()) {
@@ -41,7 +44,9 @@ class KeyNode: SKSpriteNode, CanBeFired, Breakable {
 		controller.isOccupied = true
 		isEngaged = true
 		animating = true
-		run(SKAction.move(to: position, duration: 0.2)) {
+		// Move and scale to correct position and size
+		run(SKAction.group([SKAction.move(to: position, duration: 0.2),
+		                    SKAction.scale(to: 1, duration: 0.2)])) {
 			self.animating = false
 			completion()
 		}
@@ -49,7 +54,8 @@ class KeyNode: SKSpriteNode, CanBeFired, Breakable {
 	}
 	func disengage(_ controller: ControllerNode) {
 		animating = true
-		run(SKAction.move(to: startPosition, duration: 0.2)) {
+		run(SKAction.group([SKAction.move(to: startPosition, duration: 0.2),
+		                    SKAction.scale(to: RCValues.sharedInstance.initialKeyScale, duration: 0.2)])) {
 			self.animating = false
 			self.removeAllActions()
 			
@@ -172,15 +178,11 @@ class KeyNode: SKSpriteNode, CanBeFired, Breakable {
 }
 
 class KeyTutorialNode: KeyNode {
-	required init?(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)
-	}
-	
 	override func engage(_ controller: ControllerNode, completion: @escaping () -> ()) {
 		super.engage(controller, completion: completion)
 		
 		if let scene = scene as? TutorialScene {
-			scene.goNext(to: controller, text: "")
+			scene.goToNextStage(action: .loadKey)
 		} else {
 			fatalError("Tutorial not initiated")
 		}

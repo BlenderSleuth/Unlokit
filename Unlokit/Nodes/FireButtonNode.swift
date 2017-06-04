@@ -35,8 +35,6 @@ class FireButtonNode: SKSpriteNode {
     required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		
-		self.position = position
-		
 		isUserInteractionEnabled = true
     }
 	
@@ -49,9 +47,9 @@ class FireButtonNode: SKSpriteNode {
 		}
     }
     
-	private func fire(scene: GameScene) {
-		// Make sure object is not nil and is a SKSpriteNode
-		guard let sprite = objectToFire as? SKSpriteNode else {
+	fileprivate func fire(scene: GameScene) {
+		// Make sure controller is occupied and object is not nil and is a SKSpriteNode
+		guard controller.isOccupied, let sprite = objectToFire as? SKSpriteNode else {
 			return
 		}
 		
@@ -108,4 +106,16 @@ class FireButtonNode: SKSpriteNode {
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         press()
     }
+}
+
+class FireButtonTutorial: FireButtonNode {
+	override func fire(scene: GameScene) {
+		super.fire(scene: scene)
+		// Notify the scene when it has fired
+		if let scene = scene as? TutorialScene {
+			scene.goToNextStage(action: .fire)
+		} else {
+			fatalError("Tutorial not initiated")
+		}
+	}
 }

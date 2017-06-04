@@ -4,6 +4,19 @@
 <dict>
 	<key>Stage1</key>
 	<dict>
+		<key>LevelTut</key>
+		<dict>
+			<key>SpringTool</key>
+			<integer>1</integer>
+			<key>BombTool</key>
+			<integer>1</integer>
+			<key>GlueTool</key>
+			<integer>1</integer>
+			<key>FanTool</key>
+			<integer>1</integer>
+			<key>GravityTool</key>
+			<integer>1</integer>
+		</dict>
 		<key>Level1</key>
 		<dict/>
 		<key>Level2</key>

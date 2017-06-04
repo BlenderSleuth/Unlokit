@@ -9,7 +9,7 @@
 import SpriteKit
 
 #if DEBUG
-	let enableAllLevels = true
+	let enableAllLevels = false
 #endif
 
 class Stages {
@@ -17,8 +17,11 @@ class Stages {
 	
 	let stages: [Stage]
 	
+	let tutorial: Level
+	
 	init() {
 		stages = Stages.getStagesFromPlist()
+		tutorial = Level(number: 0, stageNumber: 1, available: true, isCompleted: true, isTutorial: true)
 	}
 	
 	private class func getStagesFromPlist() -> [Stage] {

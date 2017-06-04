@@ -38,6 +38,8 @@ class ToolNode: SKSpriteNode, CanBeFired, Breakable {
 	
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+		
+		setScale(RCValues.sharedInstance.initialToolScale)
     }
 	func shatter(scene: GameScene) {
 		smash(scene: scene)
@@ -55,7 +57,8 @@ class ToolNode: SKSpriteNode, CanBeFired, Breakable {
 		isEngaged = true
 		animating = true
 		controller.isOccupied = true
-		run(SKAction.move(to: controller.scenePosition, duration: 0.2)) {
+		run(SKAction.group([SKAction.move(to: controller.scenePosition, duration: 0.2),
+		                    SKAction.scale(to: 1, duration: 0.2)])) {
 			self.animating = false
 			completion()
 		}
@@ -67,7 +70,8 @@ class ToolNode: SKSpriteNode, CanBeFired, Breakable {
 		animating = true
 		// Convert icon position to scene coordinates
 		let position = scene!.convert(icon.position, from: icon.parent!)
-		run(SKAction.move(to: position, duration: 0.2)) {
+		run(SKAction.group([SKAction.move(to: position, duration: 0.2),
+		                    SKAction.scale(to: RCValues.sharedInstance.initialToolScale, duration: 0.2)])) {
 			self.animating = false
 			self.icon.number += 1
 			self.remove()
@@ -125,7 +129,7 @@ class ToolNode: SKSpriteNode, CanBeFired, Breakable {
 
 		let wait = SKAction.wait(forDuration: RCValues.sharedInstance.toolTime)
 		run(wait, withKey: "timer") {
-			weak var `self` =  self
+			weak var `self` = self
 
 			if let scene = self?.scene as? GameScene {
 				self?.smash(scene: scene)

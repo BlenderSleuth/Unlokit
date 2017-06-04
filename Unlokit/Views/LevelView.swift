@@ -49,7 +49,7 @@ class LevelView: UIView, UIGestureRecognizerDelegate {
 			fontSize = 64
 		}
 		
-		label.font = UIFont(name: "NeuropolXRg-Regular", size: fontSize)
+		label.font = UIFont(name: neuropolFont, size: fontSize)
 		label.textAlignment = .center
 		label.text = "\(level.number)"
 		label.textColor = .white

@@ -46,11 +46,11 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <segue destination="UPt-8q-sBi" kind="show" id="dS5-Qj-0eZ"/>
+                                    <segue destination="UPt-8q-sBi" kind="show" identifier="goToLevelSelect" id="dS5-Qj-0eZ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kTR-qb-Wto">
-                                <rect key="frame" x="496" y="186.66666666666666" width="220" height="41"/>
+                                <rect key="frame" x="496" y="187" width="220" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="145" id="vl5-dx-Ty6"/>
                                 </constraints>
@@ -67,7 +67,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mbV-5f-qnf">
-                                <rect key="frame" x="20" y="186.66666666666666" width="220" height="41"/>
+                                <rect key="frame" x="20" y="187" width="220" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="162" id="lbU-rQ-rNf"/>
                                 </constraints>
@@ -257,7 +257,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IS7-zk-VYb" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedStatusBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="WCf-La-B8q">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="WCf-La-B8q">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.12390624729999999" green="0.12390624729999999" blue="0.12390624729999999" alpha="1" colorSpace="deviceRGB"/>

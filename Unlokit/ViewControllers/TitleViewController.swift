@@ -25,7 +25,7 @@ class TitleViewController: UIViewController, GKGameCenterControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        authenticatePlayer(showVc: isAppFirstLaunch)
+        authenticatePlayer(showVc: isFirstAppLaunch)
 		
 		// TODO: Music
 		//SoundFX.sharedInstance.playBackgroundMusic(filename: "")
@@ -71,5 +71,24 @@ class TitleViewController: UIViewController, GKGameCenterControllerDelegate {
 	}
 	override var prefersStatusBarHidden: Bool {
 		return true
+	}
+	
+	override func viewDidDisappear(_ animated: Bool) {
+		// Unhide
+		navigationController?.viewControllers[0].view.isHidden = false
+	}
+	
+	// From the instructions view
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if sender is InstructionPageContentViewController {
+			if let levelSelect = segue.destination as? LevelSelectViewController {
+				levelSelect.doTutorial = true
+				// Hide title view controller and go back, before the seque is performed
+				navigationController?.navigationBar.isHidden = true
+				navigationController?.viewControllers[0].view.isHidden = true
+				navigationController?.popToRootViewController(animated: false)
+				
+			}
+		}
 	}
 }
