@@ -34,16 +34,17 @@ class InstructionPageContentViewController: UIViewController {
 			
 			// Add a label
 			let labelSize = CGSize(width: view.frame.width, height: view.frame.width/3)
-			let label = UILabel(frame: CGRect(origin: CGPoint(x: view.frame.width/2 - buttonSize.width/2,
-			                                                  y: view.frame.height/2 - buttonSize.width - 15),
-			                                  size: labelSize))
+			let labelPos = CGPoint(x: 0, y: view.frame.height/2 - buttonSize.width - 15)
+			
+			let label = UILabel(frame: CGRect(origin: labelPos, size: labelSize))
 			if iPhone {
-				label.font = UIFont(name: neuropolFont, size: 38)
+				label.font = UIFont(name: neuropolFont, size: 32)
 			} else {
-				label.font = UIFont(name: neuropolFont, size: 64)
+				label.font = UIFont(name: neuropolFont, size: 60)
 			}
 			
 			label.textColor = .white
+			label.textAlignment = .center
 			label.text = "TUTORIAL"
 			view.addSubview(label)
 		} else {

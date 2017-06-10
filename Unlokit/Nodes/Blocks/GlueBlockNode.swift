@@ -32,10 +32,10 @@ class GlueBlockNode: BlockNode {
 	override func setup(scene: GameScene) {
 		super.setup(scene: scene)
 		gameScene = scene
-		checkConnected(gameScene: scene)
+		checkConnected()
 	}
 	
-	func checkConnected(gameScene: GameScene) {
+	func checkConnected() {
 		for child in children {
 			// Modify connected array to include pre-added nodes
 			let side: Side
@@ -53,7 +53,7 @@ class GlueBlockNode: BlockNode {
 				connected[.right] = true
 				side = .right
 			case centre:
-				// for gravity
+				// For gravity
 				connected[.centre] = true
 				side = .centre
 			default:
@@ -240,5 +240,9 @@ class GlueBlockNode: BlockNode {
 		//debugConnected()
 
 		return true
+	}
+	
+	func update() {
+		print("Glue block")
 	}
 }

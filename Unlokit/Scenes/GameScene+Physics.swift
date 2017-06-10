@@ -152,7 +152,7 @@ extension GameScene: SKPhysicsContactDelegate {
 				
 				let side = gluBlock.getSide(contact: contact)
 				gluBlock.bounce(side: side)
-				gluBlock.checkConnected(gameScene: self)
+				gluBlock.checkConnected()
 			}
 		}
 			// Explode on impact with tools ****

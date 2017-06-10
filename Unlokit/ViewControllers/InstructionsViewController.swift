@@ -11,7 +11,7 @@ import SpriteKit
 
 class InstructionsPageViewController: UIPageViewController {
 
-	let imageNames = ["", "Welcome", "TheController", "TheKey", "Blocks", "Tools", "OtherObjects", ""]
+	let imageNames = ["Welcome", "TheController", "TheKey", "Blocks", "Tools", "OtherObjects", ""]
 
 	var currentIndex = 0
 

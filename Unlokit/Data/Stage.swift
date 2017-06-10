@@ -71,6 +71,8 @@ class Stage {
 		if FileManager.default.fileExists(atPath: levelFileURL.appendingPathExtension("1:1").path) {
 			var isNil = false
 			var levelNumber = 1
+			// Make sure tutorial is not run for existing users
+			doneTutorial = true
 			
 			while !isNil {
 				let fileURL = levelFileURL.appendingPathExtension("\(number):\(levelNumber)")

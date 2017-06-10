@@ -53,17 +53,19 @@ class TutorialScene: GameScene {
 	// The current helpnode
 	var current: HelpNode!
 	
-    override func didMove(to view: SKView) {
-        super.didMove(to: view)
-        startTutorial()
-    }
+	override func didMove(to view: SKView) {
+		super.didMove(to: view)
+		// Set the startingg angle of the controller
+		controller.angle = 120
+		startTutorial()
+	}
 	
 	override func moveController(_ location: CGPoint) {
 		super.moveController(location)
 		goToNextStage(action: .rotate)
 	}
-    
-    func startTutorial() {
+	
+	func startTutorial() {
 		// Dark background to fade out later
 		background = SKSpriteNode(color: UIColor(red: 0.08, green: 0, blue: 0.08, alpha: 0.92), size: self.size)
 		background?.zPosition = 240
@@ -84,7 +86,9 @@ class TutorialScene: GameScene {
 		for (_, tool) in toolIcons {
 			tool.isUserInteractionEnabled = true
 		}
-    }
+		// Make camera follow the
+		nodeToFollow = current
+	}
 	func goToNextStage(action: TriggerAction) {
 		// Make sure it is not animating
 		guard !animating else {
@@ -100,7 +104,7 @@ class TutorialScene: GameScene {
 		}
 		
 		// Default properties
-		var size = CGSize(width: 700, height: 200)
+		var size = CGSize(width: 700, height: 300)
 		var arrowVector: CGPoint!
 		let pos: CGPoint
 		let text: String
@@ -120,10 +124,10 @@ class TutorialScene: GameScene {
 			              y: key.position.y + size.height/2 - arrowVector.y)
 			text = "This is the key"
 		case (.goal, .touch):
-			size = CGSize(width: 2100, height: 300)
+			size.width = 2100
 			pos = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
 			text = "The goal of the game: shoot the key into the lock"
-	//********************* TOOL SECTION **********************************************
+		//********************* TOOL SECTION **********************************************
 		case (.spring, .touch), (.bomb, .touch), (.glue, .touch), (.fan, .touch), (.gravity, .touch):
 			
 			let tool: ToolIcon
@@ -159,7 +163,7 @@ class TutorialScene: GameScene {
 			pos = CGPoint(x: toolPos.x + size.width/2 - arrowVector.x,
 			              y: toolPos.y + size.height/2 - arrowVector.y)
 			
-	//********************* BLOCK SECTION **********************************************
+		//********************* BLOCK SECTION **********************************************
 		case (.mtlBlock, .touch), (.rubberBlock, .touch), (.breakableBlock, .touch), (.glueBlock, .touch), (.fanGlueBlock, .touch), (.gravityGlueBlock, .touch):
 			
 			arrowVector = CGPoint(x: 130, y: -130)
@@ -184,7 +188,7 @@ class TutorialScene: GameScene {
 				block = childNode(withName: "glueBlockShow")!
 				text = "...into glue blocks"
 			case .fanGlueBlock:
-				block = childNode(withName: "//fan")!
+				block = childNode(withName: "//breakableFan")!
 				text = "...glue blocks"
 			case .gravityGlueBlock:
 				size.width = 800
@@ -204,7 +208,7 @@ class TutorialScene: GameScene {
 				              y: blockPos.y + size.height/2 - arrowVector.y)
 			}
 			
-	//********************* INTERACTIVE SECTION **********************************************
+		//********************* INTERACTIVE SECTION **********************************************
 		case (.load, .touch):
 			size.width = 1000
 			arrowVector = CGPoint(x: -115, y: -115)
@@ -224,12 +228,12 @@ class TutorialScene: GameScene {
 			text = "Rotate the controller to aim"
 			nextAction = "Rotate controller"
 		case (.fire, .rotate):
-			size = CGSize(width: 1000, height: 300)
+			size.width = 800
 			arrowVector = CGPoint(x: 50, y: -280)
 			let firePos = convert(fireNode.position, from: fireNode.parent!)
 			pos = CGPoint(x: firePos.x - size.width/2 - arrowVector.x,
 			              y: firePos.y + size.height/2 - arrowVector.y)
-			text = "Press this to fire the key"
+			text = "Press this to fire"
 			nextAction = "Fire!"
 			fireNode.isUserInteractionEnabled = true
 		case (.last, .fire):
@@ -255,34 +259,40 @@ class TutorialScene: GameScene {
 			weak var `self` = self
 			self?.background = nil
 		}
-		
 		// Fadeout last helpnode
-		current.run(SKAction.sequence([SKAction.fadeOut(withDuration: 0.3), SKAction.removeFromParent()])) {
+		current.run(SKAction.sequence([SKAction.fadeOut(withDuration: 0.3), SKAction.removeFromParent()]))
+		
+		// Create a new helpnode
+		current = HelpNode(position: pos,
+		                   size: size,
+		                   text: text,
+		                   arrow: arrowVector,
+		                   nextAction: nextAction)
+		
+		// Fade in the help node
+		current.alpha = 0
+		addChild(current)
+		
+		current.run(SKAction.fadeIn(withDuration: 0.3)) {
 			weak var `self` = self
-			
-			// When it has faded out, create a new helpnode
-			self?.current = HelpNode(position: pos,
-			                        size: size,
-			                        text: text,
-			                        arrow: arrowVector,
-			                        nextAction: nextAction)
-			
-			// Fade in the help node
-			self?.current.alpha = 0
-			if let `self` = self {
-				self.addChild(self.current)
-			}
-			
-			self?.current?.run(SKAction.fadeIn(withDuration: 0.3)) {
-				self?.animating = false
-			}
+			self?.animating = false
 		}
+		
+		// Make the camera follow it
+		nodeToFollow = current
 	}
 	
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-		goToNextStage(action: .touch)
-    }
+	
+	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		super.touchesBegan(touches, with: event)
+		for _ in touches {
+			goToNextStage(action: .touch)
+		}
+	}
+	override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+		super.touchesMoved(touches, with: event)
+		// Don't go onto the next turorial
+	}
 }
 
 class HelpNode: SKSpriteNode {
@@ -310,11 +320,11 @@ class HelpNode: SKSpriteNode {
 		label.fontSize = 64
 		label.text = text
 		addChild(label)
-
+		
 		let tapToContinue = SKLabelNode(fontNamed: neuropolFont)
 		label.verticalAlignmentMode = .center
 		tapToContinue.text = nextAction
-		tapToContinue.fontSize = 26
+		tapToContinue.fontSize = 40
 		tapToContinue.position.y = -size.height / 3 // Close to the bottom of the box
 		tapToContinue.alpha = 0
 		addChild(tapToContinue)
@@ -360,9 +370,9 @@ class HelpNode: SKSpriteNode {
 			circle.position = CGPoint(x: posX + arrow.x,  y: posY + arrow.y)
 			addChild(circle)
 		}
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+	}
+	
+	required init?(coder aDecoder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
 }

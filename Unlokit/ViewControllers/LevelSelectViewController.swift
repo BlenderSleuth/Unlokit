@@ -44,6 +44,9 @@ class LevelSelectViewController: UIViewController, LevelViewDelegate, LevelSelec
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		// Load stages
+		let _ = Stages.sharedInstance.stages
+		
 		// Run the tutorial if it is the first time or specified
 		if (isFirstGameLaunch && !doneTutorial) || doTutorial {
 			// Hide navigation bar
@@ -61,24 +64,28 @@ class LevelSelectViewController: UIViewController, LevelViewDelegate, LevelSelec
 		}
     }
 	override func viewDidDisappear(_ animated: Bool) {
-		if doTutorial {
+		if doTutorial || (isFirstGameLaunch && !doneTutorial) {
 			// Put the naviagtion bar back
 			navigationController?.navigationBar.isHidden = false
+			
 			// Run this after the tutorial loaded
 			setupScroll(frame: view.frame)
+			reset(hideNavBar: true)
 			doTutorial = false
+			notLoaded = true
 		}
 	}
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		if notLoaded {
 			reset()
+		} else {
+			navigationController?.isNavigationBarHidden = false
 		}
-		notLoaded = true
 	}
 
-	func reset() {
-		navigationController?.isNavigationBarHidden = false
+	func reset(hideNavBar: Bool = false) {
+		navigationController?.isNavigationBarHidden = hideNavBar
 
 		// Iterate through stages
 		for (_, stageView) in stageViews {

@@ -17,7 +17,7 @@ class FanNode: SKSpriteNode, Breakable {
 
 	private var emitter: SKEmitterNode!
 
-	var glueBlock: GlueBlockNode?
+	weak var glueBlock: GlueBlockNode?
 	var side: Side?
 	
 	var particleTexture: SKTexture?
@@ -38,8 +38,6 @@ class FanNode: SKSpriteNode, Breakable {
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-		// So we can find it in the tutorial
-		name = "fan"
 		// Get field references
 		gravityField = childNode(withName: "gravityField") as! SKFieldNode
 		gravityField.falloff = 0.1

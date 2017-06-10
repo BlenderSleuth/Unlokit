@@ -22,9 +22,9 @@ struct Category {
 	static let gluBlock: UInt32			= 0b1 << 5
 	
 	static let breakBlock: UInt32		= 0b1 << 6
-
+	
 	static let shadowBlock: UInt32		= 0b1 << 7
-
+	
 	static let beamBlock: UInt32		= 0b1 << 8
 	
 	static let blocks: UInt32 = Category.mtlBlock | Category.bncBlock | Category.gluBlock |
@@ -45,17 +45,17 @@ struct Category {
 	
 	// MARK: - Other nodes
 	static let fan: UInt32				= 0b1 << 16
-
+	
 	static let speed: UInt32			= 0b1 << 17
 	static let secretTeleport: UInt32	= 0b1 << 18
 	static let ball: UInt32				= 0b1 << 19
-
+	
 	// MARK: - Lights
 	static let controllerLight: UInt32	= 0b1 << 0
 	static let toolLight: UInt32		= 0b1 << 1
 	static let lockLight: UInt32		= 0b1 << 2
 	static let blockLight: UInt32		= 0b1 << 3
-
+	
 	static let all: UInt32				= UInt32.max
 }
 
@@ -83,7 +83,7 @@ struct ZPosition {
 protocol LevelController: class {
 	var level: Level! { get set }
 	
-    func startNewGame(levelname: String)
+	func startNewGame(levelname: String)
 	func startNewGame()
 	func saveLevels()
 	func finishedLevel()
@@ -93,26 +93,26 @@ protocol LevelController: class {
 }
 
 class GameScene: SKScene {
-    
-    // MARK: - Variables
+	
+	// MARK: - Variables
 	var level: Level!
 	
 	// Node references
-    var controller: ControllerNode!
-    
-    var fireNode: FireButtonNode!
+	var controller: ControllerNode!
+	
+	var fireNode: FireButtonNode!
 	var replayButton: ReplayButtonNode!
 	var backButton: BackButtonNode!
 	var cannon: SKSpriteNode!
-    var cameraNode: SKCameraNode!
-    var bounds: SKSpriteNode!
+	var cameraNode: SKCameraNode!
+	var bounds: SKSpriteNode!
 	
-    var canvasBounds: CGRect!
+	var canvasBounds: CGRect!
 	var margin: CGFloat!
-    
-    var isFinished = false
-    
-    // Array of tools
+	
+	var isFinished = false
+	
+	// Array of tools
 	var toolBox: SKNode!
 	var toolIcons = [ToolType: ToolIcon]()
 	var toolNodes = [ToolNode]()
@@ -120,11 +120,11 @@ class GameScene: SKScene {
 	// Key
 	var key: KeyNode!
 	var lock: LockNode!
-    
-    // Touch points in different coordinate systems
+	
+	// Touch points in different coordinate systems
 	var lastTouchPoint = CGPoint.zero
-    var lastTouchCam = CGPoint.zero
-
+	var lastTouchCam = CGPoint.zero
+	
 	var currentNode: SKNode?
 	
 	var levelController: LevelController!
@@ -156,7 +156,7 @@ class GameScene: SKScene {
 		
 		// Bind controller to local variable
 		controller = childNode(withName: "//controller") as! ControllerNode
-
+		
 		// Check for shadow nodes
 		enumerateChildNodes(withName: "//shdoBlock") { _, stop in
 			#if DEBUG
@@ -166,7 +166,7 @@ class GameScene: SKScene {
 			#endif
 			stop.initialize(to: true)
 		}
-
+		
 		cannon = controller.childNode(withName: "//cannon") as! SKSpriteNode
 		
 		// Get canvas bounds in scene coordinates
@@ -345,18 +345,18 @@ class GameScene: SKScene {
 		
 		// Set interface nodes in case of iphone
 		if iPhone {
-            if ios9 {
+			if ios9 {
 				if iPhone4s {
-					replayButton.position.y += 100
+					fireNode.position.y += 220
 				} else {
 					replayButton.position.y += 100
 					fireNode.position.y += 500
 				}
-            } else {
-                fireNode.position.y += 250
-                replayButton.position.y -= 250
-                backButton.position.y -= 250
-            }
+			} else {
+				fireNode.position.y += 250
+				replayButton.position.y -= 250
+				backButton.position.y -= 250
+			}
 		}
 		
 		// Set camera constraints
@@ -366,16 +366,16 @@ class GameScene: SKScene {
 	
 	// MARK: - Moving nodes
 	var currentRot: CGFloat = 0
-    func moveController(_ location: CGPoint) {
+	func moveController(_ location: CGPoint) {
 		// Stop camera from moving
 		nodeToFollow = nil
 		
-        let p1 = controller.scenePosition! // Controller position in scene coordinates
-        let p2 = lastTouchPoint
-        let p3 = location
+		let p1 = controller.scenePosition! // Controller position in scene coordinates
+		let p2 = lastTouchPoint
+		let p3 = location
 		
-        // Maths to figure out how much rotation to add to controller
-        let rot = atan2(p3.y - p1.y, p3.x - p1.x) - atan2(p2.y - p1.y, p2.x - p1.x)
+		// Maths to figure out how much rotation to add to controller
+		let rot = atan2(p3.y - p1.y, p3.x - p1.x) - atan2(p2.y - p1.y, p2.x - p1.x)
 		
 		// Make sure that the rotation is an integr
 		currentRot += rot.radiansToDegrees()
@@ -391,15 +391,15 @@ class GameScene: SKScene {
 			}
 			currentRot = 0
 		}
-    }
-    func moveCamera(to location: CGPoint) {
+	}
+	func moveCamera(to location: CGPoint) {
 		camera?.removeAction(forKey: camMoveKey)
-        // Get the delta vector
-        let vector = lastTouchCam - location
-        
-        // Add to camera node position
-        cameraNode.position += vector
-    }
+		// Get the delta vector
+		let vector = lastTouchCam - location
+		
+		// Add to camera node position
+		cameraNode.position += vector
+	}
 	func moveCamera(with node: SKSpriteNode) {
 		guard !isJustFired else {
 			return
@@ -430,14 +430,14 @@ class GameScene: SKScene {
 	
 	// MARK: - Getting info
 	// Function to return correct node, different methods of sorting
-    func node(at point: CGPoint) -> SKNode {
-        // Check if controller region contains touch location
+	func node(at point: CGPoint) -> SKNode {
+		// Check if controller region contains touch location
 		let node = atPoint(point)
 		
-        if controller.region.contains(point) {
+		if controller.region.contains(point) {
 			return controller
 			
-        } else if node is ToolIcon {
+		} else if node is ToolIcon {
 			return node
 		} else if node is ToolNode {
 			return node
@@ -449,7 +449,7 @@ class GameScene: SKScene {
 		
 		// Return camera as default
 		return cameraNode
-    }
+	}
 	
 	// Check if point is in canvas
 	func isInCanvas(location: CGPoint) -> Bool {
@@ -504,7 +504,7 @@ class GameScene: SKScene {
 		
 		// Unarchive a brand new tool from file
 		let newTool = SKNode(fileNamed: tool.type.rawValue)?.children.first as! ToolNode
-
+		
 		// Remove tool from unarchived scene, add it to this one and engage
 		newTool.removeFromParent()
 		newTool.position = toolBox.convert(tool.position, to: self)
@@ -533,35 +533,35 @@ class GameScene: SKScene {
 		}
 	}
 	
-    func die() {
+	func die() {
 		self.run(soundFX["rumble"]!)
 		
-        let amplitudeX: CGFloat = 60
-        let amplitudeY: CGFloat = 100
-        
-        let numberOfShakes = 6
-        var moveActions = [SKAction]()
-        
-        for _ in 1...numberOfShakes {
-            let moveX = (CGFloat(arc4random_uniform(UInt32(amplitudeX))) - amplitudeX) / 2
-            let moveY = (CGFloat(arc4random_uniform(UInt32(amplitudeY))) - amplitudeY) / 2
-            
-            let shakeAction = SKAction.move(by: CGVector(dx: CGFloat(moveX), dy: CGFloat(moveY)), duration: 0.02)
-            shakeAction.timingMode = .easeOut
-            moveActions.append(shakeAction)
-            moveActions.append(shakeAction.reversed())
-        }
-        
-        let colorise = SKAction.colorize(with: .red, colorBlendFactor: 1, duration: 0.3)
-        colorise.timingMode = .easeInEaseOut
-        
-        let decolorise = SKAction.colorize(withColorBlendFactor: 0, duration: 0.3)
-        colorise.timingMode = .easeInEaseOut
-        
-        let coloriseSeq = SKAction.sequence([colorise, decolorise])
-        let moveSeq = SKAction.sequence(moveActions)
-        
-        let group = SKAction.group([coloriseSeq, moveSeq])
+		let amplitudeX: CGFloat = 60
+		let amplitudeY: CGFloat = 100
+		
+		let numberOfShakes = 6
+		var moveActions = [SKAction]()
+		
+		for _ in 1...numberOfShakes {
+			let moveX = (CGFloat(arc4random_uniform(UInt32(amplitudeX))) - amplitudeX) / 2
+			let moveY = (CGFloat(arc4random_uniform(UInt32(amplitudeY))) - amplitudeY) / 2
+			
+			let shakeAction = SKAction.move(by: CGVector(dx: CGFloat(moveX), dy: CGFloat(moveY)), duration: 0.02)
+			shakeAction.timingMode = .easeOut
+			moveActions.append(shakeAction)
+			moveActions.append(shakeAction.reversed())
+		}
+		
+		let colorise = SKAction.colorize(with: .red, colorBlendFactor: 1, duration: 0.3)
+		colorise.timingMode = .easeInEaseOut
+		
+		let decolorise = SKAction.colorize(withColorBlendFactor: 0, duration: 0.3)
+		colorise.timingMode = .easeInEaseOut
+		
+		let coloriseSeq = SKAction.sequence([colorise, decolorise])
+		let moveSeq = SKAction.sequence(moveActions)
+		
+		let group = SKAction.group([coloriseSeq, moveSeq])
 		
 		cameraNode.run(moveSeq)
 		
@@ -571,7 +571,7 @@ class GameScene: SKScene {
 		enumerateChildNodes(withName: "//canvas") { canvas, _ in
 			canvas.run(group)
 		}
-    }
+	}
 	func finishedLevel() {
 		if level.isSecret {
 			levelController.endSecret()
@@ -586,19 +586,19 @@ class GameScene: SKScene {
 			let finishedLevelNodePosition: CGPoint
 			if ios9 {
 				finishedLevelNodePosition = CGPoint(x: cameraNode.frame.size.width / 2,
-													y: cameraNode.frame.size.height / 2 / 2)
+				                                    y: cameraNode.frame.size.height / 2 / 2)
 			} else {
 				// Center of camera, accomadates iPhone aspect ratio
 				finishedLevelNodePosition = CGPoint(x: cameraNode.frame.size.width / 2,
-													y: cameraNode.frame.size.height / 2 - margin / 2)
+				                                    y: cameraNode.frame.size.height / 2 - margin / 2)
 			}
 			
 			finishedLevelNode.position = finishedLevelNodePosition
 			
 			cameraNode.addChild(finishedLevelNode)
-
+			
 			isFinished = true
-
+			
 			let levelButton = finishedLevelNode.childNode(withName: "levelButton") as! LevelSelectButtonNode
 			let nextButton = finishedLevelNode.childNode(withName: "nextButton") as! NextLevelButtonNode
 			
@@ -610,29 +610,29 @@ class GameScene: SKScene {
 			
 			levelButton.delegate = levelController
 			nextButton.delegate = levelController
-
+			
 			if iPhone {
 				levelButton.position.y += 350
 				nextButton.position.y += 350
 				finishedLevelNode.position.y += 150
 			}
-
+			
 			finishedLevelNode.run(SKAction.fadeIn(withDuration: 0.5)) { self.isPaused = true }
 		}
 	}
-
-    // MARK: - Touch Events
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard !isFinished else {
-            return
-        }
-        
-        for touch in touches {
+	
+	// MARK: - Touch Events
+	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		guard !isFinished else {
+			return
+		}
+		
+		for touch in touches {
 			cameraNode.removeAction(forKey: camMoveKey)
 			nodeToFollow = nil
 			
-            // Get location of touch in different coordinate systems
-            let location = touch.location(in: self)
+			// Get location of touch in different coordinate systems
+			let location = touch.location(in: self)
 			let locationCam = touch.location(in: cameraNode)
 			
 			currentNode = node(at: location)
@@ -646,15 +646,15 @@ class GameScene: SKScene {
 			// Set local variables
 			lastTouchPoint = location
 			lastTouchCam = locationCam
-        }
-    }
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard !isFinished else {
-            return
-        }
-        for touch in touches {
-            // Get location of touch in different coordinate systems
-            let location = touch.location(in: self)
+		}
+	}
+	override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+		guard !isFinished else {
+			return
+		}
+		for touch in touches {
+			// Get location of touch in different coordinate systems
+			let location = touch.location(in: self)
 			let locationCam = touch.location(in: cameraNode)
 			
 			if currentNode == controller && isInCanvas(location: location) {
@@ -662,17 +662,17 @@ class GameScene: SKScene {
 			} else if currentNode == cameraNode{
 				moveCamera(to: locationCam)
 			}
-            
-            // Set local variables
-            lastTouchPoint = location
+			
+			// Set local variables
+			lastTouchPoint = location
 			lastTouchCam = locationCam
-        }
-    }
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard !isFinished else {
-            return
-        }
-        for _ in touches {
+		}
+	}
+	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+		guard !isFinished else {
+			return
+		}
+		for _ in touches {
 			
 			if let toolIcon = currentNode as? ToolIcon {
 				load(icon: toolIcon)
@@ -689,9 +689,9 @@ class GameScene: SKScene {
 				key.greyOut()
 			}
 			
-            currentNode = nil
-        }
-    }
+			currentNode = nil
+		}
+	}
 	
 	// MARK: - Update
 	override func update(_ currentTime: TimeInterval) {

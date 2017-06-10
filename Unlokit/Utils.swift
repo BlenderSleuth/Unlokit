@@ -287,6 +287,7 @@ func += (left: inout CGAffineTransform, right: CGAffineTransform) {
 }
 
 //********* Other Public stuff ***************************
+let appID = 1207632456
 private let version = UIDevice.current.systemVersion
 let ios9 = version[version.startIndex] == "9"
 let iPhone = UIDevice.current.model == "iPhone"
@@ -347,6 +348,19 @@ extension Array {
 	}
 }
 
+// **** Weak wrapper to create a list of weak objects ****
+struct Weak<T> where T: AnyObject {
+	weak var _value : T?
+	
+	init (value: T) {
+		_value = value
+	}
+	
+	func get() -> T? {
+		return _value
+	}
+}
+
 //********* Plist Loading *****************************
 func getDefaultLevelsFromPlist(stage stageNumber: Int) -> [Level]{
 	// Get plist
@@ -363,8 +377,7 @@ func getDefaultLevelsFromPlist(stage stageNumber: Int) -> [Level]{
 			// Mark first level as available
 			let available: Bool
 			if stageNumber == 1 && levelNumber == 1 {
-				//available = true
-				available = false
+				available = true
 			} else {
 				available = false
 			}

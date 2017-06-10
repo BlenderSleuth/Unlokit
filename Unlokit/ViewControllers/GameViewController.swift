@@ -35,6 +35,7 @@ class GameViewController: UIViewController, LevelController {
 		#endif
     }
 	
+	//MARK: - Starting a game
     func startNewGame(levelname: String) {
 		// Put this all on seperate thread for loading
 		DispatchQueue.global(qos: .userInitiated).async {
@@ -103,6 +104,7 @@ class GameViewController: UIViewController, LevelController {
         startNewGame(levelname: "Level\(self.level.stageNumber)_\(self.level.number)")
 	}
 	
+	//MARK: - Levels
 	func finishedLevel() {
 		level.isCompleted = true
 		level.isSecret = false
@@ -129,7 +131,6 @@ class GameViewController: UIViewController, LevelController {
 	func saveLevels() {
 		delegate?.saveLevels()
 	}
-
 	func toNextLevel() {
 		// Because of reference we can set this in here
 		level.isCompleted = true
@@ -155,6 +156,9 @@ class GameViewController: UIViewController, LevelController {
 		currentLevelView?.makeAvailable()
 		
 		saveLevels()
+
+		// Ask for a review
+		checkForReview()
 		
 		startNewGame()
 	}
@@ -172,7 +176,50 @@ class GameViewController: UIViewController, LevelController {
 		}
 	}
 	
-	// Clean up
+	//MARK: - Ratings
+	let minSessions = 6
+	let tryAgainSessions = 6
+	
+	func checkForReview() {
+		let defaults = UserDefaults.standard
+		// Current values
+		let neverRate = defaults.bool(forKey: "neverRate")
+		var numLaunches = defaults.integer(forKey: "numLaunches") + 1
+		
+		// Check if neverRate, or
+		if !neverRate && (numLaunches == minSessions || numLaunches >= (minSessions + tryAgainSessions + 1)) {
+			askForReview()
+			// Reset launches
+			numLaunches = minSessions + 1
+		}
+		defaults.set(numLaunches, forKey: "numLaunches")
+	}
+	func askForReview() {
+		// Create the alert
+		let alert = UIAlertController(title: "Rate Unlokit", message: "Thank you for using Unlokit", preferredStyle: UIAlertControllerStyle.alert)
+		// Add the actions
+		alert.addAction(UIAlertAction(title: "Rate", style: UIAlertActionStyle.default, handler: { alertAction in
+			let url = URL(string: "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=\(appID)&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software")!
+			UIApplication.shared.openURL(url)
+			alert.dismiss(animated: true, completion: nil)
+		}))
+		alert.addAction(UIAlertAction(title: "Write a review", style: UIAlertActionStyle.default, handler: { alertAction in
+			let url = URL(string: "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=\(appID)&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software&action=write-review")!
+			UIApplication.shared.openURL(url)
+			alert.dismiss(animated: true, completion: nil)
+		}))
+		alert.addAction(UIAlertAction(title: "Maybe later", style: UIAlertActionStyle.default, handler: { alertAction in
+			alert.dismiss(animated: true, completion: nil)
+		}))
+		alert.addAction(UIAlertAction(title: "No thanks", style: UIAlertActionStyle.default, handler: { alertAction in
+			UserDefaults.standard.set(true, forKey: "neverRate")
+			alert.dismiss(animated: true, completion: nil)
+		}))
+		// Present the alert
+		self.present(alert, animated: true, completion: nil)
+	}
+	
+	//MARK: - Clean up
 	override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
 		if let skView = self.view as? SKView {
